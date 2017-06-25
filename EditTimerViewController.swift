@@ -9,9 +9,13 @@
 import UIKit
 
 class EditTimerViewController: UIViewController {
+    
 }
 //MARK: - Actions
 extension EditTimerViewController {
+    @IBAction func addInterval(_ sender: Any) {
+        performSegue(withIdentifier: "EditTimerToEditInterval", sender: nil)
+    }
     func back(){
         _ = navigationController?.popViewController(animated: true)
     }
@@ -45,4 +49,3 @@ extension EditTimerViewController {
         self.navigationItem.rightBarButtonItems = [negativeSpace, cancelButton]
     }
 }
-

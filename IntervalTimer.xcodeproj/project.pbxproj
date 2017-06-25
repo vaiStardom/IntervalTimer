@@ -19,6 +19,8 @@
 		BA4BFEA91EFFA16500E341DC /* IntervalTimerGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4BFEA81EFFA16500E341DC /* IntervalTimerGlobals.swift */; };
 		BA4BFEAC1EFFAF2100E341DC /* EditTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4BFEAB1EFFAF2100E341DC /* EditTimerViewController.swift */; };
 		BA4BFEAF1EFFB8EB00E341DC /* IntervalTimerUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4BFEAE1EFFB8EB00E341DC /* IntervalTimerUILabel.swift */; };
+		BA4BFEB11EFFC55700E341DC /* EditIntervalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4BFEB01EFFC55700E341DC /* EditIntervalViewController.swift */; };
+		BA4BFEB51EFFD5E400E341DC /* IntervalTimerIndicatorUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4BFEB41EFFD5E400E341DC /* IntervalTimerIndicatorUIImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		BA4BFEA81EFFA16500E341DC /* IntervalTimerGlobals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalTimerGlobals.swift; sourceTree = "<group>"; };
 		BA4BFEAB1EFFAF2100E341DC /* EditTimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTimerViewController.swift; sourceTree = "<group>"; };
 		BA4BFEAE1EFFB8EB00E341DC /* IntervalTimerUILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalTimerUILabel.swift; sourceTree = "<group>"; };
+		BA4BFEB01EFFC55700E341DC /* EditIntervalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditIntervalViewController.swift; sourceTree = "<group>"; };
+		BA4BFEB41EFFD5E400E341DC /* IntervalTimerIndicatorUIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalTimerIndicatorUIImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +143,7 @@
 			children = (
 				BA4BFEA21EFF52CF00E341DC /* IntervalTimerColors.swift */,
 				BA4BFEA81EFFA16500E341DC /* IntervalTimerGlobals.swift */,
+				BA4BFEB41EFFD5E400E341DC /* IntervalTimerIndicatorUIImageView.swift */,
 				BA4BFEA41EFFA0FD00E341DC /* IntervalTimerUIBarButtonItems.swift */,
 				BA4BFEAE1EFFB8EB00E341DC /* IntervalTimerUILabel.swift */,
 			);
@@ -158,6 +163,7 @@
 		BA4BFEAA1EFFAEEB00E341DC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				BA4BFEB01EFFC55700E341DC /* EditIntervalViewController.swift */,
 				BA4BFEAB1EFFAF2100E341DC /* EditTimerViewController.swift */,
 				BA4BFE761EFF4D9D00E341DC /* TimersViewController.swift */,
 			);
@@ -312,10 +318,12 @@
 			files = (
 				BA4BFEA91EFFA16500E341DC /* IntervalTimerGlobals.swift in Sources */,
 				BA4BFEA31EFF52CF00E341DC /* IntervalTimerColors.swift in Sources */,
+				BA4BFEB11EFFC55700E341DC /* EditIntervalViewController.swift in Sources */,
 				BA4BFEAC1EFFAF2100E341DC /* EditTimerViewController.swift in Sources */,
 				BA4BFEAF1EFFB8EB00E341DC /* IntervalTimerUILabel.swift in Sources */,
 				BA4BFEA51EFFA0FD00E341DC /* IntervalTimerUIBarButtonItems.swift in Sources */,
 				BA4BFE771EFF4D9D00E341DC /* TimersViewController.swift in Sources */,
+				BA4BFEB51EFFD5E400E341DC /* IntervalTimerIndicatorUIImageView.swift in Sources */,
 				BA4BFE751EFF4D9D00E341DC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

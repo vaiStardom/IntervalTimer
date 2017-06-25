@@ -19,4 +19,14 @@ class IntervalTimerUILabel: UILabel {
         
         return label
     }
+    func navBarNewIntervalTitle() -> UILabel {
+        
+        let label=UILabel(frame: NAVBAR_NEWTIMERTITLE_CGRECT)
+        label.textAlignment=NSTextAlignment.center
+        label.font = NAVBAR_TITLE_FONT
+        label.text = NAVBAR_NEWINTERVALTITLE
+        label.textColor = IntervalTimerColors.Orange
+        
+        return label
+    }
 }
