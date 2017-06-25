@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		BA4BFE751EFF4D9D00E341DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4BFE741EFF4D9D00E341DC /* AppDelegate.swift */; };
-		BA4BFE771EFF4D9D00E341DC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4BFE761EFF4D9D00E341DC /* ViewController.swift */; };
+		BA4BFE771EFF4D9D00E341DC /* TimersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4BFE761EFF4D9D00E341DC /* TimersViewController.swift */; };
 		BA4BFE7A1EFF4D9D00E341DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA4BFE781EFF4D9D00E341DC /* Main.storyboard */; };
 		BA4BFE7C1EFF4D9D00E341DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA4BFE7B1EFF4D9D00E341DC /* Assets.xcassets */; };
 		BA4BFE7F1EFF4D9D00E341DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA4BFE7D1EFF4D9D00E341DC /* LaunchScreen.storyboard */; };
 		BA4BFE8A1EFF4D9D00E341DC /* IntervalTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4BFE891EFF4D9D00E341DC /* IntervalTimerTests.swift */; };
 		BA4BFE951EFF4D9D00E341DC /* IntervalTimerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4BFE941EFF4D9D00E341DC /* IntervalTimerUITests.swift */; };
+		BA4BFEA31EFF52CF00E341DC /* IntervalTimerColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4BFEA21EFF52CF00E341DC /* IntervalTimerColors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +37,7 @@
 /* Begin PBXFileReference section */
 		BA4BFE711EFF4D9D00E341DC /* IntervalTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IntervalTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA4BFE741EFF4D9D00E341DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BA4BFE761EFF4D9D00E341DC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BA4BFE761EFF4D9D00E341DC /* TimersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimersViewController.swift; sourceTree = "<group>"; };
 		BA4BFE791EFF4D9D00E341DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BA4BFE7B1EFF4D9D00E341DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BA4BFE7E1EFF4D9D00E341DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +48,7 @@
 		BA4BFE901EFF4D9D00E341DC /* IntervalTimerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntervalTimerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA4BFE941EFF4D9D00E341DC /* IntervalTimerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalTimerUITests.swift; sourceTree = "<group>"; };
 		BA4BFE961EFF4D9D00E341DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BA4BFEA21EFF52CF00E341DC /* IntervalTimerColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalTimerColors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,11 +100,12 @@
 			isa = PBXGroup;
 			children = (
 				BA4BFE741EFF4D9D00E341DC /* AppDelegate.swift */,
-				BA4BFE761EFF4D9D00E341DC /* ViewController.swift */,
+				BA4BFE761EFF4D9D00E341DC /* TimersViewController.swift */,
 				BA4BFE781EFF4D9D00E341DC /* Main.storyboard */,
 				BA4BFE7B1EFF4D9D00E341DC /* Assets.xcassets */,
 				BA4BFE7D1EFF4D9D00E341DC /* LaunchScreen.storyboard */,
 				BA4BFE801EFF4D9D00E341DC /* Info.plist */,
+				BA4BFEA21EFF52CF00E341DC /* IntervalTimerColors.swift */,
 			);
 			path = IntervalTimer;
 			sourceTree = "<group>";
@@ -262,7 +265,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA4BFE771EFF4D9D00E341DC /* ViewController.swift in Sources */,
+				BA4BFEA31EFF52CF00E341DC /* IntervalTimerColors.swift in Sources */,
+				BA4BFE771EFF4D9D00E341DC /* TimersViewController.swift in Sources */,
 				BA4BFE751EFF4D9D00E341DC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
