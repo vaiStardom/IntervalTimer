@@ -17,14 +17,39 @@ class TimersViewController: UIViewController {
 //    @IBOutlet weak var temperatureLabel: UILabel!
 
 }
+//MARK: - Actions
+extension TimersViewController {
+    func addTimer(){
+        performSegue(withIdentifier: "TimersToEditTimer", sender: nil)
+    }
+}
+//MARK: - Aesthetics
+extension TimersViewController {
+}
 //MARK: - Life-Cycle
 extension TimersViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        configureNavBar()
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+}
+//MARK: - Navigation Bar Management
+extension TimersViewController {
+    func configureNavBar(){
+        let leftTitle = leftTitleLabel()
+        self.navigationItem.leftBarButtonItems = [leftTitle]
+        
+        let negativeSpace = negativeSpc()
+        let addButton = addBtn()
+        self.navigationItem.rightBarButtonItems = [negativeSpace, addButton]
+    }
+    func leftTitleLabel() -> UIBarButtonItem {
+        return IntervalTimerUIBarButtonItem().leftTitle()
+    }
+    func addBtn() -> UIBarButtonItem {
+        return IntervalTimerUIBarButtonItem().addButton(target: self, selector: #selector(TimersViewController.addTimer))
+    }
+    func negativeSpc() -> UIBarButtonItem{
+        return IntervalTimerUIBarButtonItem().negativeSpace()
     }
 }
