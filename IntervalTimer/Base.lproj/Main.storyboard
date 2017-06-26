@@ -163,17 +163,17 @@
                                     <constraint firstAttribute="width" constant="97" id="zgH-uo-QpG"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" background="timeTextFieldFrame" translatesAutoresizingMaskIntoConstraints="NO" id="Joj-t6-671">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" background="timeTextFieldFrame" translatesAutoresizingMaskIntoConstraints="NO" id="Joj-t6-671" customClass="NumericKeyboardUITextField" customModule="IntervalTimer" customModuleProvider="target">
                                 <rect key="frame" x="5" y="37" width="47" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="Nud-1E-BQx"/>
                                     <constraint firstAttribute="width" constant="47" id="XwO-i2-BbF"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="52"/>
+                                <fontDescription key="fontDescription" name=".SFNSDisplay" family=".SF NS Display" pointSize="52"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" keyboardAppearance="alert"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" background="timeTextFieldFrame" translatesAutoresizingMaskIntoConstraints="NO" id="EpP-GQ-y65">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" background="timeTextFieldFrame" translatesAutoresizingMaskIntoConstraints="NO" id="EpP-GQ-y65" customClass="NumericKeyboardUITextField" customModule="IntervalTimer" customModuleProvider="target">
                                 <rect key="frame" x="55" y="37" width="47" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="Mu5-l6-iLj"/>
@@ -191,7 +191,7 @@
                                     <constraint firstAttribute="width" constant="97" id="Znq-B1-rPT"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" background="timeTextFieldFrame" translatesAutoresizingMaskIntoConstraints="NO" id="FRr-D4-ZQQ">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" background="timeTextFieldFrame" translatesAutoresizingMaskIntoConstraints="NO" id="FRr-D4-ZQQ" customClass="NumericKeyboardUITextField" customModule="IntervalTimer" customModuleProvider="target">
                                 <rect key="frame" x="112" y="37" width="47" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="47" id="1Jv-b6-NQs"/>
@@ -201,7 +201,7 @@
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="52"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" keyboardAppearance="alert"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" background="timeTextFieldFrame" translatesAutoresizingMaskIntoConstraints="NO" id="hnG-TJ-RWj">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" background="timeTextFieldFrame" translatesAutoresizingMaskIntoConstraints="NO" id="hnG-TJ-RWj" customClass="NumericKeyboardUITextField" customModule="IntervalTimer" customModuleProvider="target">
                                 <rect key="frame" x="162" y="37" width="47" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="47" id="TUk-OW-hDv"/>
@@ -218,7 +218,7 @@
                                     <constraint firstAttribute="width" constant="97" id="T6e-eF-adg"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" background="timeTextFieldFrame" translatesAutoresizingMaskIntoConstraints="NO" id="8sG-yc-kw7">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" background="timeTextFieldFrame" translatesAutoresizingMaskIntoConstraints="NO" id="8sG-yc-kw7" customClass="NumericKeyboardUITextField" customModule="IntervalTimer" customModuleProvider="target">
                                 <rect key="frame" x="218" y="37" width="47" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="Ad4-FJ-GpY"/>
@@ -228,7 +228,7 @@
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="52"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" keyboardAppearance="alert"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" background="timeTextFieldFrame" translatesAutoresizingMaskIntoConstraints="NO" id="KBH-PH-Tdb">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" background="timeTextFieldFrame" translatesAutoresizingMaskIntoConstraints="NO" id="KBH-PH-Tdb" customClass="NumericKeyboardUITextField" customModule="IntervalTimer" customModuleProvider="target">
                                 <rect key="frame" x="268" y="37" width="47" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="47" id="ZPH-Ws-N0D"/>

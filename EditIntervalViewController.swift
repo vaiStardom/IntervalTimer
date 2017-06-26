@@ -8,14 +8,14 @@
 
 import UIKit
 
-class EditIntervalViewController: UIViewController {
+class EditIntervalViewController: UIViewController, NumericKeyboardDelegate  {
     
-    @IBOutlet weak var hourTextField2: UITextField!
-    @IBOutlet weak var hourTextField1: UITextField!
-    @IBOutlet weak var minuteTextField2: UITextField!
-    @IBOutlet weak var minuteTextField1: UITextField!
-    @IBOutlet weak var secondTextField2: UITextField!
-    @IBOutlet weak var secondTextField1: UITextField!
+    @IBOutlet weak var hourTextField2: NumericKeyboardUITextField!
+    @IBOutlet weak var hourTextField1: NumericKeyboardUITextField!
+    @IBOutlet weak var minuteTextField2: NumericKeyboardUITextField!
+    @IBOutlet weak var minuteTextField1: NumericKeyboardUITextField!
+    @IBOutlet weak var secondTextField2: NumericKeyboardUITextField!
+    @IBOutlet weak var secondTextField1: NumericKeyboardUITextField!
     
     @IBOutlet weak var redIndicatorImageView: IntervalTimerIndicatorUIImageView!
     @IBOutlet weak var greenIndicatorImageView: IntervalTimerIndicatorUIImageView!
@@ -97,6 +97,12 @@ extension EditIntervalViewController {
         _ = navigationController?.popViewController(animated: true)
     }
 }
+////MARK: - Text Field Management
+//extension EditIntervalViewController: UITextFieldDelegate {
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        <#code#>
+//    }
+//}
 //MARK: - Helpers
 extension EditIntervalViewController {
     func unselectAllIndicators(){
@@ -117,7 +123,7 @@ extension EditIntervalViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavBar()
-        secondTextField2.becomeFirstResponder()
+        //secondTextField2.becomeFirstResponder()
 
         intervalTimerIndicatorUIImageViews.append(redIndicatorImageView)
         intervalTimerIndicatorUIImageViews.append(greenIndicatorImageView)
@@ -125,9 +131,25 @@ extension EditIntervalViewController{
         intervalTimerIndicatorUIImageViews.append(blueIndicatorImageView)
         intervalTimerIndicatorUIImageViews.append(yellowIndicatorImageView)
         intervalTimerIndicatorUIImageViews.append(purpleIndicatorImageView)
+        
+        hourTextField2.setAsNumericKeyboard(delegate: self)
+        hourTextField1.setAsNumericKeyboard(delegate: self)
+        minuteTextField2.setAsNumericKeyboard(delegate: self)
+        minuteTextField1.setAsNumericKeyboard(delegate: self)
+        secondTextField2.setAsNumericKeyboard(delegate: self)
+        secondTextField1.setAsNumericKeyboard(delegate: self)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+}
+//MARK: - NumericKeyboardDelegate Management
+extension EditIntervalViewController{
+    func numericKeyPressed(key: Int) {
+        print("Numeric key \(key) pressed")
+    }
+    func backspacePressed() {
+        print("Backspace pressed")
     }
 }
 //MARK: - Navigation Bar Management
