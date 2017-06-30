@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class EditIntervalViewController: UIViewController  {
 
     @IBOutlet weak var hourTextField2: UITextField!
@@ -67,17 +66,12 @@ extension EditIntervalViewController {
     }
 }
 
-
 //MARK: - Text Field Management
 extension EditIntervalViewController: UITextFieldDelegate {
-    
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         //trim out the invisible sign
         let trimmedOutSign = textField.text?.replacingOccurrences(of: zeroWidthSpace, with: "")
-        
-        //let currentText = textField.text ?? ""
         let currentText = trimmedOutSign
 
         let nextTag = textField.tag + 1
@@ -86,22 +80,10 @@ extension EditIntervalViewController: UITextFieldDelegate {
         let previousTag = (textField.tag - 1 == 0 ? 1 : textField.tag - 1)
         var previousResponder = textField.superview?.viewWithTag(previousTag) as? UITextField
         
-        
-//        let stringEmpty = ""
-//        print("------>trimmedOutSign = \(trimmedOutSign ?? stringEmpty)")
-//        print("------>currentText = \(currentText ?? stringEmpty)")
-//        print("------>prospectiveText = \(string)")
-//        print("------>textField.tag = \(textField.tag)")
-//        print("------>nextTag = \(nextTag)")
-//        print("------>previousTag = \(previousTag)")
-        
-        
         if ((currentText?.characters.count)! < 1
             && string.characters.count > 0
             && string.containsOnlyCharactersIn(matchCharacter: allowedChars)){ // User inputs 1 number
-        
-//            print("------>First condition = User inputs 1 number")
-            
+
             textField.text = string
             nextResponder?.becomeFirstResponder()
             
@@ -109,9 +91,7 @@ extension EditIntervalViewController: UITextFieldDelegate {
             
         } else if ((currentText?.characters.count)! >= 1
             && string.characters.count == 0){ // User deletes the contents
-            
-//            print("------>Second condition = User deletes the contents, previous textField becomeFirstResponder()")
-            
+
             if (previousResponder == nil){ //if we cant find the revious textField, set it to the first text field
                 previousResponder = textField.superview?.viewWithTag(0) as? UITextField
             }
@@ -122,66 +102,20 @@ extension EditIntervalViewController: UITextFieldDelegate {
 
         } else if ((currentText?.characters.count)! == 0
             && string.characters.count == 0){ // TextField is empty, user backspaces.
-            
-//            print("------>Third condition = TextField is empty, user backspaces.")
-            
+
             textField.text = zeroWidthSpace
             
             if let previousTextField = previousResponder {
-//                print("------>Third condition = Delete contents of previous uitextfield.")
                 previousTextField.text = zeroWidthSpace
             }
             previousResponder!.becomeFirstResponder()
             
             return false
         } else {
-//            print("------>FOURTH CONDITION = ?")
             textField.text = zeroWidthSpace
             return false
         }
     }
-
-//        let currentText = textField.text ?? ""
-//        let prospectiveText = (currentText as NSString).replacingCharacters(in: range, with: string)
-//
-//        
-//        if (currentText.characters.count < 1
-//            && string.characters.count > 0
-//            && prospectiveText.containsOnlyCharactersIn(matchCharacter: allowedChars)){ // User inputs 1 number
-//            
-//            textField.text = prospectiveText
-//            
-//            let nextTag = textField.tag + 1
-//            let nextResponder = textField.superview?.viewWithTag(nextTag)
-//
-//            if (nextResponder == nil){
-//                textField.resignFirstResponder()
-//            }
-//            nextResponder?.becomeFirstResponder()
-//            
-//            return false
-//            
-//        } else if (currentText.characters.count >= 1
-//            && prospectiveText.characters.count == 0){ // User deletes the contents
-//
-//            let previousTag = textField.tag - 1
-//            var previousResponder = textField.superview?.viewWithTag(previousTag)
-//            
-//            if (previousResponder == nil){ //if we cant find the revious textField, set it to the first text field
-//                previousResponder = textField.superview?.viewWithTag(0)
-//            }
-//            
-//            //textField.text = InvisibleSign
-//            textField.text = ""
-//            previousResponder?.becomeFirstResponder()
-//            return false
-//        } else {
-//            //textField.text = InvisibleSign
-//            
-//            //todo invetigate why it comes here?
-//            textField.text = ""
-//            return false
-//        }
 }
 //MARK: - Helpers
 extension EditIntervalViewController {
