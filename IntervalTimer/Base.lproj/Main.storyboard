@@ -163,7 +163,7 @@
                                     <constraint firstAttribute="width" constant="97" id="zgH-uo-QpG"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" background="timeTextFieldFrame" translatesAutoresizingMaskIntoConstraints="NO" id="Joj-t6-671" customClass="NumericKeyboardUITextField" customModule="IntervalTimer" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" background="timeTextFieldFrame" translatesAutoresizingMaskIntoConstraints="NO" id="Joj-t6-671">
                                 <rect key="frame" x="5" y="37" width="47" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="Nud-1E-BQx"/>
@@ -171,9 +171,15 @@
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name=".SFNSDisplay" family=".SF NS Display" pointSize="52"/>
-                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" keyboardAppearance="alert"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="alert"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="allowedChars" value="0123456789"/>
+                                </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" background="timeTextFieldFrame" translatesAutoresizingMaskIntoConstraints="NO" id="EpP-GQ-y65" customClass="NumericKeyboardUITextField" customModule="IntervalTimer" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" background="timeTextFieldFrame" translatesAutoresizingMaskIntoConstraints="NO" id="EpP-GQ-y65">
                                 <rect key="frame" x="55" y="37" width="47" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="Mu5-l6-iLj"/>
@@ -181,7 +187,13 @@
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="52"/>
-                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" keyboardAppearance="alert"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="alert"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="allowedChars" value="0123456789"/>
+                                </userDefinedRuntimeAttributes>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="83J-Jn-bQR">
                                 <rect key="frame" x="112" y="37" width="97" height="75"/>
@@ -191,7 +203,7 @@
                                     <constraint firstAttribute="width" constant="97" id="Znq-B1-rPT"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" background="timeTextFieldFrame" translatesAutoresizingMaskIntoConstraints="NO" id="FRr-D4-ZQQ" customClass="NumericKeyboardUITextField" customModule="IntervalTimer" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" background="timeTextFieldFrame" translatesAutoresizingMaskIntoConstraints="NO" id="FRr-D4-ZQQ">
                                 <rect key="frame" x="112" y="37" width="47" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="47" id="1Jv-b6-NQs"/>
@@ -199,9 +211,15 @@
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="52"/>
-                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" keyboardAppearance="alert"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="alert"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="allowedChars" value="0123456789"/>
+                                </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" background="timeTextFieldFrame" translatesAutoresizingMaskIntoConstraints="NO" id="hnG-TJ-RWj" customClass="NumericKeyboardUITextField" customModule="IntervalTimer" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" background="timeTextFieldFrame" translatesAutoresizingMaskIntoConstraints="NO" id="hnG-TJ-RWj">
                                 <rect key="frame" x="162" y="37" width="47" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="47" id="TUk-OW-hDv"/>
@@ -209,7 +227,13 @@
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="52"/>
-                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" keyboardAppearance="alert"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="alert"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="allowedChars" value="0123456789"/>
+                                </userDefinedRuntimeAttributes>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gKT-Zu-qhL">
                                 <rect key="frame" x="218" y="37" width="97" height="75"/>
@@ -218,7 +242,7 @@
                                     <constraint firstAttribute="width" constant="97" id="T6e-eF-adg"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" background="timeTextFieldFrame" translatesAutoresizingMaskIntoConstraints="NO" id="8sG-yc-kw7" customClass="NumericKeyboardUITextField" customModule="IntervalTimer" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" background="timeTextFieldFrame" translatesAutoresizingMaskIntoConstraints="NO" id="8sG-yc-kw7">
                                 <rect key="frame" x="218" y="37" width="47" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="Ad4-FJ-GpY"/>
@@ -226,9 +250,15 @@
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="52"/>
-                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" keyboardAppearance="alert"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="alert"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="allowedChars" value="0123456789"/>
+                                </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" background="timeTextFieldFrame" translatesAutoresizingMaskIntoConstraints="NO" id="KBH-PH-Tdb" customClass="NumericKeyboardUITextField" customModule="IntervalTimer" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" background="timeTextFieldFrame" translatesAutoresizingMaskIntoConstraints="NO" id="KBH-PH-Tdb">
                                 <rect key="frame" x="268" y="37" width="47" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="47" id="ZPH-Ws-N0D"/>
@@ -236,7 +266,13 @@
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="52"/>
-                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" keyboardAppearance="alert"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="alert"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="allowedChars" value="0123456789"/>
+                                </userDefinedRuntimeAttributes>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minutes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sIh-76-YLu">
                                 <rect key="frame" x="112" y="8" width="61" height="21"/>
@@ -419,7 +455,7 @@
                         <outlet property="greenIndicatorButton" destination="PFg-PI-HgW" id="9Wc-00-M7u"/>
                         <outlet property="greenIndicatorImageView" destination="dLa-8p-dbv" id="ITx-Si-aUr"/>
                         <outlet property="hourTextField1" destination="EpP-GQ-y65" id="nCk-oJ-kqw"/>
-                        <outlet property="hourTextField2" destination="Joj-t6-671" id="4Tr-iC-dhv"/>
+                        <outlet property="hourTextField2" destination="Joj-t6-671" id="maj-7k-QCi"/>
                         <outlet property="minuteTextField1" destination="hnG-TJ-RWj" id="ZFo-X9-2su"/>
                         <outlet property="minuteTextField2" destination="FRr-D4-ZQQ" id="JA8-fK-gRI"/>
                         <outlet property="orangeIndicatorButton" destination="wbU-uX-rKv" id="Q6y-fH-dlp"/>

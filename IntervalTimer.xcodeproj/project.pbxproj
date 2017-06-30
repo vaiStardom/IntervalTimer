@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BA48AB3B1F0166F300C30DE3 /* NumericKeyboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA48AB381F0166F300C30DE3 /* NumericKeyboardView.xib */; };
-		BA48AB3C1F0166F300C30DE3 /* NumericKeyboardUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA48AB391F0166F300C30DE3 /* NumericKeyboardUITextField.swift */; };
-		BA48AB3D1F0166F300C30DE3 /* NumericKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA48AB3A1F0166F300C30DE3 /* NumericKeyboardView.swift */; };
 		BA4BFE751EFF4D9D00E341DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4BFE741EFF4D9D00E341DC /* AppDelegate.swift */; };
 		BA4BFE771EFF4D9D00E341DC /* TimersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4BFE761EFF4D9D00E341DC /* TimersViewController.swift */; };
 		BA4BFE7A1EFF4D9D00E341DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA4BFE781EFF4D9D00E341DC /* Main.storyboard */; };
@@ -44,9 +41,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		BA48AB381F0166F300C30DE3 /* NumericKeyboardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NumericKeyboardView.xib; path = IntervalTimer/NumericKeyboardView.xib; sourceTree = "<group>"; };
-		BA48AB391F0166F300C30DE3 /* NumericKeyboardUITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericKeyboardUITextField.swift; sourceTree = "<group>"; };
-		BA48AB3A1F0166F300C30DE3 /* NumericKeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NumericKeyboardView.swift; path = IntervalTimer/NumericKeyboardView.swift; sourceTree = "<group>"; };
 		BA4BFE711EFF4D9D00E341DC /* IntervalTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IntervalTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA4BFE741EFF4D9D00E341DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BA4BFE761EFF4D9D00E341DC /* TimersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TimersViewController.swift; path = IntervalTimer/TimersViewController.swift; sourceTree = "<group>"; };
@@ -94,19 +88,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BA48AB3E1F01672400C30DE3 /* Nibs */ = {
-			isa = PBXGroup;
-			children = (
-				BA48AB3A1F0166F300C30DE3 /* NumericKeyboardView.swift */,
-				BA48AB381F0166F300C30DE3 /* NumericKeyboardView.xib */,
-			);
-			name = Nibs;
-			sourceTree = "<group>";
-		};
 		BA4BFE681EFF4D9D00E341DC = {
 			isa = PBXGroup;
 			children = (
-				BA48AB3E1F01672400C30DE3 /* Nibs */,
 				BA4BFE731EFF4D9D00E341DC /* IntervalTimer */,
 				BA4BFE721EFF4D9D00E341DC /* Products */,
 				BA4BFEA61EFFA10400E341DC /* Sources */,
@@ -157,7 +141,6 @@
 		BA4BFEA61EFFA10400E341DC /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				BA48AB391F0166F300C30DE3 /* NumericKeyboardUITextField.swift */,
 				BA4BFEA21EFF52CF00E341DC /* IntervalTimerColors.swift */,
 				BA4BFEA81EFFA16500E341DC /* IntervalTimerGlobals.swift */,
 				BA4BFEB41EFFD5E400E341DC /* IntervalTimerIndicatorUIImageView.swift */,
@@ -309,7 +292,6 @@
 				BA4BFE7F1EFF4D9D00E341DC /* LaunchScreen.storyboard in Resources */,
 				BA4BFE7C1EFF4D9D00E341DC /* Assets.xcassets in Resources */,
 				BA4BFE7A1EFF4D9D00E341DC /* Main.storyboard in Resources */,
-				BA48AB3B1F0166F300C30DE3 /* NumericKeyboardView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,11 +318,9 @@
 			files = (
 				BA4BFEA91EFFA16500E341DC /* IntervalTimerGlobals.swift in Sources */,
 				BA4BFEA31EFF52CF00E341DC /* IntervalTimerColors.swift in Sources */,
-				BA48AB3C1F0166F300C30DE3 /* NumericKeyboardUITextField.swift in Sources */,
 				BA4BFEB11EFFC55700E341DC /* EditIntervalViewController.swift in Sources */,
 				BA4BFEAC1EFFAF2100E341DC /* EditTimerViewController.swift in Sources */,
 				BA4BFEAF1EFFB8EB00E341DC /* IntervalTimerUILabel.swift in Sources */,
-				BA48AB3D1F0166F300C30DE3 /* NumericKeyboardView.swift in Sources */,
 				BA4BFEA51EFFA0FD00E341DC /* IntervalTimerUIBarButtonItems.swift in Sources */,
 				BA4BFE771EFF4D9D00E341DC /* TimersViewController.swift in Sources */,
 				BA4BFEB51EFFD5E400E341DC /* IntervalTimerIndicatorUIImageView.swift in Sources */,
