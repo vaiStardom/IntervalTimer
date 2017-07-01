@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA324EE81F067AB700F38DE4 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA324EE71F067AB700F38DE4 /* TimerViewController.swift */; };
 		BA4BFE751EFF4D9D00E341DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4BFE741EFF4D9D00E341DC /* AppDelegate.swift */; };
 		BA4BFE771EFF4D9D00E341DC /* TimersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4BFE761EFF4D9D00E341DC /* TimersViewController.swift */; };
 		BA4BFE7A1EFF4D9D00E341DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA4BFE781EFF4D9D00E341DC /* Main.storyboard */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BA324EE71F067AB700F38DE4 /* TimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		BA4BFE711EFF4D9D00E341DC /* IntervalTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IntervalTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA4BFE741EFF4D9D00E341DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BA4BFE761EFF4D9D00E341DC /* TimersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TimersViewController.swift; path = IntervalTimer/TimersViewController.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				BA4BFEB01EFFC55700E341DC /* EditIntervalViewController.swift */,
 				BA4BFEAB1EFFAF2100E341DC /* EditTimerViewController.swift */,
 				BA4BFE761EFF4D9D00E341DC /* TimersViewController.swift */,
+				BA324EE71F067AB700F38DE4 /* TimerViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA324EE81F067AB700F38DE4 /* TimerViewController.swift in Sources */,
 				BA4BFEA91EFFA16500E341DC /* IntervalTimerGlobals.swift in Sources */,
 				BA4BFEA31EFF52CF00E341DC /* IntervalTimerColors.swift in Sources */,
 				BA4BFEB11EFFC55700E341DC /* EditIntervalViewController.swift in Sources */,

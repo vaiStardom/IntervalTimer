@@ -12,15 +12,13 @@ class TimersViewController: UIViewController {
 
     @IBOutlet weak var weatherIconImageView: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
-    
-//    @IBOutlet weak var weatherIconImageView: UIImageView!
-//    @IBOutlet weak var temperatureLabel: UILabel!
 
 }
 //MARK: - Actions
 extension TimersViewController {
     func addTimer(){
-        performSegue(withIdentifier: "TimersToEditTimer", sender: nil)
+        //performSegue(withIdentifier: "TimersToEditTimer", sender: nil)
+        performSegue(withIdentifier: "TimersToTimer", sender: nil)
     }
 }
 //MARK: - Aesthetics

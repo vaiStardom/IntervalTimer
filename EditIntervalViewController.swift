@@ -8,6 +8,13 @@
 
 import UIKit
 
+private extension String{
+    func containsOnlyCharactersIn(matchCharacter: String) -> Bool {
+        let disallowedCharacterSet = CharacterSet(charactersIn: matchCharacter).inverted
+        return self.rangeOfCharacter(from: disallowedCharacterSet) == nil
+    }
+}
+
 class EditIntervalViewController: UIViewController  {
 
     @IBOutlet weak var hourTextField2: UITextField!
@@ -181,11 +188,5 @@ extension EditIntervalViewController {
         let negativeSpace = IntervalTimerUIBarButtonItem().negativeSpace()
         let cancelButton = IntervalTimerUIBarButtonItem().cancelButton(target: self, selector: #selector(EditIntervalViewController.cancel))
         self.navigationItem.rightBarButtonItems = [negativeSpace, cancelButton]
-    }
-}
-private extension String{
-    func containsOnlyCharactersIn(matchCharacter: String) -> Bool {
-        let disallowedCharacterSet = CharacterSet(charactersIn: matchCharacter).inverted
-        return self.rangeOfCharacter(from: disallowedCharacterSet) == nil
     }
 }

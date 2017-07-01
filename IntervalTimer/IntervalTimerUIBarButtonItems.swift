@@ -75,6 +75,26 @@ class IntervalTimerUIBarButtonItem: UIBarButtonItem {
         
         return UIBarButtonItem(customView: view)
     }
+    func editButton(target: UIViewController, selector: Selector) -> UIBarButtonItem {
+        //return customBarCancelButton(frame: NAVBAR_SAVEICON_CGRECT, target: target, selector: selector)
+        
+        let button = UIButton(frame: NAVBAR_CANCELBUTTONS_CGRECT)
+        button.addTarget(target, action: selector, for: .touchUpInside)
+        button.transform = CGAffineTransform(translationX: -15, y: 0)
+        
+        let label = UILabel(frame: NAVBAR_EDITLABEL_CGRECT)
+        label.text = NAVBAR_EDITTITLE
+        label.font = NAVBAR_LEFTRIGHT_FONT
+        label.textColor = IntervalTimerColors.Orange
+        
+        let view = UIView(frame: DUMMY_CGRECT)
+        view.addSubview(button)
+        view.addSubview(label)
+        
+        return UIBarButtonItem(customView: view)
+    }
+
+    
     func negativeSpace() -> UIBarButtonItem {
         let negativeSpace:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
         negativeSpace.width = -20.0
