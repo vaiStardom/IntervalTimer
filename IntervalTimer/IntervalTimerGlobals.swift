@@ -25,7 +25,10 @@ let SYSTEM_REGULAR_19: UIFont = UIFont.systemFont(ofSize: 19, weight: UIFontWeig
 let SYSTEM_REGULAR_28: UIFont = UIFont.systemFont(ofSize: 28, weight: UIFontWeightRegular)
 let SYSTEM_SEMIBOLD_17: UIFont = UIFont.systemFont(ofSize: 17, weight: UIFontWeightSemibold)
 let SYSTEM_THIN_60: UIFont = UIFont.systemFont(ofSize: 60, weight: UIFontWeightThin)
-let SYSTEM_THIN_117_MONOSPACED: UIFont = UIFont.monospacedDigitSystemFont(ofSize: 117, weight: UIFontWeightUltraLight)
+
+let SYSTEM_ULTRALIGHT_61_MONOSPACED: UIFont = UIFont.monospacedDigitSystemFont(ofSize: 61, weight: UIFontWeightUltraLight)
+let SYSTEM_ULTRALIGHT_94_MONOSPACED: UIFont = UIFont.monospacedDigitSystemFont(ofSize: 94, weight: UIFontWeightUltraLight)
+let SYSTEM_ULTRALIGHT_117_MONOSPACED: UIFont = UIFont.monospacedDigitSystemFont(ofSize: 117, weight: UIFontWeightUltraLight)
 let SYSTEM_ULTRALIGHT_65: UIFont = UIFont.systemFont(ofSize: 65, weight: UIFontWeightUltraLight)
 let SYSTEM_ULTRALIGHT_117: UIFont = UIFont.systemFont(ofSize: 117, weight: UIFontWeightUltraLight)
 
@@ -36,8 +39,11 @@ let CONTENT_LABEL_FONT = SYSTEM_REGULAR_17
 let CONTENT_FONT = SYSTEM_REGULAR_28
 let EDIT_TIME_FONT = SYSTEM_LIGHT_52
 //let TIMER_INTERVAL_TIME_FONT = SYSTEM_THIN_60
-let TIMER_INTERVAL_TIME_FONT = SYSTEM_THIN_117_MONOSPACED
+let TIMER_INTERVAL_TIME_HOURS_FONT =  SYSTEM_ULTRALIGHT_61_MONOSPACED
+let TIMER_INTERVAL_TIME_MINUTES_FONT = SYSTEM_ULTRALIGHT_94_MONOSPACED
+let TIMER_INTERVAL_TIME_SECONDS_FONT = SYSTEM_ULTRALIGHT_117_MONOSPACED
 let TIMER_NAME_FONT = SYSTEM_HEAVY_35
+let TIMER_WEATHERTEMPERATURE_FONT = SYSTEM_REGULAR_17
 let TIMERS_NAME_FONT = SYSTEM_THIN_60
 let WIDGET_TIMERS_NAME_FONT = SYSTEM_REGULAR_19
 let WIDGET_TIME_FONT = SYSTEM_ULTRALIGHT_65

@@ -29,6 +29,8 @@ extension TimersViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavBar()
+        
+        IntervalTimerUser.sharedInstance.firstTimeLocationUsage()
     }
 }
 //MARK: - Navigation Bar Management

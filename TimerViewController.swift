@@ -9,20 +9,20 @@
 import UIKit
 
 class TimerViewController: UIViewController {
-    @IBOutlet weak var timerLabel: UILabel!
+    
     @IBOutlet weak var startPauseResumeButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var timerNameLabel: UILabel!
+    @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var timerMillisecondsLabel: UILabel!
+    
+    @IBOutlet weak var weatherTemperatureLabel: UILabel!
+    
     
     var timer = Timer()
-    var seconds = 60 //seconds
-    
-//    var startTapped = false
-//    var pauseTapped = false
-//    var resumeTapped = false
-    
+    var totalSeconds = 60 //seconds
     var startPauseResume : (Bool, Bool, Bool) = (false, false, false)
-    
+    var hoursMinutesSeconds : (Bool, Bool, Bool) = (false, false, false)
 }
 //MARK: Actions
 extension TimerViewController{
@@ -54,29 +54,56 @@ extension TimerViewController{
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
     func updateTimer(){
-        if seconds < 1 {
+        if totalSeconds < 1 {
             timer.invalidate()
             // send alert and start next interval
         } else {
-            seconds -= 1
-            timerLabel.text = timeString(time: TimeInterval(seconds))
+            totalSeconds -= 1
+            timerLabel.text = timeString(time: TimeInterval(totalSeconds))
         }
     }
     func timeString(time: TimeInterval) -> String {
-        let hours = Int(time) / 3600
-        let minutes = Int(time) / 60 % 60
-        let seconds = Int(time) % 60
+        let totalSecondsLeft = Int(time)
+//        let hours = Int(time) / 3600
+//        let minutes = Int(time) / 60 % 60
+//        let seconds = Int(time) % 60
+
+        let hours = Int(totalSecondsLeft) / 3600
+        let minutes = Int(totalSecondsLeft) / 60 % 60
+        let seconds = Int(totalSecondsLeft) % 60
+
+        timerLabel.font = intervalTimeFont(seconds: totalSecondsLeft)
         
-        if hours == 0 {
-        
+        if hours > 0 {
+            timerLabel.font = intervalTimeFont(seconds: totalSecondsLeft)
+            return String(format: "%02i:%02i:%02i", minutes, seconds)
+        } else if hours == 0 {
+            return String(format: "%02i:%02i", minutes, seconds)
+        } else if minutes == 0 {
+            return String(format: "%02i", seconds)
+        } else {
+            return ""
         }
-        return String(format: "%02i:%02i:%02i", hours, minutes, seconds)
+    }
+    func intervalTimeFont(seconds: Int) -> UIFont {
+        if seconds >= 3600 {
+            hoursMinutesSeconds = (true, false, false)
+            return TIMER_INTERVAL_TIME_HOURS_FONT
+        } else if seconds < 3600 && seconds > 60 {
+            hoursMinutesSeconds = (false, true, false)
+            return TIMER_INTERVAL_TIME_MINUTES_FONT
+        } else {
+            hoursMinutesSeconds = (false, false, true)
+            return TIMER_INTERVAL_TIME_SECONDS_FONT
+        }
     }
 }
 //MARK: Aesthetics
 extension TimerViewController{
     func aesthetics_initial(){
-        timerLabel.font = TIMER_INTERVAL_TIME_FONT
+        timerLabel.font = intervalTimeFont(seconds: totalSeconds)
+        timerNameLabel.font = TIMER_NAME_FONT
+        weatherTemperatureLabel.font = TIMER_WEATHERTEMPERATURE_FONT
         cancelButton.isEnabled = false
     }
     func aesthetics_timerStart(){
@@ -104,7 +131,6 @@ extension TimerViewController{
         startPauseResume = (true, false, false)
         timerNameLabel.text = "Peak 8"
         aesthetics_initial()
-        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
