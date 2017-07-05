@@ -8,33 +8,63 @@
 
 import Foundation
 
-class IntervalTimerWeatherCurrent {}
+class IntervalTimerCurrentWeather: NSObject {
+    
+    //MARK: - fileprivate properties
+    fileprivate var temperature: Double?
+    fileprivate var icon: String?
+    
+    //MARK: - public get/set properties
+    var thisTemperature: Double?{
+        get { return temperature}
+        set {
+            temperature = newValue
+            UserDefaults.standard.set(newValue, forKey: "temperature")
+            UserDefaults.standard.synchronize()
+        }
+    }
+    var thisIcon: String?{
+        get { return icon}
+        set {
+            icon = newValue
+            UserDefaults.standard.set(newValue, forKey: "icon")
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
+    //MARK: - Initializer
+    init?(temperature: Double?, icon: String?){
+        //        self.temperature = temperature
+        //        self.icon = ICON_DICTIONARY[icon]
+        if let theTemperature = temperature, let theIcon = icon {
+            self.temperature = theTemperature
+            self.icon = ICON_DICTIONARY[theIcon]
+        
+        } else {
+            return nil
+        }
+    }
+    
+    //MARK: - NSCoding protocol methods
+    func encode(with coder: NSCoder){
+        coder.encode(self.thisTemperature, forKey: "temperature")
+        coder.encode(self.thisIcon, forKey: "icon")
+    }
+    required init(coder decoder: NSCoder) {
+        if let theTemperature = decoder.decodeDouble(forKey: "temperature") as Double? {
+            temperature = theTemperature
+        }
+        if let theIcon = decoder.decodeObject(forKey: "icon") as! String? {
+            icon = theIcon
+        }
+    }
+}
 
 
 
 
-//First, attempt to get weather for the city ID of user if possible using city.list.json
-//api.openweathermap.org/data/2.5/weather?id=1635882&APPID=448af267f0d35a22b6e00178e163deb3
-//http://api.openweathermap.org/data/2.5/weather?id=1635882&APPID=448af267f0d35a22b6e00178e163deb3
-//{
-//    "id": 1635882,
-//    "name": "Mataram",
-//    "country": "ID",
-//    "coord": {
-//        "lon": 116.116669,
-//        "lat": -8.58333
-//    }
-//},
 
-//Second attempt to get weather for the city and country (ISO 3166) of user if possible
-//api.openweathermap.org/data/2.5/weather?q=Mataram,id&APPID=448af267f0d35a22b6e00178e163deb3
-//http://api.openweathermap.org/data/2.5/weather?q=Mataram,id&APPID=448af267f0d35a22b6e00178e163deb3
-//Mataram,id (ISO 3166)
 
-//Third, attempt to get weather for user using coordinates
-//api.openweathermap.org/data/2.5/weather?lat=-8.549790&lon=116.072037&APPID=448af267f0d35a22b6e00178e163deb3
-//http://api.openweathermap.org/data/2.5/weather?lat=-8.549790&lon=116.072037&APPID=448af267f0d35a22b6e00178e163deb3
-//-8.549790, 116.072037
 
 //Using city ID
 //http://api.openweathermap.org/data/2.5/weather?id=1635882&APPID=448af267f0d35a22b6e00178e163deb3

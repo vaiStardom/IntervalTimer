@@ -21,7 +21,7 @@ class IntervalTimerUser: NSObject {
     fileprivate var cityId: Int?
     fileprivate var latitude: Double?
     fileprivate var longitude: Double?
-
+    
     //MARK: - public get/set properties
     var thisTemperatureUnit: TemperatureUnit{
         get { return temperatureUnit}
@@ -45,6 +45,8 @@ class IntervalTimerUser: NSObject {
             isoCountryCode = newValue
             UserDefaults.standard.set(newValue, forKey: "isoCountryCode")
             UserDefaults.standard.synchronize()
+            
+            getCityId()
         }
     }
     var thisCityId: Int?{
@@ -87,7 +89,7 @@ class IntervalTimerUser: NSObject {
         _locationManager.allowsBackgroundLocationUpdates = true
         return _locationManager
     }()
-
+    
     //MARK: - init()
     private override init() {
         self.temperatureUnit = TemperatureUnit(rawValue: UserDefaults.standard.integer(forKey: "temperatureUnit"))!
@@ -123,10 +125,81 @@ class IntervalTimerUser: NSObject {
         }
     }
 }
+//MARK: - Helpers
+extension IntervalTimerUser {
+    func getCityId(){
+        
+        guard let theCityName = thisCity else {
+            thisCityId = nil
+            return
+        }
+        
+        guard let theCountryCode = thisIsoCountryCode else {
+            thisCityId = nil
+            return
+        }
+        
+        if let theCityId = getCityIdFromCsv(file: "cityList.20170703", cityName: theCityName, countryCode: theCountryCode) {
+            IntervalTimerUser.sharedInstance.thisCityId = theCityId
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCityId"), object: nil)
+        } else {
+            //TODO: Handle the case of when city ID does not exist.
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "didNotGetCityId"), object: nil)
+        }
+    }
+}
+//MARK: - Notifications
+extension IntervalTimerUser{
+    func registerNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(IntervalTimerUser.didGetLattitudeLongitude(_:)), name:NSNotification.Name(rawValue: "didGetLattitudeLongitude"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(IntervalTimerUser.didGetCityAndCountryShortName(_:)), name:NSNotification.Name(rawValue: "didGetCityAndCountryShortName"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(IntervalTimerUser.didGetCityId(_:)), name:NSNotification.Name(rawValue: "didGetCityId"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(IntervalTimerUser.didNotGetCityId(_:)), name:NSNotification.Name(rawValue: "didNotGetCityId"), object: nil)
+    }
+    
+    func didGetCityId(_ notification: Notification){
+        guard let theCityId = IntervalTimerUser.sharedInstance.thisCityId else {
+            return
+        }
+        
+        let weatherService = IntervalTimerWeatherService(apiKey: OPEN_WEATHER_API_KEY, providerUrl: OPEN_WEATHER_API_URL)
+        if let temperature = weatherService.getWeather(withCityId: theCityId) {
+            print("--------> IntervalTimerUser didGetCityId temperature = \(temperature)")
+            
+            //TODO: call this when a timer has finished running
+            IntervalTimerUser.sharedInstance.stopUpdatingLocationManager()
+        }
+    }
+    func didNotGetCityId(_ notification: Notification){
+        
+        guard let theCityName = IntervalTimerUser.sharedInstance.thisCity else {
+            return
+        }
+        guard let theCountryCode = IntervalTimerUser.sharedInstance.thisIsoCountryCode else {
+            return
+        }
+        
+        print("--------> IntervalTimerUser didNotGetCityId theCityName= \(theCityName), theCountryCode= \(theCountryCode)")
+        let weatherService = IntervalTimerWeatherService(apiKey: OPEN_WEATHER_API_KEY, providerUrl: OPEN_WEATHER_API_URL)
+        if let temperature = weatherService.getWeather(withCityName: theCityName, andCountryCode: theCountryCode) {
+            print("--------> IntervalTimerUser didNotGetCityId temperature = \(temperature)")
+        } else {
+            print("--------> IntervalTimerUser didNotGetCityId unable to retreive temperature")
+        }
+        
+        //TODO: this was priotity one, now to priority 2 of temperature retreival: city name and country code
+        
+    }
+    func didGetLattitudeLongitude(_ notification: Notification){
+        
+    }
+    func didGetCityAndCountryShortName(_ notification: Notification){
+    }
+}
 //MARK: - CoreLocation Management
 extension IntervalTimerUser: CLLocationManagerDelegate {
     func firstTimeLocationUsage(){
-
+        
         let authStatus = CLLocationManager.authorizationStatus()
         if authStatus == .notDetermined {
             locationManager.delegate = self
@@ -136,22 +209,26 @@ extension IntervalTimerUser: CLLocationManagerDelegate {
         if authStatus == .denied || authStatus == .restricted {
             //TODO: add any alert or inform the user to to enable location services
         }
-        startUpdatingLocationManager()
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-
+        
         let latestLocation = locations.last!
         if latestLocation.horizontalAccuracy < 0 { // if the lateral location is invalid, return
             return
         }
         
-        
         // if it location is nil or it has been moved
         if location == nil || location!.horizontalAccuracy > latestLocation.horizontalAccuracy {
             
             location = latestLocation
-            print("latitude: \(location?.coordinate.latitude ?? 0), longitude: \(location?.coordinate.longitude ?? 0)")
-            //stopUpdatingLocationManager()
+            print("---------> CoreLocation latitude: \(location?.coordinate.latitude ?? 0), longitude: \(location?.coordinate.longitude ?? 0)")
+            
+            
+            if let theLatitude = location?.coordinate.latitude, let theLongitude = location?.coordinate.latitude {
+                thisLatitude = theLatitude
+                thisLongitude = theLongitude
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetLattitudeLongitude"), object: nil)
+            }
             
             //ReverseGeocoding
             geocoder.reverseGeocodeLocation(latestLocation, completionHandler: { (placemarks, error) in
@@ -166,13 +243,14 @@ extension IntervalTimerUser: CLLocationManagerDelegate {
     func parsePlacemarks() {
         if let _ = location {
             if let placemark = placemark {
+                
                 // Apple refers to city name as locality, not city
-                if let city = placemark.locality, !city.isEmpty {
-                    print("city: \(city)")
-                }
-                // isoCountryCode
-                if let countryShortName = placemark.isoCountryCode {
-                    print("----> countryShortName: \(countryShortName)")
+                if let theCity = placemark.locality, !theCity.isEmpty, let theIsoCountryShortName = placemark.isoCountryCode {
+                    print("---------> CoreLocation city: \(theCity)")
+                    print("---------> CoreLocation theIsoCountryShortName: \(theIsoCountryShortName)")
+                    thisCity = theCity
+                    thisIsoCountryCode = theIsoCountryShortName
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCityAndCountryShortName"), object: nil)
                 }
             }
         } else {
@@ -180,12 +258,14 @@ extension IntervalTimerUser: CLLocationManagerDelegate {
         }
     }
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("didFailwithError\(error)")
+        print("---------> CoreLocation didFailwithError\(error)")
         stopUpdatingLocationManager()
     }
+    //Called when a timer is running
     func startUpdatingLocationManager(){
         locationManager.startUpdatingLocation()
     }
+    //Called when a timer has finished running
     func stopUpdatingLocationManager(){
         locationManager.stopUpdatingLocation()
     }

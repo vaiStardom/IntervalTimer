@@ -9,5 +9,8 @@
 import Foundation
 
 enum TemperatureUnit: Int {
-    case celcius = 0, fahrenheit
+    case celcius = 0, fahrenheit, kelvin
+}
+enum CITY_ID_CSV_FIELDS: Int {
+    case id = 0, name, countryCode
 }

@@ -12,8 +12,6 @@ import Foundation
 import UIKit
 
 //MARK: - Fonts
-
-
 let SYSTEM_BOLD_15: UIFont = UIFont.systemFont(ofSize: 15, weight: UIFontWeightBold)
 let SYSTEM_BOLD_17: UIFont = UIFont.systemFont(ofSize: 17, weight: UIFontWeightBold)
 let SYSTEM_HEAVY_35: UIFont = UIFont.systemFont(ofSize: 35, weight: UIFontWeightHeavy)
@@ -25,20 +23,17 @@ let SYSTEM_REGULAR_19: UIFont = UIFont.systemFont(ofSize: 19, weight: UIFontWeig
 let SYSTEM_REGULAR_28: UIFont = UIFont.systemFont(ofSize: 28, weight: UIFontWeightRegular)
 let SYSTEM_SEMIBOLD_17: UIFont = UIFont.systemFont(ofSize: 17, weight: UIFontWeightSemibold)
 let SYSTEM_THIN_60: UIFont = UIFont.systemFont(ofSize: 60, weight: UIFontWeightThin)
-
 let SYSTEM_ULTRALIGHT_61_MONOSPACED: UIFont = UIFont.monospacedDigitSystemFont(ofSize: 61, weight: UIFontWeightUltraLight)
 let SYSTEM_ULTRALIGHT_94_MONOSPACED: UIFont = UIFont.monospacedDigitSystemFont(ofSize: 94, weight: UIFontWeightUltraLight)
 let SYSTEM_ULTRALIGHT_117_MONOSPACED: UIFont = UIFont.monospacedDigitSystemFont(ofSize: 117, weight: UIFontWeightUltraLight)
 let SYSTEM_ULTRALIGHT_65: UIFont = UIFont.systemFont(ofSize: 65, weight: UIFontWeightUltraLight)
 let SYSTEM_ULTRALIGHT_117: UIFont = UIFont.systemFont(ofSize: 117, weight: UIFontWeightUltraLight)
-
 let NAVBAR_LEFTRIGHT_FONT = SYSTEM_REGULAR_17
 let NAVBAR_TITLE_FONT = SYSTEM_REGULAR_28
 let NAVBAR_TITLE_TEMPERATURE_FONT = SYSTEM_REGULAR_17
 let CONTENT_LABEL_FONT = SYSTEM_REGULAR_17
 let CONTENT_FONT = SYSTEM_REGULAR_28
 let EDIT_TIME_FONT = SYSTEM_LIGHT_52
-//let TIMER_INTERVAL_TIME_FONT = SYSTEM_THIN_60
 let TIMER_INTERVAL_TIME_HOURS_FONT =  SYSTEM_ULTRALIGHT_61_MONOSPACED
 let TIMER_INTERVAL_TIME_MINUTES_FONT = SYSTEM_ULTRALIGHT_94_MONOSPACED
 let TIMER_INTERVAL_TIME_SECONDS_FONT = SYSTEM_ULTRALIGHT_117_MONOSPACED
@@ -86,16 +81,69 @@ let NAVBAR_EDITLABEL_CGRECT = CGRect(x: 0, y: 14, width: 30, height: 19)
 let NAVBAR_LEFTTITLE_LABEL_CGRECT = CGRect(x: 0, y: 14, width: 55, height: 19)
 let NAVBAR_NEWTIMERTITLE_CGRECT = CGRect(x: 0, y: 20, width: 86, height: 45)
 
+//MARK: - Weather globals
+let OPEN_WEATHER_API_KEY = "448af267f0d35a22b6e00178e163deb3"
+let OPEN_WEATHER_API_URL = "http://api.openweathermap.org/data/2.5/weather?"
+
+let ICON_DICTIONARY: [String: String] = [
+    "01d": "clear-sky-day"
+    , "01n": "clear-sky-night"
+    , "02d": "few-clouds-day"
+    , "02n": "few-clouds-night"
+    , "03d": "cloudy-day"
+    , "03n": "cloudy-night"
+    , "04d": "broken-clouds-day"
+    , "04n": "broken-clouds-night"
+    , "09d": "shower-rain-day"
+    , "09n": "shower-rain-night"
+    , "010d": "rain-day"
+    , "010n": "rain-night"
+    , "011d": "thunderstorm-day"
+    , "011n": "thunderstorm-night"
+    , "013d": "snow-day"
+    , "013n": "snow-night"
+    , "050d": "mist-day"
+    , "050n": "mist-night"
+]
 
 
 
-//let NAVBAR_CANCELBUTTONS_CGRECT = CGRect(x: 0, y: 0, width: 55, height: 44)
-//let NAVBAR_CANCELLABEL_CGRECT = CGRect(x: 0, y: 14, width: 55, height: 19)
-//let NAVBAR_KAZAUTOLOCKTITLE_CGRECT = CGRect(x: 0, y: 0, width: 204, height: 53)
-//let NAVBAR_KEYLABEL_CGRECT = CGRect(x: 20, y: 14, width: 39, height: 19)
-//let NAVBAR_KRYPTOKAZTITLE_CGRECT = CGRect(x: 0, y: 0, width: 204, height: 53)
-//let NAVBAR_NUMBEROFNOTES_CGRECT = CGRect(x: 0, y: 14, width: 70, height: 19)
-//let NAVBAR_SAVEICON_CGRECT = CGRect(x: 0, y: 13, width: 12.68, height: 21.12)
-//let NAVBAR_SAVELABEL_CGRECT = CGRect(x: 20, y: 14, width: 39, height: 19)
-////let NAVBAR_VAULTTITLE_CGRECT = CGRect(x: 0, y: 0, width: 204, height: 53)
-//let NAVBAR_VAULTTITLE_CGRECT = CGRect(x: 0, y: 0, width: 60, height: 53)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
