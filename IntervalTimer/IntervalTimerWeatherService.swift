@@ -46,9 +46,9 @@ extension IntervalTimerWeatherService {
     //        "lat": -8.58333
     //    }
     //},
-    func getWeather(withCityId cityId: Int) -> Double? {
+    func getWeatherFor(_ cityId: Int) -> Double? {
         if let theUrl = URL(string: "\(providerUrl)id=\(cityId)&APPID=\(apiKey)"){
-            return getWeather(withUrl: theUrl)
+            return getWeatherWith(theUrl)
         } else {
             return nil
         }
@@ -57,9 +57,9 @@ extension IntervalTimerWeatherService {
     //Second attempt to get weather for the city and country (ISO 3166) of user if possible
     //http://api.openweathermap.org/data/2.5/weather?q=Mataram,id&APPID=448af267f0d35a22b6e00178e163deb3
     //Mataram,id (ISO 3166)
-    func getWeather(withCityName cityName: String, andCountryCode countryCode: String) -> Double? {
+    func getWeatherFor(_ cityName: String, in countryCode: String) -> Double? {
         if let theUrl = URL(string: "\(providerUrl)g=\(cityName),\(countryCode)id&APPID=\(apiKey)"){
-            return getWeather(withUrl: theUrl)
+            return getWeatherWith(theUrl)
         } else {
             return nil
         }
@@ -69,15 +69,15 @@ extension IntervalTimerWeatherService {
     //api.openweathermap.org/data/2.5/weather?lat=-8.549790&lon=116.072037&APPID=448af267f0d35a22b6e00178e163deb3
     //http://api.openweathermap.org/data/2.5/weather?lat=-8.549790&lon=116.072037&APPID=448af267f0d35a22b6e00178e163deb3
     //-8.549790, 116.072037
-    func getWeather(withLattitude lattitude: Double, andLongitude longitude: Double) -> Double? {
-        if let theUrl = URL(string: "\(providerUrl)lat=\(lattitude)&lon=\(longitude)&APPID=\(apiKey)"){
-            return getWeather(withUrl: theUrl)
+    func getWeatherAt(latitude: Double, longitude: Double) -> Double? {
+        if let theUrl = URL(string: "\(providerUrl)lat=\(latitude)&lon=\(longitude)&APPID=\(apiKey)"){
+            return getWeatherWith(theUrl)
         } else {
             return nil
         }
     }
     
-    func getWeather(withUrl url: URL) -> Double? {
+    private func getWeatherWith(_ url: URL) -> Double? {
         var temperature: Double?
         
         fromNetwork(with: url) { (intervalTimerCurrentWeather) in
@@ -99,7 +99,7 @@ extension IntervalTimerWeatherService {
         return temperature
     }
     
-    func fromNetwork(with url: URL, completion: @escaping (IntervalTimerCurrentWeather?) -> Void ){
+    private func fromNetwork(with url: URL, completion: @escaping (IntervalTimerCurrentWeather?) -> Void ){
         let networkJson = IntervalTimerNetworkJSON(url: url)
         networkJson.downloadJSON({ (jsonDictionary) in
             

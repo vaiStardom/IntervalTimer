@@ -163,12 +163,12 @@ extension EditIntervalViewController {
         secondTextField2.text = zeroWidthSpace
         secondTextField1.text = zeroWidthSpace
         
-        indicators.append((imageView: redIndicatorImageView, activeImageName: INTERVAL_RED, inactiveImageName: INTERVAL_RED_UNSELECTED))
-        indicators.append((imageView: greenIndicatorImageView, activeImageName: INTERVAL_GREEN, inactiveImageName: INTERVAL_GREEN_UNSELECTED))
-        indicators.append((imageView: orangeIndicatorImageView, activeImageName: INTERVAL_ORANGE, inactiveImageName: INTERVAL_ORANGE_UNSELECTED))
-        indicators.append((imageView: blueIndicatorImageView, activeImageName: INTERVAL_BLUE, inactiveImageName: INTERVAL_BLUE_UNSELECTED))
-        indicators.append((imageView: yellowIndicatorImageView, activeImageName: INTERVAL_YELLOW, inactiveImageName: INTERVAL_YELLOW_UNSELECTED))
-        indicators.append((imageView: purpleIndicatorImageView, activeImageName: INTERVAL_PURPLE, inactiveImageName: INTERVAL_PURPLE_UNSELECTED))
+        indicators.append((imageView: redIndicatorImageView, activeImageName: IntervalImage.Red, inactiveImageName: IntervalImage.RedUnselected))
+        indicators.append((imageView: greenIndicatorImageView, activeImageName: IntervalImage.Green, inactiveImageName: IntervalImage.GreenUnselected))
+        indicators.append((imageView: orangeIndicatorImageView, activeImageName: IntervalImage.Orange, inactiveImageName: IntervalImage.OrangeUnselected))
+        indicators.append((imageView: blueIndicatorImageView, activeImageName: IntervalImage.Blue, inactiveImageName: IntervalImage.BlueUnselected))
+        indicators.append((imageView: yellowIndicatorImageView, activeImageName: IntervalImage.Yellow, inactiveImageName: IntervalImage.YellowUnselected))
+        indicators.append((imageView: purpleIndicatorImageView, activeImageName: IntervalImage.Purple, inactiveImageName: IntervalImage.PurpleUnselected))
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

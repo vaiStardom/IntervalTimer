@@ -88,13 +88,13 @@ extension TimerViewController{
     func intervalTimeFont(seconds: Int) -> UIFont {
         if seconds >= 3600 {
             hoursMinutesSeconds = (true, false, false)
-            return TIMER_INTERVAL_TIME_HOURS_FONT
+            return ViewFont.TimerHours
         } else if seconds < 3600 && seconds > 60 {
             hoursMinutesSeconds = (false, true, false)
-            return TIMER_INTERVAL_TIME_MINUTES_FONT
+            return ViewFont.TimerMinutes
         } else {
             hoursMinutesSeconds = (false, false, true)
-            return TIMER_INTERVAL_TIME_SECONDS_FONT
+            return ViewFont.TimerSeconds
         }
     }
 }
@@ -102,8 +102,8 @@ extension TimerViewController{
 extension TimerViewController{
     func aesthetics_initial(){
         timerLabel.font = intervalTimeFont(seconds: totalSeconds)
-        timerNameLabel.font = TIMER_NAME_FONT
-        weatherTemperatureLabel.font = TIMER_WEATHERTEMPERATURE_FONT
+        timerNameLabel.font = ViewFont.TimerName
+        weatherTemperatureLabel.font = ViewFont.TimerTemperature
         cancelButton.isEnabled = false
     }
     func aesthetics_timerStart(){

@@ -8,7 +8,3 @@
 
 import Foundation
 
-struct WeatherDictionaryKey{
-    static let temperature = "temp"
-    static let weatherIcon = "icon"
-}

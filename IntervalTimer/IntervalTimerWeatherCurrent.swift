@@ -8,6 +8,7 @@
 
 import Foundation
 
+//TODO: Change this to a struct, we dont want to pass around copies of this
 class IntervalTimerCurrentWeather: NSObject {
     
     //MARK: - fileprivate properties
@@ -18,7 +19,7 @@ class IntervalTimerCurrentWeather: NSObject {
     var thisTemperature: Double?{
         get { return temperature}
         set {
-            temperature = newValue
+            temperature = convertTemperature(kelvins: newValue!, forUnits: IntervalTimerUser.sharedInstance.thisTemperatureUnit)
             UserDefaults.standard.set(newValue, forKey: "temperature")
             UserDefaults.standard.synchronize()
         }
@@ -34,12 +35,9 @@ class IntervalTimerCurrentWeather: NSObject {
     
     //MARK: - Initializer
     init?(temperature: Double?, icon: String?){
-        //        self.temperature = temperature
-        //        self.icon = ICON_DICTIONARY[icon]
         if let theTemperature = temperature, let theIcon = icon {
             self.temperature = theTemperature
             self.icon = ICON_DICTIONARY[theIcon]
-        
         } else {
             return nil
         }
@@ -59,138 +57,16 @@ class IntervalTimerCurrentWeather: NSObject {
         }
     }
 }
-
-
-
-
-
-
-
-//Using city ID
-//http://api.openweathermap.org/data/2.5/weather?id=1635882&APPID=448af267f0d35a22b6e00178e163deb3
-//{
-//    "coord": {
-//        "lon": 116.12,
-//        "lat": -8.58
-//    },
-//    "weather": [{
-//    "id": 800,
-//    "main": "Clear",
-//    "description": "clear sky",
-//    "icon": "01d"
-//    }],
-//    "base": "stations",
-//    "main": {
-//        "temp": 304.15,
-//        "pressure": 1012,
-//        "humidity": 52,
-//        "temp_min": 304.15,
-//        "temp_max": 304.15
-//    },
-//    "visibility": 10000,
-//    "wind": {
-//        "speed": 2.1,
-//        "deg": 140
-//    },
-//    "clouds": {
-//        "all": 0
-//    },
-//    "dt": 1498968000,
-//    "sys": {
-//        "type": 1,
-//        "id": 8001,
-//        "message": 0.0179,
-//        "country": "ID",
-//        "sunrise": 1498948235,
-//        "sunset": 1498990118
-//    },
-//    "id": 1635882,
-//    "name": "Mataram",
-//    "cod": 200
-//}
-
-//Using city name
-//http://api.openweathermap.org/data/2.5/weather?q=Mataram,id&APPID=448af267f0d35a22b6e00178e163deb3
-//{
-//    "coord": {
-//        "lon": 116.12,
-//        "lat": -8.58
-//    },
-//    "weather": [{
-//    "id": 800,
-//    "main": "Clear",
-//    "description": "clear sky",
-//    "icon": "01d"
-//    }],
-//    "base": "stations",
-//    "main": {
-//        "temp": 304.15,
-//        "pressure": 1012,
-//        "humidity": 52,
-//        "temp_min": 304.15,
-//        "temp_max": 304.15
-//    },
-//    "visibility": 10000,
-//    "wind": {
-//        "speed": 2.1,
-//        "deg": 140
-//    },
-//    "clouds": {
-//        "all": 0
-//    },
-//    "dt": 1498968000,
-//    "sys": {
-//        "type": 1,
-//        "id": 8001,
-//        "message": 0.0154,
-//        "country": "ID",
-//        "sunrise": 1498948235,
-//        "sunset": 1498990117
-//    },
-//    "id": 1635882,
-//    "name": "Mataram",
-//    "cod": 200
-//}
-
-
-//Using coordinates
-//{
-//    "coord": {
-//        "lon": 116.07,
-//        "lat": -8.55
-//    },
-//    "weather": [{
-//    "id": 800,
-//    "main": "Clear",
-//    "description": "clear sky",
-//    "icon": "01d"
-//    }],
-//    "base": "stations",
-//    "main": {
-//        "temp": 304.15,
-//        "pressure": 1012,
-//        "humidity": 52,
-//        "temp_min": 304.15,
-//        "temp_max": 304.15
-//    },
-//    "visibility": 10000,
-//    "wind": {
-//        "speed": 2.1,
-//        "deg": 140
-//    },
-//    "clouds": {
-//        "all": 0
-//    },
-//    "dt": 1498968000,
-//    "sys": {
-//        "type": 1,
-//        "id": 8001,
-//        "message": 0.0154,
-//        "country": "ID",
-//        "sunrise": 1498948244,
-//        "sunset": 1498990133
-//    },
-//    "id": 7545578,
-//    "name": "Jempongwareng",
-//    "cod": 200
-//}
+//MARK: - Temperature conversions
+extension IntervalTimerCurrentWeather{
+    func convertTemperature(kelvins: Double, forUnits temperatureUnit: TemperatureUnit) -> Double {
+        switch temperatureUnit {
+        case .kelvin :
+            return kelvins
+        case .fahrenheit:
+            return kelvins - 459.67
+        case .celcius:
+            return kelvins - 273.15
+        }
+    }
+}

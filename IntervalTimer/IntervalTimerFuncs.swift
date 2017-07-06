@@ -14,6 +14,9 @@ var columnTitles: [String] = []
 var CSV_DELIMITER: String = "\t"
 let CSV_LINE_SEPERATOR: String = "\n"
 
+//MARK: Temperature functions
+
+//MARK: - CSV Functions
 func convertCSV(file: String) -> Int? {
     var cityId: Int? = nil
     let rows = cleanRows(file: file).components(separatedBy: CSV_LINE_SEPERATOR)

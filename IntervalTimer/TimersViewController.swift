@@ -12,7 +12,6 @@ class TimersViewController: UIViewController {
 
     @IBOutlet weak var weatherIconImageView: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
-
     
 }
 //MARK: - Actions
