@@ -8,7 +8,7 @@
 
 import Foundation
 
-class IntervalTimerWeatherService {
+struct IntervalTimerWeatherService {
     
     fileprivate var apiKey: String                      //448af267f0d35a22b6e00178e163deb3
     fileprivate var providerUrl: String                 //http://api.openweathermap.org/data/2.5/weather?

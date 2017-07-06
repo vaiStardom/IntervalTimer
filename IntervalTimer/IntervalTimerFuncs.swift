@@ -8,31 +8,28 @@
 
 import Foundation
 
+//TODO: Make this whole file a class or a struct (try struct!!)
+
 var data: [[String:String]] = []
 var columnTitles: [String] = []
 
-var CSV_DELIMITER: String = "\t"
-let CSV_LINE_SEPERATOR: String = "\n"
-
-//MARK: Temperature functions
 
 //MARK: - CSV Functions
 func convertCSV(file: String) -> Int? {
     var cityId: Int? = nil
-    let rows = cleanRows(file: file).components(separatedBy: CSV_LINE_SEPERATOR)
+    let rows = cleanRows(file: file).components(separatedBy: CsvControls.LineSeperator)
     if rows.count > 0 {
         data = []
-        columnTitles = getStringFieldsForRow(row: rows.first!, delimiter: CSV_DELIMITER)
+        columnTitles = getStringFieldsForRow(row: rows.first!, delimiter: CsvControls.ColumnDelimiter)
         
         print("---------> convertCSV looking for cityId with cityName = \(String(describing: IntervalTimerUser.sharedInstance.thisCity!)) and countrycode = \(String(describing: IntervalTimerUser.sharedInstance.thisIsoCountryCode?.lowercased()))")
         for (index, row) in rows.enumerated() {
-            let fields = getStringFieldsForRow(row: row, delimiter: CSV_DELIMITER)
+            let fields = getStringFieldsForRow(row: row, delimiter: CsvControls.ColumnDelimiter)
             
             if fields.count != columnTitles.count {
-                //A field may contain double quotes with comma inside
-                //TODO: Handle error csv mal formatted
-                print("---------> convertCSV IMPORT ERROR: fields.count= \(fields.count), columnTitles.count= \(columnTitles.count)")
-                print("---------> convertCSV ENTRY: \(fields)")
+                //City line mal formated, skip this line and continue searching
+                //TODO: find a way to log this error or report it back if this happens in the field
+                continue
             } else {
                 guard let theCityId = Int(fields[0].trimmingCharacters(in: .whitespacesAndNewlines)) else {
                     print("---------> convertCSV theCityId = \(fields[0]) could not be converted to Int for row with 'values\(row)' at index '\(index)'")

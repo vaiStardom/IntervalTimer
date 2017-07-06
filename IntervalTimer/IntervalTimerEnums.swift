@@ -23,6 +23,12 @@ enum NavigationBarCgRect{
     static let NewTimerTitle = CGRect(x: 0, y: 20, width: 86, height: 45)
 }
 
+//MARK: - CSV
+enum CsvControls{
+    static let ColumnDelimiter: String = "\t"
+    static let LineSeperator: String = "\n"
+}
+
 //MARK: - Fonts
 enum SystemFont{
     static let Bold15: UIFont = UIFont.systemFont(ofSize: 15, weight: UIFontWeightBold)
