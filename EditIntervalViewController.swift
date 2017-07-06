@@ -8,7 +8,7 @@
 
 import UIKit
 
-private extension String{
+fileprivate extension String{
     func containsOnlyCharactersIn(matchCharacter: String) -> Bool {
         let disallowedCharacterSet = CharacterSet(charactersIn: matchCharacter).inverted
         return self.rangeOfCharacter(from: disallowedCharacterSet) == nil

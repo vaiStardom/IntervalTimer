@@ -35,12 +35,16 @@ class IntervalTimerCurrentWeather: NSObject {
     
     //MARK: - Initializer
     init?(temperature: Double?, icon: String?){
-        if let theTemperature = temperature, let theIcon = icon {
-            self.temperature = theTemperature
-            self.icon = ICON_DICTIONARY[theIcon]
-        } else {
+        guard  let theTemperature = temperature else {
             return nil
         }
+        
+        guard let theIcon = icon else {
+            return nil
+        }
+        
+        self.temperature = theTemperature
+        self.icon = ICON_DICTIONARY[theIcon]
     }
     
     //MARK: - NSCoding protocol methods
@@ -59,14 +63,22 @@ class IntervalTimerCurrentWeather: NSObject {
 }
 //MARK: - Temperature conversions
 extension IntervalTimerCurrentWeather{
-    func convertTemperature(kelvins: Double, forUnits temperatureUnit: TemperatureUnit) -> Double {
-        switch temperatureUnit {
+    func convertTemperature(kelvins: Double?, forUnits temperatureUnit: TemperatureUnit?) -> Double? {
+        guard let theKelvin = kelvins else {
+            return nil
+        }
+        
+        guard let theTemperatureUnit = temperatureUnit else {
+            return nil
+        }
+        
+        switch theTemperatureUnit {
         case .kelvin :
-            return kelvins
+            return theKelvin
         case .fahrenheit:
-            return kelvins - 459.67
+            return theKelvin - 459.67
         case .celcius:
-            return kelvins - 273.15
+            return theKelvin - 273.15
         }
     }
 }

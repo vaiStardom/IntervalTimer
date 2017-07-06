@@ -146,35 +146,36 @@ extension IntervalTimerUser {
             return
         }
         
-        if let theCityId = getCityIdFromCsv(file: "cityList.20170703", cityName: theCityName, countryCode: theCountryCode) {
-            IntervalTimerUser.sharedInstance.thisCityId = theCityId
-            thisWeatherQuery = (true, false, false)
-            NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCityId"), object: nil)
-        } else {
+        guard let theCityId = getCityIdFromCsv(file: "cityList.20170703", cityName: theCityName, countryCode: theCountryCode) else {
             //Try getting the weather using locality name
             thisWeatherQuery = (false, true, false)
             NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCityAndCountryShortName"), object: nil)
+            return
         }
+        
+        IntervalTimerUser.sharedInstance.thisCityId = theCityId
+        thisWeatherQuery = (true, false, false)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCityId"), object: nil)
     }
 }
 //MARK: - Notifications
 extension IntervalTimerUser{
     func registerNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(IntervalTimerUser.didGetLattitudeLongitude(_:)), name:NSNotification.Name(rawValue: "didGetLattitudeLongitude"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(IntervalTimerUser.didGetLatitudeLongitude(_:)), name:NSNotification.Name(rawValue: "didGetLattitudeLongitude"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(IntervalTimerUser.didGetCityAndCountryShortName(_:)), name:NSNotification.Name(rawValue: "didGetCityAndCountryShortName"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(IntervalTimerUser.didGetCityId(_:)), name:NSNotification.Name(rawValue: "didGetCityId"), object: nil)
     }
     
     func didGetCityId(_ notification: Notification){
 
-        if weatherQuery == (true, false, false) {
+        if thisWeatherQuery == (true, false, false) {
 
             guard let theCityId = IntervalTimerUser.sharedInstance.thisCityId else {
                 return
             }
             
             let weatherService = IntervalTimerWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
-            if let temperature = weatherService.getWeatherFor(theCityId) {
+            if let temperature = weatherService?.getWeatherFor(theCityId) {
                 print("--------> IntervalTimerUser didGetCityId temperature = \(temperature)")
                 
                 //TODO: call this when a timer has finished running
@@ -183,7 +184,7 @@ extension IntervalTimerUser{
         }
     }
     func didGetCityAndCountryShortName(_ notification: Notification){
-        if weatherQuery == (false, true, false) {
+        if thisWeatherQuery == (false, true, false) {
             guard let theCityName = IntervalTimerUser.sharedInstance.thisCity else {
                 return
             }
@@ -193,7 +194,7 @@ extension IntervalTimerUser{
             
             print("--------> IntervalTimerUser didGetCityAndCountryShortName theCityName= \(theCityName), theCountryCode= \(theCountryCode)")
             let weatherService = IntervalTimerWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
-            if let temperature = weatherService.getWeatherFor(theCityName, in: theCountryCode) {
+            if let temperature = weatherService?.getWeatherFor(theCityName, in: theCountryCode) {
                 print("--------> IntervalTimerUser didGetCityAndCountryShortName temperature = \(temperature)")
             } else {
                 print("--------> IntervalTimerUser didGetCityAndCountryShortName unable to retreive temperature")
@@ -203,8 +204,8 @@ extension IntervalTimerUser{
             }
         }
     }
-    func didGetLattitudeLongitude(_ notification: Notification){
-        if weatherQuery == (false, false, true) {
+    func didGetLatitudeLongitude(_ notification: Notification){
+        if thisWeatherQuery == (false, false, true) {
             guard let theLatitude = IntervalTimerUser.sharedInstance.thisLatitude else {
                 return
             }
@@ -214,7 +215,7 @@ extension IntervalTimerUser{
             
             print("--------> IntervalTimerUser didGetLattitudeLongitude theLatitude= \(theLatitude), theLongitude= \(theLongitude)")
             let weatherService = IntervalTimerWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
-            if let temperature = weatherService.getWeatherAt(latitude: theLatitude, longitude: theLongitude){
+            if let temperature = weatherService?.getWeatherAt(latitude: theLatitude, longitude: theLongitude){
                 print("--------> IntervalTimerUser didGetLattitudeLongitude temperature = \(temperature)")
             } else {
                 print("--------> IntervalTimerUser didGetLattitudeLongitude unable to retreive temperature")
@@ -251,7 +252,7 @@ extension IntervalTimerUser: CLLocationManagerDelegate {
             print("---------> CoreLocation latitude: \(location?.coordinate.latitude ?? 0), longitude: \(location?.coordinate.longitude ?? 0)")
             
             
-            if let theLatitude = location?.coordinate.latitude, let theLongitude = location?.coordinate.latitude {
+            if let theLatitude = location?.coordinate.latitude, let theLongitude = location?.coordinate.longitude {
                 thisLatitude = theLatitude
                 thisLongitude = theLongitude
                 NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetLattitudeLongitude"), object: nil)
@@ -268,21 +269,33 @@ extension IntervalTimerUser: CLLocationManagerDelegate {
         }
     }
     func parsePlacemarks() {
-        if let _ = location {
-            if let placemark = placemark {
-                
-                // Apple refers to city name as locality, not city
-                if let theCity = placemark.locality, !theCity.isEmpty, let theIsoCountryShortName = placemark.isoCountryCode {
-                    print("---------> CoreLocation city: \(theCity)")
-                    print("---------> CoreLocation theIsoCountryShortName: \(theIsoCountryShortName)")
-                    thisCity = theCity
-                    thisIsoCountryCode = theIsoCountryShortName
-                    NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCityAndCountryShortName"), object: nil)
-                }
-            }
-        } else {
-            //TODO: add some more check's if for some reason location manager is nil
+        
+        guard let _ = location else {
+            return
         }
+        
+        guard let thePlacemark = placemark else {
+            return
+        }
+
+        // Apple refers to city name as locality, not city
+        guard let theCity = thePlacemark.locality else {
+            return
+        }
+        
+        guard !theCity.isEmpty else {
+            return
+        }
+        
+        guard let theIsoCountryShortName = thePlacemark.isoCountryCode else {
+            return
+        }
+        
+        print("---------> CoreLocation city: \(theCity)")
+        print("---------> CoreLocation theIsoCountryShortName: \(theIsoCountryShortName)")
+        thisCity = theCity
+        thisIsoCountryCode = theIsoCountryShortName
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCityAndCountryShortName"), object: nil)
     }
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("---------> CoreLocation didFailwithError\(error)")

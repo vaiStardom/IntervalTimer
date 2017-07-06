@@ -7,14 +7,23 @@
 //
 
 import Foundation
+import UIKit
 
-//TODO: Make this whole file a class or a struct (try struct!!)
+
+func showMessage(title: String, message: String) {
+    let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+    DispatchQueue.main.async() { () -> Void in
+        UIApplication.topViewController()?.present(alert, animated: true, completion: nil)
+    }
+}
+
+//MARK: - CSV Functions
+//TODO: Make this whole CSV section a class or a struct (try struct!!)
 
 var data: [[String:String]] = []
 var columnTitles: [String] = []
 
-
-//MARK: - CSV Functions
 func convertCSV(file: String) -> Int? {
     var cityId: Int? = nil
     let rows = cleanRows(file: file).components(separatedBy: CsvControls.LineSeperator)

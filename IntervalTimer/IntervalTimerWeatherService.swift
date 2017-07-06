@@ -20,9 +20,15 @@ struct IntervalTimerWeatherService {
         get { return providerUrl }
     }
     
-    init(apiKey: String, providerUrl: String) {
-        self.apiKey = apiKey
-        self.providerUrl = providerUrl
+    init?(apiKey: String, providerUrl: String) {
+        guard let theApiKey = apiKey as String? else {
+            return nil
+        }
+        guard let theProviderUrl = providerUrl as String? else {
+            return nil
+        }
+        self.apiKey = theApiKey
+        self.providerUrl = theProviderUrl
     }
 }
 //MARK: - Weather retreival management
@@ -47,22 +53,20 @@ extension IntervalTimerWeatherService {
     //    }
     //},
     func getWeatherFor(_ cityId: Int) -> Double? {
-        if let theUrl = URL(string: "\(providerUrl)id=\(cityId)&APPID=\(apiKey)"){
-            return getWeatherWith(theUrl)
-        } else {
+        guard let theUrl = URL(string: "\(providerUrl)id=\(cityId)&APPID=\(apiKey)") else {
             return nil
         }
+        return getWeatherWith(theUrl)
     }
     
     //Second attempt to get weather for the city and country (ISO 3166) of user if possible
     //http://api.openweathermap.org/data/2.5/weather?q=Mataram,id&APPID=448af267f0d35a22b6e00178e163deb3
     //Mataram,id (ISO 3166)
     func getWeatherFor(_ cityName: String, in countryCode: String) -> Double? {
-        if let theUrl = URL(string: "\(providerUrl)g=\(cityName),\(countryCode)id&APPID=\(apiKey)"){
-            return getWeatherWith(theUrl)
-        } else {
+        guard let theUrl = URL(string: "\(providerUrl)g=\(cityName),\(countryCode)id&APPID=\(apiKey)") else {
             return nil
         }
+        return getWeatherWith(theUrl)
     }
     
     //Third, attempt to get weather for user using coordinates
@@ -70,38 +74,56 @@ extension IntervalTimerWeatherService {
     //http://api.openweathermap.org/data/2.5/weather?lat=-8.549790&lon=116.072037&APPID=448af267f0d35a22b6e00178e163deb3
     //-8.549790, 116.072037
     func getWeatherAt(latitude: Double, longitude: Double) -> Double? {
-        if let theUrl = URL(string: "\(providerUrl)lat=\(latitude)&lon=\(longitude)&APPID=\(apiKey)"){
-            return getWeatherWith(theUrl)
-        } else {
+        guard let theUrl = URL(string: "\(providerUrl)lat=\(latitude)&lon=\(longitude)&APPID=\(apiKey)") else {
             return nil
         }
+        return getWeatherWith(theUrl)
     }
     
     private func getWeatherWith(_ url: URL) -> Double? {
+        
+        guard let theUrl = url as URL? else {
+            return nil
+        }
+        
         var temperature: Double?
         
-        fromNetwork(with: url) { (intervalTimerCurrentWeather) in
-            if let theCurrentWeather = intervalTimerCurrentWeather {
-                DispatchQueue.main.sync {
-                    if let theTemperature = theCurrentWeather.thisTemperature, let theIcon = theCurrentWeather.thisIcon {
-                        print("---------> IntervalTimerWeatherService theTemperature = \(theTemperature)")
-                        print("---------> IntervalTimerWeatherService theIcon = \(theIcon)")
-                        temperature = theTemperature
-                    } else {
-                        print("---------> IntervalTimerWeatherService getWeather() = nil")
-                        temperature = nil
-                    }
-                }
-            } else {
+        fromNetwork(with: theUrl) { (intervalTimerCurrentWeather) in
+            
+            guard let theCurrentWeather = intervalTimerCurrentWeather else {
                 temperature = nil
+                return
+            }
+            
+            DispatchQueue.main.sync {
+                guard let theTemperature = theCurrentWeather.thisTemperature else {
+                    print("---------> IntervalTimerWeatherService getWeather() guard let theTemperature = nil")
+                    temperature = nil
+                    return
+                }
+                
+                guard let theIcon = theCurrentWeather.thisIcon else {
+                    print("---------> IntervalTimerWeatherService getWeather() guard let theIcon = nil")
+                    temperature = nil
+                    return
+                }
+                
+                print("---------> IntervalTimerWeatherService theTemperature = \(theTemperature)")
+                print("---------> IntervalTimerWeatherService theIcon = \(theIcon)")
+                temperature = theTemperature
             }
         }
         return temperature
     }
     
     private func fromNetwork(with url: URL, completion: @escaping (IntervalTimerCurrentWeather?) -> Void ){
-        let networkJson = IntervalTimerNetworkJSON(url: url)
-        networkJson.downloadJSON({ (jsonDictionary) in
+        
+        guard let theNetworkJson = IntervalTimerNetworkJSON(url: url) else {
+            completion(nil)
+            return
+        }
+        
+        theNetworkJson.downloadJSON({ (jsonDictionary) in
             
             print("---------> IntervalTimerWeatherService fromNetwork theUrl = \(url)")
             let json4Swift_Base_list = Json4Swift_Base(dictionary: jsonDictionary! as NSDictionary)
@@ -116,11 +138,13 @@ extension IntervalTimerWeatherService {
                 return
             }
             
-            if let currentWeather = IntervalTimerCurrentWeather(temperature: theTemperature, icon: theIcon){
-                completion(currentWeather)
-            } else {
+            guard let theCurrentWeather = IntervalTimerCurrentWeather(temperature: theTemperature, icon: theIcon) else {
                 completion(nil)
+                return
             }
+            
+            completion(theCurrentWeather)
+            
         })
     }
 }

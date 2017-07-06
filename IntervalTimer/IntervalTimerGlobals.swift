@@ -19,14 +19,14 @@ let ICON_DICTIONARY: [String: String] = [
     , "04n": "broken-clouds-night"
     , "09d": "shower-rain-day"
     , "09n": "shower-rain-night"
-    , "010d": "rain-day"
-    , "010n": "rain-night"
-    , "011d": "thunderstorm-day"
-    , "011n": "thunderstorm-night"
-    , "013d": "snow-day"
-    , "013n": "snow-night"
-    , "050d": "mist-day"
-    , "050n": "mist-night"
+    , "10d": "rain-day"
+    , "10n": "rain-night"
+    , "11d": "thunderstorm-day"
+    , "11n": "thunderstorm-night"
+    , "13d": "snow-day"
+    , "13n": "snow-night"
+    , "50d": "mist-day"
+    , "50n": "mist-night"
 ]
 
 

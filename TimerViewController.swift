@@ -18,7 +18,6 @@ class TimerViewController: UIViewController {
     
     @IBOutlet weak var weatherTemperatureLabel: UILabel!
     
-    
     var timer = Timer()
     var totalSeconds = 60 //seconds
     var startPauseResume : (Bool, Bool, Bool) = (false, false, false)
@@ -62,20 +61,20 @@ extension TimerViewController{
             timerLabel.text = timeString(time: TimeInterval(totalSeconds))
         }
     }
-    func timeString(time: TimeInterval) -> String {
-        let totalSecondsLeft = Int(time)
-//        let hours = Int(time) / 3600
-//        let minutes = Int(time) / 60 % 60
-//        let seconds = Int(time) % 60
+    func timeString(time: TimeInterval?) -> String? {
+        
+        guard let totalSecondsLeft = time else {
+            return nil
+        }
 
         let hours = Int(totalSecondsLeft) / 3600
         let minutes = Int(totalSecondsLeft) / 60 % 60
         let seconds = Int(totalSecondsLeft) % 60
 
-        timerLabel.font = intervalTimeFont(seconds: totalSecondsLeft)
+        //timerLabel.font = intervalTimeFont(seconds: totalSecondsLeft)
         
         if hours > 0 {
-            timerLabel.font = intervalTimeFont(seconds: totalSecondsLeft)
+//            timerLabel.font = intervalTimeFont(seconds: totalSecondsLeft)
             return String(format: "%02i:%02i:%02i", minutes, seconds)
         } else if hours == 0 {
             return String(format: "%02i:%02i", minutes, seconds)
@@ -85,7 +84,7 @@ extension TimerViewController{
             return ""
         }
     }
-    func intervalTimeFont(seconds: Int) -> UIFont {
+    func intervalTimeFont(seconds: Int) -> UIFont? {
         if seconds >= 3600 {
             hoursMinutesSeconds = (true, false, false)
             return ViewFont.TimerHours

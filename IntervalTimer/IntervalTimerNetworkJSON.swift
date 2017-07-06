@@ -24,8 +24,11 @@ class IntervalTimerNetworkJSON {
     lazy var sessionConfiguration: URLSessionConfiguration = URLSessionConfiguration.default
     lazy var session: URLSession = URLSession(configuration: self.sessionConfiguration)
     
-    init(url: URL) {
-        self.url = url
+    init?(url: URL?) {
+        guard let theUrl = url else {
+            return nil
+        }
+        self.url = theUrl
     }
     
     typealias JSONDictionaryHandler = (([String:Any]?) -> Void)
@@ -44,13 +47,13 @@ class IntervalTimerNetworkJSON {
                                 let jsonDictionary = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
                                 completion(jsonDictionary as? [String:Any])
                             } catch let error as NSError{
-                                //TODO: Handle the json processing error
-                                print("---------> Error processing JSON data: \(error.localizedDescription)")
+                                //TODO: get rid of this alert and replace with error handling unobtrusive to the UX
+                                showMessage(title: "Error processing JSON data", message: error.localizedDescription)
                             }
                         }
                     default:
-                        //TODO: Handle the various cases here
-                        print("---------> HTTP Response Code: \(httpResponse.statusCode)")
+                        //TODO: get rid of this alert and replace with error handling unobtrusive to the UX
+                        showMessage(title: "HTTP Response Code", message: "\(httpResponse.statusCode)")
                     }
                 }
             } else {
