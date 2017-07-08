@@ -35,6 +35,8 @@ class IntervalTimerNetworkJSON {
     
     func downloadJSON(_ completion: @escaping JSONDictionaryHandler){
         
+        //TODO: Handle all below thrown error by showing a no-network connection icon instead of a weather icon
+        
         let request = URLRequest(url: self.thisUrl)
         let dataTask = session.dataTask(with: request) { (data, response, error) in
             if error == nil {
@@ -45,20 +47,26 @@ class IntervalTimerNetworkJSON {
                         if let data = data {
                             do {
                                 let jsonDictionary = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+                                
+                                guard JSONSerialization.isValidJSONObject(jsonDictionary) else {
+                                    showMessage(title: "Error processing JSON data", message: "JSONSerialization.isValidJSONObject(jsonDictionary) = false")
+                                    return
+                                }
+                                
                                 completion(jsonDictionary as? [String:Any])
                             } catch let error as NSError{
-                                //TODO: get rid of this alert and replace with error handling unobtrusive to the UX
+                                //throw JsonError.unsucessfulProcessing(reason: "\(error?.localizedDescription ?? "nil")")
                                 showMessage(title: "Error processing JSON data", message: error.localizedDescription)
                             }
                         }
                     default:
-                        //TODO: get rid of this alert and replace with error handling unobtrusive to the UX
+                        //throw HttpError.unsucessfulHttpResponse(code:"\(httpResponse.statusCode)")
                         showMessage(title: "HTTP Response Code", message: "\(httpResponse.statusCode)")
                     }
                 }
             } else {
-                //TODO: Handle URLSession error
-                print("---------> Error: \(error?.localizedDescription ?? "nil")")
+                //throw UrlError.unsucessfulUrl(reason: "\(error?.localizedDescription ?? "nil")")
+                showMessage(title: "URL Error", message: "\(error?.localizedDescription ?? "nil")")
             }
         }
         dataTask.resume()

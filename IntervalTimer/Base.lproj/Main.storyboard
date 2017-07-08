@@ -157,17 +157,17 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24 C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50V-60-GfP">
-                                <rect key="frame" x="217" y="10" width="39" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24 C" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50V-60-GfP">
+                                <rect key="frame" x="203" y="10" width="53" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="39" id="2VL-tc-gx3"/>
+                                    <constraint firstAttribute="width" constant="53" id="2VL-tc-gx3"/>
                                     <constraint firstAttribute="height" constant="21" id="Iow-2L-pyu"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clear-sky-night" translatesAutoresizingMaskIntoConstraints="NO" id="UL6-1S-xfh">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clear-sky-night" translatesAutoresizingMaskIntoConstraints="NO" id="UL6-1S-xfh">
                                 <rect key="frame" x="261" y="-2" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="bJW-T3-wzw"/>
@@ -250,6 +250,7 @@
                         <outlet property="timerLabel" destination="PD0-Qt-9de" id="EH2-Ry-cYO"/>
                         <outlet property="timerMillisecondsLabel" destination="JW0-is-Oqb" id="DOv-N8-blb"/>
                         <outlet property="timerNameLabel" destination="94b-Co-cGT" id="ojG-MX-uS7"/>
+                        <outlet property="weatherImageView" destination="UL6-1S-xfh" id="rVk-tK-7qj"/>
                         <outlet property="weatherTemperatureLabel" destination="50V-60-GfP" id="c7x-8M-jRJ"/>
                     </connections>
                 </viewController>

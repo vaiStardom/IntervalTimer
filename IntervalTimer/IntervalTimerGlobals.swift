@@ -8,6 +8,7 @@
 
 import Foundation
 
+let DEGREE = "\u{00B0}"
 let ICON_DICTIONARY: [String: String] = [
     "01d": "clear-sky-day"
     , "01n": "clear-sky-night"

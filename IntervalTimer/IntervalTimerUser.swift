@@ -9,6 +9,13 @@
 import Foundation
 import CoreLocation
 
+//TODO: Use these guidlines for error handling:
+/*
+Ensure error types are clearly named across your codebase.
+Use optionals where a single error state exists.
+Use custom errors where more than one error state exists.
+Don’t allow an error to propagate too far from its source.
+*/
 class IntervalTimerUser: NSObject {
     
     //MARK: - Singleton
@@ -22,6 +29,7 @@ class IntervalTimerUser: NSObject {
     fileprivate var latitude: Double?
     fileprivate var longitude: Double?
     fileprivate var weatherQuery: (byCityId: Bool, byLocationName: Bool, byCoordinates: Bool) = (false, false, false)
+    fileprivate var currentWeather: IntervalTimerCurrentWeather?
     
     //MARK: - public get/set properties
     var thisTemperatureUnit: TemperatureUnit{
@@ -80,7 +88,12 @@ class IntervalTimerUser: NSObject {
             weatherQuery = newValue
         }
     }
-    
+    var thisCurrentWeather: IntervalTimerCurrentWeather? {
+        get { return currentWeather}
+        set {
+            currentWeather = newValue
+        }
+    }
     //MARK: - CoreLocation fileprivate properties
     fileprivate let geocoder = CLGeocoder()
     fileprivate var location: CLLocation?
@@ -156,72 +169,6 @@ extension IntervalTimerUser {
         IntervalTimerUser.sharedInstance.thisCityId = theCityId
         thisWeatherQuery = (true, false, false)
         NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCityId"), object: nil)
-    }
-}
-//MARK: - Notifications
-extension IntervalTimerUser{
-    func registerNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(IntervalTimerUser.didGetLatitudeLongitude(_:)), name:NSNotification.Name(rawValue: "didGetLattitudeLongitude"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(IntervalTimerUser.didGetCityAndCountryShortName(_:)), name:NSNotification.Name(rawValue: "didGetCityAndCountryShortName"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(IntervalTimerUser.didGetCityId(_:)), name:NSNotification.Name(rawValue: "didGetCityId"), object: nil)
-    }
-    
-    func didGetCityId(_ notification: Notification){
-
-        if thisWeatherQuery == (true, false, false) {
-
-            guard let theCityId = IntervalTimerUser.sharedInstance.thisCityId else {
-                return
-            }
-            
-            let weatherService = IntervalTimerWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
-            if let temperature = weatherService?.getWeatherFor(theCityId) {
-                print("--------> IntervalTimerUser didGetCityId temperature = \(temperature)")
-                
-                //TODO: call this when a timer has finished running
-                IntervalTimerUser.sharedInstance.stopUpdatingLocationManager()
-            }
-        }
-    }
-    func didGetCityAndCountryShortName(_ notification: Notification){
-        if thisWeatherQuery == (false, true, false) {
-            guard let theCityName = IntervalTimerUser.sharedInstance.thisCity else {
-                return
-            }
-            guard let theCountryCode = IntervalTimerUser.sharedInstance.thisIsoCountryCode else {
-                return
-            }
-            
-            print("--------> IntervalTimerUser didGetCityAndCountryShortName theCityName= \(theCityName), theCountryCode= \(theCountryCode)")
-            let weatherService = IntervalTimerWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
-            if let temperature = weatherService?.getWeatherFor(theCityName, in: theCountryCode) {
-                print("--------> IntervalTimerUser didGetCityAndCountryShortName temperature = \(temperature)")
-            } else {
-                print("--------> IntervalTimerUser didGetCityAndCountryShortName unable to retreive temperature")
-                //Try getting the weather using locality name
-                thisWeatherQuery = (false, false, true)
-                NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetLattitudeLongitude"), object: nil)
-            }
-        }
-    }
-    func didGetLatitudeLongitude(_ notification: Notification){
-        if thisWeatherQuery == (false, false, true) {
-            guard let theLatitude = IntervalTimerUser.sharedInstance.thisLatitude else {
-                return
-            }
-            guard let theLongitude = IntervalTimerUser.sharedInstance.thisLongitude else {
-                return
-            }
-            
-            print("--------> IntervalTimerUser didGetLattitudeLongitude theLatitude= \(theLatitude), theLongitude= \(theLongitude)")
-            let weatherService = IntervalTimerWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
-            if let temperature = weatherService?.getWeatherAt(latitude: theLatitude, longitude: theLongitude){
-                print("--------> IntervalTimerUser didGetLattitudeLongitude temperature = \(temperature)")
-            } else {
-                print("--------> IntervalTimerUser didGetLattitudeLongitude unable to retreive temperature")
-                //TODO: what to do when all else fails??
-            }
-        }
     }
 }
 //MARK: - CoreLocation Management

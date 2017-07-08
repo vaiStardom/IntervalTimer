@@ -12,16 +12,14 @@ import Foundation
 class IntervalTimerCurrentWeather: NSObject {
     
     //MARK: - fileprivate properties
-    fileprivate var temperature: Double?
+    fileprivate var kelvin: Double? //source (JSON) gives temperature in kelvins
+    fileprivate var temperature: String?
     fileprivate var icon: String?
     
     //MARK: - public get/set properties
-    var thisTemperature: Double?{
-        get { return temperature}
-        set {
-            temperature = convertTemperature(kelvins: newValue!, forUnits: IntervalTimerUser.sharedInstance.thisTemperatureUnit)
-            UserDefaults.standard.set(newValue, forKey: "temperature")
-            UserDefaults.standard.synchronize()
+    var thisTemperature: String?{
+        get {
+            return convertTemperature(kelvins: thisKelvin, forUnits: IntervalTimerUser.sharedInstance.thisTemperatureUnit)
         }
     }
     var thisIcon: String?{
@@ -32,10 +30,18 @@ class IntervalTimerCurrentWeather: NSObject {
             UserDefaults.standard.synchronize()
         }
     }
+    var thisKelvin: Double?{
+        get { return kelvin}
+        set {
+            kelvin = newValue
+            UserDefaults.standard.set(newValue, forKey: "kelvin")
+            UserDefaults.standard.synchronize()
+        }
+    }
     
     //MARK: - Initializer
-    init?(temperature: Double?, icon: String?){
-        guard  let theTemperature = temperature else {
+    init?(kelvin: Double?, icon: String?){
+        guard  let theKelvin = kelvin else {
             return nil
         }
         
@@ -43,27 +49,28 @@ class IntervalTimerCurrentWeather: NSObject {
             return nil
         }
         
-        self.temperature = theTemperature
+        self.kelvin = theKelvin
         self.icon = ICON_DICTIONARY[theIcon]
     }
     
     //MARK: - NSCoding protocol methods
     func encode(with coder: NSCoder){
-        coder.encode(self.thisTemperature, forKey: "temperature")
+        coder.encode(self.thisKelvin, forKey: "kelvin")
         coder.encode(self.thisIcon, forKey: "icon")
     }
     required init(coder decoder: NSCoder) {
-        if let theTemperature = decoder.decodeDouble(forKey: "temperature") as Double? {
-            temperature = theTemperature
+        if let theKelvin = decoder.decodeDouble(forKey: "kelvin") as Double? {
+            kelvin = theKelvin
         }
         if let theIcon = decoder.decodeObject(forKey: "icon") as! String? {
             icon = theIcon
         }
     }
 }
+
 //MARK: - Temperature conversions
 extension IntervalTimerCurrentWeather{
-    func convertTemperature(kelvins: Double?, forUnits temperatureUnit: TemperatureUnit?) -> Double? {
+    func convertTemperature(kelvins: Double?, forUnits temperatureUnit: TemperatureUnit?) -> String? {
         guard let theKelvin = kelvins else {
             return nil
         }
@@ -74,11 +81,11 @@ extension IntervalTimerCurrentWeather{
         
         switch theTemperatureUnit {
         case .kelvin :
-            return theKelvin
+            return "\(Int(theKelvin))\(DEGREE)K"
         case .fahrenheit:
-            return theKelvin - 459.67
+            return "\(Int(theKelvin - 459.67))\(DEGREE)F"
         case .celcius:
-            return theKelvin - 273.15
+            return "\(Int(theKelvin - 273.15))\(DEGREE)C"
         }
     }
 }

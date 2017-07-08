@@ -29,6 +29,19 @@ enum CsvControls{
     static let LineSeperator: String = "\n"
 }
 
+//MARK: - Errors
+//For a an http response code enum, look here: //https://gist.github.com/brennanMKE/482452bb9ac5f578907f413902753eec
+enum HttpError: Error {
+    case unsucessfulHttpResponse(code: String)
+}
+enum JsonError: Error {
+    case unsucessfulProcessing
+    case missingTemperature
+    case missingIcon
+}
+enum UrlError: Error {
+    case unsucessfulUrl(reason: String)
+}
 //MARK: - Fonts
 enum SystemFont{
     static let Bold15: UIFont = UIFont.systemFont(ofSize: 15, weight: UIFontWeightBold)
