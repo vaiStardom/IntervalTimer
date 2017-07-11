@@ -43,16 +43,7 @@ extension IntervalTimerWeatherService {
     //First, attempt to get weather for the city ID of user if possible using city.list.json
     //api.openweathermap.org/data/2.5/weather?id=1635882&APPID=448af267f0d35a22b6e00178e163deb3
     //http://api.openweathermap.org/data/2.5/weather?id=1635882&APPID=448af267f0d35a22b6e00178e163deb3
-    //{
-    //    "id": 1635882,
-    //    "name": "Mataram",
-    //    "country": "ID",
-    //    "coord": {
-    //        "lon": 116.116669,
-    //        "lat": -8.58333
-    //    }
-    //},
-    func getWeatherFor(_ cityId: Int) -> IntervalTimerCurrentWeather? {
+    func getWeatherFor(_ cityId: Int) -> Bool? {
         guard let theUrl = URL(string: "\(providerUrl)id=\(cityId)&APPID=\(apiKey)") else {
             return nil
         }
@@ -62,7 +53,7 @@ extension IntervalTimerWeatherService {
     //Second attempt to get weather for the city and country (ISO 3166) of user if possible
     //http://api.openweathermap.org/data/2.5/weather?q=Mataram,id&APPID=448af267f0d35a22b6e00178e163deb3
     //Mataram,id (ISO 3166)
-    func getWeatherFor(_ cityName: String, in countryCode: String) -> IntervalTimerCurrentWeather? {
+    func getWeatherFor(_ cityName: String, in countryCode: String) -> Bool? {
         guard let theUrl = URL(string: "\(providerUrl)g=\(cityName),\(countryCode)id&APPID=\(apiKey)") else {
             return nil
         }
@@ -73,50 +64,50 @@ extension IntervalTimerWeatherService {
     //api.openweathermap.org/data/2.5/weather?lat=-8.549790&lon=116.072037&APPID=448af267f0d35a22b6e00178e163deb3
     //http://api.openweathermap.org/data/2.5/weather?lat=-8.549790&lon=116.072037&APPID=448af267f0d35a22b6e00178e163deb3
     //-8.549790, 116.072037
-    func getWeatherAt(latitude: Double, longitude: Double) -> IntervalTimerCurrentWeather? {
+    func getWeatherAt(latitude: Double, longitude: Double) -> Bool? {
         guard let theUrl = URL(string: "\(providerUrl)lat=\(latitude)&lon=\(longitude)&APPID=\(apiKey)") else {
             return nil
         }
         return getWeatherWith(theUrl)
     }
     
-    private func getWeatherWith(_ url: URL) -> IntervalTimerCurrentWeather? {
+    private func getWeatherWith(_ url: URL) -> Bool? {
         
         guard let theUrl = url as URL? else {
             return nil
         }
         
-        var currentWeather: IntervalTimerCurrentWeather?
+        var didGetCurrentWeather: Bool?
         
         fromNetwork(with: theUrl) { (intervalTimerCurrentWeather) in
             
             guard let theCurrentWeather = intervalTimerCurrentWeather else {
-                currentWeather = nil
+                didGetCurrentWeather = false
                 return
             }
             
             DispatchQueue.main.sync {
                 guard theCurrentWeather.thisTemperature != nil else {
                     print("---------> IntervalTimerWeatherService getWeather() guard let theTemperature = nil")
-                    currentWeather = nil
+                    didGetCurrentWeather = false
                     return
                 }
                 
                 guard theCurrentWeather.thisIcon != nil else {
                     print("---------> IntervalTimerWeatherService getWeather() guard let theIcon = nil")
-                    currentWeather = nil
+                    didGetCurrentWeather = false
                     return
                 }
                 
                 print("---------> IntervalTimerWeatherService theTemperature = \(String(describing: theCurrentWeather.thisTemperature))")
                 print("---------> IntervalTimerWeatherService theIcon = \(String(describing: theCurrentWeather.thisIcon))")
                 
-                currentWeather = theCurrentWeather
+                didGetCurrentWeather = true
                 IntervalTimerUser.sharedInstance.thisCurrentWeather = theCurrentWeather
                 NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCurrentWeather"), object: nil)
             }
         }
-        return currentWeather
+        return didGetCurrentWeather
     }
     
     private func fromNetwork(with url: URL, completion: @escaping (IntervalTimerCurrentWeather?) -> Void ){

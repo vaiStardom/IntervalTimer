@@ -53,6 +53,7 @@ enum SystemFont{
     static let Regular17: UIFont = UIFont.systemFont(ofSize: 17, weight: UIFontWeightRegular)
     static let Regular19: UIFont = UIFont.systemFont(ofSize: 19, weight: UIFontWeightRegular)
     static let Regular28: UIFont = UIFont.systemFont(ofSize: 28, weight: UIFontWeightRegular)
+    static let RegularMonospaced17: UIFont = UIFont.monospacedDigitSystemFont(ofSize: 17, weight: UIFontWeightRegular)
     static let SemiBold17: UIFont = UIFont.systemFont(ofSize: 17, weight: UIFontWeightSemibold)
     static let Thin60: UIFont = UIFont.systemFont(ofSize: 60, weight: UIFontWeightThin)
     static let UltralightMonospaced61: UIFont = UIFont.monospacedDigitSystemFont(ofSize: 61, weight: UIFontWeightUltraLight)
@@ -124,6 +125,10 @@ enum NavigationBarLitterals{
 }
 
 //MARK: - Weather
+enum OpenWeatherApi {
+    static let key = "448af267f0d35a22b6e00178e163deb3"
+    static let baseUrl = "http://api.openweathermap.org/data/2.5/weather?"
+}
 enum TemperatureUnit: Int {
     case celcius = 0, fahrenheit, kelvin
 }
@@ -131,7 +136,6 @@ enum WeatherDictionaryKey{
     static let temperature = "temp"
     static let weatherIcon = "icon"
 }
-enum OpenWeatherApi {
-    static let key = "448af267f0d35a22b6e00178e163deb3"
-    static let baseUrl = "http://api.openweathermap.org/data/2.5/weather?"
+enum WeatherQueryPriority: Int {
+    case byCityId = 0, byLocationName, byCoordinates, none
 }

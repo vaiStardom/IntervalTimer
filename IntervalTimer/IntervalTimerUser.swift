@@ -23,14 +23,31 @@ class IntervalTimerUser: NSObject {
     
     //MARK: - fileprivate properties
     fileprivate var temperatureUnit: TemperatureUnit = .celcius
-    fileprivate var city: String?
-    fileprivate var isoCountryCode: String?
+    fileprivate var cityName: String?
+    fileprivate var countryCode: String?
     fileprivate var cityId: Int?
     fileprivate var latitude: Double?
     fileprivate var longitude: Double?
-    fileprivate var weatherQuery: (byCityId: Bool, byLocationName: Bool, byCoordinates: Bool) = (false, false, false)
     fileprivate var currentWeather: IntervalTimerCurrentWeather?
+    fileprivate var shouldUpdateWeather: Bool? = true
+    fileprivate var didCompleteLocationDetermination: Bool? = false
     
+    //MARK: - CoreLocation fileprivate properties
+    fileprivate let geocoder = CLGeocoder()
+    fileprivate var location: CLLocation?
+    fileprivate var placemark: CLPlacemark?
+    
+    //MARK: - Lazy Vars
+    fileprivate lazy var locationManager: CLLocationManager = {
+        var _locationManager = CLLocationManager()
+        _locationManager.delegate = self
+        _locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+        _locationManager.activityType = .fitness
+        _locationManager.distanceFilter = 1000.0 //updates at 1000 meters, since weather coulds change every 1KM
+        _locationManager.allowsBackgroundLocationUpdates = true
+        return _locationManager
+    }()
+
     //MARK: - public get/set properties
     var thisTemperatureUnit: TemperatureUnit{
         get { return temperatureUnit}
@@ -40,19 +57,19 @@ class IntervalTimerUser: NSObject {
             UserDefaults.standard.synchronize()
         }
     }
-    var thisCity: String?{
-        get { return city}
+    var thisCityName: String?{
+        get { return cityName}
         set {
-            city = newValue
-            UserDefaults.standard.set(newValue, forKey: "city")
+            cityName = newValue
+            UserDefaults.standard.set(newValue, forKey: "cityName")
             UserDefaults.standard.synchronize()
         }
     }
-    var thisIsoCountryCode: String?{
-        get { return isoCountryCode}
+    var thisCountryCode: String?{
+        get { return countryCode}
         set {
-            isoCountryCode = newValue
-            UserDefaults.standard.set(newValue, forKey: "isoCountryCode")
+            countryCode = newValue
+            UserDefaults.standard.set(newValue, forKey: "countryCode")
             UserDefaults.standard.synchronize()
             
             getCityId()
@@ -82,33 +99,34 @@ class IntervalTimerUser: NSObject {
             UserDefaults.standard.synchronize()
         }
     }
-    var thisWeatherQuery: (Bool, Bool, Bool) {
-        get { return weatherQuery}
-        set {
-            weatherQuery = newValue
-        }
-    }
     var thisCurrentWeather: IntervalTimerCurrentWeather? {
         get { return currentWeather}
         set {
             currentWeather = newValue
         }
     }
-    //MARK: - CoreLocation fileprivate properties
-    fileprivate let geocoder = CLGeocoder()
-    fileprivate var location: CLLocation?
-    fileprivate var placemark: CLPlacemark?
     
-    //MARK: - Lazy Vars
-    fileprivate lazy var locationManager: CLLocationManager = {
-        var _locationManager = CLLocationManager()
-        _locationManager.delegate = self
-        _locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
-        _locationManager.activityType = .fitness
-        _locationManager.distanceFilter = 1000.0 //updates at 1000 meters, since weather coulds change every 1KM
-        _locationManager.allowsBackgroundLocationUpdates = true
-        return _locationManager
-    }()
+    var thisShouldUpdateWeather: Bool? {
+        get {
+            return shouldUpdateWeather
+        }
+        set {
+            shouldUpdateWeather = newValue
+            UserDefaults.standard.set(newValue, forKey: "shouldUpdateWeather")
+            UserDefaults.standard.synchronize()
+        }
+    }
+    var thisDidCompleteLocationDetermination: Bool? {
+        get { return didCompleteLocationDetermination }
+        set {
+            didCompleteLocationDetermination = newValue
+            if newValue == true {
+                //Send notificatin that we can update the weather
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "canAttemptWeatherUpdate"), object: nil)
+            }
+        }
+    }
+    
     
     //MARK: - init()
     private override init() {
@@ -118,21 +136,22 @@ class IntervalTimerUser: NSObject {
     //MARK: - NSCoding protocol methods
     func encode(with coder: NSCoder){
         coder.encode(self.thisTemperatureUnit, forKey: "temperatureUnit")
-        coder.encode(self.thisCity, forKey: "city")
-        coder.encode(self.thisIsoCountryCode, forKey: "isoCountryCode")
+        coder.encode(self.thisCityName, forKey: "cityName")
+        coder.encode(self.thisCountryCode, forKey: "countryCode")
         coder.encode(self.thisCityId, forKey: "cityId")
         coder.encode(self.thisLatitude, forKey: "latitude")
         coder.encode(self.thisLongitude, forKey: "longitude")
+        coder.encode(self.thisShouldUpdateWeather, forKey: "shouldUpdateWeather")
     }
     required init(coder decoder: NSCoder) {
         if let theTemperatureUnit = decoder.decodeInteger(forKey: "temperatureUnit") as Int? {
             temperatureUnit = TemperatureUnit(rawValue: theTemperatureUnit)!
         }
-        if let theCity = decoder.decodeObject(forKey: "city") as! String? {
-            city = theCity
+        if let theCityName = decoder.decodeObject(forKey: "cityName") as! String? {
+            cityName = theCityName
         }
-        if let theIsoCountryCode = decoder.decodeObject(forKey: "isoCountryCode") as! String? {
-            isoCountryCode = theIsoCountryCode
+        if let theCountryCode = decoder.decodeObject(forKey: "countryCode") as! String? {
+            countryCode = theCountryCode
         }
         if let theCityId = decoder.decodeInteger(forKey: "cityId") as Int? {
             cityId = theCityId
@@ -143,31 +162,52 @@ class IntervalTimerUser: NSObject {
         if let theLongitude = decoder.decodeDouble(forKey: "longitude") as Double? {
             longitude = theLongitude
         }
+        if let theShouldUpdateWeather = decoder.decodeBool(forKey: "shouldUpdateWeather") as Bool? {
+            shouldUpdateWeather = theShouldUpdateWeather
+        }        
     }
 }
 //MARK: - Helpers
 extension IntervalTimerUser {
+    
+    func weatherQueryPriority() -> Int {
+    
+        //priority 1 = byCityId
+        if thisCityId != nil {
+            return WeatherQueryPriority.byCityId.rawValue
+        }
+        
+        //priority 2 = location name
+        if thisCityName != nil && thisCountryCode != nil {
+            return WeatherQueryPriority.byLocationName.rawValue
+        }
+        
+        //priority 3 = coordinates
+        if thisLatitude != nil && thisLongitude != nil {
+            return WeatherQueryPriority.byCoordinates.rawValue
+        }
+        
+        return WeatherQueryPriority.none.rawValue
+    }
+    
     func getCityId(){
         
-        guard let theCityName = thisCity else {
+        guard let theCityName = thisCityName else {
             thisCityId = nil
             return
         }
         
-        guard let theCountryCode = thisIsoCountryCode else {
+        guard let theCountryCode = thisCountryCode else {
             thisCityId = nil
             return
         }
         
         guard let theCityId = getCityIdFromCsv(file: "cityList.20170703", cityName: theCityName, countryCode: theCountryCode) else {
-            //Try getting the weather using locality name
-            thisWeatherQuery = (false, true, false)
-            NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCityAndCountryShortName"), object: nil)
+            thisCityId = nil
             return
         }
         
         IntervalTimerUser.sharedInstance.thisCityId = theCityId
-        thisWeatherQuery = (true, false, false)
         NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCityId"), object: nil)
     }
 }
@@ -192,17 +232,19 @@ extension IntervalTimerUser: CLLocationManagerDelegate {
             return
         }
         
-        // if it location is nil or it has been moved
+        //If location is nil or has moved
         if location == nil || location!.horizontalAccuracy > latestLocation.horizontalAccuracy {
             
             location = latestLocation
             print("---------> CoreLocation latitude: \(location?.coordinate.latitude ?? 0), longitude: \(location?.coordinate.longitude ?? 0)")
             
-            
             if let theLatitude = location?.coordinate.latitude, let theLongitude = location?.coordinate.longitude {
                 thisLatitude = theLatitude
                 thisLongitude = theLongitude
-                NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetLattitudeLongitude"), object: nil)
+                //NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetLattitudeLongitude"), object: nil)
+            } else {
+                thisLatitude = nil
+                thisLongitude = nil
             }
             
             //ReverseGeocoding
@@ -212,39 +254,54 @@ extension IntervalTimerUser: CLLocationManagerDelegate {
                 }
                 //Parse location information
                 self.parsePlacemarks()
+                
+                //finished trying to determine location
+                self.thisDidCompleteLocationDetermination = true
             })
+        } else {
+            thisDidCompleteLocationDetermination = false
         }
     }
     func parsePlacemarks() {
         
         guard let _ = location else {
+            nilLocationName()
             return
         }
         
         guard let thePlacemark = placemark else {
+            nilLocationName()
             return
         }
 
         // Apple refers to city name as locality, not city
-        guard let theCity = thePlacemark.locality else {
+        guard let theCityName = thePlacemark.locality else {
+            nilLocationName()
             return
         }
         
-        guard !theCity.isEmpty else {
+        guard !theCityName.isEmpty else {
+            nilLocationName()
             return
         }
         
-        guard let theIsoCountryShortName = thePlacemark.isoCountryCode else {
+        guard let theCountryShortName = thePlacemark.isoCountryCode else {
+            nilLocationName()
             return
         }
         
-        print("---------> CoreLocation city: \(theCity)")
-        print("---------> CoreLocation theIsoCountryShortName: \(theIsoCountryShortName)")
-        thisCity = theCity
-        thisIsoCountryCode = theIsoCountryShortName
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCityAndCountryShortName"), object: nil)
+        print("---------> CoreLocation city: \(theCityName)")
+        print("---------> CoreLocation theIsoCountryShortName: \(theCountryShortName)")
+        thisCityName = theCityName
+        thisCountryCode = theCountryShortName
+        //NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCityAndCountryShortName"), object: nil)
+    }
+    func nilLocationName(){
+        thisCityName = nil
+        thisCountryCode = nil
     }
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        //TODO: Handle core location errors
         print("---------> CoreLocation didFailwithError\(error)")
         stopUpdatingLocationManager()
     }

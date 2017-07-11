@@ -89,3 +89,98 @@ extension IntervalTimerCurrentWeather{
         }
     }
 }
+//MARK: - Weather Retreival Static Functions
+extension IntervalTimerCurrentWeather{
+    static func getWeatherByPriority(){
+        
+        print("--------> TimerViewController getWeatherByPriority() thisDidCompleteLocationDetermination = \(String(describing: IntervalTimerUser.sharedInstance.thisDidCompleteLocationDetermination))")
+        
+        if IntervalTimerUser.sharedInstance.thisDidCompleteLocationDetermination! {
+            switch IntervalTimerUser.sharedInstance.weatherQueryPriority() {
+            case WeatherQueryPriority.byCityId.rawValue:
+                getWeatherByCityId()
+            case WeatherQueryPriority.byLocationName.rawValue:
+                getWeatherByLocationName()
+            case WeatherQueryPriority.byCoordinates.rawValue:
+                getWeatherByCoordinates()
+            default:
+                //TODO: if user wanted to have the weather, and we cant get it, then show a no-connection error icon in place of the weather
+                //Msg option 1 - "It is impossible to determine your location at the moment and give you the weather."
+                //Msg option 2 - "...
+                print("--------> TimerViewController getWeatherByPriority() unable to retreive temperature")
+            }
+        }
+    }
+    
+    static func getWeatherByCityId(){
+        
+        guard let thisShouldUpdateWeeather = IntervalTimerUser.sharedInstance.thisShouldUpdateWeather, thisShouldUpdateWeeather else {
+            return
+        }
+        
+        guard let theCityId = IntervalTimerUser.sharedInstance.thisCityId else {
+            return
+        }
+        
+        let weatherService = IntervalTimerWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
+        let didGetCurrentWeather = weatherService?.getWeatherFor(theCityId)
+        
+        if didGetCurrentWeather == nil || !didGetCurrentWeather! {
+            //getting the weather by city ID did not succeed, try priority 2
+            //NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCityAndCountryShortName"), object: nil)
+            getWeatherByLocationName()
+        }
+    }
+    static func getWeatherByLocationName(){
+        guard let thisShouldUpdateWeeather = IntervalTimerUser.sharedInstance.thisShouldUpdateWeather, thisShouldUpdateWeeather else {
+            return
+        }
+        
+        guard let theCityName = IntervalTimerUser.sharedInstance.thisCityName else {
+            return
+        }
+        
+        guard let theCountryCode = IntervalTimerUser.sharedInstance.thisCountryCode else {
+            return
+        }
+        
+        print("--------> TimerViewController getWeatherByLocationName() theCityName= \(theCityName), theCountryCode= \(theCountryCode)")
+        
+        let weatherService = IntervalTimerWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
+        let didGetCurrentWeather = weatherService?.getWeatherFor(theCityName, in: theCountryCode)
+        
+        if didGetCurrentWeather == nil || !didGetCurrentWeather! {
+            //getting the weather by city name and country code did not succeed
+            getWeatherByCoordinates()
+        }
+    }
+    static func getWeatherByCoordinates(){
+        
+        guard let thisShouldUpdateWeeather = IntervalTimerUser.sharedInstance.thisShouldUpdateWeather, thisShouldUpdateWeeather else {
+            return
+        }
+        
+        guard let theLatitude = IntervalTimerUser.sharedInstance.thisLatitude else {
+            return
+        }
+        
+        guard let theLongitude = IntervalTimerUser.sharedInstance.thisLongitude else {
+            return
+        }
+        
+        let weatherService = IntervalTimerWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
+        let didGetCurrentWeather = weatherService?.getWeatherAt(latitude: theLatitude, longitude: theLongitude)
+        
+        
+        if didGetCurrentWeather == nil || !didGetCurrentWeather! {
+            //TODO: because of the asynchronous nature of weather information retreival, this will always execute...
+            
+            //everything else failed...
+            //getting the weather by city name and country code did not succeed
+            //TODO: if user wanted to have the weather, and we cant get it, then show a no-connection error icon in place of the weather
+            //Msg option 1 - "It is impossible to determine your location at the moment and give you the weather."
+            //Msg option 2 - "...
+            print("--------> TimerViewController getWeatherByCoordinates() unable to retreive temperature")
+        }
+    }
+}

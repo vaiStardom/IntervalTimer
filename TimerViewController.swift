@@ -10,21 +10,25 @@ import UIKit
 
 class TimerViewController: UIViewController {
     
+    @IBOutlet weak var weatherImageView: UIImageView!
+    @IBOutlet weak var cancelImageView: UIImageView!
+    @IBOutlet weak var startPauseResumeImageView: UIImageView!
+    
     @IBOutlet weak var startPauseResumeButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var timerNameLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var timerMillisecondsLabel: UILabel!
-    
     @IBOutlet weak var weatherTemperatureLabel: UILabel!
-    @IBOutlet weak var weatherImageView: UIImageView!
-    
-    var currentWeather: IntervalTimerCurrentWeather?
-    
-    var timer = Timer()
-    var totalSeconds = 60 //seconds
+
+    @IBOutlet weak var testLabel: UILabel!
+
+    var totalSeconds = 3602 //seconds
     var startPauseResume : (Bool, Bool, Bool) = (false, false, false)
     var hoursMinutesSeconds : (Bool, Bool, Bool) = (false, false, false)
+    var startTime = TimeInterval()
+    var timer = Timer()
+    
 }
 //MARK: Actions
 extension TimerViewController{
@@ -34,6 +38,7 @@ extension TimerViewController{
             aesthetics_timerStart()
             startPauseResume = (false, true, false)
         } else if startPauseResume == (false, true, false) { //pause the timer
+            
             aesthetics_timerPause()
             startPauseResume = (false, false, true)
         } else if startPauseResume == (false, false, true) { //resume the timer
@@ -43,6 +48,7 @@ extension TimerViewController{
     }
     @IBAction func cancel(_ sender: UIButton) {
         startPauseResume = (true, false, false)
+        timer.invalidate()
         aesthetics_timerCancel()
     }
     func back(){
@@ -52,41 +58,49 @@ extension TimerViewController{
 }
 //MARK: Helpers
 extension TimerViewController{
+    
     func runTimer(){
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(TimerViewController.updateTime), userInfo: nil, repeats: true)
+        startTime = Date.timeIntervalSinceReferenceDate + TimeInterval(totalSeconds)
     }
-    func updateTimer(){
-        if totalSeconds < 1 {
+
+    func updateTime(){
+        let currentTime = Date.timeIntervalSinceReferenceDate
+        var elapsedTime: TimeInterval = currentTime - startTime
+        
+        if elapsedTime >= 0 {
             timer.invalidate()
-            // send alert and start next interval
-        } else {
-            totalSeconds -= 1
-            timerLabel.text = timeString(time: TimeInterval(totalSeconds))
+            aesthetics_timerCancel()
+            //TODO: send alert and start next interval
         }
+
+        let hours = Int(elapsedTime / 3600.0) % 24
+        elapsedTime -= (TimeInterval(hours) * 3600.0)
+        
+        //calculate the minutes in elapsed time.
+        let minutes = Int(elapsedTime / 60.0)
+        elapsedTime -= (TimeInterval(minutes) * 60)
+        
+        //calculate the seconds in elapsed time.
+        let seconds = Int(elapsedTime)
+        elapsedTime -= TimeInterval(seconds)
+        
+        //find out the fraction of milliseconds to be displayed.
+        let fraction = Int(elapsedTime * 100)
+        let fraction2 = String(format: "%02d", fraction)
+        let fraction3 = Int(fraction2)!
+        let strFraction4 = String(format: "%02i", abs(fraction3))
+        
+        //add the leading zero for minutes, seconds and millseconds and store them as string constants
+        let strHours = String(format: "%02d", abs(hours))
+        let strMinutes = String(format: "%02d", abs(minutes))
+        let strSeconds = String(format: "%02d", abs(seconds))
+        
+        //concatenate minutes, seconds and milliseconds assign assign to labels
+        timerMillisecondsLabel.text = "\(strFraction4)"
+        testLabel.text = "\(strHours):\(strMinutes):\(strSeconds)"
     }
-    func timeString(time: TimeInterval?) -> String? {
-        
-        guard let totalSecondsLeft = time else {
-            return nil
-        }
-        
-        let hours = Int(totalSecondsLeft) / 3600
-        let minutes = Int(totalSecondsLeft) / 60 % 60
-        let seconds = Int(totalSecondsLeft) % 60
-        
-        //timerLabel.font = intervalTimeFont(seconds: totalSecondsLeft)
-        
-        if hours > 0 {
-            //            timerLabel.font = intervalTimeFont(seconds: totalSecondsLeft)
-            return String(format: "%02i:%02i:%02i", minutes, seconds)
-        } else if hours == 0 {
-            return String(format: "%02i:%02i", minutes, seconds)
-        } else if minutes == 0 {
-            return String(format: "%02i", seconds)
-        } else {
-            return ""
-        }
-    }
+
     func intervalTimeFont(seconds: Int) -> UIFont? {
         if seconds >= 3600 {
             hoursMinutesSeconds = (true, false, false)
@@ -103,26 +117,32 @@ extension TimerViewController{
 //MARK: Aesthetics
 extension TimerViewController{
     func aesthetics_initial(){
-        timerLabel.font = intervalTimeFont(seconds: totalSeconds)
+        //timerLabel.font = intervalTimeFont(seconds: totalSeconds)
         timerNameLabel.font = ViewFont.TimerName
         weatherTemperatureLabel.font = ViewFont.TimerTemperature
         cancelButton.isEnabled = false
     }
     func aesthetics_timerStart(){
         cancelButton.isEnabled = true
-        startPauseResumeButton.setImage(UIImage(named: "pause"), for: .normal)
+        startPauseResumeImageView.image = UIImage(named: "pause")
+        //startPauseResumeButton.setImage(UIImage(named: "pause"), for: .normal)
     }
     func aesthetics_timerPause(){
         cancelButton.isEnabled = true
-        startPauseResumeButton.setImage(UIImage(named: "resume"), for: .normal)
+        startPauseResumeImageView.image = UIImage(named: "resume")
+        //startPauseResumeButton.setImage(UIImage(named: "resume"), for: .normal)
     }
     func aesthetics_timerResume(){
         cancelButton.isEnabled = true
-        startPauseResumeButton.setImage(UIImage(named: "pause"), for: .normal)
+        startPauseResumeImageView.image = UIImage(named: "pause")
+        //startPauseResumeButton.setImage(UIImage(named: "pause"), for: .normal)
     }
     func aesthetics_timerCancel(){
         cancelButton.isEnabled = false
-        startPauseResumeButton.setImage(UIImage(named: "start"), for: .normal)
+        startPauseResumeImageView.image = UIImage(named: "start")
+        //startPauseResumeButton.setImage(UIImage(named: "start"), for: .normal)
+        testLabel.text = "0"
+        timerMillisecondsLabel.text = "00"
     }
 }
 //MARK: Life-cycle
@@ -134,36 +154,43 @@ extension TimerViewController{
         timerNameLabel.text = "Peak 8"
         aesthetics_initial()
         
+        testLabel.font = SystemFont.RegularMonospaced17
         
+        //TODO: If timer is set to show weather {..do all the below...}
         //TODO: call this when user switches on weather for the first time
         IntervalTimerUser.sharedInstance.firstTimeLocationUsage()
-        
-        //TODO: call this when user starts a timer
-        IntervalTimerUser.sharedInstance.startUpdatingLocationManager()
-        
-        //delete this when no longer usefull:
-        registerNotifications() //will register at first weather use
 
+        //Only register if user wants weather for this timer
+        registerNotifications() //will register at first weather use
         
-        
-        
-        
+        if IntervalTimerUser.sharedInstance.thisShouldUpdateWeather! {
+            //TODO: call this when user starts a timer
+            IntervalTimerUser.sharedInstance.startUpdatingLocationManager()
+            
+            print("--------> TimerViewController viewDidLoad() attempting to set weather")
+            IntervalTimerCurrentWeather.getWeatherByPriority()
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 }
-//MARK: - Weather Notifications
+//MARK: - Notifications
 extension TimerViewController{
     func registerNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(TimerViewController.didGetLatitudeLongitude(_:)), name:NSNotification.Name(rawValue: "didGetLattitudeLongitude"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(TimerViewController.didGetCityAndCountryShortName(_:)), name:NSNotification.Name(rawValue: "didGetCityAndCountryShortName"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(TimerViewController.didGetCityId(_:)), name:NSNotification.Name(rawValue: "didGetCityId"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(TimerViewController.didGetCurrentWeather(_:)), name:NSNotification.Name(rawValue: "didGetCurrentWeather"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(TimerViewController.canAttemptWeatherUpdate(_:)), name:NSNotification.Name(rawValue: "canAttemptWeatherUpdate"), object: nil)
     }
 }
-//MARK: weather management
+//MARK: - Weather Management
 extension TimerViewController{
+    func canAttemptWeatherUpdate(_ notification: Notification){
+        print("--------> TimerViewController canAttemptWeatherUpdate notification received")
+        IntervalTimerCurrentWeather.getWeatherByPriority()
+    }
     func didGetCurrentWeather(_ notification: Notification){
 
         guard let theTemperature = IntervalTimerUser.sharedInstance.thisCurrentWeather?.thisTemperature else {
@@ -175,155 +202,20 @@ extension TimerViewController{
         }
         weatherTemperatureLabel.text = theTemperature
         weatherImageView.image = theImage
-
         
+        //Weather updated, no need to update location until 3 hrs have passed or user has moved 1KM
+        IntervalTimerUser.sharedInstance.thisShouldUpdateWeather = false
+        IntervalTimerUser.sharedInstance.stopUpdatingLocationManager()
     }
     func didGetCityId(_ notification: Notification){
-        
-        if IntervalTimerUser.sharedInstance.thisWeatherQuery == (true, false, false) {
-            
-            guard let theCityId = IntervalTimerUser.sharedInstance.thisCityId else {
-                return
-            }
-            
-            let weatherService = IntervalTimerWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
-            if let theCurrentWeather = weatherService?.getWeatherFor(theCityId) {
-                print("--------> TimerViewController didGetCityId temperature = \(theCurrentWeather.thisTemperature)")
-                
-                //if weather is requested for this timer, then set it
-                //setWeather(with: theCurrentWeather)
-
-                //TODO: call this when a timer has finished running
-                IntervalTimerUser.sharedInstance.stopUpdatingLocationManager()
-            }
-        }
+        IntervalTimerCurrentWeather.getWeatherByCityId()
     }
     func didGetCityAndCountryShortName(_ notification: Notification){
-        if IntervalTimerUser.sharedInstance.thisWeatherQuery == (false, true, false) {
-            guard let theCityName = IntervalTimerUser.sharedInstance.thisCity else {
-                return
-            }
-            guard let theCountryCode = IntervalTimerUser.sharedInstance.thisIsoCountryCode else {
-                return
-            }
-            
-            print("--------> TimerViewController didGetCityAndCountryShortName theCityName= \(theCityName), theCountryCode= \(theCountryCode)")
-            let weatherService = IntervalTimerWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
-            if let theCurrentWeather = weatherService?.getWeatherFor(theCityName, in: theCountryCode) {
-                print("--------> TimerViewController didGetCityAndCountryShortName temperature = \(theCurrentWeather.thisTemperature)")
-                //setWeather(with: theCurrentWeather)
-            } else {
-                print("--------> TimerViewController didGetCityAndCountryShortName unable to retreive temperature")
-                //Try getting the weather using locality name
-                IntervalTimerUser.sharedInstance.thisWeatherQuery = (false, false, true)
-                NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetLattitudeLongitude"), object: nil)
-            }
-        }
+        IntervalTimerCurrentWeather.getWeatherByLocationName()
     }
     func didGetLatitudeLongitude(_ notification: Notification){
-        if IntervalTimerUser.sharedInstance.thisWeatherQuery == (false, false, true) {
-            guard let theLatitude = IntervalTimerUser.sharedInstance.thisLatitude else {
-                return
-            }
-            guard let theLongitude = IntervalTimerUser.sharedInstance.thisLongitude else {
-                return
-            }
-            
-            print("--------> TimerViewController didGetLattitudeLongitude theLatitude= \(theLatitude), theLongitude= \(theLongitude)")
-            let weatherService = IntervalTimerWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
-            if let theCurrentWeather = weatherService?.getWeatherAt(latitude: theLatitude, longitude: theLongitude){
-                print("--------> TimerViewController didGetLattitudeLongitude temperature = \(theCurrentWeather.thisTemperature)")
-                //setWeather(with: theCurrentWeather)
-            } else {
-                //TODO: if user wanted to have the weather, and we cant get it, then show a no-connection error icon in place of the weather
-                print("--------> TimerViewController didGetLattitudeLongitude unable to retreive temperature")
-                
-            }
-        }
+        IntervalTimerCurrentWeather.getWeatherByCoordinates()
     }
-
-    
-    
-    
-    
-    
-//    func setWeather(){
-//        //TODO: will have to receive a notification from core location to advise that location has changed and trigger a weather update
-//        
-//        //first get location
-//        
-//        //second get weather
-//        
-//        
-//        //priority 1, do we have the cityid?
-//        if let theCityId = IntervalTimerUser.sharedInstance.thisCityId {
-//            let weatherService = IntervalTimerWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
-//            if let theCurrentWeather = weatherService?.getWeatherFor(theCityId) {
-//                
-//                print("--------> TimerViewController setWeather() with theCityId temperature = \(String(describing: theCurrentWeather.thisTemperature))")
-//                
-//                guard let theTemperature = theCurrentWeather.thisTemperature else {
-//                    return
-//                }
-//                
-//                guard let theIcon = theCurrentWeather.thisIcon else {
-//                    return
-//                }
-//                
-//                weatherTemperatureLabel.text = theTemperature
-//                weatherImageView.image = UIImage(named: theIcon)
-//                //TODO: call this when a timer has finished running
-//                IntervalTimerUser.sharedInstance.stopUpdatingLocationManager()
-//            }
-//        }
-//        
-//        //priority 2
-//        if let theCityName = IntervalTimerUser.sharedInstance.thisCity,  let theCountryCode = IntervalTimerUser.sharedInstance.thisIsoCountryCode {
-//            
-//            let weatherService = IntervalTimerWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
-//            if let theCurrentWeather = weatherService?.getWeatherFor(theCityName, in: theCountryCode) {
-//                
-//                print("--------> TimerViewController setWeather() with city name and country temperature = \(String(describing: theCurrentWeather.thisTemperature))")
-//                
-//                guard let theTemperature = theCurrentWeather.thisTemperature else {
-//                    return
-//                }
-//                
-//                guard let theIcon = theCurrentWeather.thisIcon else {
-//                    return
-//                }
-//                
-//                weatherTemperatureLabel.text = theTemperature
-//                weatherImageView.image = UIImage(named: theIcon)
-//                //TODO: call this when a timer has finished running
-//                IntervalTimerUser.sharedInstance.stopUpdatingLocationManager()
-//                
-//                
-//            }
-//            
-//        }
-//
-//        //priority 3
-//        if let theLatitude = IntervalTimerUser.sharedInstance.thisLatitude, let theLongitude = IntervalTimerUser.sharedInstance.thisLongitude {
-//            let weatherService = IntervalTimerWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
-//            if let theCurrentWeather = weatherService?.getWeatherAt(latitude: theLatitude, longitude: theLongitude){
-//                print("--------> TimerViewController setWeather() with city name and country temperature = \(String(describing: theCurrentWeather.thisTemperature))")
-//                
-//                guard let theTemperature = theCurrentWeather.thisTemperature else {
-//                    return
-//                }
-//                
-//                guard let theIcon = theCurrentWeather.thisIcon else {
-//                    return
-//                }
-//                
-//                weatherTemperatureLabel.text = theTemperature
-//                weatherImageView.image = UIImage(named: theIcon)
-//                //TODO: call this when a timer has finished running
-//                IntervalTimerUser.sharedInstance.stopUpdatingLocationManager()
-//            }
-//        }
-//    }
 }
 //MARK: - Navigation Bar Management
 extension TimerViewController {
