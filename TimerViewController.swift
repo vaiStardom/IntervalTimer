@@ -230,21 +230,40 @@ extension TimerViewController{
         aesthetics_initial()
         
         testLabel.font = SystemFont.RegularMonospaced17
-        
+
         //TODO: If timer is set to show weather {..do all the below...}
         //TODO: call this when user switches on weather for the first time
         IntervalTimerUser.sharedInstance.firstTimeLocationUsage()
-
+            
         //Only register if user wants weather for this timer
-        registerNotifications() //will register at first weather use
-        
+        self.registerNotifications() //will register at first weather use
+            
         if IntervalTimerUser.sharedInstance.thisShouldUpdateWeather! {
             //TODO: call this when user starts a timer
             IntervalTimerUser.sharedInstance.startUpdatingLocationManager()
-            
+                
             print("--------> TimerViewController viewDidLoad() attempting to set weather")
             IntervalTimerCurrentWeather.getWeatherByPriority()
         }
+
+//        DispatchQueue.global(qos: .background).async {
+//            // Background Thread Or Service call Or DB fetch etc
+//            //TODO: If timer is set to show weather {..do all the below...}
+//            //TODO: call this when user switches on weather for the first time
+//            IntervalTimerUser.sharedInstance.firstTimeLocationUsage()
+//            
+//            //Only register if user wants weather for this timer
+//            self.registerNotifications() //will register at first weather use
+//            
+//            if IntervalTimerUser.sharedInstance.thisShouldUpdateWeather! {
+//                //TODO: call this when user starts a timer
+//                IntervalTimerUser.sharedInstance.startUpdatingLocationManager()
+//                
+//                print("--------> TimerViewController viewDidLoad() attempting to set weather")
+//                IntervalTimerCurrentWeather.getWeatherByPriority()
+//            }
+//        }
+
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -267,7 +286,7 @@ extension TimerViewController{
         IntervalTimerCurrentWeather.getWeatherByPriority()
     }
     func didGetCurrentWeather(_ notification: Notification){
-
+        // Background Thread Or Service call Or DB fetch etc
         guard let theTemperature = IntervalTimerUser.sharedInstance.thisCurrentWeather?.thisTemperature else {
             return
         }
@@ -275,12 +294,35 @@ extension TimerViewController{
         guard let theImage = UIImage(named: (IntervalTimerUser.sharedInstance.thisCurrentWeather?.thisIcon)!) else {
             return
         }
+        
+        
         weatherTemperatureLabel.text = theTemperature
         weatherImageView.image = theImage
-        
+            
         //Weather updated, no need to update location until 3 hrs have passed or user has moved 1KM
         IntervalTimerUser.sharedInstance.thisShouldUpdateWeather = false
         IntervalTimerUser.sharedInstance.stopUpdatingLocationManager()
+
+
+//        DispatchQueue.global(qos: .background).async {
+//            // Background Thread Or Service call Or DB fetch etc
+//            guard let theTemperature = IntervalTimerUser.sharedInstance.thisCurrentWeather?.thisTemperature else {
+//                return
+//            }
+//            
+//            guard let theImage = UIImage(named: (IntervalTimerUser.sharedInstance.thisCurrentWeather?.thisIcon)!) else {
+//                return
+//            }
+//            
+//  
+//            DispatchQueue.main.async {
+//                self.weatherTemperatureLabel.text = theTemperature
+//                self.weatherImageView.image = theImage
+//
+//                //Weather updated, no need to update location until 3 hrs have passed or user has moved 1KM
+//                IntervalTimerUser.sharedInstance.thisShouldUpdateWeather = false
+//                IntervalTimerUser.sharedInstance.stopUpdatingLocationManager()
+//            }}
     }
     func didGetCityId(_ notification: Notification){
         IntervalTimerCurrentWeather.getWeatherByCityId()

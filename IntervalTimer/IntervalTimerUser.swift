@@ -11,11 +11,11 @@ import CoreLocation
 
 //TODO: Use these guidlines for error handling:
 /*
-Ensure error types are clearly named across your codebase.
-Use optionals where a single error state exists.
-Use custom errors where more than one error state exists.
-Don’t allow an error to propagate too far from its source.
-*/
+ Ensure error types are clearly named across your codebase.
+ Use optionals where a single error state exists.
+ Use custom errors where more than one error state exists.
+ Don’t allow an error to propagate too far from its source.
+ */
 class IntervalTimerUser: NSObject {
     
     //MARK: - Singleton
@@ -47,7 +47,7 @@ class IntervalTimerUser: NSObject {
         _locationManager.allowsBackgroundLocationUpdates = true
         return _locationManager
     }()
-
+    
     //MARK: - public get/set properties
     var thisTemperatureUnit: TemperatureUnit{
         get { return temperatureUnit}
@@ -105,7 +105,6 @@ class IntervalTimerUser: NSObject {
             currentWeather = newValue
         }
     }
-    
     var thisShouldUpdateWeather: Bool? {
         get {
             return shouldUpdateWeather
@@ -126,7 +125,6 @@ class IntervalTimerUser: NSObject {
             }
         }
     }
-    
     
     //MARK: - init()
     private override init() {
@@ -164,14 +162,14 @@ class IntervalTimerUser: NSObject {
         }
         if let theShouldUpdateWeather = decoder.decodeBool(forKey: "shouldUpdateWeather") as Bool? {
             shouldUpdateWeather = theShouldUpdateWeather
-        }        
+        }
     }
 }
 //MARK: - Helpers
 extension IntervalTimerUser {
     
     func weatherQueryPriority() -> Int {
-    
+        
         //priority 1 = byCityId
         if thisCityId != nil {
             return WeatherQueryPriority.byCityId.rawValue
@@ -202,13 +200,26 @@ extension IntervalTimerUser {
             return
         }
         
-        guard let theCityId = getCityIdFromCsv(file: "cityList.20170703", cityName: theCityName, countryCode: theCountryCode) else {
-            thisCityId = nil
-            return
+        
+        //TODO: Make sure the weather is updated from a legitimate cityId
+        DispatchQueue.global().async {
+            let asyncCityId = getCityIdFromCsv(file: "cityList.20170703", cityName: theCityName, countryCode: theCountryCode)
+            DispatchQueue.main.async(execute: {
+                //TODO: Get the city id asynchronisly, then manage via notifications
+                guard let theCityId = asyncCityId else {
+                    self.thisCityId = nil
+                    return
+                }
+                IntervalTimerUser.sharedInstance.thisCityId = theCityId
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCityId"), object: nil)
+            })
         }
         
-        IntervalTimerUser.sharedInstance.thisCityId = theCityId
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCityId"), object: nil)
+//        //TODO: Get the city id asynchronisly, then manage via notifications
+//        guard let theCityId = getCityIdFromCsv(file: "cityList.20170703", cityName: theCityName, countryCode: theCountryCode) else {
+//            thisCityId = nil
+//            return
+//        }
     }
 }
 //MARK: - CoreLocation Management
@@ -273,7 +284,7 @@ extension IntervalTimerUser: CLLocationManagerDelegate {
             nilLocationName()
             return
         }
-
+        
         // Apple refers to city name as locality, not city
         guard let theCityName = thePlacemark.locality else {
             nilLocationName()
