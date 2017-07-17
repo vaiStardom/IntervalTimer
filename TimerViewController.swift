@@ -21,6 +21,9 @@ class TimerViewController: UIViewController {
     @IBOutlet weak var weatherTemperatureLabel: UILabel!
     @IBOutlet weak var timerNameLabel: UILabel!
 
+    //Hours label
+    @IBOutlet weak var timerHoursLabel: UILabel!
+    
     //Minutes labels
     @IBOutlet weak var timerMinutesLabel: UILabel!
     @IBOutlet weak var timerMillisecondsForMinutesLabel: UILabel!
@@ -31,7 +34,7 @@ class TimerViewController: UIViewController {
     
     @IBOutlet weak var testLabel: UILabel!
 
-    var totalSeconds = 62 //seconds
+    var totalSeconds = 3602 //seconds
     var ellapsedSeconds = 0.0
     var startPauseResume : (Bool, Bool, Bool) = (false, false, false)
     var hoursMinutesSeconds : (Bool, Bool, Bool) = (false, false, false)
@@ -69,9 +72,6 @@ extension TimerViewController{
 extension TimerViewController{
     
     func runTimer(){
-        
-        aesthetics_seconds()
-        
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(TimerViewController.updateTime), userInfo: nil, repeats: true)
         startTime = Date.timeIntervalSinceReferenceDate + TimeInterval(totalSeconds)
     }
@@ -112,6 +112,8 @@ extension TimerViewController{
         
         aesthetics_timerLabels()
         
+        timerHoursLabel.text = "\(strHours):\(strMinutes):\(strSeconds)"
+        
         //Minutes labels
         timerMinutesLabel.text = "\(strMinutes):\(strSeconds)"
         timerMillisecondsForMinutesLabel.text = "\(strMilleseconds)"
@@ -126,7 +128,7 @@ extension TimerViewController{
 //MARK: Aesthetics
 extension TimerViewController{
     func aesthetics_timerLabels(){
-        if ellapsedSeconds >= 3660.0 {
+        if ellapsedSeconds >= 3600.0 {
             aesthetics_hours()
         } else if ellapsedSeconds >= 60.0 {
             aesthetics_minutes()
@@ -142,6 +144,8 @@ extension TimerViewController{
     }
     func aesthetics_minutes(){
         
+        timerHoursLabel.isHidden = true
+        
         //Minutes labels
         timerMinutesLabel.isHidden = false
         timerMillisecondsForMinutesLabel.isHidden = false
@@ -152,6 +156,9 @@ extension TimerViewController{
     }
 
     func aesthetics_seconds(){
+        
+        timerHoursLabel.isHidden = true
+        
         //Minutes labels
         timerMinutesLabel.isHidden = true
         timerMillisecondsForMinutesLabel.isHidden = true
@@ -161,6 +168,9 @@ extension TimerViewController{
         timerMillisecondsForSecondsLabel.isHidden = false
     }
     func aesthetics_hours(){
+        
+        timerHoursLabel.isHidden = false
+        
         //Minutes labels
         timerMinutesLabel.isHidden = true
         timerMillisecondsForMinutesLabel.isHidden = true
@@ -198,6 +208,8 @@ extension TimerViewController{
         timerNameLabel.font = ViewFont.TimerName
         weatherTemperatureLabel.font = ViewFont.TimerTemperature
 
+        timerHoursLabel.font = ViewFont.TimerHours
+        
         //Minutes labels
         timerMinutesLabel.font = ViewFont.TimerMinutes
         timerMillisecondsForMinutesLabel.font = ViewFont.TimerMilliseconds

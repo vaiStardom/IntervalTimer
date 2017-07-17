@@ -262,6 +262,16 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nv7-KQ-fE5">
+                                <rect key="frame" x="15" y="74" width="290" height="85"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="290" id="h3K-wT-rAF"/>
+                                    <constraint firstAttribute="height" constant="85" id="tnG-Wu-onz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -269,9 +279,11 @@
                             <constraint firstItem="Vsl-ki-DBC" firstAttribute="width" secondItem="Cx7-MP-d6D" secondAttribute="width" id="1Eu-aK-anN"/>
                             <constraint firstItem="50V-60-GfP" firstAttribute="centerY" secondItem="UL6-1S-xfh" secondAttribute="centerY" id="23N-c1-pto"/>
                             <constraint firstItem="eYs-Rk-chp" firstAttribute="centerY" secondItem="On6-vt-RSA" secondAttribute="centerY" id="2Fj-4D-7tb"/>
+                            <constraint firstItem="nv7-KQ-fE5" firstAttribute="centerX" secondItem="On6-vt-RSA" secondAttribute="centerX" id="6PM-7f-lAK"/>
                             <constraint firstItem="Cx7-MP-d6D" firstAttribute="trailing" secondItem="onz-dF-8ba" secondAttribute="trailing" constant="-15" id="8Ig-Wg-pjY"/>
                             <constraint firstItem="FQm-g8-Odx" firstAttribute="width" secondItem="Hwb-Ik-GIB" secondAttribute="width" id="Aeu-2C-Wlx"/>
                             <constraint firstItem="UL6-1S-xfh" firstAttribute="centerY" secondItem="94b-Co-cGT" secondAttribute="centerY" id="CQg-bK-P7Z"/>
+                            <constraint firstItem="nv7-KQ-fE5" firstAttribute="centerY" secondItem="On6-vt-RSA" secondAttribute="centerY" id="DbR-Fg-6tP"/>
                             <constraint firstItem="JW0-is-Oqb" firstAttribute="leading" secondItem="PD0-Qt-9de" secondAttribute="trailing" id="HEc-zb-jA7"/>
                             <constraint firstAttribute="trailing" secondItem="u17-aJ-NeA" secondAttribute="trailing" id="I8Y-e4-UCV"/>
                             <constraint firstItem="FQm-g8-Odx" firstAttribute="centerY" secondItem="Hwb-Ik-GIB" secondAttribute="centerY" id="Ijo-Sg-sIH"/>
@@ -306,6 +318,7 @@
                         <outlet property="startPauseResumeButton" destination="Vsl-ki-DBC" id="jgW-WD-5BO"/>
                         <outlet property="startPauseResumeImageView" destination="Cx7-MP-d6D" id="C06-h1-QUz"/>
                         <outlet property="testLabel" destination="u17-aJ-NeA" id="4ob-yR-EKR"/>
+                        <outlet property="timerHoursLabel" destination="nv7-KQ-fE5" id="cLZ-LY-u14"/>
                         <outlet property="timerMillisecondsForMinutesLabel" destination="TAj-OZ-cu4" id="8iu-a6-mdf"/>
                         <outlet property="timerMillisecondsForSecondsLabel" destination="JW0-is-Oqb" id="kpw-U1-rXs"/>
                         <outlet property="timerMinutesLabel" destination="eYs-Rk-chp" id="VhX-ea-3tL"/>
