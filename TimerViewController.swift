@@ -71,7 +71,7 @@ extension TimerViewController{
         if elapsedTime >= 0 {
             timer.invalidate()
             aesthetics_timerCancel()
-            //TODO: send alert and start next interval
+            //TODO: start next interval
         }
 
         let hours = Int(elapsedTime / 3600.0) % 24
@@ -117,29 +117,39 @@ extension TimerViewController{
 //MARK: Aesthetics
 extension TimerViewController{
     func aesthetics_initial(){
+        aesthetics_timerCancel()
         //timerLabel.font = intervalTimeFont(seconds: totalSeconds)
         timerNameLabel.font = ViewFont.TimerName
         weatherTemperatureLabel.font = ViewFont.TimerTemperature
         cancelButton.isEnabled = false
+        
     }
     func aesthetics_timerStart(){
         cancelButton.isEnabled = true
         startPauseResumeImageView.image = UIImage(named: "pause")
+        cancelImageView.image = UIImage(named: "cancel")
+        cancelImageView.isOpaque = false
         //startPauseResumeButton.setImage(UIImage(named: "pause"), for: .normal)
     }
     func aesthetics_timerPause(){
         cancelButton.isEnabled = true
         startPauseResumeImageView.image = UIImage(named: "resume")
+        cancelImageView.image = UIImage(named: "cancel")
+        cancelImageView.isOpaque = false
         //startPauseResumeButton.setImage(UIImage(named: "resume"), for: .normal)
     }
     func aesthetics_timerResume(){
         cancelButton.isEnabled = true
         startPauseResumeImageView.image = UIImage(named: "pause")
+        cancelImageView.image = UIImage(named: "cancel")
+        
         //startPauseResumeButton.setImage(UIImage(named: "pause"), for: .normal)
     }
     func aesthetics_timerCancel(){
         cancelButton.isEnabled = false
         startPauseResumeImageView.image = UIImage(named: "start")
+        cancelImageView.image = UIImage(named: "cancel-opaque")
+        cancelImageView.isOpaque = true
         //startPauseResumeButton.setImage(UIImage(named: "start"), for: .normal)
         testLabel.text = "0"
         timerMillisecondsLabel.text = "00"
