@@ -16,14 +16,23 @@ class TimerViewController: UIViewController {
     
     @IBOutlet weak var startPauseResumeButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
-    @IBOutlet weak var timerNameLabel: UILabel!
-    @IBOutlet weak var timerLabel: UILabel!
-    @IBOutlet weak var timerMillisecondsLabel: UILabel!
+    
+    //Tittle labels
     @IBOutlet weak var weatherTemperatureLabel: UILabel!
+    @IBOutlet weak var timerNameLabel: UILabel!
 
+    //Minutes labels
+    @IBOutlet weak var timerMinutesLabel: UILabel!
+    @IBOutlet weak var timerMillisecondsForMinutesLabel: UILabel!
+    
+    //Seconds labels
+    @IBOutlet weak var timerSecondsLabel: UILabel!
+    @IBOutlet weak var timerMillisecondsForSecondsLabel: UILabel!
+    
     @IBOutlet weak var testLabel: UILabel!
 
-    var totalSeconds = 3602 //seconds
+    var totalSeconds = 62 //seconds
+    var ellapsedSeconds = 0.0
     var startPauseResume : (Bool, Bool, Bool) = (false, false, false)
     var hoursMinutesSeconds : (Bool, Bool, Bool) = (false, false, false)
     var startTime = TimeInterval()
@@ -60,6 +69,9 @@ extension TimerViewController{
 extension TimerViewController{
     
     func runTimer(){
+        
+        aesthetics_seconds()
+        
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(TimerViewController.updateTime), userInfo: nil, repeats: true)
         startTime = Date.timeIntervalSinceReferenceDate + TimeInterval(totalSeconds)
     }
@@ -67,6 +79,8 @@ extension TimerViewController{
     func updateTime(){
         let currentTime = Date.timeIntervalSinceReferenceDate
         var elapsedTime: TimeInterval = currentTime - startTime
+        
+        ellapsedSeconds = abs(elapsedTime)
         
         if elapsedTime >= 0 {
             timer.invalidate()
@@ -89,70 +103,108 @@ extension TimerViewController{
         let fraction = Int(elapsedTime * 100)
         let fraction2 = String(format: "%02d", fraction)
         let fraction3 = Int(fraction2)!
-        let strFraction4 = String(format: "%02i", abs(fraction3))
+        let strMilleseconds = String(format: "%02i", abs(fraction3))
         
         //add the leading zero for minutes, seconds and millseconds and store them as string constants
         let strHours = String(format: "%02d", abs(hours))
         let strMinutes = String(format: "%02d", abs(minutes))
         let strSeconds = String(format: "%02d", abs(seconds))
         
-        //concatenate minutes, seconds and milliseconds assign assign to labels
-        timerMillisecondsLabel.text = "\(strFraction4)"
-        testLabel.text = "\(strHours):\(strMinutes):\(strSeconds)"
-    }
+        aesthetics_timerLabels()
+        
+        //Minutes labels
+        timerMinutesLabel.text = "\(strMinutes):\(strSeconds)"
+        timerMillisecondsForMinutesLabel.text = "\(strMilleseconds)"
 
-    func intervalTimeFont(seconds: Int) -> UIFont? {
-        if seconds >= 3600 {
-            hoursMinutesSeconds = (true, false, false)
-            return ViewFont.TimerHours
-        } else if seconds < 3600 && seconds > 60 {
-            hoursMinutesSeconds = (false, true, false)
-            return ViewFont.TimerMinutes
-        } else {
-            hoursMinutesSeconds = (false, false, true)
-            return ViewFont.TimerSeconds
-        }
+        //Seconds labels
+        timerSecondsLabel.text = "\(strSeconds)"
+        timerMillisecondsForSecondsLabel.text = ".\(strMilleseconds)"
+        
+        testLabel.text = "\(strHours):\(strMinutes):\(strSeconds)"
     }
 }
 //MARK: Aesthetics
 extension TimerViewController{
+    func aesthetics_timerLabels(){
+        if ellapsedSeconds >= 3660.0 {
+            aesthetics_hours()
+        } else if ellapsedSeconds >= 60.0 {
+            aesthetics_minutes()
+        } else {
+            aesthetics_seconds()
+        }
+    }
     func aesthetics_initial(){
+        aesthetics_setFonts()
         aesthetics_timerCancel()
-        //timerLabel.font = intervalTimeFont(seconds: totalSeconds)
-        timerNameLabel.font = ViewFont.TimerName
-        weatherTemperatureLabel.font = ViewFont.TimerTemperature
+        aesthetics_timerLabels()
         cancelButton.isEnabled = false
+    }
+    func aesthetics_minutes(){
         
+        //Minutes labels
+        timerMinutesLabel.isHidden = false
+        timerMillisecondsForMinutesLabel.isHidden = false
+        
+        //Seconds labels
+        timerSecondsLabel.isHidden = true
+        timerMillisecondsForSecondsLabel.isHidden = true
+    }
+
+    func aesthetics_seconds(){
+        //Minutes labels
+        timerMinutesLabel.isHidden = true
+        timerMillisecondsForMinutesLabel.isHidden = true
+        
+        //Seconds labels
+        timerSecondsLabel.isHidden = false
+        timerMillisecondsForSecondsLabel.isHidden = false
+    }
+    func aesthetics_hours(){
+        //Minutes labels
+        timerMinutesLabel.isHidden = true
+        timerMillisecondsForMinutesLabel.isHidden = true
+        
+        //Seconds labels
+        timerSecondsLabel.isHidden = true
+        timerMillisecondsForSecondsLabel.isHidden = true
     }
     func aesthetics_timerStart(){
         cancelButton.isEnabled = true
         startPauseResumeImageView.image = UIImage(named: "pause")
         cancelImageView.image = UIImage(named: "cancel")
         cancelImageView.isOpaque = false
-        //startPauseResumeButton.setImage(UIImage(named: "pause"), for: .normal)
     }
     func aesthetics_timerPause(){
         cancelButton.isEnabled = true
         startPauseResumeImageView.image = UIImage(named: "resume")
         cancelImageView.image = UIImage(named: "cancel")
         cancelImageView.isOpaque = false
-        //startPauseResumeButton.setImage(UIImage(named: "resume"), for: .normal)
     }
     func aesthetics_timerResume(){
         cancelButton.isEnabled = true
         startPauseResumeImageView.image = UIImage(named: "pause")
         cancelImageView.image = UIImage(named: "cancel")
-        
-        //startPauseResumeButton.setImage(UIImage(named: "pause"), for: .normal)
     }
     func aesthetics_timerCancel(){
         cancelButton.isEnabled = false
         startPauseResumeImageView.image = UIImage(named: "start")
         cancelImageView.image = UIImage(named: "cancel-opaque")
         cancelImageView.isOpaque = true
-        //startPauseResumeButton.setImage(UIImage(named: "start"), for: .normal)
         testLabel.text = "0"
-        timerMillisecondsLabel.text = "00"
+        timerMillisecondsForSecondsLabel.text = "00"
+    }
+    func aesthetics_setFonts(){
+        timerNameLabel.font = ViewFont.TimerName
+        weatherTemperatureLabel.font = ViewFont.TimerTemperature
+
+        //Minutes labels
+        timerMinutesLabel.font = ViewFont.TimerMinutes
+        timerMillisecondsForMinutesLabel.font = ViewFont.TimerMilliseconds
+        
+        //Seconds labels
+        timerSecondsLabel.font = ViewFont.TimerSeconds
+        timerMillisecondsForSecondsLabel.font = ViewFont.TimerMilliseconds
     }
 }
 //MARK: Life-cycle
@@ -162,6 +214,7 @@ extension TimerViewController{
         configureNavBar()
         startPauseResume = (true, false, false)
         timerNameLabel.text = "Peak 8"
+        ellapsedSeconds = Double(totalSeconds)
         aesthetics_initial()
         
         testLabel.font = SystemFont.RegularMonospaced17

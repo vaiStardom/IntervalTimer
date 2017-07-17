@@ -47,6 +47,7 @@ enum SystemFont{
     static let Bold15: UIFont = UIFont.systemFont(ofSize: 15, weight: UIFontWeightBold)
     static let Bold17: UIFont = UIFont.systemFont(ofSize: 17, weight: UIFontWeightBold)
     static let Heavy35: UIFont = UIFont.systemFont(ofSize: 35, weight: UIFontWeightHeavy)
+    static let HeavyMonospaced35: UIFont = UIFont.monospacedDigitSystemFont(ofSize: 35, weight: UIFontWeightHeavy)
     static let Light52: UIFont = UIFont.systemFont(ofSize: 52, weight: UIFontWeightLight)
     static let Regular13: UIFont = UIFont.systemFont(ofSize: 13, weight: UIFontWeightRegular)
     static let Regular15: UIFont = UIFont.systemFont(ofSize: 15, weight: UIFontWeightRegular)
@@ -76,6 +77,7 @@ enum ViewFont{
     static let TimerHours =  SystemFont.UltralightMonospaced61
     static let TimerMinutes = SystemFont.UltralightMonospaced94
     static let TimerSeconds = SystemFont.UltralightMonospaced117
+    static let TimerMilliseconds = SystemFont.HeavyMonospaced35
     static let TimerName = SystemFont.Heavy35
     static let TimerTemperature = SystemFont.Regular17
     static let TimersName = SystemFont.Thin60
