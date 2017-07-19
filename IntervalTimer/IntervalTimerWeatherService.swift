@@ -54,7 +54,7 @@ extension IntervalTimerWeatherService {
     //http://api.openweathermap.org/data/2.5/weather?q=Mataram,id&APPID=448af267f0d35a22b6e00178e163deb3
     //Mataram,id (ISO 3166)
     func getWeatherFor(_ cityName: String, in countryCode: String) -> Bool? {
-        guard let theUrl = URL(string: "\(providerUrl)g=\(cityName),\(countryCode)id&APPID=\(apiKey)") else {
+        guard let theUrl = URL(string: "\(providerUrl)q=\(cityName),\(countryCode.lowercased())&APPID=\(apiKey)") else {
             return nil
         }
         return getWeatherWith(theUrl)

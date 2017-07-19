@@ -6,6 +6,9 @@
 //  Copyright © 2017 Paul Addy. All rights reserved.
 //
 
+//TODO: create a netwrok bundle 
+//TODO: create a weather bundle
+
 import UIKit
 
 class TimerViewController: UIViewController {
@@ -50,10 +53,11 @@ extension TimerViewController{
             aesthetics_timerStart()
             startPauseResume = (false, true, false)
         } else if startPauseResume == (false, true, false) { //pause the timer
-            
+            timer.invalidate()
             aesthetics_timerPause()
             startPauseResume = (false, false, true)
         } else if startPauseResume == (false, false, true) { //resume the timer
+            runTimer()
             aesthetics_timerResume()
             startPauseResume = (false, true, false)
         }
@@ -68,12 +72,13 @@ extension TimerViewController{
     }
     func edit(){}
 }
-//MARK: Helpers
+//MARK: Timer functions
 extension TimerViewController{
     
     func runTimer(){
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(TimerViewController.updateTime), userInfo: nil, repeats: true)
-        startTime = Date.timeIntervalSinceReferenceDate + TimeInterval(totalSeconds)
+        //startTime = Date.timeIntervalSinceReferenceDate + TimeInterval(totalSeconds)
+        startTime = Date.timeIntervalSinceReferenceDate + TimeInterval(ellapsedSeconds)
     }
 
     func updateTime(){
@@ -140,6 +145,7 @@ extension TimerViewController{
         aesthetics_setFonts()
         aesthetics_timerCancel()
         aesthetics_timerLabels()
+        aesthetics_timerLabelsInitialText()
         cancelButton.isEnabled = false
     }
     func aesthetics_minutes(){
@@ -201,8 +207,21 @@ extension TimerViewController{
         startPauseResumeImageView.image = UIImage(named: "start")
         cancelImageView.image = UIImage(named: "cancel-opaque")
         cancelImageView.isOpaque = true
+        aesthetics_timerLabelsInitialText()
+    }
+    func aesthetics_timerLabelsInitialText(){
         testLabel.text = "0"
-        timerMillisecondsForSecondsLabel.text = "00"
+        
+        timerHoursLabel.text = "00:00:00"
+        
+        //Minutes labels
+        timerMinutesLabel.text = "00:00"
+        timerMillisecondsForMinutesLabel.text = ".00"
+        
+        //Seconds labels
+        timerSecondsLabel.text = "00"
+        timerMillisecondsForSecondsLabel.text = ".00"
+    
     }
     func aesthetics_setFonts(){
         timerNameLabel.font = ViewFont.TimerName
@@ -245,25 +264,6 @@ extension TimerViewController{
             print("--------> TimerViewController viewDidLoad() attempting to set weather")
             IntervalTimerCurrentWeather.getWeatherByPriority()
         }
-
-//        DispatchQueue.global(qos: .background).async {
-//            // Background Thread Or Service call Or DB fetch etc
-//            //TODO: If timer is set to show weather {..do all the below...}
-//            //TODO: call this when user switches on weather for the first time
-//            IntervalTimerUser.sharedInstance.firstTimeLocationUsage()
-//            
-//            //Only register if user wants weather for this timer
-//            self.registerNotifications() //will register at first weather use
-//            
-//            if IntervalTimerUser.sharedInstance.thisShouldUpdateWeather! {
-//                //TODO: call this when user starts a timer
-//                IntervalTimerUser.sharedInstance.startUpdatingLocationManager()
-//                
-//                print("--------> TimerViewController viewDidLoad() attempting to set weather")
-//                IntervalTimerCurrentWeather.getWeatherByPriority()
-//            }
-//        }
-
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -295,34 +295,12 @@ extension TimerViewController{
             return
         }
         
-        
         weatherTemperatureLabel.text = theTemperature
         weatherImageView.image = theImage
             
         //Weather updated, no need to update location until 3 hrs have passed or user has moved 1KM
         IntervalTimerUser.sharedInstance.thisShouldUpdateWeather = false
         IntervalTimerUser.sharedInstance.stopUpdatingLocationManager()
-
-
-//        DispatchQueue.global(qos: .background).async {
-//            // Background Thread Or Service call Or DB fetch etc
-//            guard let theTemperature = IntervalTimerUser.sharedInstance.thisCurrentWeather?.thisTemperature else {
-//                return
-//            }
-//            
-//            guard let theImage = UIImage(named: (IntervalTimerUser.sharedInstance.thisCurrentWeather?.thisIcon)!) else {
-//                return
-//            }
-//            
-//  
-//            DispatchQueue.main.async {
-//                self.weatherTemperatureLabel.text = theTemperature
-//                self.weatherImageView.image = theImage
-//
-//                //Weather updated, no need to update location until 3 hrs have passed or user has moved 1KM
-//                IntervalTimerUser.sharedInstance.thisShouldUpdateWeather = false
-//                IntervalTimerUser.sharedInstance.stopUpdatingLocationManager()
-//            }}
     }
     func didGetCityId(_ notification: Notification){
         IntervalTimerCurrentWeather.getWeatherByCityId()
