@@ -8,9 +8,6 @@
 
 import Foundation
 
-//var GOT_WEATHER: Bool? //to control cycling throught the weather fetching priorities and exit the dispatch group
-var GOT_CITY = false
-
 let DEGREE = "\u{00B0}"
 let ICON_DICTIONARY: [String: String] = [
     "01d": "clear-sky-day"
