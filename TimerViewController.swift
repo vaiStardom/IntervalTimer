@@ -292,7 +292,7 @@ extension TimerViewController{
             //TODO: call this when user starts a timer
             IntervalTimerUser.sharedInstance.startUpdatingLocationManager()
                 
-            print("--------> TimerViewController viewDidLoad() attempting to set weather")
+            print("------> TimerViewController viewDidLoad() attempting to set weather")
             IntervalTimerCurrentWeather.getWeatherByPriority()
             
 
@@ -320,33 +320,33 @@ extension TimerViewController{
         activityIndicator.stopAnimating()
     }
     func canAttemptWeatherUpdate(_ notification: Notification){
-        print("--------> TimerViewController canAttemptWeatherUpdate notification received")
+        print("------> TimerViewController canAttemptWeatherUpdate notification received")
         IntervalTimerCurrentWeather.getWeatherByPriority()
     }
     func didGetCurrentWeather(_ notification: Notification){
         activityIndicatorStop()
         
         // Background Thread Or Service call Or DB fetch etc
-        print("--------> TimerViewController didGetCurrentWeather notification received")
+        print("------> TimerViewController didGetCurrentWeather notification received")
         guard let theTemperature = IntervalTimerUser.sharedInstance.thisCurrentWeather?.thisTemperature else {
-            print("--------> TimerViewController didGetCurrentWeather invalid theTemperature")
+            print("------> TimerViewController didGetCurrentWeather invalid theTemperature")
             aesthetics_showMissingWeatherWarning()
             return
         }
         
         guard let theIcon = IntervalTimerUser.sharedInstance.thisCurrentWeather?.thisIcon! else {
-            print("--------> TimerViewController didGetCurrentWeather invalid icon \(IntervalTimerUser.sharedInstance.thisCurrentWeather?.thisIcon!)")
+            print("------> TimerViewController didGetCurrentWeather invalid icon \(IntervalTimerUser.sharedInstance.thisCurrentWeather?.thisIcon!)")
             aesthetics_showMissingWeatherWarning()
             return
         }
         
         guard let theImage = UIImage(named: theIcon) else {
-            print("--------> TimerViewController didGetCurrentWeather invalid image for icon name \(theIcon)")
+            print("------> TimerViewController didGetCurrentWeather invalid image for icon name \(theIcon)")
             aesthetics_showMissingWeatherWarning()
             return
         }
         
-        print("--------> TimerViewController didGetCurrentWeather theTemperature = \(theTemperature), theImage = \(theImage)")
+        print("------> TimerViewController didGetCurrentWeather theTemperature = \(theTemperature), theImage = \(theImage)")
 
         weatherImageView.alpha = 0.0
         weatherTemperatureLabel.alpha = 0.0

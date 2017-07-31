@@ -24,11 +24,9 @@ class IntervalTimerCurrentWeather: NSObject {
     }
     var thisIcon: String?{
         get {
-            print("------> IntervalTimerCurrentWeather getting icon name \(icon!)")
             return icon
         }
         set {
-            print("------> IntervalTimerCurrentWeather setting icon name to \(newValue)")
             icon = ICON_DICTIONARY[newValue!]
             UserDefaults.standard.set(newValue, forKey: "icon")
             UserDefaults.standard.synchronize()
@@ -114,10 +112,10 @@ extension IntervalTimerCurrentWeather{
 extension IntervalTimerCurrentWeather{
     static func getWeatherByPriority(){
         
-        print("--------> IntervalTimerCurrentWeather getWeatherByPriority() thisDidCompleteLocationDetermination = \(String(describing: IntervalTimerUser.sharedInstance.thisDidCompleteLocationDetermination))")
+        print("------> IntervalTimerCurrentWeather getWeatherByPriority() thisDidCompleteLocationDetermination = \(String(describing: IntervalTimerUser.sharedInstance.thisDidCompleteLocationDetermination))")
         
         if IntervalTimerUser.sharedInstance.thisDidCompleteLocationDetermination! {
-            print("--------> IntervalTimerCurrentWeather getWeatherByPriority() weatherQueryPriority() = \(IntervalTimerUser.sharedInstance.weatherQueryPriority())")
+            print("------> IntervalTimerCurrentWeather getWeatherByPriority() weatherQueryPriority() = \(IntervalTimerUser.sharedInstance.weatherQueryPriority())")
             
 
             //TODO: Loop through the get weather priorities, exit when global variable GOT_WEATHER == true (for getting the weather or when all methods failed)
@@ -145,7 +143,7 @@ extension IntervalTimerCurrentWeather{
                 //TODO: if user wanted to have the weather, and we cant get it, then show a no-connection error icon in place of the weather
                 //Msg option 1 - "It is impossible to determine your location at the moment and give you the weather."
                 //Msg option 2 - "...
-                print("--------> IntervalTimerCurrentWeather getWeatherByPriority() unable to retreive temperature")
+                print("------> IntervalTimerCurrentWeather getWeatherByPriority() unable to retreive temperature")
             }
         }
     }
@@ -161,7 +159,7 @@ extension IntervalTimerCurrentWeather{
         }
         
         
-        print("--------> IntervalTimerCurrentWeather getWeatherByCityId()")
+        print("------> IntervalTimerCurrentWeather getWeatherByCityId()")
         //TODO: allow this weather get attempt to complete
         let weatherService = IntervalTimerWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
         
@@ -188,7 +186,7 @@ extension IntervalTimerCurrentWeather{
             return
         }
         
-        print("--------> IntervalTimerCurrentWeather getWeatherByLocationName() theCityName= \(theCityName), theCountryCode= \(theCountryCode)")
+        print("------> IntervalTimerCurrentWeather getWeatherByLocationName() theCityName= \(theCityName), theCountryCode= \(theCountryCode)")
         
         let weatherService = IntervalTimerWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
         let didGetCurrentWeather = weatherService?.getWeatherFor(theCityName, in: theCountryCode)
@@ -213,18 +211,7 @@ extension IntervalTimerCurrentWeather{
         }
         
         let weatherService = IntervalTimerWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
-        let didGetCurrentWeather = weatherService?.getWeatherAt(latitude: theLatitude, longitude: theLongitude)
+        _ = weatherService?.getWeatherAt(latitude: theLatitude, longitude: theLongitude)
         
-        
-        if didGetCurrentWeather == nil || !didGetCurrentWeather! {
-            //TODO: because of the asynchronous nature of weather information retreival, this will always execute...
-            
-            //everything else failed...
-            //getting the weather by city name and country code did not succeed
-            //TODO: if user wanted to have the weather, and we cant get it, then show a no-connection error icon in place of the weather
-            //Msg option 1 - "It is impossible to determine your location at the moment and give you the weather."
-            //Msg option 2 - "...
-            print("--------> IntervalTimerCurrentWeather getWeatherByCoordinates() unable to retreive temperature")
-        }
     }
 }

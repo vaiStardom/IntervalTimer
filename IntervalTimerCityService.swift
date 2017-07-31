@@ -60,20 +60,19 @@ extension IntervalTimerCityService {
                 didGetCity = false
                 return
             }
-            print("-------> IntervalTimerCityService getCityWith() theCity = \(theCity)")
-            
             guard let theCountryCode = IntervalTimerUser.sharedInstance.thisCountryCode else {
                 didGetCity = false
                 return
             }
-            print("-------> IntervalTimerCityService getCityWith() theCountryCode = \(theCountryCode)")
             
             //TODO: Make sure the weather is updated from a legitimate cityId
             DispatchQueue.global().async {
                 
+                IntervalTimerUser.sharedInstance.thisDidAttemptGettingCityId = true
+                
                 //Get the city id with placemark locality, then manage via notifications
                 guard let asyncCityId = getCityIdFromCsv(file: "cityList.20170703", cityName: theCity, countryCode: theCountryCode) else {
-                    print("-------> IntervalTimerCityService getCityIdFromCsv() failed")
+                    print("------> IntervalTimerCityService getCityIdFromCsv() failed")
                     IntervalTimerUser.sharedInstance.nilLocationName()
                     didGetCity = false
                     return
@@ -81,7 +80,7 @@ extension IntervalTimerCityService {
                 
                 DispatchQueue.main.async(execute: {
                     didGetCity = true
-                    print("-------> IntervalTimerCityService getCityWith() cityId = \(asyncCityId)")
+                    print("------> IntervalTimerCityService getCityWith() cityId = \(asyncCityId)")
                     IntervalTimerUser.sharedInstance.thisCityName = theCity
                     IntervalTimerUser.sharedInstance.thisCityId = asyncCityId
                     NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCityId"), object: nil)
@@ -101,14 +100,10 @@ extension IntervalTimerCityService {
         theNetworkJson.downloadJSON({ (json) in
             do {
                 let theCity = try IntervalTimerCity(json: json!)
-                
                 guard theCity.thisName != nil else {
                     completion(nil)
                     return
                 }
-
-                print("------> IntervalTimerCityService fromNetwork() theCity: '\(theCity.thisName!)'")
-                print("------> IntervalTimerCityService fromNetwork() theCity: '\(theCity.thisName!.replacingOccurrences(of: self.cityWord, with: "").trimmingCharacters(in: .whitespacesAndNewlines))'")
                 completion(theCity)
             } catch let error {
                 print(error)

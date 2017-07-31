@@ -88,19 +88,16 @@ extension IntervalTimerWeatherService {
             
             DispatchQueue.main.sync {
                 guard theCurrentWeather.thisTemperature != nil else {
-                    print("---------> IntervalTimerWeatherService getWeather() guard let theTemperature = nil")
+                    print("------> IntervalTimerWeatherService getWeather() guard let theTemperature = nil")
                     didGetCurrentWeather = false
                     return
                 }
                 
                 guard theCurrentWeather.thisIcon != nil else {
-                    print("---------> IntervalTimerWeatherService getWeather() guard let theIcon = nil")
+                    print("------> IntervalTimerWeatherService getWeather() guard let theIcon = nil")
                     didGetCurrentWeather = false
                     return
                 }
-                
-                print("---------> IntervalTimerWeatherService theTemperature = \(String(describing: theCurrentWeather.thisTemperature))")
-                print("---------> IntervalTimerWeatherService theIcon = \(String(describing: theCurrentWeather.thisIcon))")
                 
                 didGetCurrentWeather = true
                 IntervalTimerUser.sharedInstance.thisCurrentWeather = theCurrentWeather
@@ -121,10 +118,6 @@ extension IntervalTimerWeatherService {
             
             do {
                 let theWeather = try IntervalTimerCurrentWeather(json: json!)
-                print("------> IntervalTimerWeatherService theWeather.thisIcon = \(theWeather.thisIcon!)")
-                print("------> IntervalTimerWeatherService theWeather.thisKelvin = \(theWeather.thisKelvin!)")
-                print("------> IntervalTimerWeatherService theWeather.thisTemperature = \(theWeather.thisTemperature!)")
-                
                 guard theWeather.thisTemperature != nil else {
                     completion(nil)
                     return

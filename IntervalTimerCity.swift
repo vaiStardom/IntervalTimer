@@ -48,7 +48,7 @@ extension IntervalTimerCity{
             return
         }
         
-        print("--------> IntervalTimerCity getCityByCoordinates()")
+        print("------> IntervalTimerCity getCityByCoordinates()")
         let cityService = IntervalTimerCityService(apiKey: MapQuestApi.key, providerUrl: MapQuestApi.baseUrl)
         _ = cityService?.getCityAt(latitude: theLatitude, longitude: theLongitude)
     }

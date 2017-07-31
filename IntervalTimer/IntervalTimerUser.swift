@@ -91,9 +91,9 @@ class IntervalTimerUser: NSObject {
             cityId = newValue
             UserDefaults.standard.set(newValue, forKey: "cityId")
             UserDefaults.standard.synchronize()
-            if newValue != nil {
-                checkIfLocationDeterminationIsComplete()
-            }
+            
+            checkIfLocationDeterminationIsComplete()
+            
         }
     }
     var thisLatitude: Double?{
@@ -293,7 +293,7 @@ extension IntervalTimerUser: CLLocationManagerDelegate {
             
             
             location = latestLocation
-            print("---------> CoreLocation latitude: \(location?.coordinate.latitude ?? 0), longitude: \(location?.coordinate.longitude ?? 0)")
+            print("------> CoreLocation latitude: \(location?.coordinate.latitude ?? 0), longitude: \(location?.coordinate.longitude ?? 0)")
             
             self.thisDidAttemptGettingCoordinates = true
             
@@ -363,7 +363,7 @@ extension IntervalTimerUser: CLLocationManagerDelegate {
     }
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         //TODO: Handle core location errors
-        print("---------> CoreLocation didFailwithError\(error)")
+        print("------> CoreLocation didFailwithError\(error)")
         stopUpdatingLocationManager()
     }
     //Called when a timer is running
