@@ -22,13 +22,11 @@ enum NavigationBarCgRect{
     static let LeftLabel = CGRect(x: 0, y: 14, width: 55, height: 19)
     static let NewTimerTitle = CGRect(x: 0, y: 20, width: 86, height: 45)
 }
-
 //MARK: - CSV
 enum CsvControls{
     static let ColumnDelimiter: String = "\t"
     static let LineSeperator: String = "\n"
 }
-
 //MARK: - Errors
 //For a an http response code enum, look here: //https://gist.github.com/brennanMKE/482452bb9ac5f578907f413902753eec
 enum HttpError: Error {
@@ -36,6 +34,7 @@ enum HttpError: Error {
 }
 enum JsonError: Error {
     case unsucessfulProcessing
+    case missing(String)
     case missingTemperature
     case missingIcon
 }
@@ -63,13 +62,11 @@ enum SystemFont{
     static let Ultralight65: UIFont = UIFont.systemFont(ofSize: 65, weight: UIFontWeightUltraLight)
     static let Ultralight117: UIFont = UIFont.systemFont(ofSize: 117, weight: UIFontWeightUltraLight)
 }
-
 enum NavigationBarFont{
     static let LeftRight = SystemFont.Regular17
     static let Title = SystemFont.Regular28
     static let Temperature = SystemFont.Regular17
 }
-
 enum ViewFont{
     static let ContentLabel = SystemFont.Regular17
     static let Content = SystemFont.Regular28
@@ -82,25 +79,21 @@ enum ViewFont{
     static let TimerTemperature = SystemFont.Regular17
     static let TimersName = SystemFont.Thin60
 }
-
 enum WidgetFont{
     static let TimersName = SystemFont.Regular19
     static let Time = SystemFont.Ultralight65
     static let Temperature = SystemFont.Regular13
 }
-
 enum NotificationFont{
     static let Title = SystemFont.Regular15
     static let Time = SystemFont.Regular15
     static let TimerName = SystemFont.Regular15
 }
-
 //MARK: - Image names
 enum NavigationBarImage{
     static let Add = "barButtonAdd"
     static let Back = "barButtonBack"
 }
-
 enum IntervalImage{
     static let Red = "redIndicator"
     static let Green = "greenIndicator"
@@ -115,7 +108,6 @@ enum IntervalImage{
     static let YellowUnselected = "yellowIndicatorUnselected"
     static let PurpleUnselected = "purpleIndicatorUnselected"
 }
-
 //MARK: - Litterals
 enum NavigationBarLitterals{
     static let Cancel = "Cancel"
@@ -125,7 +117,11 @@ enum NavigationBarLitterals{
     static let NewTimer = "Timer"
     static let NewInterval = "Interval"
 }
-
+//MARK: - MapQuest
+enum MapQuestApi {
+    static let key = "iaGiN8vTI73I5Kpa0YPrVVblLvjPAfYF"
+    static let baseUrl = "http://open.mapquestapi.com/nominatim/v1/reverse.php?"
+}
 //MARK: - Weather
 enum OpenWeatherApi {
     static let key = "448af267f0d35a22b6e00178e163deb3"

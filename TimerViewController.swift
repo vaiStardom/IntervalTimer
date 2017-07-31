@@ -6,7 +6,7 @@
 //  Copyright © 2017 Paul Addy. All rights reserved.
 //
 
-//TODO: create a netwrok bundle 
+//TODO: create a network bundle
 //TODO: create a weather bundle
 
 import UIKit
@@ -23,6 +23,8 @@ class TimerViewController: UIViewController {
     //Tittle labels
     @IBOutlet weak var weatherTemperatureLabel: UILabel!
     @IBOutlet weak var timerNameLabel: UILabel!
+    @IBOutlet weak var showMissingTemperatureWarningButton: UIButton!
+    @IBOutlet weak var missingTemperatureImageView: UIImageView!
 
     //Hours label
     @IBOutlet weak var timerHoursLabel: UILabel!
@@ -44,6 +46,7 @@ class TimerViewController: UIViewController {
     var startTime = TimeInterval()
     var timer = Timer()
     
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
 }
 //MARK: Actions
 extension TimerViewController{
@@ -67,6 +70,9 @@ extension TimerViewController{
         timer.invalidate()
         aesthetics_timerCancel()
     }
+    @IBAction func weatherMissing(_ sender: Any) {
+        showMessage(title: "Waether Missing", message: "Are you sure you are connected to the internet?")
+    }
     func back(){
         _ = navigationController?.popViewController(animated: true)
     }
@@ -77,7 +83,6 @@ extension TimerViewController{
     
     func runTimer(){
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(TimerViewController.updateTime), userInfo: nil, repeats: true)
-        //startTime = Date.timeIntervalSinceReferenceDate + TimeInterval(totalSeconds)
         startTime = Date.timeIntervalSinceReferenceDate + TimeInterval(ellapsedSeconds)
     }
 
@@ -132,6 +137,20 @@ extension TimerViewController{
 }
 //MARK: Aesthetics
 extension TimerViewController{
+    func aesthetics_showMissingWeatherWarning(){
+        showMissingTemperatureWarningButton.isHidden = false
+        missingTemperatureImageView.isHidden = false
+        
+        weatherImageView.isHidden = true
+        weatherTemperatureLabel.isHidden = true
+    }
+    func aesthetics_hideMissingWeatherWarning(){
+        showMissingTemperatureWarningButton.isHidden = true
+        missingTemperatureImageView.isHidden = true
+        
+        weatherImageView.isHidden = false
+        weatherTemperatureLabel.isHidden = false
+    }
     func aesthetics_timerLabels(){
         if ellapsedSeconds >= 3600.0 {
             aesthetics_hours()
@@ -142,6 +161,8 @@ extension TimerViewController{
         }
     }
     func aesthetics_initial(){
+        activityIndicator.color = IntervalTimerColors.Orange
+        aesthetics_hideMissingWeatherWarning()
         aesthetics_setFonts()
         aesthetics_timerCancel()
         aesthetics_timerLabels()
@@ -248,6 +269,13 @@ extension TimerViewController{
         ellapsedSeconds = Double(totalSeconds)
         aesthetics_initial()
         
+        
+        /////start timer
+        runTimer()
+        aesthetics_timerStart()
+        startPauseResume = (false, true, false)
+        /////
+        
         testLabel.font = SystemFont.RegularMonospaced17
 
         //TODO: If timer is set to show weather {..do all the below...}
@@ -258,11 +286,16 @@ extension TimerViewController{
         self.registerNotifications() //will register at first weather use
             
         if IntervalTimerUser.sharedInstance.thisShouldUpdateWeather! {
+
+            activityIndicatorStart()
+            
             //TODO: call this when user starts a timer
             IntervalTimerUser.sharedInstance.startUpdatingLocationManager()
                 
             print("--------> TimerViewController viewDidLoad() attempting to set weather")
             IntervalTimerCurrentWeather.getWeatherByPriority()
+            
+
         }
     }
     override func didReceiveMemoryWarning() {
@@ -272,44 +305,65 @@ extension TimerViewController{
 //MARK: - Notifications
 extension TimerViewController{
     func registerNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(TimerViewController.didGetLatitudeLongitude(_:)), name:NSNotification.Name(rawValue: "didGetLattitudeLongitude"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(TimerViewController.didGetCityAndCountryShortName(_:)), name:NSNotification.Name(rawValue: "didGetCityAndCountryShortName"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(TimerViewController.didGetCityId(_:)), name:NSNotification.Name(rawValue: "didGetCityId"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(TimerViewController.didGetCurrentWeather(_:)), name:NSNotification.Name(rawValue: "didGetCurrentWeather"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(TimerViewController.canAttemptWeatherUpdate(_:)), name:NSNotification.Name(rawValue: "canAttemptWeatherUpdate"), object: nil)
     }
 }
 //MARK: - Weather Management
 extension TimerViewController{
+    func activityIndicatorStart(){
+        weatherImageView.addSubview(activityIndicator)
+        activityIndicator.frame = weatherImageView.bounds
+        activityIndicator.startAnimating()
+    }
+    func activityIndicatorStop(){
+        activityIndicator.stopAnimating()
+    }
     func canAttemptWeatherUpdate(_ notification: Notification){
         print("--------> TimerViewController canAttemptWeatherUpdate notification received")
         IntervalTimerCurrentWeather.getWeatherByPriority()
     }
     func didGetCurrentWeather(_ notification: Notification){
+        activityIndicatorStop()
+        
         // Background Thread Or Service call Or DB fetch etc
+        print("--------> TimerViewController didGetCurrentWeather notification received")
         guard let theTemperature = IntervalTimerUser.sharedInstance.thisCurrentWeather?.thisTemperature else {
+            print("--------> TimerViewController didGetCurrentWeather invalid theTemperature")
+            aesthetics_showMissingWeatherWarning()
             return
         }
         
-        guard let theImage = UIImage(named: (IntervalTimerUser.sharedInstance.thisCurrentWeather?.thisIcon)!) else {
+        guard let theIcon = IntervalTimerUser.sharedInstance.thisCurrentWeather?.thisIcon! else {
+            print("--------> TimerViewController didGetCurrentWeather invalid icon \(IntervalTimerUser.sharedInstance.thisCurrentWeather?.thisIcon!)")
+            aesthetics_showMissingWeatherWarning()
             return
         }
         
+        guard let theImage = UIImage(named: theIcon) else {
+            print("--------> TimerViewController didGetCurrentWeather invalid image for icon name \(theIcon)")
+            aesthetics_showMissingWeatherWarning()
+            return
+        }
+        
+        print("--------> TimerViewController didGetCurrentWeather theTemperature = \(theTemperature), theImage = \(theImage)")
+
+        weatherImageView.alpha = 0.0
+        weatherTemperatureLabel.alpha = 0.0
+
+        aesthetics_hideMissingWeatherWarning()
+
         weatherTemperatureLabel.text = theTemperature
         weatherImageView.image = theImage
-            
+
+        UIView.animate(withDuration: 1.5, animations: {
+            self.weatherImageView.alpha = 1.0
+            self.weatherTemperatureLabel.alpha = 1.0
+        })
+        
         //Weather updated, no need to update location until 3 hrs have passed or user has moved 1KM
         IntervalTimerUser.sharedInstance.thisShouldUpdateWeather = false
         IntervalTimerUser.sharedInstance.stopUpdatingLocationManager()
-    }
-    func didGetCityId(_ notification: Notification){
-        IntervalTimerCurrentWeather.getWeatherByCityId()
-    }
-    func didGetCityAndCountryShortName(_ notification: Notification){
-        IntervalTimerCurrentWeather.getWeatherByLocationName()
-    }
-    func didGetLatitudeLongitude(_ notification: Notification){
-        IntervalTimerCurrentWeather.getWeatherByCoordinates()
     }
 }
 //MARK: - Navigation Bar Management

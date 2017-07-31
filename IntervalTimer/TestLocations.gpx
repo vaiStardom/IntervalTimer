@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<gpx version="1.1" creator="Xcode">
+
+
+<!--LOCATION NAME KNOWN, CITY ID UNKNOWN-->
+    <wpt lat="45.514589" lon="-73.559794">
+        <name>Metr0 Berri/Uqam</name>
+    </wpt>
+
+
+<!--LOCATION NAME UNKNOWN, CITY ID UNKNOWN-->
+<!--    <wpt lat="-8.549590" lon="116.072074">-->
+<!--        <name>Grand Villa</name>-->
+<!--    </wpt>-->
+<!--    <wpt lat="90.0000" lon="0.0000">-->
+<!--        <name>North Pole</name>-->
+<!--    </wpt>-->
+<!--    <wpt lat="-90.0000" lon="0.0000">-->
+<!--        <name>South Pole</name>-->
+<!--    </wpt>-->
+
+</gpx>

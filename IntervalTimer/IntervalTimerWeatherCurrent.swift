@@ -23,9 +23,13 @@ class IntervalTimerCurrentWeather: NSObject {
         }
     }
     var thisIcon: String?{
-        get { return icon}
+        get {
+            print("------> IntervalTimerCurrentWeather getting icon name \(icon!)")
+            return icon
+        }
         set {
-            icon = newValue
+            print("------> IntervalTimerCurrentWeather setting icon name to \(newValue)")
+            icon = ICON_DICTIONARY[newValue!]
             UserDefaults.standard.set(newValue, forKey: "icon")
             UserDefaults.standard.synchronize()
         }
@@ -39,7 +43,7 @@ class IntervalTimerCurrentWeather: NSObject {
         }
     }
     
-    //MARK: - Initializer
+    //MARK: - Initializers
     init?(kelvin: Double?, icon: String?){
         guard  let theKelvin = kelvin else {
             return nil
@@ -49,6 +53,23 @@ class IntervalTimerCurrentWeather: NSObject {
             return nil
         }
         
+        self.kelvin = theKelvin
+        self.icon = ICON_DICTIONARY[theIcon]
+    }
+    public init(json: [String: Any]) throws {
+        
+        guard let theMain = json["main"] as? [String: Any] else {
+            throw JsonError.missing("json key main")
+        }
+        guard let theKelvin = theMain["temp"] as? Double else {
+            throw JsonError.missing("json key temp")
+        }
+        guard let theWeatherArray = json["weather"] as? [[String: AnyObject]] else {
+            throw JsonError.missing("json key weather")
+        }
+        guard let theIcon = theWeatherArray[0]["icon"] as? String else {
+            throw JsonError.missing("json key icon")
+        }
         self.kelvin = theKelvin
         self.icon = ICON_DICTIONARY[theIcon]
     }
@@ -93,9 +114,26 @@ extension IntervalTimerCurrentWeather{
 extension IntervalTimerCurrentWeather{
     static func getWeatherByPriority(){
         
-        print("--------> TimerViewController getWeatherByPriority() thisDidCompleteLocationDetermination = \(String(describing: IntervalTimerUser.sharedInstance.thisDidCompleteLocationDetermination))")
+        print("--------> IntervalTimerCurrentWeather getWeatherByPriority() thisDidCompleteLocationDetermination = \(String(describing: IntervalTimerUser.sharedInstance.thisDidCompleteLocationDetermination))")
         
         if IntervalTimerUser.sharedInstance.thisDidCompleteLocationDetermination! {
+            print("--------> IntervalTimerCurrentWeather getWeatherByPriority() weatherQueryPriority() = \(IntervalTimerUser.sharedInstance.weatherQueryPriority())")
+            
+
+            //TODO: Loop through the get weather priorities, exit when global variable GOT_WEATHER == true (for getting the weather or when all methods failed)
+//            var myGroup = DispatchGroup()
+//            for i in 0 ..< 5 {
+//                myGroup.enter()
+//                Alamofire.request(.GET, "https://httpbin.org/get", parameters: ["foo": "bar"]).responseJSON { response in
+//                    print("Finished request \(i)")
+//                    self.myGroup.leave()
+//                }
+//            }
+//                
+//            myGroup.notify(queue: DispatchQueue.main, execute: {
+//                print("Finished all requests.")
+//            })
+            
             switch IntervalTimerUser.sharedInstance.weatherQueryPriority() {
             case WeatherQueryPriority.byCityId.rawValue:
                 getWeatherByCityId()
@@ -107,7 +145,7 @@ extension IntervalTimerCurrentWeather{
                 //TODO: if user wanted to have the weather, and we cant get it, then show a no-connection error icon in place of the weather
                 //Msg option 1 - "It is impossible to determine your location at the moment and give you the weather."
                 //Msg option 2 - "...
-                print("--------> TimerViewController getWeatherByPriority() unable to retreive temperature")
+                print("--------> IntervalTimerCurrentWeather getWeatherByPriority() unable to retreive temperature")
             }
         }
     }
@@ -122,10 +160,16 @@ extension IntervalTimerCurrentWeather{
             return
         }
         
-        let weatherService = IntervalTimerWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
-        let didGetCurrentWeather = weatherService?.getWeatherFor(theCityId)
         
-        if didGetCurrentWeather == nil || !didGetCurrentWeather! {
+        print("--------> IntervalTimerCurrentWeather getWeatherByCityId()")
+        //TODO: allow this weather get attempt to complete
+        let weatherService = IntervalTimerWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
+        
+        guard let didGetCurrentWeather = weatherService?.getWeatherFor(theCityId) else {
+            return
+        }
+        
+        if !didGetCurrentWeather {
             //getting the weather by city ID did not succeed, try priority 2
             //NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCityAndCountryShortName"), object: nil)
             getWeatherByLocationName()
@@ -144,7 +188,7 @@ extension IntervalTimerCurrentWeather{
             return
         }
         
-        print("--------> TimerViewController getWeatherByLocationName() theCityName= \(theCityName), theCountryCode= \(theCountryCode)")
+        print("--------> IntervalTimerCurrentWeather getWeatherByLocationName() theCityName= \(theCityName), theCountryCode= \(theCountryCode)")
         
         let weatherService = IntervalTimerWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
         let didGetCurrentWeather = weatherService?.getWeatherFor(theCityName, in: theCountryCode)
@@ -180,7 +224,7 @@ extension IntervalTimerCurrentWeather{
             //TODO: if user wanted to have the weather, and we cant get it, then show a no-connection error icon in place of the weather
             //Msg option 1 - "It is impossible to determine your location at the moment and give you the weather."
             //Msg option 2 - "...
-            print("--------> TimerViewController getWeatherByCoordinates() unable to retreive temperature")
+            print("--------> IntervalTimerCurrentWeather getWeatherByCoordinates() unable to retreive temperature")
         }
     }
 }

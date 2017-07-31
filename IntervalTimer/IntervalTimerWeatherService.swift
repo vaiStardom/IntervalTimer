@@ -117,30 +117,28 @@ extension IntervalTimerWeatherService {
             return
         }
         
-        theNetworkJson.downloadJSON({ (jsonDictionary) in
+        theNetworkJson.downloadJSON({ (json) in
             
-            print("---------> IntervalTimerWeatherService fromNetwork theUrl = \(url)")
-            let json4Swift_Base_list = Json4Swift_Base(dictionary: jsonDictionary! as NSDictionary)
-            
-            guard let theTemperature = json4Swift_Base_list?.main?.temp else {
-                //throw JsonError.missingTemperature
+            do {
+                let theWeather = try IntervalTimerCurrentWeather(json: json!)
+                print("------> IntervalTimerWeatherService theWeather.thisIcon = \(theWeather.thisIcon!)")
+                print("------> IntervalTimerWeatherService theWeather.thisKelvin = \(theWeather.thisKelvin!)")
+                print("------> IntervalTimerWeatherService theWeather.thisTemperature = \(theWeather.thisTemperature!)")
+                
+                guard theWeather.thisTemperature != nil else {
+                    completion(nil)
+                    return
+                }
+                guard theWeather.thisIcon != nil else {
+                    completion(nil)
+                    return
+                }
+                
+                completion(theWeather)
+            } catch let error {
+                print(error)
                 completion(nil)
-                return
             }
-            
-            guard let theIcon = json4Swift_Base_list?.weather?.first?.icon else {
-                //throw JsonError.missingIcon
-                completion(nil)
-                return
-            }
-            
-            guard let theCurrentWeather = IntervalTimerCurrentWeather(kelvin: theTemperature, icon: theIcon) else {
-                completion(nil)
-                return
-            }
-            
-            completion(theCurrentWeather)
-            
         })
     }
 }

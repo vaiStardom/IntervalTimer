@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cAR-2Z-4yG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cAR-2Z-4yG">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -157,7 +157,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24 C" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50V-60-GfP">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50V-60-GfP">
                                 <rect key="frame" x="203" y="10" width="53" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="53" id="2VL-tc-gx3"/>
@@ -167,8 +167,8 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clear-sky-night" translatesAutoresizingMaskIntoConstraints="NO" id="UL6-1S-xfh">
-                                <rect key="frame" x="261" y="-2" width="44" height="44"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UL6-1S-xfh">
+                                <rect key="frame" x="261" y="0.0" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="bJW-T3-wzw"/>
                                     <constraint firstAttribute="width" constant="44" id="seX-T2-y9h"/>
@@ -272,17 +272,35 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="warning" translatesAutoresizingMaskIntoConstraints="NO" id="Ev8-d3-Dzu">
+                                <rect key="frame" x="281" y="10" width="20" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="7Gu-cx-r3N"/>
+                                    <constraint firstAttribute="width" constant="20" id="I6o-il-dDM"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sfs-bU-sq4">
+                                <rect key="frame" x="269" y="-1.5" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="tUH-BV-6hX"/>
+                                    <constraint firstAttribute="height" constant="44" id="tc2-YI-2cE"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="weatherMissing:" destination="FOr-RH-OJ6" eventType="touchUpInside" id="98L-XY-WSK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="u17-aJ-NeA" firstAttribute="top" secondItem="PD0-Qt-9de" secondAttribute="bottom" constant="8" id="0tu-Zp-vIh"/>
                             <constraint firstItem="Vsl-ki-DBC" firstAttribute="width" secondItem="Cx7-MP-d6D" secondAttribute="width" id="1Eu-aK-anN"/>
-                            <constraint firstItem="50V-60-GfP" firstAttribute="centerY" secondItem="UL6-1S-xfh" secondAttribute="centerY" id="23N-c1-pto"/>
+                            <constraint firstItem="50V-60-GfP" firstAttribute="centerY" secondItem="UL6-1S-xfh" secondAttribute="centerY" constant="-1.5" id="23N-c1-pto"/>
                             <constraint firstItem="eYs-Rk-chp" firstAttribute="centerY" secondItem="On6-vt-RSA" secondAttribute="centerY" id="2Fj-4D-7tb"/>
+                            <constraint firstItem="Ev8-d3-Dzu" firstAttribute="centerY" secondItem="94b-Co-cGT" secondAttribute="centerY" id="4aY-26-PEJ"/>
                             <constraint firstItem="nv7-KQ-fE5" firstAttribute="centerX" secondItem="On6-vt-RSA" secondAttribute="centerX" id="6PM-7f-lAK"/>
                             <constraint firstItem="Cx7-MP-d6D" firstAttribute="trailing" secondItem="onz-dF-8ba" secondAttribute="trailing" constant="-15" id="8Ig-Wg-pjY"/>
                             <constraint firstItem="FQm-g8-Odx" firstAttribute="width" secondItem="Hwb-Ik-GIB" secondAttribute="width" id="Aeu-2C-Wlx"/>
-                            <constraint firstItem="UL6-1S-xfh" firstAttribute="centerY" secondItem="94b-Co-cGT" secondAttribute="centerY" id="CQg-bK-P7Z"/>
+                            <constraint firstItem="UL6-1S-xfh" firstAttribute="centerY" secondItem="94b-Co-cGT" secondAttribute="centerY" constant="1.5" id="CQg-bK-P7Z"/>
                             <constraint firstItem="nv7-KQ-fE5" firstAttribute="centerY" secondItem="On6-vt-RSA" secondAttribute="centerY" id="DbR-Fg-6tP"/>
                             <constraint firstItem="JW0-is-Oqb" firstAttribute="leading" secondItem="PD0-Qt-9de" secondAttribute="trailing" id="HEc-zb-jA7"/>
                             <constraint firstAttribute="trailing" secondItem="u17-aJ-NeA" secondAttribute="trailing" id="I8Y-e4-UCV"/>
@@ -295,6 +313,7 @@
                             <constraint firstItem="FQm-g8-Odx" firstAttribute="centerX" secondItem="Hwb-Ik-GIB" secondAttribute="centerX" id="TZ1-y1-2Aw"/>
                             <constraint firstItem="Cx7-MP-d6D" firstAttribute="top" secondItem="onz-dF-8ba" secondAttribute="top" id="Tdc-fI-DJs"/>
                             <constraint firstItem="Vsl-ki-DBC" firstAttribute="height" secondItem="Cx7-MP-d6D" secondAttribute="height" id="Uej-UE-c7q"/>
+                            <constraint firstItem="sfs-bU-sq4" firstAttribute="centerX" secondItem="Ev8-d3-Dzu" secondAttribute="centerX" id="V3F-y8-yr7"/>
                             <constraint firstItem="TAj-OZ-cu4" firstAttribute="leading" secondItem="eYs-Rk-chp" secondAttribute="leading" constant="245" id="Wo4-1V-nx0"/>
                             <constraint firstItem="Vsl-ki-DBC" firstAttribute="centerY" secondItem="Cx7-MP-d6D" secondAttribute="centerY" id="ZZS-OI-61n"/>
                             <constraint firstItem="JW0-is-Oqb" firstAttribute="top" secondItem="PD0-Qt-9de" secondAttribute="top" constant="77" id="Zci-Zy-MmW"/>
@@ -308,6 +327,8 @@
                             <constraint firstItem="u17-aJ-NeA" firstAttribute="leading" secondItem="fnu-e3-O6b" secondAttribute="leading" id="gHs-vq-sNy"/>
                             <constraint firstItem="FQm-g8-Odx" firstAttribute="height" secondItem="Hwb-Ik-GIB" secondAttribute="height" id="l5K-Ca-7oZ"/>
                             <constraint firstItem="PD0-Qt-9de" firstAttribute="top" secondItem="94b-Co-cGT" secondAttribute="bottom" constant="8" id="ooU-xA-ssa"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ev8-d3-Dzu" secondAttribute="trailing" constant="3" id="q2g-He-K3j"/>
+                            <constraint firstItem="sfs-bU-sq4" firstAttribute="centerY" secondItem="Ev8-d3-Dzu" secondAttribute="centerY" id="rha-gk-Dn3"/>
                             <constraint firstItem="UL6-1S-xfh" firstAttribute="leading" secondItem="50V-60-GfP" secondAttribute="trailing" constant="5" id="tnd-vR-NMy"/>
                             <constraint firstItem="94b-Co-cGT" firstAttribute="leading" secondItem="fnu-e3-O6b" secondAttribute="leadingMargin" constant="-1" id="vge-95-S66"/>
                         </constraints>
@@ -315,6 +336,8 @@
                     <connections>
                         <outlet property="cancelButton" destination="FQm-g8-Odx" id="jdk-Uo-YsT"/>
                         <outlet property="cancelImageView" destination="Hwb-Ik-GIB" id="7wW-JD-zFw"/>
+                        <outlet property="missingTemperatureImageView" destination="Ev8-d3-Dzu" id="Thu-ec-oDy"/>
+                        <outlet property="showMissingTemperatureWarningButton" destination="sfs-bU-sq4" id="4nJ-e7-4Im"/>
                         <outlet property="startPauseResumeButton" destination="Vsl-ki-DBC" id="jgW-WD-5BO"/>
                         <outlet property="startPauseResumeImageView" destination="Cx7-MP-d6D" id="C06-h1-QUz"/>
                         <outlet property="testLabel" destination="u17-aJ-NeA" id="4ob-yR-EKR"/>
@@ -697,13 +720,13 @@
         <image name="barButtonAdd" width="18" height="18"/>
         <image name="blueIndicatorUnselected" width="44" height="44"/>
         <image name="cancel" width="132" height="132"/>
-        <image name="clear-sky-night" width="30" height="29"/>
         <image name="greenIndicatorUnselected" width="44" height="44"/>
         <image name="orangeIndicatorUnselected" width="44" height="44"/>
         <image name="purpleIndicatorUnselected" width="44" height="44"/>
         <image name="redIndicatorUnselected" width="44" height="44"/>
         <image name="start" width="132" height="132"/>
         <image name="timeTextFieldFrame" width="47" height="75"/>
+        <image name="warning" width="20" height="20"/>
         <image name="yellowIndicatorUnselected" width="44" height="44"/>
     </resources>
 </document>

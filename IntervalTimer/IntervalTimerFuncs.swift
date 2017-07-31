@@ -24,14 +24,14 @@ func showMessage(title: String, message: String) {
 var data: [[String:String]] = []
 var columnTitles: [String] = []
 
-func convertCSV(file: String) -> Int? {
+func convertCSV(file: String, cityName: String, countryCode: String) -> Int? {
     var cityId: Int? = nil
     let rows = cleanRows(file: file).components(separatedBy: CsvControls.LineSeperator)
     if rows.count > 0 {
         data = []
         columnTitles = getStringFieldsForRow(row: rows.first!, delimiter: CsvControls.ColumnDelimiter)
         
-        print("---------> convertCSV looking for cityId with cityName = \(String(describing: IntervalTimerUser.sharedInstance.thisCityName!)) and countrycode = \(String(describing: IntervalTimerUser.sharedInstance.thisCountryCode?.lowercased()))")
+        print("---------> convertCSV looking for cityId with cityName = \(String(describing: cityName)) and countrycode = \(String(describing: countryCode.lowercased()))")
         for (index, row) in rows.enumerated() {
             let fields = getStringFieldsForRow(row: row, delimiter: CsvControls.ColumnDelimiter)
             
@@ -52,13 +52,14 @@ func convertCSV(file: String) -> Int? {
                     print("---------> convertCSV theCountryCode = \(fields[2]) could not be converted to String at row \(row), index \(index)")
                     continue
                 }
-                if theCity == IntervalTimerUser.sharedInstance.thisCityName! && theCountryCode == IntervalTimerUser.sharedInstance.thisCountryCode?.lowercased() {
+                if theCity == cityName && theCountryCode == countryCode.lowercased() {
                     cityId = theCityId
                     print("---------> convertCSV found cityId = \(theCityId)")
                     break
                 }
             }
         }
+        print("---------> convertCSV returning cityId = \(String(describing: cityId))")
         return cityId
     } else {
         //TODO: Handle error city not found
@@ -77,7 +78,7 @@ func getCityIdFromCsv(file: String, cityName: String, countryCode: String) -> In
     }
     do {
         let contents = try String(contentsOfFile: filePath, encoding: String.Encoding.macOSRoman)
-        return convertCSV(file: contents)
+        return convertCSV(file: contents, cityName: cityName, countryCode: countryCode )
     } catch {
         //TODO: Handle possible csv read error
         print("File read error for file \(file). Error: \(error)")

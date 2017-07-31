@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import UIKit
 
 //TODO: Use these guidlines for error handling:
 /*
@@ -16,6 +17,8 @@ import CoreLocation
  Use custom errors where more than one error state exists.
  Don’t allow an error to propagate too far from its source.
  */
+
+//TODO: Geocoding is a time and resource intensive task, whenever possible, pre-geocode known locations
 class IntervalTimerUser: NSObject {
     
     //MARK: - Singleton
@@ -31,6 +34,9 @@ class IntervalTimerUser: NSObject {
     fileprivate var currentWeather: IntervalTimerCurrentWeather?
     fileprivate var shouldUpdateWeather: Bool? = true
     fileprivate var didCompleteLocationDetermination: Bool? = false
+    fileprivate var didAttemptGettingCoordinates: Bool? = false
+    fileprivate var didAttemptGettingCityId: Bool? = false
+    fileprivate var didAttemptGettingLocationName: Bool? = false
     
     //MARK: - CoreLocation fileprivate properties
     fileprivate let geocoder = CLGeocoder()
@@ -68,10 +74,14 @@ class IntervalTimerUser: NSObject {
     var thisCountryCode: String?{
         get { return countryCode}
         set {
+            
             countryCode = newValue
             UserDefaults.standard.set(newValue, forKey: "countryCode")
             UserDefaults.standard.synchronize()
             
+            guard countryCode != nil else {
+                return
+            }
             getCityId()
         }
     }
@@ -81,6 +91,9 @@ class IntervalTimerUser: NSObject {
             cityId = newValue
             UserDefaults.standard.set(newValue, forKey: "cityId")
             UserDefaults.standard.synchronize()
+            if newValue != nil {
+                checkIfLocationDeterminationIsComplete()
+            }
         }
     }
     var thisLatitude: Double?{
@@ -122,6 +135,30 @@ class IntervalTimerUser: NSObject {
             if newValue == true {
                 //Send notificatin that we can update the weather
                 NotificationCenter.default.post(name: Notification.Name(rawValue: "canAttemptWeatherUpdate"), object: nil)
+            }
+        }
+    }
+    var thisDidAttemptGettingCoordinates: Bool? {
+        get { return didAttemptGettingCoordinates }
+        set {
+            didAttemptGettingCoordinates = newValue
+            if newValue == true {
+                checkIfLocationDeterminationIsComplete()
+            }
+        }
+    }
+    var thisDidAttemptGettingCityId: Bool? {
+        get { return didAttemptGettingCityId }
+        set {
+            didAttemptGettingCityId = newValue
+        }
+    }
+    var thisDidAttemptGettingLocationName: Bool? {
+        get { return didAttemptGettingLocationName }
+        set {
+            didAttemptGettingLocationName = newValue
+            if newValue == true {
+                checkIfLocationDeterminationIsComplete()
             }
         }
     }
@@ -190,6 +227,8 @@ extension IntervalTimerUser {
     
     func getCityId(){
         
+        self.thisDidAttemptGettingCityId = true
+        
         guard let theCityName = thisCityName else {
             thisCityId = nil
             return
@@ -200,30 +239,34 @@ extension IntervalTimerUser {
             return
         }
         
-        
-        //TODO: Make sure the weather is updated from a legitimate cityId
         DispatchQueue.global().async {
+    
+            //Get the city id with placemark locality, then manage via notifications
             let asyncCityId = getCityIdFromCsv(file: "cityList.20170703", cityName: theCityName, countryCode: theCountryCode)
-            DispatchQueue.main.async(execute: {
-                //TODO: Get the city id asynchronisly, then manage via notifications
-                guard let theCityId = asyncCityId else {
-                    self.thisCityId = nil
-                    return
-                }
-                IntervalTimerUser.sharedInstance.thisCityId = theCityId
-                NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCityId"), object: nil)
-            })
+            
+            if asyncCityId == nil { //Get the city id with MapQuest
+                IntervalTimerCity.getCityByCoordinates()
+            } else {
+                DispatchQueue.main.async(execute: {
+                    let theCityId = asyncCityId
+                    self.thisCityId = theCityId
+                    self.thisDidAttemptGettingCityId = true
+                    //NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCityId"), object: nil)
+                })
+            }
         }
-        
-//        //TODO: Get the city id asynchronisly, then manage via notifications
-//        guard let theCityId = getCityIdFromCsv(file: "cityList.20170703", cityName: theCityName, countryCode: theCountryCode) else {
-//            thisCityId = nil
-//            return
-//        }
     }
 }
 //MARK: - CoreLocation Management
 extension IntervalTimerUser: CLLocationManagerDelegate {
+    func checkIfLocationDeterminationIsComplete(){
+        print("------> IntervalTimerUser checkIfLocationDeterminationIsComplete() didAttemptGettingCoordinates = \(didAttemptGettingCoordinates), didAttemptGettingCityId = \(didAttemptGettingCityId), didAttemptGettingLocationName = \(didAttemptGettingLocationName)")
+        //TODO: Validate that the weather retreival is functionning properly by priority
+        guard didAttemptGettingCoordinates == true, didAttemptGettingCityId == true, didAttemptGettingLocationName == true else {
+            return
+        }
+        thisDidCompleteLocationDetermination = true
+    }
     func firstTimeLocationUsage(){
         
         let authStatus = CLLocationManager.authorizationStatus()
@@ -243,11 +286,16 @@ extension IntervalTimerUser: CLLocationManagerDelegate {
             return
         }
         
+        
+        
         //If location is nil or has moved
         if location == nil || location!.horizontalAccuracy > latestLocation.horizontalAccuracy {
             
+            
             location = latestLocation
             print("---------> CoreLocation latitude: \(location?.coordinate.latitude ?? 0), longitude: \(location?.coordinate.longitude ?? 0)")
+            
+            self.thisDidAttemptGettingCoordinates = true
             
             if let theLatitude = location?.coordinate.latitude, let theLongitude = location?.coordinate.longitude {
                 thisLatitude = theLatitude
@@ -258,22 +306,25 @@ extension IntervalTimerUser: CLLocationManagerDelegate {
                 thisLongitude = nil
             }
             
-            //ReverseGeocoding
+//            //ReverseGeocoding to get location name using BADAPPLES
+//            //BADAPPLE: forced to use GoogleMap API to get ENGLISH city name, bypassing userdefaults
+//            //TODO: Other possible BADAPPLES https://stackoverflow.com/questions/31331093/clgeocoder-returns-wrong-results-when-city-name-is-equal-to-some-countrys-name
             geocoder.reverseGeocodeLocation(latestLocation, completionHandler: { (placemarks, error) in
                 if error == nil, let placemark = placemarks, !placemark.isEmpty {
                     self.placemark = placemark.last
                 }
                 //Parse location information
                 self.parsePlacemarks()
-                
-                //finished trying to determine location
-                self.thisDidCompleteLocationDetermination = true
             })
+
         } else {
-            thisDidCompleteLocationDetermination = false
+            //TODO: What do we do here in this condition?
+            //thisDidCompleteLocationDetermination = false
         }
     }
     func parsePlacemarks() {
+        
+        thisDidAttemptGettingLocationName = true
         
         guard let _ = location else {
             nilLocationName()
@@ -285,7 +336,6 @@ extension IntervalTimerUser: CLLocationManagerDelegate {
             return
         }
         
-        // Apple refers to city name as locality, not city
         guard let theCityName = thePlacemark.locality else {
             nilLocationName()
             return
@@ -300,16 +350,16 @@ extension IntervalTimerUser: CLLocationManagerDelegate {
             nilLocationName()
             return
         }
-        
-        print("---------> CoreLocation city: \(theCityName)")
-        print("---------> CoreLocation theIsoCountryShortName: \(theCountryShortName)")
+ 
         thisCityName = theCityName
         thisCountryCode = theCountryShortName
-        //NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCityAndCountryShortName"), object: nil)
+        
     }
     func nilLocationName(){
         thisCityName = nil
         thisCountryCode = nil
+        thisCityId = nil
+        thisDidAttemptGettingCityId = true
     }
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         //TODO: Handle core location errors

@@ -26,8 +26,6 @@ extension TimersViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavBar()
-        
-       
     }
 }
 //MARK: - Navigation Bar Management
