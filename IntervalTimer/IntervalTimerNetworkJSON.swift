@@ -34,9 +34,7 @@ class IntervalTimerNetworkJSON {
     typealias JSONDictionaryHandler = (([String:Any]?) -> Void)
     
     func downloadJSON(_ completion: @escaping JSONDictionaryHandler){
-        
-        //TODO: Handle all below thrown error by showing a no-network connection icon instead of a weather icon
-        
+    
         let request = URLRequest(url: self.thisUrl)
         let dataTask = session.dataTask(with: request) { (data, response, error) in
             if error == nil {
@@ -56,17 +54,17 @@ class IntervalTimerNetworkJSON {
                                 completion(jsonDictionary as? [String:Any])
                             } catch let error as NSError{
                                 //throw JsonError.unsucessfulProcessing(reason: "\(error?.localizedDescription ?? "nil")")
-                                showMessage(title: "Error processing JSON data", message: error.localizedDescription)
+                                showMessage(title: "JSON Error", message: "IntervalTimerNetworkJSON downloadJSON(), desc.: \(error.localizedDescription)")
                             }
                         }
                     default:
                         //throw HttpError.unsucessfulHttpResponse(code:"\(httpResponse.statusCode)")
-                        showMessage(title: "HTTP Response Code", message: "\(httpResponse.statusCode)")
+                        showMessage(title: "HTTP Error", message: "IntervalTimerNetworkJSON downloadJSON(), HTTP Response Code: \(httpResponse.statusCode)")
                     }
                 }
             } else {
                 //throw UrlError.unsucessfulUrl(reason: "\(error?.localizedDescription ?? "nil")")
-                showMessage(title: "URL Error", message: "\(error?.localizedDescription ?? "nil")")
+                showMessage(title: "URL Error", message: "IntervalTimerNetworkJSON downloadJSON(), desc.: \(error?.localizedDescription ?? "nil")")
             }
         }
         dataTask.resume()

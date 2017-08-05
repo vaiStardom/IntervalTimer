@@ -5,18 +5,15 @@
 //  Created by Paul Addy on 2017-06-25.
 //  Copyright © 2017 Paul Addy. All rights reserved.
 //
-
 import UIKit
 
-//TODO: Refactor this whole file.
 class IntervalTimerUIBarButtonItem: UIBarButtonItem {
     func addButton(target: UIViewController, selector: Selector) -> UIBarButtonItem {
         
         let imageView = UIImageView(frame:NavigationBarCgRect.AddImage)
         imageView.image = UIImage(named: NavigationBarImage.Add)
         
-        let button = UIButton(frame: NavigationBarCgRect.Buttons)
-        button.addTarget(target, action: selector, for: .touchUpInside)
+        let button = IntervalTimerUIButton.createButton(frame: NavigationBarCgRect.Buttons, target: target, selector: selector)
         
         let view = UIView(frame: NavigationBarCgRect.Dummy)
         view.addSubview(imageView)
@@ -26,10 +23,7 @@ class IntervalTimerUIBarButtonItem: UIBarButtonItem {
     }
     func leftTitle() -> UIBarButtonItem {
         
-        let label = UILabel(frame: NavigationBarCgRect.LeftLabel)
-        label.text = NavigationBarLitterals.BackToTimers
-        label.font = NavigationBarFont.LeftRight
-        label.textColor = IntervalTimerColors.Orange
+        let label = IntervalTimerUILabel.createLabel(frame: NavigationBarCgRect.LeftLabel, font: NavigationBarFont.LeftRight, text: NavigationBarLitterals.BackToTimers, color: IntervalTimerColors.Orange)
         
         let view = UIView(frame: NavigationBarCgRect.Dummy)
         view.addSubview(label)
@@ -41,13 +35,9 @@ class IntervalTimerUIBarButtonItem: UIBarButtonItem {
         let imageView = UIImageView(frame: NavigationBarCgRect.BackImage)
         imageView.image = UIImage(named: NavigationBarImage.Back)
         
-        let button = UIButton(frame: NavigationBarCgRect.Buttons)
-        button.addTarget(target, action: selector, for: .touchUpInside)
-        
-        let label = UILabel(frame: NavigationBarCgRect.BackLabel)
-        label.text = NavigationBarLitterals.Back
-        label.font = NavigationBarFont.LeftRight
-        label.textColor = IntervalTimerColors.Orange
+        let button = IntervalTimerUIButton.createButton(frame: NavigationBarCgRect.Buttons, target: target, selector: selector)
+
+        let label = IntervalTimerUILabel.createLabel(frame: NavigationBarCgRect.BackLabel, font: NavigationBarFont.LeftRight, text: NavigationBarLitterals.Back, color: IntervalTimerColors.Orange)
         
         let view = UIView(frame: NavigationBarCgRect.Dummy)
         view.addSubview(imageView)
@@ -59,14 +49,10 @@ class IntervalTimerUIBarButtonItem: UIBarButtonItem {
     func cancelButton(target: UIViewController, selector: Selector) -> UIBarButtonItem {
         //return customBarCancelButton(frame: NAVBAR_SAVEICON_CGRECT, target: target, selector: selector)
         
-        let button = UIButton(frame: NavigationBarCgRect.CancelButton)
-        button.addTarget(target, action: selector, for: .touchUpInside)
+        let button = IntervalTimerUIButton.createButton(frame: NavigationBarCgRect.CancelButton, target: target, selector: selector)
         button.transform = CGAffineTransform(translationX: -15, y: 0)
         
-        let label = UILabel(frame: NavigationBarCgRect.CancelLabel)
-        label.text = NavigationBarLitterals.Cancel
-        label.font = NavigationBarFont.LeftRight
-        label.textColor = IntervalTimerColors.Orange
+        let label = IntervalTimerUILabel.createLabel(frame: NavigationBarCgRect.CancelLabel, font: NavigationBarFont.LeftRight, text: NavigationBarLitterals.Cancel, color: IntervalTimerColors.Orange)
         label.transform = CGAffineTransform(translationX: -15, y: 0)
         
         let view = UIView(frame: NavigationBarCgRect.Dummy)
@@ -78,14 +64,10 @@ class IntervalTimerUIBarButtonItem: UIBarButtonItem {
     func editButton(target: UIViewController, selector: Selector) -> UIBarButtonItem {
         //return customBarCancelButton(frame: NAVBAR_SAVEICON_CGRECT, target: target, selector: selector)
         
-        let button = UIButton(frame: NavigationBarCgRect.CancelButton)
-        button.addTarget(target, action: selector, for: .touchUpInside)
+        let button = IntervalTimerUIButton.createButton(frame: NavigationBarCgRect.CancelButton, target: target, selector: selector)
         button.transform = CGAffineTransform(translationX: -15, y: 0)
         
-        let label = UILabel(frame: NavigationBarCgRect.EditLabel)
-        label.text = NavigationBarLitterals.Edit
-        label.font = NavigationBarFont.LeftRight
-        label.textColor = IntervalTimerColors.Orange
+        let label = IntervalTimerUILabel.createLabel(frame: NavigationBarCgRect.EditLabel, font: NavigationBarFont.LeftRight, text: NavigationBarLitterals.Edit, color: IntervalTimerColors.Orange)
         
         let view = UIView(frame: NavigationBarCgRect.Dummy)
         view.addSubview(button)
@@ -93,8 +75,6 @@ class IntervalTimerUIBarButtonItem: UIBarButtonItem {
         
         return UIBarButtonItem(customView: view)
     }
-
-    
     func negativeSpace() -> UIBarButtonItem {
         let negativeSpace:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
         negativeSpace.width = -20.0

@@ -1,5 +1,5 @@
 //
-//  IntervalTimerCsvImporter.swift
+//  IntervalTimerFuncs.swift
 //  IntervalTimer
 //
 //  Created by Paul Addy on 2017-07-04.
