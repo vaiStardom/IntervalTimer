@@ -335,7 +335,7 @@ extension TimerViewController{
         }
         
         guard let theIcon = IntervalTimerUser.sharedInstance.thisCurrentWeather?.thisIcon! else {
-            print("------> TimerViewController didGetCurrentWeather invalid icon \(IntervalTimerUser.sharedInstance.thisCurrentWeather?.thisIcon!)")
+            print("------> TimerViewController didGetCurrentWeather invalid icon \(String(describing: IntervalTimerUser.sharedInstance.thisCurrentWeather?.thisIcon!))")
             aesthetics_showMissingWeatherWarning()
             return
         }

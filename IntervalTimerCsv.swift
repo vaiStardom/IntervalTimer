@@ -19,7 +19,6 @@ class IntervalTimerCsv {
     public func getCityIdFromCsv(file: String, cityName: String, countryCode: String) throws -> Int? {
         guard let filePath = Bundle.main.path(forResource: file, ofType: "csv") else {
             throw CsvError.readError("file \(file) not read")
-            return nil
         }
         do {
             let contents = try String(contentsOfFile: filePath, encoding: String.Encoding.macOSRoman)

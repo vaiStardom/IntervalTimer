@@ -263,7 +263,7 @@ extension IntervalTimerUser {
 //MARK: - CoreLocation Management
 extension IntervalTimerUser: CLLocationManagerDelegate {
     func checkIfLocationDeterminationIsComplete(){
-        print("------> IntervalTimerUser checkIfLocationDeterminationIsComplete() didAttemptGettingCoordinates = \(String(describing: didAttemptGettingCoordinates)), didAttemptGettingCityId = \(didAttemptGettingCityId), didAttemptGettingLocationName = \(String(describing: didAttemptGettingLocationName))")
+        print("------> IntervalTimerUser checkIfLocationDeterminationIsComplete() didAttemptGettingCoordinates = \(String(describing: didAttemptGettingCoordinates)), didAttemptGettingCityId = \(String(describing: didAttemptGettingCityId)), didAttemptGettingLocationName = \(String(describing: didAttemptGettingLocationName))")
         //TODO: Validate that the weather retreival is functionning properly by priority
         guard didAttemptGettingCoordinates == true, didAttemptGettingCityId == true, didAttemptGettingLocationName == true else {
             return
