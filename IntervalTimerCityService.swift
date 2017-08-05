@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 struct IntervalTimerCityService {
     
     //MARK: - fileprivate properties
@@ -64,47 +63,34 @@ extension IntervalTimerCityService {
                 didGetCity = false
                 return
             }
-            
-            //TODO: Make sure the weather is updated from a legitimate cityId
-            DispatchQueue.global().async {
-                
+            DispatchQueue.global(qos: .background).async {
                 IntervalTimerUser.sharedInstance.thisDidAttemptGettingCityId = true
-                
                 //Get the city id with placemark locality, then manage via notifications
                 do {
                     let asyncCityId = try IntervalTimerCsv.sharedInstance.getCityIdFromCsv(file: "cityList.20170703", cityName: theCity, countryCode: theCountryCode)
-                    
                     DispatchQueue.main.async(execute: {
                         didGetCity = true
-                        print("------> IntervalTimerCityService getCityWith() cityId = \(asyncCityId)")
+                        print("------> IntervalTimerCityService getCityWith() cityId = \(String(describing: asyncCityId))")
                         IntervalTimerUser.sharedInstance.thisCityName = theCity
                         IntervalTimerUser.sharedInstance.thisCityId = asyncCityId
                         NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCityId"), object: nil)
                     })
-                    
-                    
-                    
-                } catch {
-                    print("------> IntervalTimerCityService getCityIdFromCsv() failed")
+                } catch let error {
+                    showMessage(title: "CSV Error", message: "Failed IntervalTimerCityService -> getCityIdFromCsv(). Desc.: \(error.localizedDescription)")
                     IntervalTimerUser.sharedInstance.nilLocationName()
                     didGetCity = false
                     return
                 }
-                
-                
-                
             }
         }
         return didGetCity
     }
     
     private func fromNetwork(with url: URL, completion: @escaping (IntervalTimerCity?) -> Void ){
-        
         guard let theNetworkJson = IntervalTimerNetworkJSON(url: url) else {
             completion(nil)
             return
         }
-        
         theNetworkJson.downloadJSON({ (json) in
             do {
                 let theCity = try IntervalTimerCity(json: json!)
@@ -114,7 +100,7 @@ extension IntervalTimerCityService {
                 }
                 completion(theCity)
             } catch let error {
-                print(error)
+                showMessage(title: "JSON Error", message: "Failed IntervalTimerCityService -> fromNetwork(). Desc.: \(error.localizedDescription)")
                 completion(nil)
             }
         })
