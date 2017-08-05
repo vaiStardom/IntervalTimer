@@ -19,6 +19,7 @@ struct IntervalTimerCityService {
     var thisApiKey: String {
         get { return apiKey }
     }
+    
     var thisProviderUrl: String {
         get { return providerUrl }
     }
