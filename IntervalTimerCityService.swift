@@ -71,20 +71,28 @@ extension IntervalTimerCityService {
                 IntervalTimerUser.sharedInstance.thisDidAttemptGettingCityId = true
                 
                 //Get the city id with placemark locality, then manage via notifications
-                guard let asyncCityId = getCityIdFromCsv(file: "cityList.20170703", cityName: theCity, countryCode: theCountryCode) else {
+                do {
+                    let asyncCityId = try IntervalTimerCsv.sharedInstance.getCityIdFromCsv(file: "cityList.20170703", cityName: theCity, countryCode: theCountryCode)
+                    
+                    DispatchQueue.main.async(execute: {
+                        didGetCity = true
+                        print("------> IntervalTimerCityService getCityWith() cityId = \(asyncCityId)")
+                        IntervalTimerUser.sharedInstance.thisCityName = theCity
+                        IntervalTimerUser.sharedInstance.thisCityId = asyncCityId
+                        NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCityId"), object: nil)
+                    })
+                    
+                    
+                    
+                } catch {
                     print("------> IntervalTimerCityService getCityIdFromCsv() failed")
                     IntervalTimerUser.sharedInstance.nilLocationName()
                     didGetCity = false
                     return
                 }
                 
-                DispatchQueue.main.async(execute: {
-                    didGetCity = true
-                    print("------> IntervalTimerCityService getCityWith() cityId = \(asyncCityId)")
-                    IntervalTimerUser.sharedInstance.thisCityName = theCity
-                    IntervalTimerUser.sharedInstance.thisCityId = asyncCityId
-                    NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCityId"), object: nil)
-                })
+                
+                
             }
         }
         return didGetCity

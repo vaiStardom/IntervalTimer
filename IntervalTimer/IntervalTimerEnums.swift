@@ -41,6 +41,10 @@ enum JsonError: Error {
 enum UrlError: Error {
     case unsucessfulUrl(reason: String)
 }
+enum CsvError: Error {
+    case readError(String)
+    case missing(String)
+}
 //MARK: - Fonts
 enum SystemFont{
     static let Bold15: UIFont = UIFont.systemFont(ofSize: 15, weight: UIFontWeightBold)

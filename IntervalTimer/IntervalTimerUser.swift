@@ -242,17 +242,20 @@ extension IntervalTimerUser {
         DispatchQueue.global().async {
     
             //Get the city id with placemark locality, then manage via notifications
-            let asyncCityId = getCityIdFromCsv(file: "cityList.20170703", cityName: theCityName, countryCode: theCountryCode)
-            
-            if asyncCityId == nil { //Get the city id with MapQuest
-                IntervalTimerCity.getCityByCoordinates()
-            } else {
-                DispatchQueue.main.async(execute: {
-                    let theCityId = asyncCityId
-                    self.thisCityId = theCityId
-                    self.thisDidAttemptGettingCityId = true
-                    //NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCityId"), object: nil)
-                })
+            do {
+                let asyncCityId = try IntervalTimerCsv.sharedInstance.getCityIdFromCsv(file: "cityList.20170703", cityName: theCityName, countryCode: theCountryCode)
+                if asyncCityId == nil { //Get the city id with MapQuest
+                    IntervalTimerCity.getCityByCoordinates()
+                } else {
+                    DispatchQueue.main.async(execute: {
+                        let theCityId = asyncCityId
+                        self.thisCityId = theCityId
+                        self.thisDidAttemptGettingCityId = true
+                        //NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCityId"), object: nil)
+                    })
+                }
+            } catch let error {
+                print(error)
             }
         }
     }
@@ -260,7 +263,7 @@ extension IntervalTimerUser {
 //MARK: - CoreLocation Management
 extension IntervalTimerUser: CLLocationManagerDelegate {
     func checkIfLocationDeterminationIsComplete(){
-        print("------> IntervalTimerUser checkIfLocationDeterminationIsComplete() didAttemptGettingCoordinates = \(didAttemptGettingCoordinates), didAttemptGettingCityId = \(didAttemptGettingCityId), didAttemptGettingLocationName = \(didAttemptGettingLocationName)")
+        print("------> IntervalTimerUser checkIfLocationDeterminationIsComplete() didAttemptGettingCoordinates = \(String(describing: didAttemptGettingCoordinates)), didAttemptGettingCityId = \(didAttemptGettingCityId), didAttemptGettingLocationName = \(String(describing: didAttemptGettingLocationName))")
         //TODO: Validate that the weather retreival is functionning properly by priority
         guard didAttemptGettingCoordinates == true, didAttemptGettingCityId == true, didAttemptGettingLocationName == true else {
             return

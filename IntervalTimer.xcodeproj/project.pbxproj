@@ -32,6 +32,7 @@
 		BAAFE4511F0A366000D3619E /* IntervalTimerNetworkJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFE4501F0A366000D3619E /* IntervalTimerNetworkJSON.swift */; };
 		BAC38F8B1F2EF54400AE0057 /* IntervalTimerCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC38F8A1F2EF54400AE0057 /* IntervalTimerCity.swift */; };
 		BAC38F8D1F2F15B900AE0057 /* IntervalTimerCityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC38F8C1F2F15B900AE0057 /* IntervalTimerCityService.swift */; };
+		BAC38F8F1F2F7D1400AE0057 /* IntervalTimerCsv.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC38F8E1F2F7D1400AE0057 /* IntervalTimerCsv.swift */; };
 		BACD18231F08E5FC0072FF2C /* IntervalTimerUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACD18221F08E5FC0072FF2C /* IntervalTimerUser.swift */; };
 		BACD18251F08E6C40072FF2C /* IntervalTimerEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACD18241F08E6C40072FF2C /* IntervalTimerEnums.swift */; };
 /* End PBXBuildFile section */
@@ -85,6 +86,7 @@
 		BAAFE4501F0A366000D3619E /* IntervalTimerNetworkJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntervalTimerNetworkJSON.swift; path = IntervalTimer/IntervalTimerNetworkJSON.swift; sourceTree = "<group>"; };
 		BAC38F8A1F2EF54400AE0057 /* IntervalTimerCity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalTimerCity.swift; sourceTree = "<group>"; };
 		BAC38F8C1F2F15B900AE0057 /* IntervalTimerCityService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalTimerCityService.swift; sourceTree = "<group>"; };
+		BAC38F8E1F2F7D1400AE0057 /* IntervalTimerCsv.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalTimerCsv.swift; sourceTree = "<group>"; };
 		BACD18221F08E5FC0072FF2C /* IntervalTimerUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntervalTimerUser.swift; path = IntervalTimer/IntervalTimerUser.swift; sourceTree = "<group>"; };
 		BACD18241F08E6C40072FF2C /* IntervalTimerEnums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalTimerEnums.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,13 +142,14 @@
 			isa = PBXGroup;
 			children = (
 				BA4BFE731EFF4D9D00E341DC /* IntervalTimer */,
+				BAC38F891F2EF52A00AE0057 /* Models */,
 				BA1CCBA71F248AB100A3D0B3 /* Networking */,
 				BA4BFE721EFF4D9D00E341DC /* Products */,
-				BAC38F891F2EF52A00AE0057 /* Models */,
-				BA4BFEA61EFFA10400E341DC /* Utilities */,
+				BAC38F901F2F7D1F00AE0057 /* Singletons */,
 				BA4BFEAD1EFFAF7400E341DC /* Storyboards */,
 				BA4BFEA71EFFA11D00E341DC /* Tests */,
 				BA1CCBA81F248B3000A3D0B3 /* UI Subclasses and Extensions */,
+				BA4BFEA61EFFA10400E341DC /* Utilities */,
 				BA4BFEAA1EFFAEEB00E341DC /* ViewControllers */,
 			);
 			sourceTree = "<group>";
@@ -237,10 +240,18 @@
 			isa = PBXGroup;
 			children = (
 				BAC38F8A1F2EF54400AE0057 /* IntervalTimerCity.swift */,
-				BACD18221F08E5FC0072FF2C /* IntervalTimerUser.swift */,
 				BA116C8D1F08AB39001CDA80 /* IntervalTimerWeatherCurrent.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		BAC38F901F2F7D1F00AE0057 /* Singletons */ = {
+			isa = PBXGroup;
+			children = (
+				BAC38F8E1F2F7D1400AE0057 /* IntervalTimerCsv.swift */,
+				BACD18221F08E5FC0072FF2C /* IntervalTimerUser.swift */,
+			);
+			name = Singletons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -411,6 +422,7 @@
 				BA4BFEAC1EFFAF2100E341DC /* EditTimerViewController.swift in Sources */,
 				BA4BFEAF1EFFB8EB00E341DC /* IntervalTimerUILabel.swift in Sources */,
 				BACD18231F08E5FC0072FF2C /* IntervalTimerUser.swift in Sources */,
+				BAC38F8F1F2F7D1400AE0057 /* IntervalTimerCsv.swift in Sources */,
 				BA116C8E1F08AB39001CDA80 /* IntervalTimerWeatherCurrent.swift in Sources */,
 				BA4BFEA51EFFA0FD00E341DC /* IntervalTimerUIBarButtonItems.swift in Sources */,
 				BAAFE44C1F0A04BF00D3619E /* IntervalTimerFuncs.swift in Sources */,
