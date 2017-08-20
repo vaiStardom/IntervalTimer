@@ -35,6 +35,10 @@
 		BA77AE7D1F4942B100AD34BE /* TimerViewControllerAesthetics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA77AE7C1F4942B100AD34BE /* TimerViewControllerAesthetics.swift */; };
 		BA77AE7F1F4942FC00AD34BE /* TimerViewControllerNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA77AE7E1F4942FC00AD34BE /* TimerViewControllerNotifications.swift */; };
 		BA77AE811F49432500AD34BE /* TimerViewControllerNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA77AE801F49432500AD34BE /* TimerViewControllerNavigationBar.swift */; };
+		BA77AE831F4943C500AD34BE /* EditIntervalViewControllerActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA77AE821F4943C500AD34BE /* EditIntervalViewControllerActions.swift */; };
+		BA77AE851F4943F300AD34BE /* EditIntervalViewControllerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA77AE841F4943F300AD34BE /* EditIntervalViewControllerTextField.swift */; };
+		BA77AE871F49444B00AD34BE /* EditIntervalViewControllerNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA77AE861F49444B00AD34BE /* EditIntervalViewControllerNavigationBar.swift */; };
+		BA77AE891F49447800AD34BE /* EditIntervalViewControllerHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA77AE881F49447800AD34BE /* EditIntervalViewControllerHelpers.swift */; };
 		BAAFE44C1F0A04BF00D3619E /* IntervalTimerFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFE44B1F0A04BF00D3619E /* IntervalTimerFuncs.swift */; };
 		BAAFE4511F0A366000D3619E /* IntervalTimerNetworkJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFE4501F0A366000D3619E /* IntervalTimerNetworkJSON.swift */; };
 		BAC38F8B1F2EF54400AE0057 /* IntervalTimerCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC38F8A1F2EF54400AE0057 /* IntervalTimerCity.swift */; };
@@ -96,6 +100,10 @@
 		BA77AE7C1F4942B100AD34BE /* TimerViewControllerAesthetics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewControllerAesthetics.swift; sourceTree = "<group>"; };
 		BA77AE7E1F4942FC00AD34BE /* TimerViewControllerNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewControllerNotifications.swift; sourceTree = "<group>"; };
 		BA77AE801F49432500AD34BE /* TimerViewControllerNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewControllerNavigationBar.swift; sourceTree = "<group>"; };
+		BA77AE821F4943C500AD34BE /* EditIntervalViewControllerActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditIntervalViewControllerActions.swift; sourceTree = "<group>"; };
+		BA77AE841F4943F300AD34BE /* EditIntervalViewControllerTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditIntervalViewControllerTextField.swift; sourceTree = "<group>"; };
+		BA77AE861F49444B00AD34BE /* EditIntervalViewControllerNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditIntervalViewControllerNavigationBar.swift; sourceTree = "<group>"; };
+		BA77AE881F49447800AD34BE /* EditIntervalViewControllerHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditIntervalViewControllerHelpers.swift; sourceTree = "<group>"; };
 		BAAFE44B1F0A04BF00D3619E /* IntervalTimerFuncs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalTimerFuncs.swift; sourceTree = "<group>"; };
 		BAAFE4501F0A366000D3619E /* IntervalTimerNetworkJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntervalTimerNetworkJSON.swift; path = IntervalTimer/IntervalTimerNetworkJSON.swift; sourceTree = "<group>"; };
 		BAC38F8A1F2EF54400AE0057 /* IntervalTimerCity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalTimerCity.swift; sourceTree = "<group>"; };
@@ -235,15 +243,19 @@
 			isa = PBXGroup;
 			children = (
 				BA4BFEB01EFFC55700E341DC /* EditIntervalViewController.swift */,
+				BA77AE821F4943C500AD34BE /* EditIntervalViewControllerActions.swift */,
+				BA77AE881F49447800AD34BE /* EditIntervalViewControllerHelpers.swift */,
+				BA77AE861F49444B00AD34BE /* EditIntervalViewControllerNavigationBar.swift */,
+				BA77AE841F4943F300AD34BE /* EditIntervalViewControllerTextField.swift */,
 				BA4BFEAB1EFFAF2100E341DC /* EditTimerViewController.swift */,
 				BA4BFE761EFF4D9D00E341DC /* TimersViewController.swift */,
 				BA324EE71F067AB700F38DE4 /* TimerViewController.swift */,
-				BA77AE7E1F4942FC00AD34BE /* TimerViewControllerNotifications.swift */,
 				BA77AE761F49415200AD34BE /* TimerViewControllerActions.swift */,
 				BA77AE7C1F4942B100AD34BE /* TimerViewControllerAesthetics.swift */,
+				BA77AE801F49432500AD34BE /* TimerViewControllerNavigationBar.swift */,
+				BA77AE7E1F4942FC00AD34BE /* TimerViewControllerNotifications.swift */,
 				BA77AE781F4941DC00AD34BE /* TimerViewControllerTimer.swift */,
 				BA77AE7A1F49424F00AD34BE /* TimerViewControllerWeather.swift */,
-				BA77AE801F49432500AD34BE /* TimerViewControllerNavigationBar.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -452,11 +464,15 @@
 				BA116C8E1F08AB39001CDA80 /* IntervalTimerWeatherCurrent.swift in Sources */,
 				BA4BFEA51EFFA0FD00E341DC /* IntervalTimerUIBarButtonItems.swift in Sources */,
 				BAAFE44C1F0A04BF00D3619E /* IntervalTimerFuncs.swift in Sources */,
+				BA77AE891F49447800AD34BE /* EditIntervalViewControllerHelpers.swift in Sources */,
 				BAC38F8B1F2EF54400AE0057 /* IntervalTimerCity.swift in Sources */,
+				BA77AE831F4943C500AD34BE /* EditIntervalViewControllerActions.swift in Sources */,
 				BA77AE7D1F4942B100AD34BE /* TimerViewControllerAesthetics.swift in Sources */,
 				BA4BFE771EFF4D9D00E341DC /* TimersViewController.swift in Sources */,
+				BA77AE851F4943F300AD34BE /* EditIntervalViewControllerTextField.swift in Sources */,
 				BA77AE791F4941DC00AD34BE /* TimerViewControllerTimer.swift in Sources */,
 				BA4BFEB51EFFD5E400E341DC /* IntervalTimerIndicatorUIImageView.swift in Sources */,
+				BA77AE871F49444B00AD34BE /* EditIntervalViewControllerNavigationBar.swift in Sources */,
 				BA4BFE751EFF4D9D00E341DC /* AppDelegate.swift in Sources */,
 				BACD18251F08E6C40072FF2C /* IntervalTimerEnums.swift in Sources */,
 			);
