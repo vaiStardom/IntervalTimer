@@ -34,6 +34,10 @@ struct IntervalTimerWeatherService {
 //MARK: - Weather retreival management
 extension IntervalTimerWeatherService {
     
+    //TODO: Validate each weather retreival priority, by test cases:
+    //case 1: a locality where there is no city id, but a city name and country code weather may be retreived
+    //case 2: a locality where neither the city id, or locality name weather does not work, only coodinates
+    
     //TODO: Controll the number of times we get theweather (since it may cost).
     //The control should be with these steps:
     //Get weather when timer starts.
@@ -53,6 +57,7 @@ extension IntervalTimerWeatherService {
     //Second attempt to get weather for the city and country (ISO 3166) of user if possible
     //http://api.openweathermap.org/data/2.5/weather?q=Mataram,id&APPID=448af267f0d35a22b6e00178e163deb3
     //Mataram,id (ISO 3166)
+    
     func getWeatherFor(_ cityName: String, in countryCode: String) -> Bool? {
         guard let theUrl = URL(string: "\(providerUrl)q=\(cityName),\(countryCode.lowercased())&APPID=\(apiKey)") else {
             return nil

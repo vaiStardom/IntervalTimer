@@ -29,6 +29,12 @@
 		BA4BFEB51EFFD5E400E341DC /* IntervalTimerIndicatorUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4BFEB41EFFD5E400E341DC /* IntervalTimerIndicatorUIImageView.swift */; };
 		BA724BCE1F0B3BD100A211BD /* cityList.20170703.csv in Resources */ = {isa = PBXBuildFile; fileRef = BA724BCD1F0B3BD100A211BD /* cityList.20170703.csv */; };
 		BA724BD01F0B3E8400A211BD /* city.list.json in Resources */ = {isa = PBXBuildFile; fileRef = BA724BCF1F0B3E8400A211BD /* city.list.json */; };
+		BA77AE771F49415200AD34BE /* TimerViewControllerActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA77AE761F49415200AD34BE /* TimerViewControllerActions.swift */; };
+		BA77AE791F4941DC00AD34BE /* TimerViewControllerTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA77AE781F4941DC00AD34BE /* TimerViewControllerTimer.swift */; };
+		BA77AE7B1F49424F00AD34BE /* TimerViewControllerWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA77AE7A1F49424F00AD34BE /* TimerViewControllerWeather.swift */; };
+		BA77AE7D1F4942B100AD34BE /* TimerViewControllerAesthetics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA77AE7C1F4942B100AD34BE /* TimerViewControllerAesthetics.swift */; };
+		BA77AE7F1F4942FC00AD34BE /* TimerViewControllerNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA77AE7E1F4942FC00AD34BE /* TimerViewControllerNotifications.swift */; };
+		BA77AE811F49432500AD34BE /* TimerViewControllerNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA77AE801F49432500AD34BE /* TimerViewControllerNavigationBar.swift */; };
 		BAAFE44C1F0A04BF00D3619E /* IntervalTimerFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFE44B1F0A04BF00D3619E /* IntervalTimerFuncs.swift */; };
 		BAAFE4511F0A366000D3619E /* IntervalTimerNetworkJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFE4501F0A366000D3619E /* IntervalTimerNetworkJSON.swift */; };
 		BAC38F8B1F2EF54400AE0057 /* IntervalTimerCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC38F8A1F2EF54400AE0057 /* IntervalTimerCity.swift */; };
@@ -84,6 +90,12 @@
 		BA4BFEB41EFFD5E400E341DC /* IntervalTimerIndicatorUIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalTimerIndicatorUIImageView.swift; sourceTree = "<group>"; };
 		BA724BCD1F0B3BD100A211BD /* cityList.20170703.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cityList.20170703.csv; sourceTree = "<group>"; };
 		BA724BCF1F0B3E8400A211BD /* city.list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = city.list.json; sourceTree = "<group>"; };
+		BA77AE761F49415200AD34BE /* TimerViewControllerActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewControllerActions.swift; sourceTree = "<group>"; };
+		BA77AE781F4941DC00AD34BE /* TimerViewControllerTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewControllerTimer.swift; sourceTree = "<group>"; };
+		BA77AE7A1F49424F00AD34BE /* TimerViewControllerWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewControllerWeather.swift; sourceTree = "<group>"; };
+		BA77AE7C1F4942B100AD34BE /* TimerViewControllerAesthetics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewControllerAesthetics.swift; sourceTree = "<group>"; };
+		BA77AE7E1F4942FC00AD34BE /* TimerViewControllerNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewControllerNotifications.swift; sourceTree = "<group>"; };
+		BA77AE801F49432500AD34BE /* TimerViewControllerNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewControllerNavigationBar.swift; sourceTree = "<group>"; };
 		BAAFE44B1F0A04BF00D3619E /* IntervalTimerFuncs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalTimerFuncs.swift; sourceTree = "<group>"; };
 		BAAFE4501F0A366000D3619E /* IntervalTimerNetworkJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntervalTimerNetworkJSON.swift; path = IntervalTimer/IntervalTimerNetworkJSON.swift; sourceTree = "<group>"; };
 		BAC38F8A1F2EF54400AE0057 /* IntervalTimerCity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalTimerCity.swift; sourceTree = "<group>"; };
@@ -226,6 +238,12 @@
 				BA4BFEAB1EFFAF2100E341DC /* EditTimerViewController.swift */,
 				BA4BFE761EFF4D9D00E341DC /* TimersViewController.swift */,
 				BA324EE71F067AB700F38DE4 /* TimerViewController.swift */,
+				BA77AE7E1F4942FC00AD34BE /* TimerViewControllerNotifications.swift */,
+				BA77AE761F49415200AD34BE /* TimerViewControllerActions.swift */,
+				BA77AE7C1F4942B100AD34BE /* TimerViewControllerAesthetics.swift */,
+				BA77AE781F4941DC00AD34BE /* TimerViewControllerTimer.swift */,
+				BA77AE7A1F49424F00AD34BE /* TimerViewControllerWeather.swift */,
+				BA77AE801F49432500AD34BE /* TimerViewControllerNavigationBar.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -420,18 +438,24 @@
 				BA116C8C1F08A847001CDA80 /* IntervalTimerWeatherService.swift in Sources */,
 				BA4BFEA91EFFA16500E341DC /* IntervalTimerGlobals.swift in Sources */,
 				BA4BFEA31EFF52CF00E341DC /* IntervalTimerColors.swift in Sources */,
+				BA77AE7B1F49424F00AD34BE /* TimerViewControllerWeather.swift in Sources */,
 				BA4BFEB11EFFC55700E341DC /* EditIntervalViewController.swift in Sources */,
 				BAAFE4511F0A366000D3619E /* IntervalTimerNetworkJSON.swift in Sources */,
 				BA4BFEAC1EFFAF2100E341DC /* EditTimerViewController.swift in Sources */,
 				BA4BFEAF1EFFB8EB00E341DC /* IntervalTimerUILabel.swift in Sources */,
 				BACD18231F08E5FC0072FF2C /* IntervalTimerUser.swift in Sources */,
 				BAC38F8F1F2F7D1400AE0057 /* IntervalTimerCsv.swift in Sources */,
+				BA77AE7F1F4942FC00AD34BE /* TimerViewControllerNotifications.swift in Sources */,
+				BA77AE771F49415200AD34BE /* TimerViewControllerActions.swift in Sources */,
 				BA2B280C1F35D35E00823B93 /* IntervalTimerUIButton.swift in Sources */,
+				BA77AE811F49432500AD34BE /* TimerViewControllerNavigationBar.swift in Sources */,
 				BA116C8E1F08AB39001CDA80 /* IntervalTimerWeatherCurrent.swift in Sources */,
 				BA4BFEA51EFFA0FD00E341DC /* IntervalTimerUIBarButtonItems.swift in Sources */,
 				BAAFE44C1F0A04BF00D3619E /* IntervalTimerFuncs.swift in Sources */,
 				BAC38F8B1F2EF54400AE0057 /* IntervalTimerCity.swift in Sources */,
+				BA77AE7D1F4942B100AD34BE /* TimerViewControllerAesthetics.swift in Sources */,
 				BA4BFE771EFF4D9D00E341DC /* TimersViewController.swift in Sources */,
+				BA77AE791F4941DC00AD34BE /* TimerViewControllerTimer.swift in Sources */,
 				BA4BFEB51EFFD5E400E341DC /* IntervalTimerIndicatorUIImageView.swift in Sources */,
 				BA4BFE751EFF4D9D00E341DC /* AppDelegate.swift in Sources */,
 				BACD18251F08E6C40072FF2C /* IntervalTimerEnums.swift in Sources */,

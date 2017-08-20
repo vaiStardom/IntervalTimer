@@ -19,6 +19,12 @@ import UIKit
  */
 
 //TODO: Geocoding is a time and resource intensive task, whenever possible, pre-geocode known locations
+//People usually workout in the same place or area. 
+//Start saving coordinates and checking if the coordinates are always whithing the same radius, say 50KM.
+//Your radius will be a geofence of 50 KM radiua, check to see if its possible to query cities whithin a radius.
+//Also check if there is an existing city id in this same radius. 
+//Once a usual radius(area) is determined and that a city id is retreived, we would not need to look in the csv file for the id anymore.
+//Also if there are NO identifialble city ids in this radius, then stop reverse geocoding and only get weather using coordinates
 class IntervalTimerUser: NSObject {
     
     //MARK: - Singleton
