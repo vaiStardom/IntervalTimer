@@ -158,7 +158,6 @@ extension IntervalTimerCurrentWeather{
             return
         }
         
-        
         print("------> IntervalTimerCurrentWeather getWeatherByCityId()")
         //TODO: allow this weather get attempt to complete
         let weatherService = IntervalTimerWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)

@@ -8,7 +8,8 @@
 
 import Foundation
 
-class IntervalTimerNetworkJSON {
+//This class dwonloads any json from the given url
+class IntervalTimerDownloadJSON {
     
     //MARK: - Properties
     fileprivate var url: URL
@@ -21,17 +22,19 @@ class IntervalTimerNetworkJSON {
         }
     }
 
+    //MARK: - Lazy vars
     lazy var sessionConfiguration: URLSessionConfiguration = URLSessionConfiguration.default
     lazy var session: URLSession = URLSession(configuration: self.sessionConfiguration)
-    
+
+    //MARK: - Typealias
+    typealias JSONDictionaryHandler = (([String:Any]?) -> Void)
+
     init?(url: URL?) {
         guard let theUrl = url else {
             return nil
         }
         self.url = theUrl
     }
-    
-    typealias JSONDictionaryHandler = (([String:Any]?) -> Void)
     
     func downloadJSON(_ completion: @escaping JSONDictionaryHandler){
     

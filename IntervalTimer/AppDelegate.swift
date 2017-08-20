@@ -42,5 +42,3 @@ extension AppDelegate {
         UINavigationBar.appearance().backgroundColor = IntervalTimerColors.Black
     }
 }
-
-

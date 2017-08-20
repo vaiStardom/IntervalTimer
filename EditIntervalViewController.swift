@@ -8,13 +8,6 @@
 
 import UIKit
 
-fileprivate extension String{
-    func containsOnlyCharactersIn(matchCharacter: String) -> Bool {
-        let disallowedCharacterSet = CharacterSet(charactersIn: matchCharacter).inverted
-        return self.rangeOfCharacter(from: disallowedCharacterSet) == nil
-    }
-}
-
 class EditIntervalViewController: UIViewController  {
 
     @IBOutlet weak var hourTextField2: UITextField!
@@ -43,104 +36,6 @@ class EditIntervalViewController: UIViewController  {
     
     var indicators:[(imageView: IntervalTimerIndicatorUIImageView, activeImageName: String, inactiveImageName: String)] = []
     var selectedIndicator = false
-    
-}
-//MARK: - Actions
-extension EditIntervalViewController {
-    @IBAction func redIndicator(_ sender: Any) {
-        manageSelectedColorIndicator(indicatorIndex: 0)
-    }
-    @IBAction func greenIndicator(_ sender: Any) {
-        manageSelectedColorIndicator(indicatorIndex: 1)
-    }
-    @IBAction func orangeIndicator(_ sender: Any) {
-        manageSelectedColorIndicator(indicatorIndex: 2)
-    }
-    @IBAction func blueIndicator(_ sender: Any) {
-        manageSelectedColorIndicator(indicatorIndex: 3)
-    }
-    @IBAction func yellowIndicator(_ sender: Any) {
-        manageSelectedColorIndicator(indicatorIndex: 4)
-    }
-    @IBAction func purpleIndicator(_ sender: Any) {
-        manageSelectedColorIndicator(indicatorIndex: 5)
-    }
-    func back(){
-        _ = navigationController?.popViewController(animated: true)
-    }
-    func cancel(){
-        _ = navigationController?.popViewController(animated: true)
-    }
-}
-
-//MARK: - Text Field Management
-extension EditIntervalViewController: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        //trim out the invisible sign
-        let trimmedOutSign = textField.text?.replacingOccurrences(of: zeroWidthSpace, with: "")
-        let currentText = trimmedOutSign
-
-        let nextTag = textField.tag + 1
-        let nextResponder = textField.superview?.viewWithTag(nextTag) as? UITextField
-        
-        let previousTag = (textField.tag - 1 == 0 ? 1 : textField.tag - 1)
-        var previousResponder = textField.superview?.viewWithTag(previousTag) as? UITextField
-        
-        if ((currentText?.characters.count)! < 1
-            && string.characters.count > 0
-            && string.containsOnlyCharactersIn(matchCharacter: allowedChars)){ // User inputs 1 number
-
-            textField.text = string
-            nextResponder?.becomeFirstResponder()
-            
-            return false
-            
-        } else if ((currentText?.characters.count)! >= 1
-            && string.characters.count == 0){ // User deletes the contents
-
-            if (previousResponder == nil){ //if we cant find the revious textField, set it to the first text field
-                previousResponder = textField.superview?.viewWithTag(0) as? UITextField
-            }
-
-            textField.text = zeroWidthSpace
-            previousResponder?.becomeFirstResponder()
-            return false
-
-        } else if ((currentText?.characters.count)! == 0
-            && string.characters.count == 0){ // TextField is empty, user backspaces.
-
-            textField.text = zeroWidthSpace
-            
-            if let previousTextField = previousResponder {
-                previousTextField.text = zeroWidthSpace
-            }
-            previousResponder!.becomeFirstResponder()
-            
-            return false
-        } else {
-            textField.text = zeroWidthSpace
-            return false
-        }
-    }
-}
-//MARK: - Helpers
-extension EditIntervalViewController {
-    func manageSelectedColorIndicator(indicatorIndex: Int){
-        indicators[indicatorIndex].imageView.isSelected = !indicators[indicatorIndex].imageView.isSelected
-        selectedIndicator = indicators[indicatorIndex].imageView.isSelected
-        unselectAllIndicators()
-        indicators[indicatorIndex].imageView.isSelected = selectedIndicator
-        if selectedIndicator == true {
-            indicators[indicatorIndex].imageView.image = UIImage(named: indicators[indicatorIndex].activeImageName)
-        }
-    }
-    func unselectAllIndicators(){
-        for indicator in indicators {
-            indicator.imageView.isSelected = false
-            indicator.imageView.image = UIImage(named: indicator.inactiveImageName)
-        }
-    }
 }
 //MARK: Life-cycle
 extension EditIntervalViewController {
@@ -172,21 +67,5 @@ extension EditIntervalViewController {
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-}
-//MARK: - Navigation Bar Management
-extension EditIntervalViewController {
-    func configureNavBar(){
-        self.navigationItem.hidesBackButton = true
-        
-        let backButton = IntervalTimerUIBarButtonItem().backButton(target: self, selector: #selector(EditIntervalViewController.back))
-        self.navigationItem.leftBarButtonItems = [backButton]
-        
-        let label = IntervalTimerUILabel().navBarNewIntervalTitle()
-        self.navigationItem.titleView = label
-        
-        let negativeSpace = IntervalTimerUIBarButtonItem().negativeSpace()
-        let cancelButton = IntervalTimerUIBarButtonItem().cancelButton(target: self, selector: #selector(EditIntervalViewController.cancel))
-        self.navigationItem.rightBarButtonItems = [negativeSpace, cancelButton]
     }
 }
