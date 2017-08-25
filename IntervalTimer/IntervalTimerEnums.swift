@@ -29,6 +29,14 @@ enum CsvControls{
 }
 //MARK: - Errors
 //For a an http response code enum, look here: //https://gist.github.com/brennanMKE/482452bb9ac5f578907f413902753eec
+enum GetCityIdError: Error {
+    case cityNameIsNil
+    case countryCodeIsNil
+    case latitudeIsNil
+    case longitudeIsNil
+    case urlIsNil
+    case noCityId(reason: String)
+}
 enum HttpError: Error {
     case unsucessfulHttpResponse(code: String)
 }

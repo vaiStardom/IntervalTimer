@@ -62,6 +62,5 @@ extension TimerViewController{
         
         //Weather updated, no need to update location until 3 hrs have passed or user has moved 1KM
         IntervalTimerUser.sharedInstance.thisShouldUpdateWeather = false
-        IntervalTimerUser.sharedInstance.stopUpdatingLocationManager()
     }
 }

@@ -13,19 +13,34 @@ class IntervalTimerCsv {
     //MARK: - Singleton
     static let sharedInstance = IntervalTimerCsv()
     
-    private var data: [[String:String]] = []
-    private var columnTitles: [String] = []
+    //MARK: - CoreLocation fileprivate properties
+    fileprivate var cityId: Int?
+    fileprivate var data: [[String:String]] = []
+    fileprivate var columnTitles: [String] = []
     
-    public func getCityIdFromCsv(file: String, cityName: String, countryCode: String) throws -> Int? {
+    //MARK: - public get/set properties
+    var thisCityId: Int?{
+        get { return cityId}
+        set {
+            cityId = newValue
+            UserDefaults.standard.set(newValue, forKey: "cityId")
+            UserDefaults.standard.synchronize()
+            
+            //            checkIfLocationDeterminationIsComplete()
+            
+        }
+    }
+
+    private func getCityIdFromCsv(file: String, cityName: String, countryCode: String) throws -> Int? {
         guard let filePath = Bundle.main.path(forResource: file, ofType: "csv") else {
             throw CsvError.readError("file \(file) not read")
         }
         do {
             let contents = try String(contentsOfFile: filePath, encoding: String.Encoding.macOSRoman)
             return convertCSV(file: contents, cityName: cityName, countryCode: countryCode )
-        } catch {
+        } catch let error as NSError {
             //TODO: Handle possible csv read error
-            print("File read error for file \(file). Error: \(error)")
+            print("ERROR -> IntervalTimerCsv getCityIdFromCsv() -> File read error for file \(file). Error: \(error.localizedDescription)")
             return nil
         }
     }
@@ -65,6 +80,7 @@ class IntervalTimerCsv {
                 }
             }
             print("------> convertCSV returning cityId = \(String(describing: cityId))")
+            thisCityId = cityId
             return cityId
         } else {
             //TODO: Handle error city not found
@@ -81,4 +97,48 @@ class IntervalTimerCsv {
         cleanFile = cleanFile.replacingOccurrences(of: "\n\n", with: "\n")
         return cleanFile
     }
+    
+    func getCityId(cityName: String, countryCode: String) throws {
+
+        guard let theCityName = cityName as String? else {
+            throw GetCityIdError.cityNameIsNil
+        }
+        
+        guard let theCountryCode = countryCode as String? else {
+            throw GetCityIdError.countryCodeIsNil
+        }
+        
+        var didGetCityId: Bool?
+                
+        DispatchQueue.global().async {
+            
+            //Get the city id with placemark locality, then manage via notifications
+            do {
+                let asyncCityId = try self.getCityIdFromCsv(file: "cityList.20170703", cityName: theCityName, countryCode: theCountryCode)
+                if asyncCityId != nil {
+                    DispatchQueue.main.async(execute: {
+                        IntervalTimerUser.sharedInstance.thisCityId = asyncCityId
+                        //                        self.thisDidAttemptGettingCityId = true
+                        //NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCityId"), object: nil)
+                    })
+                } else {
+                    didGetCityId = false
+                }
+            } catch let error as NSError {
+                print("ERROR -> IntervalTimerCsv getCityId() -> \(error.localizedDescription)")
+                didGetCityId = false
+            }
+        }
+
+        //TODO: find another way to throw errors from the dispatch queue, since this line never gets executed because the dispacth is async, so execution just goes over this..
+        if let theDidGetCityId = didGetCityId, theDidGetCityId == false {
+            throw GetCityIdError.noCityId(reason: "No city id for city name \(theCityName) and country code \(theCountryCode)")
+        }
+        
+        
+    }
+    
+//    func getCityIdByCoordinates() {
+//        IntervalTimerCity.getCityByCoordinates()
+//    }
 }

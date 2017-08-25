@@ -12,7 +12,7 @@ import UIKit
 extension TimerViewController{
     @IBAction func startPauseResumeTimer(_ sender: Any) {
         if startPauseResume == (true, false, false) { //start the timer
-            runTimer()
+            runIntervalTimer()
             aesthetics_timerStart()
             startPauseResume = (false, true, false)
         } else if startPauseResume == (false, true, false) { //pause the timer
@@ -20,7 +20,7 @@ extension TimerViewController{
             aesthetics_timerPause()
             startPauseResume = (false, false, true)
         } else if startPauseResume == (false, false, true) { //resume the timer
-            runTimer()
+            runIntervalTimer()
             aesthetics_timerResume()
             startPauseResume = (false, true, false)
         }
@@ -33,8 +33,16 @@ extension TimerViewController{
     @IBAction func weatherMissing(_ sender: Any) {
         showMessage(title: "Waether Missing", message: "Are you sure you are connected to the internet?")
     }
+    @IBAction func dismissAllowLocationServicesView(_ sender: Any) {
+        aesthetics_animateOut_AllowLocationServicesView()
+    }
+    @IBAction func takeMeToSettings(_ sender: Any) {
+        
+    }
     func back(){
         _ = navigationController?.popViewController(animated: true)
     }
-    func edit(){}
+    func edit(){
+        aesthetics_animateIn_AllowLocationServicesView()
+    }
 }

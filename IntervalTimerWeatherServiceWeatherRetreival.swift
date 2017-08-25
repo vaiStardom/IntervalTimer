@@ -20,7 +20,6 @@ extension IntervalTimerWeatherService {
     //Get weather when timer starts.
     //If user uses several timers in a row, get weather when user has moved 1KM and/or when 3 hours have elapsed.
     
-    
     //First, attempt to get weather for the city ID of user if possible using city.list.json
     //api.openweathermap.org/data/2.5/weather?id=1635882&APPID=448af267f0d35a22b6e00178e163deb3
     //http://api.openweathermap.org/data/2.5/weather?id=1635882&APPID=448af267f0d35a22b6e00178e163deb3
@@ -34,7 +33,6 @@ extension IntervalTimerWeatherService {
     //Second attempt to get weather for the city and country (ISO 3166) of user if possible
     //http://api.openweathermap.org/data/2.5/weather?q=Mataram,id&APPID=448af267f0d35a22b6e00178e163deb3
     //Mataram,id (ISO 3166)
-    
     func getWeatherFor(_ cityName: String, in countryCode: String) -> Bool? {
         guard let theUrl = URL(string: "\(providerUrl)q=\(cityName),\(countryCode.lowercased())&APPID=\(apiKey)") else {
             return nil
@@ -68,7 +66,7 @@ extension IntervalTimerWeatherService {
                 return
             }
             
-            DispatchQueue.main.sync {
+            DispatchQueue.main.async {
                 guard theCurrentWeather.thisTemperature != nil else {
                     print("------> IntervalTimerWeatherService getWeather() guard let theTemperature = nil")
                     didGetCurrentWeather = false
@@ -110,8 +108,8 @@ extension IntervalTimerWeatherService {
                 }
                 
                 completion(theWeather)
-            } catch let error {
-                print(error)
+            } catch let error as NSError {
+                print("ERROR -> IntervalTimerWeatherService fromNetwork() -> \(error.localizedDescription)")
                 completion(nil)
             }
         })

@@ -13,14 +13,21 @@ import UIKit
 
 class TimerViewController: UIViewController {
     
+    @IBOutlet var allowLocationServicesView: UIView!
+    @IBOutlet weak var visualEffectView: UIVisualEffectView!
+    
+    //ImageViews
     @IBOutlet weak var weatherImageView: UIImageView!
     @IBOutlet weak var cancelImageView: UIImageView!
     @IBOutlet weak var startPauseResumeImageView: UIImageView!
+    @IBOutlet weak var dismissAllowLocationServicesViewImageView: UIImageView!
     
+    //Buttons
     @IBOutlet weak var startPauseResumeButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var dismissAllowLocationServicesViewButton: UIButton!
     
-    //Tittle labels
+    //Title labels
     @IBOutlet weak var weatherTemperatureLabel: UILabel!
     @IBOutlet weak var timerNameLabel: UILabel!
     @IBOutlet weak var showMissingTemperatureWarningButton: UIButton!
@@ -45,49 +52,7 @@ class TimerViewController: UIViewController {
     var hoursMinutesSeconds : (Bool, Bool, Bool) = (false, false, false)
     var startTime = TimeInterval()
     var timer = Timer()
+    var visualEffect: UIVisualEffect!
     
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-}
-//MARK: Life-cycle
-extension TimerViewController{
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configureNavBar()
-        startPauseResume = (true, false, false)
-        timerNameLabel.text = "Peak 8"
-        ellapsedSeconds = Double(totalSeconds)
-        aesthetics_initial()
-        
-        
-        /////start timer
-        runTimer()
-        aesthetics_timerStart()
-        startPauseResume = (false, true, false)
-        /////
-        
-        testLabel.font = SystemFont.RegularMonospaced17
-
-        //TODO: If timer is set to show weather {..do all the below...}
-        //TODO: call this when user switches on weather for the first time
-        IntervalTimerUser.sharedInstance.firstTimeLocationUsage()
-            
-        //Only register if user wants weather for this timer
-        self.registerNotifications() //will register at first weather use
-            
-        if IntervalTimerUser.sharedInstance.thisShouldUpdateWeather! {
-
-            activityIndicatorStart()
-            
-            //TODO: call this when user starts a timer
-            IntervalTimerUser.sharedInstance.startUpdatingLocationManager()
-                
-            print("------> TimerViewController viewDidLoad() attempting to set weather")
-            IntervalTimerCurrentWeather.getWeatherByPriority()
-            
-
-        }
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
 }

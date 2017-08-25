@@ -35,12 +35,21 @@ extension TimerViewController{
     }
     func aesthetics_initial(){
         activityIndicator.color = IntervalTimerColors.Orange
+        cancelButton.isEnabled = false
+        
         aesthetics_hideMissingWeatherWarning()
         aesthetics_setFonts()
         aesthetics_timerCancel()
         aesthetics_timerLabels()
         aesthetics_timerLabelsInitialText()
-        cancelButton.isEnabled = false
+        aesthetics_allowLocationServices()
+    }
+    func aesthetics_allowLocationServices(){
+        visualEffect = visualEffectView.effect
+        visualEffectView.effect = nil
+        dismissAllowLocationServicesViewButton.isHidden = true
+        dismissAllowLocationServicesViewImageView.isHidden = true
+        allowLocationServicesView.layer.cornerRadius = 5
     }
     func aesthetics_minutes(){
         
@@ -130,5 +139,36 @@ extension TimerViewController{
         //Seconds labels
         timerSecondsLabel.font = ViewFont.TimerSeconds
         timerMillisecondsForSecondsLabel.font = ViewFont.TimerMilliseconds
+    }
+    func aesthetics_animateIn_AllowLocationServicesView(){
+        self.navigationController?.view.addSubview(allowLocationServicesView)
+        
+        allowLocationServicesView.center = self.view.center
+        allowLocationServicesView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
+        allowLocationServicesView.alpha = 0.0
+        
+        UIView.animate(withDuration: 0.4) {
+            
+            self.navigationController?.isNavigationBarHidden = true
+            
+            self.visualEffectView.effect = self.visualEffect
+            self.allowLocationServicesView.alpha = 1.0
+            self.allowLocationServicesView.transform =  CGAffineTransform.identity
+            self.dismissAllowLocationServicesViewButton.isHidden = false
+            self.dismissAllowLocationServicesViewImageView.isHidden = false
+        }
+    }
+    func aesthetics_animateOut_AllowLocationServicesView(){
+        UIView.animate(withDuration: 0.3, animations: {
+            self.navigationController?.isNavigationBarHidden = false
+            
+            self.allowLocationServicesView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
+            self.allowLocationServicesView.alpha = 0
+            self.visualEffectView.effect = nil
+            self.dismissAllowLocationServicesViewButton.isHidden = true
+            self.dismissAllowLocationServicesViewImageView.isHidden = true
+        }) {(success: Bool) in
+            self.allowLocationServicesView.removeFromSuperview()
+        }
     }
 }

@@ -55,7 +55,7 @@ class IntervalTimerDownloadJSON {
                                 }
                                 
                                 completion(jsonDictionary as? [String:Any])
-                            } catch let error as NSError{
+                            } catch let error as NSError {
                                 //throw JsonError.unsucessfulProcessing(reason: "\(error?.localizedDescription ?? "nil")")
                                 showMessage(title: "JSON Error", message: "IntervalTimerNetworkJSON downloadJSON(), desc.: \(error.localizedDescription)")
                             }

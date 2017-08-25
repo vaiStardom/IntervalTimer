@@ -38,18 +38,30 @@ public struct IntervalTimerCity {
 }
 //MARK: - Weather Retreival Static Functions
 extension IntervalTimerCity{
-    static func getCityByCoordinates(){
+    static func getCityIdByCoordinates() throws {
         
         guard let theLatitude = IntervalTimerUser.sharedInstance.thisLatitude else {
-            return
+            throw GetCityIdError.latitudeIsNil
         }
         
         guard let theLongitude = IntervalTimerUser.sharedInstance.thisLongitude else {
-            return
+            throw GetCityIdError.longitudeIsNil
+        }
+
+        var didGetCity: Bool?
+        let cityService = IntervalTimerCityService(apiKey: MapQuestApi.key, providerUrl: MapQuestApi.baseUrl)
+        
+        DispatchQueue.global().async {
+            do {
+                try cityService?.getCityIdAt(latitude: theLatitude, longitude: theLongitude)
+            } catch let error as NSError {
+                print("ERROR -> IntervalTimerCity getCityIdByCoordinates() -> \(error.localizedDescription)")
+                didGetCity = false
+            }
         }
         
-        print("------> IntervalTimerCity getCityByCoordinates()")
-        let cityService = IntervalTimerCityService(apiKey: MapQuestApi.key, providerUrl: MapQuestApi.baseUrl)
-        _ = cityService?.getCityAt(latitude: theLatitude, longitude: theLongitude)
+        if let theDidGetCityId = didGetCity, theDidGetCityId == false {
+            throw GetCityIdError.noCityId(reason: "No city found at latitude \(theLatitude) and longitude \(theLongitude)")
+        }
     }
 }

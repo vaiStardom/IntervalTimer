@@ -112,25 +112,10 @@ extension IntervalTimerCurrentWeather{
 extension IntervalTimerCurrentWeather{
     static func getWeatherByPriority(){
         
-        print("------> IntervalTimerCurrentWeather getWeatherByPriority() thisDidCompleteLocationDetermination = \(String(describing: IntervalTimerUser.sharedInstance.thisDidCompleteLocationDetermination))")
+        print("------> IntervalTimerCurrentWeather getWeatherByPriority() thisDidCompleteLocationDetermination = \(String(describing: IntervalTimerCoreLocation.sharedInstance.thisDidCompleteLocationDetermination))")
         
-        if IntervalTimerUser.sharedInstance.thisDidCompleteLocationDetermination! {
+        if IntervalTimerCoreLocation.sharedInstance.thisDidCompleteLocationDetermination! {
             print("------> IntervalTimerCurrentWeather getWeatherByPriority() weatherQueryPriority() = \(IntervalTimerUser.sharedInstance.weatherQueryPriority())")
-            
-
-            //TODO: Loop through the get weather priorities, exit when global variable GOT_WEATHER == true (for getting the weather or when all methods failed)
-//            var myGroup = DispatchGroup()
-//            for i in 0 ..< 5 {
-//                myGroup.enter()
-//                Alamofire.request(.GET, "https://httpbin.org/get", parameters: ["foo": "bar"]).responseJSON { response in
-//                    print("Finished request \(i)")
-//                    self.myGroup.leave()
-//                }
-//            }
-//                
-//            myGroup.notify(queue: DispatchQueue.main, execute: {
-//                print("Finished all requests.")
-//            })
             
             switch IntervalTimerUser.sharedInstance.weatherQueryPriority() {
             case WeatherQueryPriority.byCityId.rawValue:

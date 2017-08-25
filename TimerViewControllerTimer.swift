@@ -11,7 +11,7 @@ import Foundation
 //MARK: Timer functions
 extension TimerViewController{
     
-    func runTimer(){
+    func runIntervalTimer(){
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(TimerViewController.updateTime), userInfo: nil, repeats: true)
         startTime = Date.timeIntervalSinceReferenceDate + TimeInterval(ellapsedSeconds)
     }
