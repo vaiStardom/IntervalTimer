@@ -55,9 +55,10 @@ class IntervalTimerDownloadJSON {
                                 }
                                 
                                 completion(jsonDictionary as? [String:Any])
-                            } catch let error as NSError {
+                            } catch let error {
+                                print("------> ERROR IntervalTimerNetworkJSON downloadJSON(), desc.: \(error)")
                                 //throw JsonError.unsucessfulProcessing(reason: "\(error?.localizedDescription ?? "nil")")
-                                showMessage(title: "JSON Error", message: "IntervalTimerNetworkJSON downloadJSON(), desc.: \(error.localizedDescription)")
+                                showMessage(title: "JSON Error", message: "IntervalTimerNetworkJSON downloadJSON(), desc.: \(error)")
                             }
                         }
                     default:
@@ -67,7 +68,7 @@ class IntervalTimerDownloadJSON {
                 }
             } else {
                 //throw UrlError.unsucessfulUrl(reason: "\(error?.localizedDescription ?? "nil")")
-                showMessage(title: "URL Error", message: "IntervalTimerNetworkJSON downloadJSON(), desc.: \(error?.localizedDescription ?? "nil")")
+                showMessage(title: "URL Error", message: "IntervalTimerNetworkJSON downloadJSON(), desc.: \(String(describing: error))")
             }
         }
         dataTask.resume()

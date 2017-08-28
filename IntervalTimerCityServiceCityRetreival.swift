@@ -9,68 +9,52 @@
 import Foundation
 
 //MARK: - City retreival management
+//http://open.mapquestapi.com/nominatim/v1/reverse.php?key=iaGiN8vTI73I5Kpa0YPrVVblLvjPAfYF&format=json&lat=45.514589&lon=-73.559794&accept-language=en
+
 extension IntervalTimerCityService {
-    
-    //http://open.mapquestapi.com/nominatim/v1/reverse.php?key=iaGiN8vTI73I5Kpa0YPrVVblLvjPAfYF&format=json&lat=45.514589&lon=-73.559794&accept-language=en
-    func getCityIdAt(latitude: Double, longitude: Double) throws {
+    func getCityNameAt(latitude: Double, longitude: Double) throws {
+        print("------> IntervalTimerCityService getCityNameAt(latitude:longitude:)")
         guard let theUrl = URL(string: "\(providerUrl)key=\(apiKey)&format=json&lat=\(latitude)&lon=\(longitude)&accept-language=en") else {
-            throw GetCityIdError.urlIsNil
+            print("------> ERROR IntervalTimerCityService getCityNameAt(latitude:longitude:) -> URL is nil")
+            throw GetCityIdError.urlIsNil(reason: "URL is nil")
         }
         do {
-            try getCityIdWith(theUrl)
-        } catch let error as NSError {
-            print("ERROR -> IntervalTimerCityService getCityIdAt() -> \(error.localizedDescription)")
+            try getCityNameWith(theUrl)
+        } catch let error {
+            print("------> ERROR IntervalTimerCityService getCityIdAt() -> \(error)")
+            throw error
         }
     }
     
-    //Here we attempt a second time at getting a city ID using a MapQuest city name
-    private func getCityIdWith(_ url: URL) throws {
+    private func getCityNameWith(_ url: URL) throws {
+        print("------> IntervalTimerCityService getCityNameWith(url:)")
         
         guard let theUrl = url as URL? else {
-            throw GetCityIdError.urlIsNil
+            print("------> ERROR IntervalTimerCityService getCityNameWith(url:) -> URL is nil")
+            throw GetCityIdError.urlIsNil(reason: "URL is nil")
         }
         
         var didGetCity = true
-        
+
         fromNetwork(with: theUrl) { (intervalTimerCity) in
             guard let theCity = intervalTimerCity?.thisName!.replacingOccurrences(of: self.cityWord, with: "").trimmingCharacters(in: .whitespacesAndNewlines) else {
+                print("------> ERROR IntervalTimerCityService getCityNameWith(url:) -> theCity is nil")
                 didGetCity = false
                 return
             }
-            
-            IntervalTimerUser.sharedInstance.thisCityName = theCity
-            
-            guard let theCountryCode = IntervalTimerUser.sharedInstance.thisCountryCode else {
-                didGetCity = false
-                return
-            }
-            
-            if didGetCity == true {
-                //First try to get the city id using core locations city name and country code
-                do {
-                    try IntervalTimerCsv.sharedInstance.getCityId(cityName: theCity, countryCode: theCountryCode)
-                } catch let error as NSError {
-                    print("ERROR -> IntervalTimerCityService getCityIdWith() -> \(error.localizedDescription)")
-                    didGetCity = false
-                }
-//                DispatchQueue.global(qos: .background).async {
-//                    if let asyncCityId = IntervalTimerCsv.sharedInstance.getCityId(cityName: theCity, countryCode: theCountryCode) {
-//                        DispatchQueue.main.async(execute: {
-//                            didGetCity = true
-//                            print("------> IntervalTimerCityService getCityWith() cityId = \(String(describing: asyncCityId))")
-//                            IntervalTimerUser.sharedInstance.thisCityId = asyncCityId
-//                            //                        NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCityId"), object: nil)
-//                        })
-//                    }
-//                }
-            }
+            DispatchQueue.main.async(execute: {
+                print("------> IntervalTimerCityService getCityNameWith(url:), theCity = \(theCity)")
+                IntervalTimerUser.sharedInstance.thisCityName = theCity
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetNewCityName"), object: nil)
+            })
         }
+        
         if didGetCity == false {
             throw GetCityIdError.noCityId(reason: "Could not get city name from URL \(theUrl) ")
         }
     }
-    
-    private func fromNetwork(with url: URL, completion: @escaping (IntervalTimerCity?) -> Void ){
+
+    private func fromNetwork(with url: URL, completion: @escaping (IntervalTimerCity?) -> Void ) {
         guard let theNetworkJson = IntervalTimerDownloadJSON(url: url) else {
             completion(nil)
             return
@@ -83,9 +67,11 @@ extension IntervalTimerCityService {
                     return
                 }
                 completion(theCity)
-            } catch let error as NSError {
+            } catch let error {
+                print("------> ERROR IntervalTimerCityService fromNetwork(url:completion:) -> \(error)")
                 //TODO: Handle case where network connexions are disables (same way as the disabled locations services)
-                showMessage(title: "JSON Error", message: "Failed IntervalTimerCityService -> fromNetwork(). Desc.: \(error.localizedDescription)")
+                //TODO: figure out how to throw from this closure
+                showMessage(title: "JSON Error", message: "Failed IntervalTimerCityService -> fromNetwork(). Desc.: \(error)")
                 completion(nil)
             }
         })

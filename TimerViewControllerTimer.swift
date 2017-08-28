@@ -61,7 +61,5 @@ extension TimerViewController{
         //Seconds labels
         timerSecondsLabel.text = "\(strSeconds)"
         timerMillisecondsForSecondsLabel.text = ".\(strMilleseconds)"
-        
-        testLabel.text = "\(strHours):\(strMinutes):\(strSeconds)"
     }
 }

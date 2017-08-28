@@ -30,7 +30,7 @@ class IntervalTimerCsv {
             
         }
     }
-
+    
     private func getCityIdFromCsv(file: String, cityName: String, countryCode: String) throws -> Int? {
         guard let filePath = Bundle.main.path(forResource: file, ofType: "csv") else {
             throw CsvError.readError("file \(file) not read")
@@ -38,9 +38,9 @@ class IntervalTimerCsv {
         do {
             let contents = try String(contentsOfFile: filePath, encoding: String.Encoding.macOSRoman)
             return convertCSV(file: contents, cityName: cityName, countryCode: countryCode )
-        } catch let error as NSError {
+        } catch let error {
             //TODO: Handle possible csv read error
-            print("ERROR -> IntervalTimerCsv getCityIdFromCsv() -> File read error for file \(file). Error: \(error.localizedDescription)")
+            print("------> ERROR IntervalTimerCsv getCityIdFromCsv() -> File read error for file \(file). Error: \(error)")
             return nil
         }
     }
@@ -99,46 +99,35 @@ class IntervalTimerCsv {
     }
     
     func getCityId(cityName: String, countryCode: String) throws {
-
+        
         guard let theCityName = cityName as String? else {
-            throw GetCityIdError.cityNameIsNil
+            throw GetCityIdError.cityNameIsNil(reason: "City name is nil")
         }
         
         guard let theCountryCode = countryCode as String? else {
-            throw GetCityIdError.countryCodeIsNil
+            throw GetCityIdError.countryCodeIsNil(reason: "Country code is nil")
         }
         
         var didGetCityId: Bool?
-                
-        DispatchQueue.global().async {
-            
-            //Get the city id with placemark locality, then manage via notifications
-            do {
-                let asyncCityId = try self.getCityIdFromCsv(file: "cityList.20170703", cityName: theCityName, countryCode: theCountryCode)
-                if asyncCityId != nil {
-                    DispatchQueue.main.async(execute: {
-                        IntervalTimerUser.sharedInstance.thisCityId = asyncCityId
-                        //                        self.thisDidAttemptGettingCityId = true
-                        //NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCityId"), object: nil)
-                    })
-                } else {
-                    didGetCityId = false
-                }
-            } catch let error as NSError {
-                print("ERROR -> IntervalTimerCsv getCityId() -> \(error.localizedDescription)")
+        
+        //Get the city id with placemark locality, then manage via notifications
+        do {
+            let asyncCityId = try self.getCityIdFromCsv(file: "cityList.20170703", cityName: theCityName, countryCode: theCountryCode)
+            if asyncCityId != nil {
+                DispatchQueue.main.async(execute: {
+                    IntervalTimerUser.sharedInstance.thisCityId = asyncCityId
+                })
+            } else {
                 didGetCityId = false
             }
+        } catch let error {
+            print("------> ERROR IntervalTimerCsv getCityId() -> \(error)")
+            didGetCityId = false
         }
-
+        
         //TODO: find another way to throw errors from the dispatch queue, since this line never gets executed because the dispacth is async, so execution just goes over this..
         if let theDidGetCityId = didGetCityId, theDidGetCityId == false {
             throw GetCityIdError.noCityId(reason: "No city id for city name \(theCityName) and country code \(theCountryCode)")
         }
-        
-        
     }
-    
-//    func getCityIdByCoordinates() {
-//        IntervalTimerCity.getCityByCoordinates()
-//    }
 }

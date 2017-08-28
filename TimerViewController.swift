@@ -43,8 +43,6 @@ class TimerViewController: UIViewController {
     //Seconds labels
     @IBOutlet weak var timerSecondsLabel: UILabel!
     @IBOutlet weak var timerMillisecondsForSecondsLabel: UILabel!
-    
-    @IBOutlet weak var testLabel: UILabel!
 
     var totalSeconds = 3602 //seconds
     var ellapsedSeconds = 0.0

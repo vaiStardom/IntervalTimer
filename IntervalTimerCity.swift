@@ -25,7 +25,7 @@ public struct IntervalTimerCity {
     public init(name: String) {
         self.name = name
     }
-
+    
     public init(json: [String: Any]) throws {
         guard let theAddress = json["address"] as? [String: String] else {
             throw JsonError.missing("json key address")
@@ -38,30 +38,32 @@ public struct IntervalTimerCity {
 }
 //MARK: - Weather Retreival Static Functions
 extension IntervalTimerCity{
-    static func getCityIdByCoordinates() throws {
+    
+    static func getCityAlternativeInfoByCoordinates() throws {
         
+        print("------> IntervalTimerCity getCityAlternativeInfoByCoordinates()")
         guard let theLatitude = IntervalTimerUser.sharedInstance.thisLatitude else {
-            throw GetCityIdError.latitudeIsNil
+            print("------> IntervalTimerCity getCityAlternativeInfoByCoordinates() GetCityIdError.latitudeIsNil")
+            throw GetCityIdError.latitudeIsNil(reason: "Latitude is nil")
         }
         
         guard let theLongitude = IntervalTimerUser.sharedInstance.thisLongitude else {
-            throw GetCityIdError.longitudeIsNil
+            print("------> IntervalTimerCity getCityAlternativeInfoByCoordinates() GetCityIdError.longitudeIsNil")
+            throw GetCityIdError.longitudeIsNil(reason: "Longitude is nil")
         }
-
-        var didGetCity: Bool?
+        
+        var didGetCityName: Bool?
         let cityService = IntervalTimerCityService(apiKey: MapQuestApi.key, providerUrl: MapQuestApi.baseUrl)
         
-        DispatchQueue.global().async {
-            do {
-                try cityService?.getCityIdAt(latitude: theLatitude, longitude: theLongitude)
-            } catch let error as NSError {
-                print("ERROR -> IntervalTimerCity getCityIdByCoordinates() -> \(error.localizedDescription)")
-                didGetCity = false
-            }
+        do {
+            try cityService?.getCityNameAt(latitude: theLatitude, longitude: theLongitude)
+        } catch let error {
+            print("------> ERROR IntervalTimerCity getCityAlternativeInfoByCoordinates() -> \(error)")
+            didGetCityName = false
         }
         
-        if let theDidGetCityId = didGetCity, theDidGetCityId == false {
-            throw GetCityIdError.noCityId(reason: "No city found at latitude \(theLatitude) and longitude \(theLongitude)")
+        if let theDidGetCityName = didGetCityName, theDidGetCityName == false {
+            throw GetCityIdError.noCityName(reason: "No city name found at latitude \(theLatitude) and longitude \(theLongitude)")
         }
     }
 }

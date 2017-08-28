@@ -13,6 +13,7 @@ import UIKit
 extension TimerViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configureNavBar()
         startPauseResume = (true, false, false)
         timerNameLabel.text = "Peak 8"
@@ -25,8 +26,6 @@ extension TimerViewController{
         aesthetics_timerStart()
         startPauseResume = (false, true, false)
         /////
-        
-        testLabel.font = SystemFont.RegularMonospaced17
         
         //TODO: If timer is set to show weather {..do all the below...}
         //TODO: call this when user switches on weather for the first time
@@ -43,12 +42,11 @@ extension TimerViewController{
             
             //TODO: call this when user starts a timer
             //IntervalTimerUser.sharedInstance.startUpdatingLocationManager()
+            print("------> TimerViewController viewDidLoad() requesting Location")
             IntervalTimerCoreLocation.sharedInstance.requestLocation()
             
             print("------> TimerViewController viewDidLoad() attempting to set weather")
             IntervalTimerCurrentWeather.getWeatherByPriority()
-            
-            
         }
         
     }

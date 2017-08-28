@@ -113,8 +113,7 @@ extension TimerViewController{
         aesthetics_timerLabelsInitialText()
     }
     func aesthetics_timerLabelsInitialText(){
-        testLabel.text = "0"
-        
+
         timerHoursLabel.text = "00:00:00"
         
         //Minutes labels

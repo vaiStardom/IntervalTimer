@@ -29,45 +29,6 @@ let ICON_DICTIONARY: [String: String] = [
     , "50d": "mist-day"
     , "50n": "mist-night"
 ]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//let REVERSE_DNS = "com.example.IntervalTimer"
+let NEWCITY_NAME_DISPATCHGROUP = DispatchGroup()
+let UTILITY_GLOBAL_DISPATCHQUEUE = DispatchQueue.global(qos: .utility)

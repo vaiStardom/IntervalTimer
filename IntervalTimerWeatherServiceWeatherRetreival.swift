@@ -108,8 +108,8 @@ extension IntervalTimerWeatherService {
                 }
                 
                 completion(theWeather)
-            } catch let error as NSError {
-                print("ERROR -> IntervalTimerWeatherService fromNetwork() -> \(error.localizedDescription)")
+            } catch let error {
+                print("------> ERROR IntervalTimerWeatherService fromNetwork() -> \(error)")
                 completion(nil)
             }
         })

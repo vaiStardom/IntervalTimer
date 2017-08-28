@@ -28,16 +28,25 @@ enum CsvControls{
     static let LineSeperator: String = "\n"
 }
 //MARK: - Errors
-//For a an http response code enum, look here: //https://gist.github.com/brennanMKE/482452bb9ac5f578907f413902753eec
-enum GetCityIdError: Error {
-    case cityNameIsNil
-    case countryCodeIsNil
-    case latitudeIsNil
-    case longitudeIsNil
-    case urlIsNil
-    case noCityId(reason: String)
+enum CoreLocationError : Int {
+    case LocationUnknown // location is currently unknown, but CL will keep trying
+    case Denied // Access to location or ranging has been denied by the user
+    case Network // general, network-related error
 }
-enum HttpError: Error {
+enum CsvError: Error {
+    case readError(String)
+    case missing(String)
+}
+enum GetCityIdError: Error {
+    case cityNameIsNil(reason: String)
+    case countryCodeIsNil(reason: String)
+    case latitudeIsNil(reason: String)
+    case longitudeIsNil(reason: String)
+    case urlIsNil(reason: String)
+    case noCityId(reason: String)
+    case noCityName(reason: String)
+}
+enum HttpError: Error { //For a an http response code enum, look here: //https://gist.github.com/brennanMKE/482452bb9ac5f578907f413902753eec
     case unsucessfulHttpResponse(code: String)
 }
 enum JsonError: Error {
@@ -49,10 +58,7 @@ enum JsonError: Error {
 enum UrlError: Error {
     case unsucessfulUrl(reason: String)
 }
-enum CsvError: Error {
-    case readError(String)
-    case missing(String)
-}
+
 //MARK: - Fonts
 enum SystemFont{
     static let Bold15: UIFont = UIFont.systemFont(ofSize: 15, weight: UIFontWeightBold)
@@ -134,6 +140,11 @@ enum MapQuestApi {
     static let key = "iaGiN8vTI73I5Kpa0YPrVVblLvjPAfYF"
     static let baseUrl = "http://open.mapquestapi.com/nominatim/v1/reverse.php?"
 }
+////MARK: - Queues
+//enum QueueLabel{
+//    static let ShouldUpdateWeather = REVERSE_DNS + ".shouldUpdateWeather"
+//    static let GetCityId = REVERSE_DNS + ".getCityId"
+//}
 //MARK: - Weather
 enum OpenWeatherApi {
     static let key = "448af267f0d35a22b6e00178e163deb3"
