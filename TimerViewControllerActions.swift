@@ -38,7 +38,7 @@ extension TimerViewController{
         aesthetics_animateOut_AllowLocationServicesView()
     }
     @IBAction func takeMeToSettings(_ sender: Any) {
-        
+        UIApplication.shared.open(URL(string:UIApplicationOpenSettingsURLString)!)
     }
     func back(){
         _ = navigationController?.popViewController(animated: true)
