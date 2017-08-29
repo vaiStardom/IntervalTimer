@@ -13,23 +13,9 @@ class IntervalTimerCsv {
     //MARK: - Singleton
     static let sharedInstance = IntervalTimerCsv()
     
-    //MARK: - CoreLocation fileprivate properties
-    fileprivate var cityId: Int?
+    //MARK: - Fileprivate properties
     fileprivate var data: [[String:String]] = []
     fileprivate var columnTitles: [String] = []
-    
-    //MARK: - public get/set properties
-    var thisCityId: Int?{
-        get { return cityId}
-        set {
-            cityId = newValue
-            UserDefaults.standard.set(newValue, forKey: "cityId")
-            UserDefaults.standard.synchronize()
-            
-            //            checkIfLocationDeterminationIsComplete()
-            
-        }
-    }
     
     private func getCityIdFromCsv(file: String, cityName: String, countryCode: String) throws -> Int? {
         guard let filePath = Bundle.main.path(forResource: file, ofType: "csv") else {
@@ -51,7 +37,7 @@ class IntervalTimerCsv {
             data = []
             columnTitles = getStringFieldsForRow(row: rows.first!, delimiter: CsvControls.ColumnDelimiter)
             
-            print("------> convertCSV looking for cityId with cityName = \(String(describing: cityName)) and countrycode = \(String(describing: countryCode.lowercased()))")
+            print("------> IntervalTimerCsv convertCSV looking for cityId with cityName = \(String(describing: cityName)) and countrycode = \(String(describing: countryCode.lowercased()))")
             for (index, row) in rows.enumerated() {
                 let fields = getStringFieldsForRow(row: row, delimiter: CsvControls.ColumnDelimiter)
                 
@@ -61,26 +47,25 @@ class IntervalTimerCsv {
                     continue
                 } else {
                     guard let theCityId = Int(fields[0].trimmingCharacters(in: .whitespacesAndNewlines)) else {
-                        print("------> convertCSV theCityId = \(fields[0]) could not be converted to Int for row with 'values\(row)' at index '\(index)'")
+                        print("------> IntervalTimerCsv convertCSV theCityId = \(fields[0]) could not be converted to Int for row with 'values\(row)' at index '\(index)'")
                         continue
                     }
                     guard let theCity = fields[1].trimmingCharacters(in: .whitespacesAndNewlines) as String? else {
-                        print("------> convertCSV theCity = \(fields[1]) could not be converted to String at row \(row), index \(index)")
+                        print("------> IntervalTimerCsv convertCSV theCity = \(fields[1]) could not be converted to String at row \(row), index \(index)")
                         continue
                     }
                     guard let theCountryCode = fields[2].lowercased().trimmingCharacters(in: .whitespacesAndNewlines)  as String? else {
-                        print("------> convertCSV theCountryCode = \(fields[2]) could not be converted to String at row \(row), index \(index)")
+                        print("------> IntervalTimerCsv convertCSV theCountryCode = \(fields[2]) could not be converted to String at row \(row), index \(index)")
                         continue
                     }
                     if theCity == cityName && theCountryCode == countryCode.lowercased() {
                         cityId = theCityId
-                        print("------> convertCSV found cityId = \(theCityId)")
+                        print("------> IntervalTimerCsv convertCSV found cityId = \(theCityId)")
                         break
                     }
                 }
             }
-            print("------> convertCSV returning cityId = \(String(describing: cityId))")
-            thisCityId = cityId
+            print("------> IntervalTimerCsv convertCSV returning cityId = \(String(describing: cityId))")
             return cityId
         } else {
             //TODO: Handle error city not found
@@ -112,10 +97,11 @@ class IntervalTimerCsv {
         
         //Get the city id with placemark locality, then manage via notifications
         do {
-            let asyncCityId = try self.getCityIdFromCsv(file: "cityList.20170703", cityName: theCityName, countryCode: theCountryCode)
-            if asyncCityId != nil {
+            let theCityId = try self.getCityIdFromCsv(file: "cityList.20170703", cityName: theCityName, countryCode: theCountryCode)
+            if theCityId != nil {
                 DispatchQueue.main.async(execute: {
-                    IntervalTimerUser.sharedInstance.thisCityId = asyncCityId
+                    print("------> IntervalTimerCsv getCityId(cityName:countryCode:) setting IntervalTimerCoreLocation.sharedInstance.thisCityId = \(String(describing: theCityId))")
+                    IntervalTimerCoreLocation.sharedInstance.thisCityId = theCityId
                 })
             } else {
                 didGetCityId = false

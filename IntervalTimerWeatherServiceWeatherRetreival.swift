@@ -23,38 +23,50 @@ extension IntervalTimerWeatherService {
     //First, attempt to get weather for the city ID of user if possible using city.list.json
     //api.openweathermap.org/data/2.5/weather?id=1635882&APPID=448af267f0d35a22b6e00178e163deb3
     //http://api.openweathermap.org/data/2.5/weather?id=1635882&APPID=448af267f0d35a22b6e00178e163deb3
-    func getWeatherFor(_ cityId: Int) -> Bool? {
+    func getWeatherFor(_ cityId: Int) throws {
         guard let theUrl = URL(string: "\(providerUrl)id=\(cityId)&APPID=\(apiKey)") else {
-            return nil
+            throw GetWeatherError.urlIsNil(reason: " URL = \(providerUrl)id=\(cityId)&APPID=\(apiKey)")
         }
-        return getWeatherWith(theUrl)
+        do {
+            try getWeatherWith(theUrl)
+        } catch let error {
+            print("------> ERROR IntervalTimerWeatherService getWeatherFor(cityId:) -> \(error)")
+        }
     }
     
     //Second attempt to get weather for the city and country (ISO 3166) of user if possible
     //http://api.openweathermap.org/data/2.5/weather?q=Mataram,id&APPID=448af267f0d35a22b6e00178e163deb3
     //Mataram,id (ISO 3166)
-    func getWeatherFor(_ cityName: String, in countryCode: String) -> Bool? {
+    func getWeatherFor(_ cityName: String, in countryCode: String) throws {
         guard let theUrl = URL(string: "\(providerUrl)q=\(cityName),\(countryCode.lowercased())&APPID=\(apiKey)") else {
-            return nil
+            throw GetWeatherError.urlIsNil(reason: " URL = \(providerUrl)q=\(cityName),\(countryCode.lowercased())&APPID=\(apiKey)")
         }
-        return getWeatherWith(theUrl)
+        do {
+            try getWeatherWith(theUrl)
+        } catch let error {
+            print("------> ERROR IntervalTimerWeatherService getWeatherFor(cityId:) -> \(error)")
+        }
     }
     
     //Third, attempt to get weather for user using coordinates
     //api.openweathermap.org/data/2.5/weather?lat=-8.549790&lon=116.072037&APPID=448af267f0d35a22b6e00178e163deb3
     //http://api.openweathermap.org/data/2.5/weather?lat=-8.549790&lon=116.072037&APPID=448af267f0d35a22b6e00178e163deb3
     //-8.549790, 116.072037
-    func getWeatherAt(latitude: Double, longitude: Double) -> Bool? {
+    func getWeatherAt(latitude: Double, longitude: Double) throws {
         guard let theUrl = URL(string: "\(providerUrl)lat=\(latitude)&lon=\(longitude)&APPID=\(apiKey)") else {
-            return nil
+            throw GetWeatherError.urlIsNil(reason: " URL = \(providerUrl)lat=\(latitude)&lon=\(longitude)&APPID=\(apiKey)")
         }
-        return getWeatherWith(theUrl)
+        do {
+            try getWeatherWith(theUrl)
+        } catch let error {
+            print("------> ERROR IntervalTimerWeatherService getWeatherFor(cityId:) -> \(error)")
+        }
     }
     
-    private func getWeatherWith(_ url: URL) -> Bool? {
+    private func getWeatherWith(_ url: URL) throws {
         
         guard let theUrl = url as URL? else {
-            return nil
+            throw GetWeatherError.urlIsNil(reason: " URL = \(url)")
         }
         
         var didGetCurrentWeather: Bool?
@@ -66,25 +78,29 @@ extension IntervalTimerWeatherService {
                 return
             }
             
-            DispatchQueue.main.async {
-                guard theCurrentWeather.thisTemperature != nil else {
-                    print("------> IntervalTimerWeatherService getWeather() guard let theTemperature = nil")
-                    didGetCurrentWeather = false
-                    return
-                }
-                
-                guard theCurrentWeather.thisIcon != nil else {
-                    print("------> IntervalTimerWeatherService getWeather() guard let theIcon = nil")
-                    didGetCurrentWeather = false
-                    return
-                }
-                
-                didGetCurrentWeather = true
+            guard theCurrentWeather.thisTemperature != nil else {
+                print("------> IntervalTimerWeatherService getWeather() guard let theTemperature = nil")
+                didGetCurrentWeather = false
+                return
+            }
+            
+            guard theCurrentWeather.thisIcon != nil else {
+                print("------> IntervalTimerWeatherService getWeather() guard let theIcon = nil")
+                didGetCurrentWeather = false
+                return
+            }
+            
+            didGetCurrentWeather = true
+            DispatchQueue.main.async(execute: {
+                print("------> IntervalTimerWeatherService getWeatherWith(url:) = \(theCurrentWeather)")
                 IntervalTimerUser.sharedInstance.thisCurrentWeather = theCurrentWeather
                 NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCurrentWeather"), object: nil)
-            }
+            })
         }
-        return didGetCurrentWeather
+        
+        if didGetCurrentWeather == false {
+            throw GetWeatherError.didNotGetWeather(reason: "Could not get weather from URL \(theUrl) ")
+        }
     }
     
     private func fromNetwork(with url: URL, completion: @escaping (IntervalTimerCurrentWeather?) -> Void ){

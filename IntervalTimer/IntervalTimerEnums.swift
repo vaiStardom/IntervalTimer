@@ -46,6 +46,14 @@ enum GetCityIdError: Error {
     case noCityId(reason: String)
     case noCityName(reason: String)
 }
+enum GetWeatherError: Error {
+    case noWeatherForCityId(reason: String)
+    case noWeatherForLocationName(reason: String)
+    case noWeatherForCoordinates(reason: String)
+    case shouldNotUpdateWeather(reason: String)
+    case didNotGetWeather(reason: String)
+    case urlIsNil(reason: String)
+}
 enum HttpError: Error { //For a an http response code enum, look here: //https://gist.github.com/brennanMKE/482452bb9ac5f578907f413902753eec
     case unsucessfulHttpResponse(code: String)
 }
@@ -140,11 +148,6 @@ enum MapQuestApi {
     static let key = "iaGiN8vTI73I5Kpa0YPrVVblLvjPAfYF"
     static let baseUrl = "http://open.mapquestapi.com/nominatim/v1/reverse.php?"
 }
-////MARK: - Queues
-//enum QueueLabel{
-//    static let ShouldUpdateWeather = REVERSE_DNS + ".shouldUpdateWeather"
-//    static let GetCityId = REVERSE_DNS + ".getCityId"
-//}
 //MARK: - Weather
 enum OpenWeatherApi {
     static let key = "448af267f0d35a22b6e00178e163deb3"

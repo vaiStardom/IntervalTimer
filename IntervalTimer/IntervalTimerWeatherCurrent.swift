@@ -115,87 +115,121 @@ extension IntervalTimerCurrentWeather{
         print("------> IntervalTimerCurrentWeather getWeatherByPriority() thisDidCompleteLocationDetermination = \(String(describing: IntervalTimerCoreLocation.sharedInstance.thisDidCompleteLocationDetermination))")
         
         if IntervalTimerCoreLocation.sharedInstance.thisDidCompleteLocationDetermination! {
-            print("------> IntervalTimerCurrentWeather getWeatherByPriority() weatherQueryPriority() = \(IntervalTimerUser.sharedInstance.weatherQueryPriority())")
             
-            switch IntervalTimerUser.sharedInstance.weatherQueryPriority() {
-            case WeatherQueryPriority.byCityId.rawValue:
-                getWeatherByCityId()
-            case WeatherQueryPriority.byLocationName.rawValue:
-                getWeatherByLocationName()
-            case WeatherQueryPriority.byCoordinates.rawValue:
-                getWeatherByCoordinates()
-            default:
-                //TODO: if user wanted to have the weather, and we cant get it, then show a no-connection error icon in place of the weather
-                //Msg option 1 - "It is impossible to determine your location at the moment and give you the weather."
-                //Msg option 2 - "...
-                print("------> IntervalTimerCurrentWeather getWeatherByPriority() unable to retreive temperature")
+            let getWeather_WorkItem = DispatchWorkItem {//get city id by cl info failed, get alternative info from mapquest
+                switch IntervalTimerUser.sharedInstance.weatherQueryPriority() {
+                case WeatherQueryPriority.byCityId.rawValue:
+                    print("------> IntervalTimerCurrentWeather getWeatherByPriority() byCityId")
+                    do {
+                        try getWeatherByCityId()
+                    } catch let error {
+                        print("------> ERROR IntervalTimerCurrentWeather getWeatherByPriority() byCityId -> \(error)")
+                    }
+                case WeatherQueryPriority.byLocationName.rawValue:
+                    print("------> IntervalTimerCurrentWeather getWeatherByPriority() byLocationName)")
+                    do {
+                        try getWeatherByLocationName()
+                    } catch let error {
+                        print("------> ERROR IntervalTimerCurrentWeather getWeatherByPriority() byLocationName -> \(error)")
+                    }
+                case WeatherQueryPriority.byCoordinates.rawValue:
+                    print("------> IntervalTimerCurrentWeather getWeatherByPriority() byCoordinates)")
+                    do {
+                        try getWeatherByCoordinates()
+                    } catch let error {
+                        print("------> ERROR IntervalTimerCurrentWeather getWeatherByPriority() byLocationName -> \(error)")
+                    }
+                default:
+                    //TODO: if user wanted to have the weather, and we cant get it, then show a no-connection error icon in place of the weather
+                    //Msg option 1 - "It is impossible to determine your location at the moment and give you the weather."
+                    //Msg option 2 - "...
+                    print("------> IntervalTimerCurrentWeather getWeatherByPriority() unable to retreive temperature")
+                }
+            }
+            
+            UTILITY_GLOBAL_DISPATCHQUEUE.async(execute: getWeather_WorkItem)
+            
+            getWeather_WorkItem.notify(queue: DispatchQueue.main) {
+                print("------> ERROR IntervalTimerCurrentWeather getWeatherByPriority() getWeather_WorkItem completed")
             }
         }
     }
     
-    static func getWeatherByCityId(){
+    static func getWeatherByCityId() throws {
         
         guard let thisShouldUpdateWeeather = IntervalTimerUser.sharedInstance.thisShouldUpdateWeather, thisShouldUpdateWeeather else {
-            return
+            throw GetWeatherError.shouldNotUpdateWeather(reason: "Should Update Weather = \(String(describing: IntervalTimerUser.sharedInstance.thisShouldUpdateWeather))")
         }
         
-        guard let theCityId = IntervalTimerUser.sharedInstance.thisCityId else {
-            return
+        guard let theCityId = IntervalTimerCoreLocation.sharedInstance.thisCityId else {
+            throw GetWeatherError.noWeatherForCityId(reason: " CityId = \(String(describing: IntervalTimerCoreLocation.sharedInstance.thisCityId))")
         }
         
         print("------> IntervalTimerCurrentWeather getWeatherByCityId()")
         //TODO: allow this weather get attempt to complete
         let weatherService = IntervalTimerWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
-        
-        guard let didGetCurrentWeather = weatherService?.getWeatherFor(theCityId) else {
-            return
-        }
-        
-        if !didGetCurrentWeather {
+
+        do{
+            try weatherService?.getWeatherFor(theCityId)
+        } catch let error {
+            print("------> ERROR IntervalTimerCurrentWeather getWeatherByCityId() -> \(error)")
             //getting the weather by city ID did not succeed, try priority 2
-            //NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCityAndCountryShortName"), object: nil)
-            getWeatherByLocationName()
+            do {
+                try getWeatherByLocationName()
+            } catch let error {
+                print("------> ERROR IntervalTimerCurrentWeather getWeatherByCityId() getWeatherByLocationName() -> \(error)")
+            }
         }
     }
-    static func getWeatherByLocationName(){
+    static func getWeatherByLocationName() throws {
         guard let thisShouldUpdateWeeather = IntervalTimerUser.sharedInstance.thisShouldUpdateWeather, thisShouldUpdateWeeather else {
-            return
+            throw GetWeatherError.shouldNotUpdateWeather(reason: "Should Update Weather = \(String(describing: IntervalTimerUser.sharedInstance.thisShouldUpdateWeather))")
         }
         
-        guard let theCityName = IntervalTimerUser.sharedInstance.thisCityName else {
-            return
+        guard let theCityName = IntervalTimerCoreLocation.sharedInstance.thisCityName else {
+            throw GetWeatherError.noWeatherForLocationName(reason: " City Name = \(String(describing: IntervalTimerCoreLocation.sharedInstance.thisCityName))")
         }
         
-        guard let theCountryCode = IntervalTimerUser.sharedInstance.thisCountryCode else {
-            return
+        guard let theCountryCode = IntervalTimerCoreLocation.sharedInstance.thisCountryCode else {
+            throw GetWeatherError.noWeatherForLocationName(reason: " Country Code = \(String(describing: IntervalTimerCoreLocation.sharedInstance.thisCountryCode))")
         }
         
         print("------> IntervalTimerCurrentWeather getWeatherByLocationName() theCityName= \(theCityName), theCountryCode= \(theCountryCode)")
-        
+
         let weatherService = IntervalTimerWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
-        let didGetCurrentWeather = weatherService?.getWeatherFor(theCityName, in: theCountryCode)
         
-        if didGetCurrentWeather == nil || !didGetCurrentWeather! {
-            //getting the weather by city name and country code did not succeed
-            getWeatherByCoordinates()
+        do{
+            try weatherService?.getWeatherFor(theCityName, in: theCountryCode)
+        } catch let error {
+            print("------> ERROR IntervalTimerCurrentWeather getWeatherByLocationName() -> \(error)")
+            //getting the weather by city name and country code did not succeed, try with coordinates
+            do {
+                try getWeatherByCoordinates()
+            } catch let error {
+                print("------> ERROR IntervalTimerCurrentWeather getWeatherByLocationName() getWeatherByCoordinates() -> \(error)")
+            }
         }
     }
-    static func getWeatherByCoordinates(){
+    static func getWeatherByCoordinates() throws {
         
         guard let thisShouldUpdateWeeather = IntervalTimerUser.sharedInstance.thisShouldUpdateWeather, thisShouldUpdateWeeather else {
-            return
+            throw GetWeatherError.shouldNotUpdateWeather(reason: "Should Update Weather = \(String(describing: IntervalTimerUser.sharedInstance.thisShouldUpdateWeather))")
         }
         
-        guard let theLatitude = IntervalTimerUser.sharedInstance.thisLatitude else {
-            return
+        guard let theLatitude = IntervalTimerCoreLocation.sharedInstance.thisLatitude else {
+            throw GetWeatherError.noWeatherForCoordinates(reason: " Latitude = \(String(describing: IntervalTimerCoreLocation.sharedInstance.thisLatitude))")
         }
         
-        guard let theLongitude = IntervalTimerUser.sharedInstance.thisLongitude else {
-            return
+        guard let theLongitude = IntervalTimerCoreLocation.sharedInstance.thisLongitude else {
+            throw GetWeatherError.noWeatherForCoordinates(reason: " Longitude = \(String(describing: IntervalTimerCoreLocation.sharedInstance.thisLongitude))")
         }
         
         let weatherService = IntervalTimerWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
-        _ = weatherService?.getWeatherAt(latitude: theLatitude, longitude: theLongitude)
         
+        do{
+            try weatherService?.getWeatherAt(latitude: theLatitude, longitude: theLongitude)
+        } catch let error {
+            print("------> ERROR IntervalTimerCurrentWeather getWeatherByCoordinates() -> \(error)")
+        }
     }
 }

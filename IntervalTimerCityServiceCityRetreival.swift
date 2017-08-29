@@ -42,9 +42,10 @@ extension IntervalTimerCityService {
                 didGetCity = false
                 return
             }
+            didGetCity = true
             DispatchQueue.main.async(execute: {
                 print("------> IntervalTimerCityService getCityNameWith(url:), theCity = \(theCity)")
-                IntervalTimerUser.sharedInstance.thisCityName = theCity
+                IntervalTimerCoreLocation.sharedInstance.thisCityName = theCity
                 NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetNewCityName"), object: nil)
             })
         }

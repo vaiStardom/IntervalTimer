@@ -42,12 +42,12 @@ extension IntervalTimerCity{
     static func getCityAlternativeInfoByCoordinates() throws {
         
         print("------> IntervalTimerCity getCityAlternativeInfoByCoordinates()")
-        guard let theLatitude = IntervalTimerUser.sharedInstance.thisLatitude else {
+        guard let theLatitude = IntervalTimerCoreLocation.sharedInstance.thisLatitude else {
             print("------> IntervalTimerCity getCityAlternativeInfoByCoordinates() GetCityIdError.latitudeIsNil")
             throw GetCityIdError.latitudeIsNil(reason: "Latitude is nil")
         }
         
-        guard let theLongitude = IntervalTimerUser.sharedInstance.thisLongitude else {
+        guard let theLongitude = IntervalTimerCoreLocation.sharedInstance.thisLongitude else {
             print("------> IntervalTimerCity getCityAlternativeInfoByCoordinates() GetCityIdError.longitudeIsNil")
             throw GetCityIdError.longitudeIsNil(reason: "Longitude is nil")
         }
