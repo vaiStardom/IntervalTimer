@@ -29,7 +29,7 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timersStart" translatesAutoresizingMaskIntoConstraints="NO" id="eO4-Iv-Qhs">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="start" translatesAutoresizingMaskIntoConstraints="NO" id="eO4-Iv-Qhs">
                         <rect key="frame" x="269" y="17" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="44" id="eZw-FJ-cTp"/>
@@ -53,12 +53,13 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="startTimerImageView" destination="eO4-Iv-Qhs" id="irO-9C-zoP"/>
                 <outlet property="timerLabel" destination="fBe-Fg-veo" id="sMz-kA-TU6"/>
             </connections>
             <point key="canvasLocation" x="35" y="53.5"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="timersStart" width="44" height="44"/>
+        <image name="start" width="132" height="132"/>
     </resources>
 </document>

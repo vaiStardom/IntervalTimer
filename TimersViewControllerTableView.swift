@@ -37,10 +37,19 @@ extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "TimersCell") as! TimersTableViewCell
         let index = (indexPath as NSIndexPath).row
         
         cell.timerLabel?.text = datasource[index]
+        cell.startTimerImageView.image = UIImage(named: "start")
+        
+        cell.startTimerImageView.layer.borderWidth = 1.0
+        cell.startTimerImageView.layer.masksToBounds = false
+        cell.startTimerImageView.layer.borderColor = IntervalTimerColors.Orange.cgColor
+        cell.startTimerImageView.layer.cornerRadius = cell.startTimerImageView.frame.size.height/2
+
+        
         
         return cell
     }

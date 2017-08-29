@@ -11,6 +11,7 @@ import UIKit
 class TimersTableViewCell: UITableViewCell {
 
     @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var startTimerImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
