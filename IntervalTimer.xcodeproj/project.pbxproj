@@ -184,8 +184,7 @@
 		BA4BFE681EFF4D9D00E341DC = {
 			isa = PBXGroup;
 			children = (
-				BA42AB621F49BAB100CF1239 /* TimersTableViewCell.swift */,
-				BA42AB631F49BAB100CF1239 /* TimersTableViewCell.xib */,
+				BAD8A4B01F553E1C007F8DEA /* Cells */,
 				BA4BFE731EFF4D9D00E341DC /* IntervalTimer */,
 				BAC38F891F2EF52A00AE0057 /* Models */,
 				BA1CCBA71F248AB100A3D0B3 /* Networking */,
@@ -312,6 +311,15 @@
 				BA42AB721F4A679C00CF1239 /* IntervalTimerCoreLocation.swift */,
 			);
 			name = Singletons;
+			sourceTree = "<group>";
+		};
+		BAD8A4B01F553E1C007F8DEA /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				BA42AB621F49BAB100CF1239 /* TimersTableViewCell.swift */,
+				BA42AB631F49BAB100CF1239 /* TimersTableViewCell.xib */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

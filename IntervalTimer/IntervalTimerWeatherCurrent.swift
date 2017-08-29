@@ -126,14 +126,14 @@ extension IntervalTimerCurrentWeather{
                         print("------> ERROR IntervalTimerCurrentWeather getWeatherByPriority() byCityId -> \(error)")
                     }
                 case WeatherQueryPriority.byLocationName.rawValue:
-                    print("------> IntervalTimerCurrentWeather getWeatherByPriority() byLocationName)")
+                    print("------> IntervalTimerCurrentWeather getWeatherByPriority() byLocationName")
                     do {
                         try getWeatherByLocationName()
                     } catch let error {
                         print("------> ERROR IntervalTimerCurrentWeather getWeatherByPriority() byLocationName -> \(error)")
                     }
                 case WeatherQueryPriority.byCoordinates.rawValue:
-                    print("------> IntervalTimerCurrentWeather getWeatherByPriority() byCoordinates)")
+                    print("------> IntervalTimerCurrentWeather getWeatherByPriority() byCoordinates")
                     do {
                         try getWeatherByCoordinates()
                     } catch let error {
@@ -150,7 +150,7 @@ extension IntervalTimerCurrentWeather{
             UTILITY_GLOBAL_DISPATCHQUEUE.async(execute: getWeather_WorkItem)
             
             getWeather_WorkItem.notify(queue: DispatchQueue.main) {
-                print("------> ERROR IntervalTimerCurrentWeather getWeatherByPriority() getWeather_WorkItem completed")
+                print("------> IntervalTimerCurrentWeather getWeatherByPriority() getWeather_WorkItem completed")
             }
         }
     }

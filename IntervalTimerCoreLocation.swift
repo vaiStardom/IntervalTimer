@@ -289,26 +289,25 @@ class IntervalTimerCoreLocation: NSObject, CLLocationManagerDelegate {
     func parsePlacemarks() {
         
         guard let _ = location else {
+            print("------> IntervalTimerCoreLocation parsePlacemarks() CLLocation = nil")
             nilLocationName()
             return
         }
         
         guard let thePlacemark = placemark else {
+            print("------> IntervalTimerCoreLocation parsePlacemarks() CLPlacemark = nil")
             nilLocationName()
             return
         }
         
-        guard let theCityName = thePlacemark.locality else {
+        guard let theCityName = thePlacemark.locality, !theCityName.isEmpty else {
+            print("------> IntervalTimerCoreLocation parsePlacemarks() CLPlacemark.locality = nil or empty")
             nilLocationName()
             return
         }
         
-        guard !theCityName.isEmpty else {
-            nilLocationName()
-            return
-        }
-
-        guard let theCountryShortName = thePlacemark.isoCountryCode else {
+        guard let theCountryShortName = thePlacemark.isoCountryCode, !theCountryShortName.isEmpty else {
+            print("------> IntervalTimerCoreLocation parsePlacemarks() CLPlacemark.isoCountryCode = nil or empty")
             nilLocationName()
             return
         }
@@ -320,6 +319,7 @@ class IntervalTimerCoreLocation: NSObject, CLLocationManagerDelegate {
     }
     
     func nilLocationName(){
+        print("------> IntervalTimerCoreLocation nilLocationName()")
         thisCityName = ""
         thisCountryCode = ""
         thisCityId = -1

@@ -45,7 +45,7 @@ extension TimerViewController{
             return
         }
         
-        print("------> TimerViewController didGetCurrentWeather theTemperature = \(theTemperature), theImage = \(theImage)")
+        print("------> TimerViewController didGetCurrentWeather theTemperature = \(theTemperature), theImage = \(theIcon)")
         
         weatherImageView.alpha = 0.0
         weatherTemperatureLabel.alpha = 0.0
