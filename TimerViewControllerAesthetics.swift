@@ -47,6 +47,7 @@ extension TimerViewController{
     func aesthetics_allowLocationServices(){
         visualEffect = visualEffectView.effect
         visualEffectView.effect = nil
+        visualEffectView.isHidden = true
         dismissAllowLocationServicesViewButton.isHidden = true
         dismissAllowLocationServicesViewImageView.isHidden = true
         allowLocationServicesView.layer.cornerRadius = 5
@@ -145,6 +146,7 @@ extension TimerViewController{
         allowLocationServicesView.center = self.view.center
         allowLocationServicesView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
         allowLocationServicesView.alpha = 0.0
+        visualEffectView.isHidden = false
         
         UIView.animate(withDuration: 0.4) {
             
@@ -168,6 +170,7 @@ extension TimerViewController{
             self.dismissAllowLocationServicesViewImageView.isHidden = true
         }) {(success: Bool) in
             self.allowLocationServicesView.removeFromSuperview()
+            self.visualEffectView.isHidden = true
         }
     }
 }

@@ -28,6 +28,7 @@ extension TimerViewController{
     @IBAction func cancel(_ sender: UIButton) {
         startPauseResume = (true, false, false)
         timer.invalidate()
+        ellapsedSeconds = Double(totalSeconds)
         aesthetics_timerCancel()
     }
     @IBAction func weatherMissing(_ sender: Any) {
