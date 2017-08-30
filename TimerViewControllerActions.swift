@@ -44,6 +44,7 @@ extension TimerViewController{
         _ = navigationController?.popViewController(animated: true)
     }
     func edit(){
-        aesthetics_animateIn_AllowLocationServicesView()
+        //aesthetics_animateIn_AllowLocationServicesView()
+        performSegue(withIdentifier: "TimersToEditTimer", sender: nil)
     }
 }

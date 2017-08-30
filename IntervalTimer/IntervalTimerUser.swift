@@ -40,7 +40,7 @@ class IntervalTimerUser: NSObject {
     }
 
     //MARK: - fileprivate properties
-    fileprivate var temperatureUnit: TemperatureUnit = .celcius
+    fileprivate var temperatureUnit: TemperatureUnit = .celcius //TODO : delete from here and move to the timer class
     fileprivate var currentWeather: IntervalTimerCurrentWeather?
     fileprivate var shouldUpdateWeather: Bool? = true
         

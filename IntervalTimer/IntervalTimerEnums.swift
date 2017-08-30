@@ -153,7 +153,7 @@ enum OpenWeatherApi {
     static let key = "448af267f0d35a22b6e00178e163deb3"
     static let baseUrl = "http://api.openweathermap.org/data/2.5/weather?"
 }
-enum TemperatureUnit: Int {
+public enum TemperatureUnit: Int { //has to be public for its use in IntervalTimerTimer class
     case celcius = 0, fahrenheit, kelvin
 }
 enum WeatherDictionaryKey{

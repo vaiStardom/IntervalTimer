@@ -45,7 +45,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Jog-fK-wvc" id="Xp2-1v-OKw"/>
-                        <segue destination="f9n-YU-8Y8" kind="show" identifier="TimersToEditTimer" id="MSp-ri-SWW"/>
                         <segue destination="FOr-RH-OJ6" kind="show" identifier="TimersToTimer" id="DGz-Op-EMm"/>
                     </connections>
                 </viewController>
@@ -151,7 +150,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pGy-uc-BVQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1691.25" y="139.43661971830986"/>
+            <point key="canvasLocation" x="2721" y="138"/>
         </scene>
         <!--Timer View Controller-->
         <scene sceneID="Ykg-SE-M8p">
@@ -404,6 +403,7 @@
                         <outlet property="visualEffectView" destination="1PT-se-dBm" id="hd9-VA-elP"/>
                         <outlet property="weatherImageView" destination="UL6-1S-xfh" id="rVk-tK-7qj"/>
                         <outlet property="weatherTemperatureLabel" destination="50V-60-GfP" id="c7x-8M-jRJ"/>
+                        <segue destination="f9n-YU-8Y8" kind="show" identifier="TimersToEditTimer" id="hy5-TF-qq9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fj6-a4-b0F" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -534,7 +534,7 @@
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1689.375" y="-629.57746478873241"/>
+            <point key="canvasLocation" x="1738" y="137"/>
         </scene>
         <!--Edit Interval View Controller-->
         <scene sceneID="Ues-dc-lfK">
@@ -696,42 +696,42 @@
                                 <color key="textColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="redIndicatorUnselected" translatesAutoresizingMaskIntoConstraints="NO" id="qK7-jh-SAQ" customClass="IntervalTimerIndicatorUIImageView" customModule="IntervalTimer" customModuleProvider="target">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qK7-jh-SAQ" customClass="IntervalTimerIndicatorUIImageView" customModule="IntervalTimer" customModuleProvider="target">
                                 <rect key="frame" x="31" y="142" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="6ag-xZ-lpS"/>
                                     <constraint firstAttribute="height" constant="44" id="ZBd-hh-Eni"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greenIndicatorUnselected" translatesAutoresizingMaskIntoConstraints="NO" id="dLa-8p-dbv" customClass="IntervalTimerIndicatorUIImageView" customModule="IntervalTimer" customModuleProvider="target">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dLa-8p-dbv" customClass="IntervalTimerIndicatorUIImageView" customModule="IntervalTimer" customModuleProvider="target">
                                 <rect key="frame" x="31" y="201" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="K7i-Aa-ESs"/>
                                     <constraint firstAttribute="width" constant="44" id="VCD-yw-3lJ"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="orangeIndicatorUnselected" translatesAutoresizingMaskIntoConstraints="NO" id="1Nl-7n-RSI" customClass="IntervalTimerIndicatorUIImageView" customModule="IntervalTimer" customModuleProvider="target">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Nl-7n-RSI" customClass="IntervalTimerIndicatorUIImageView" customModule="IntervalTimer" customModuleProvider="target">
                                 <rect key="frame" x="138" y="142" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Cmu-8M-SVB"/>
                                     <constraint firstAttribute="width" constant="44" id="fsu-Ng-VhG"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blueIndicatorUnselected" translatesAutoresizingMaskIntoConstraints="NO" id="jfg-jB-EcK" customClass="IntervalTimerIndicatorUIImageView" customModule="IntervalTimer" customModuleProvider="target">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jfg-jB-EcK" customClass="IntervalTimerIndicatorUIImageView" customModule="IntervalTimer" customModuleProvider="target">
                                 <rect key="frame" x="138" y="201" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="RkP-XC-6BR"/>
                                     <constraint firstAttribute="width" constant="44" id="xS2-sJ-tBY"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yellowIndicatorUnselected" translatesAutoresizingMaskIntoConstraints="NO" id="Add-zR-AyJ" customClass="IntervalTimerIndicatorUIImageView" customModule="IntervalTimer" customModuleProvider="target">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Add-zR-AyJ" customClass="IntervalTimerIndicatorUIImageView" customModule="IntervalTimer" customModuleProvider="target">
                                 <rect key="frame" x="244" y="142" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="gOt-7e-Jxq"/>
                                     <constraint firstAttribute="height" constant="44" id="hCW-nb-VEd"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="purpleIndicatorUnselected" translatesAutoresizingMaskIntoConstraints="NO" id="Yq6-gb-cdT" customClass="IntervalTimerIndicatorUIImageView" customModule="IntervalTimer" customModuleProvider="target">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Yq6-gb-cdT" customClass="IntervalTimerIndicatorUIImageView" customModule="IntervalTimer" customModuleProvider="target">
                                 <rect key="frame" x="244" y="201" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="qI4-hG-Ilq"/>
@@ -852,29 +852,29 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="blueIndicatorButton" destination="ynz-3h-A44" id="VKl-fi-2uA"/>
-                        <outlet property="blueIndicatorImageView" destination="jfg-jB-EcK" id="dTC-OR-Ram"/>
-                        <outlet property="greenIndicatorButton" destination="PFg-PI-HgW" id="9Wc-00-M7u"/>
-                        <outlet property="greenIndicatorImageView" destination="dLa-8p-dbv" id="ITx-Si-aUr"/>
+                        <outlet property="fifthIndicatorButton" destination="CUp-Hj-Qt3" id="1A5-Ie-NZI"/>
+                        <outlet property="fifthIndicatorImageView" destination="Add-zR-AyJ" id="xco-fd-WSH"/>
+                        <outlet property="firstIndicatorButton" destination="hmx-fe-eJk" id="sds-JZ-Qlc"/>
+                        <outlet property="firstIndicatorImageView" destination="qK7-jh-SAQ" id="7iz-Ct-p2b"/>
+                        <outlet property="fourthIndicatorImageView" destination="jfg-jB-EcK" id="dbA-FX-bNJ"/>
+                        <outlet property="fourthndicatorButton" destination="ynz-3h-A44" id="jTx-zg-27q"/>
                         <outlet property="hourTextField1" destination="EpP-GQ-y65" id="nCk-oJ-kqw"/>
                         <outlet property="hourTextField2" destination="Joj-t6-671" id="maj-7k-QCi"/>
                         <outlet property="minuteTextField1" destination="hnG-TJ-RWj" id="ZFo-X9-2su"/>
                         <outlet property="minuteTextField2" destination="FRr-D4-ZQQ" id="JA8-fK-gRI"/>
-                        <outlet property="orangeIndicatorButton" destination="wbU-uX-rKv" id="Q6y-fH-dlp"/>
-                        <outlet property="orangeIndicatorImageView" destination="1Nl-7n-RSI" id="Yiw-WG-FSE"/>
-                        <outlet property="purpleIndicatorButton" destination="B6z-el-SXt" id="Fgf-YH-bxc"/>
-                        <outlet property="purpleIndicatorImageView" destination="Yq6-gb-cdT" id="T3c-TN-uHg"/>
-                        <outlet property="redIndicatorButton" destination="hmx-fe-eJk" id="Cus-36-cQg"/>
-                        <outlet property="redIndicatorImageView" destination="qK7-jh-SAQ" id="ohS-TG-py4"/>
+                        <outlet property="secondIndicatorButton" destination="PFg-PI-HgW" id="kHJ-nX-E5W"/>
+                        <outlet property="secondIndicatorImageView" destination="dLa-8p-dbv" id="MOM-YD-FJQ"/>
                         <outlet property="secondTextField1" destination="KBH-PH-Tdb" id="dOZ-8e-KlA"/>
                         <outlet property="secondTextField2" destination="8sG-yc-kw7" id="54N-PQ-QcP"/>
-                        <outlet property="yellowIndicatorButton" destination="CUp-Hj-Qt3" id="sBY-EE-eyN"/>
-                        <outlet property="yellowIndicatorImageView" destination="Add-zR-AyJ" id="UE2-Sb-z2w"/>
+                        <outlet property="sixthIndicatorButton" destination="B6z-el-SXt" id="Amu-mu-Mrp"/>
+                        <outlet property="sixthIndicatorImageView" destination="Yq6-gb-cdT" id="lyw-ma-pNI"/>
+                        <outlet property="thirdIndicatorButton" destination="wbU-uX-rKv" id="qeE-86-aka"/>
+                        <outlet property="thirdIndicatorImageView" destination="1Nl-7n-RSI" id="7sz-0v-XPw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hNc-Cr-GkD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2521.875" y="138.38028169014083"/>
+            <point key="canvasLocation" x="3707" y="138"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yZq-CX-7ky">
@@ -899,20 +899,14 @@
     </scenes>
     <resources>
         <image name="barButtonAdd" width="18" height="18"/>
-        <image name="blueIndicatorUnselected" width="44" height="44"/>
         <image name="cancel" width="132" height="132"/>
         <image name="close" width="20" height="20"/>
-        <image name="greenIndicatorUnselected" width="44" height="44"/>
-        <image name="intervalTimer" width="84" height="84"/>
+        <image name="intervalTimer" width="28" height="28"/>
         <image name="locationServices" width="28" height="28"/>
-        <image name="orangeIndicatorUnselected" width="44" height="44"/>
-        <image name="purpleIndicatorUnselected" width="44" height="44"/>
-        <image name="redIndicatorUnselected" width="44" height="44"/>
         <image name="settings" width="28" height="28"/>
         <image name="start" width="132" height="132"/>
         <image name="takeMeThere" width="132" height="132"/>
         <image name="timeTextFieldFrame" width="47" height="75"/>
         <image name="warning" width="20" height="20"/>
-        <image name="yellowIndicatorUnselected" width="44" height="44"/>
     </resources>
 </document>

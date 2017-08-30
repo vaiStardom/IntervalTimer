@@ -11,6 +11,38 @@ import UIKit
 //MARK: - Table View Management
 extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let selectedTimerIndex = indexPath.row
+        let selectedTimer = timers[indexPath.row]
+
+        performSegue(withIdentifier: "TimersToTimer", sender: nil)
+//        switch inthusiaNotifications[selectedNotificationIndex!].thisEventType {
+//        case NotificationType.newArtist.rawValue:
+//            
+//            self.performSegue(withIdentifier: "NotificationToBiography", sender: nil)
+//        case NotificationType.newArtistHosting.rawValue:
+//            
+//            self.performSegue(withIdentifier: "NotificationToBiography", sender: nil)
+//        case NotificationType.newBeaconCrossing.rawValue:
+//            
+//            let masterpieceName = inthusiaNotifications[selectedNotificationIndex!].thisMasterpieceName
+//            //selectedMasterpiece = masterpieces.filter{ $0.thisName == masterpieceName }.first
+//            masterpiece = masterpieces.filter{ $0.thisName == masterpieceName }.first
+//            self.performSegue(withIdentifier: "NotificationToLabel", sender: nil)
+//        case NotificationType.newMasterpeicesByArtist.rawValue:
+//            
+//            self.performSegue(withIdentifier: "NotificationToMasterpieces", sender: nil)
+//        case NotificationType.newVenue.rawValue:
+//            
+//            let venueName = inthusiaNotifications[selectedNotificationIndex!].thisVenueName!
+//            (self.tabBarController as! ExplorationTabBarController).venueToSelect = inthusiaVenues.index(where: {$0.thisName == venueName})!
+//            self.tabBarController?.selectedIndex = ExplorationViews.venues.rawValue
+//            (self.tabBarController as! ExplorationTabBarController).configureTabBarItems(item: ExplorationViews.venues.rawValue)
+//        default:
+//            self.performSegue(withIdentifier: "NotificationToLabel", sender: nil)
+//        }
+    }
+
     func animateTable(){
         tableView.reloadData()
         
@@ -33,7 +65,7 @@ extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return datasource.count
+        return timers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -41,7 +73,7 @@ extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TimersCell") as! TimersTableViewCell
         let index = (indexPath as NSIndexPath).row
         
-        cell.timerLabel?.text = datasource[index]
+        cell.timerLabel?.text = timers[index].thisName
         cell.startTimerImageView.image = UIImage(named: "start")
         
         cell.startTimerImageView.layer.borderWidth = 1.0

@@ -10,4 +10,10 @@ import UIKit
 
 class IntervalTimerIndicatorUIImageView: UIImageView {
     var isSelected = false
+    
+    func roundImageView(){
+        self.layer.borderWidth = 1.0
+        self.layer.masksToBounds = false
+        self.layer.cornerRadius = self.frame.size.height/2
+    }
 }

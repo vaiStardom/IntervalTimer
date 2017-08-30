@@ -11,22 +11,22 @@ import UIKit
 //MARK: - Actions
 extension EditIntervalViewController {
     @IBAction func redIndicator(_ sender: Any) {
-        manageSelectedColorIndicator(indicatorIndex: 0)
+        aesthetics_manageSelectedColorIndicator(indicatorIndex: 0)
     }
     @IBAction func greenIndicator(_ sender: Any) {
-        manageSelectedColorIndicator(indicatorIndex: 1)
+        aesthetics_manageSelectedColorIndicator(indicatorIndex: 1)
     }
     @IBAction func orangeIndicator(_ sender: Any) {
-        manageSelectedColorIndicator(indicatorIndex: 2)
+        aesthetics_manageSelectedColorIndicator(indicatorIndex: 2)
     }
     @IBAction func blueIndicator(_ sender: Any) {
-        manageSelectedColorIndicator(indicatorIndex: 3)
+        aesthetics_manageSelectedColorIndicator(indicatorIndex: 3)
     }
     @IBAction func yellowIndicator(_ sender: Any) {
-        manageSelectedColorIndicator(indicatorIndex: 4)
+        aesthetics_manageSelectedColorIndicator(indicatorIndex: 4)
     }
     @IBAction func purpleIndicator(_ sender: Any) {
-        manageSelectedColorIndicator(indicatorIndex: 5)
+        aesthetics_manageSelectedColorIndicator(indicatorIndex: 5)
     }
     func back(){
         _ = navigationController?.popViewController(animated: true)
