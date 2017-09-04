@@ -9,7 +9,7 @@
 import Foundation
 
 //TODO: Change this to a struct, we dont want to pass around copies of this
-class IntervalTimerCurrentWeather: NSObject {
+class IntervalTimerCurrentWeather: NSObject, NSCoding {
     
     //MARK: - fileprivate properties
     fileprivate var kelvin: Double? //source (JSON) gives temperature in kelvins

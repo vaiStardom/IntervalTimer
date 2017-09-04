@@ -11,8 +11,7 @@ import UIKit
 
 //MOCKDATA:
 let intervals = [
-    IntervalTimerInterval(seconds: 30, color: IntervalTimerColors.IntervalYellow)
-    , IntervalTimerInterval(seconds: 90, color: IntervalTimerColors.IntervalGreen)
+    IntervalTimerInterval(seconds: 120, color: IntervalTimerColors.IntervalBlue)
     , IntervalTimerInterval(seconds: 30, color: IntervalTimerColors.IntervalYellow)
     , IntervalTimerInterval(seconds: 90, color: IntervalTimerColors.IntervalGreen)
     , IntervalTimerInterval(seconds: 30, color: IntervalTimerColors.IntervalYellow)
@@ -27,16 +26,48 @@ let intervals = [
     , IntervalTimerInterval(seconds: 90, color: IntervalTimerColors.IntervalGreen)
     , IntervalTimerInterval(seconds: 30, color: IntervalTimerColors.IntervalYellow)
     , IntervalTimerInterval(seconds: 90, color: IntervalTimerColors.IntervalGreen)
+    , IntervalTimerInterval(seconds: 30, color: IntervalTimerColors.IntervalYellow)
+    , IntervalTimerInterval(seconds: 90, color: IntervalTimerColors.IntervalGreen)
+    , IntervalTimerInterval(seconds: 120, color: IntervalTimerColors.IntervalBlue)
+]
+let intervalsHours = [
+    IntervalTimerInterval(seconds: 120000, color: IntervalTimerColors.IntervalBlue)
+    , IntervalTimerInterval(seconds: 30000, color: IntervalTimerColors.IntervalYellow)
+    , IntervalTimerInterval(seconds: 90000, color: IntervalTimerColors.IntervalGreen)
+    , IntervalTimerInterval(seconds: 30000, color: IntervalTimerColors.IntervalYellow)
+    , IntervalTimerInterval(seconds: 90000, color: IntervalTimerColors.IntervalGreen)
+    , IntervalTimerInterval(seconds: 30, color: IntervalTimerColors.IntervalYellow)
+    , IntervalTimerInterval(seconds: 90, color: IntervalTimerColors.IntervalGreen)
+    , IntervalTimerInterval(seconds: 30, color: IntervalTimerColors.IntervalYellow)
+    , IntervalTimerInterval(seconds: 90, color: IntervalTimerColors.IntervalGreen)
+    , IntervalTimerInterval(seconds: 30, color: IntervalTimerColors.IntervalYellow)
+    , IntervalTimerInterval(seconds: 90, color: IntervalTimerColors.IntervalGreen)
+    , IntervalTimerInterval(seconds: 30, color: IntervalTimerColors.IntervalYellow)
+    , IntervalTimerInterval(seconds: 90000, color: IntervalTimerColors.IntervalGreen)
+    , IntervalTimerInterval(seconds: 30000, color: IntervalTimerColors.IntervalYellow)
+    , IntervalTimerInterval(seconds: 90, color: IntervalTimerColors.IntervalGreen)
+    , IntervalTimerInterval(seconds: 30, color: IntervalTimerColors.IntervalYellow)
+    , IntervalTimerInterval(seconds: 90000, color: IntervalTimerColors.IntervalGreen)
+    , IntervalTimerInterval(seconds: 120000, color: IntervalTimerColors.IntervalBlue)
+]
+let intervalsSeconds = [
+    IntervalTimerInterval(seconds: 3, color: IntervalTimerColors.IntervalYellow)
+    , IntervalTimerInterval(seconds: 9, color: IntervalTimerColors.IntervalGreen)
+    , IntervalTimerInterval(seconds: 3, color: IntervalTimerColors.IntervalYellow)
+    , IntervalTimerInterval(seconds: 9, color: IntervalTimerColors.IntervalGreen)
+    , IntervalTimerInterval(seconds: 3, color: IntervalTimerColors.IntervalYellow)
+    , IntervalTimerInterval(seconds: 9, color: IntervalTimerColors.IntervalGreen)
+    , IntervalTimerInterval(seconds: 3, color: IntervalTimerColors.IntervalYellow)
 ]
 
 public struct IntervalTimerInterval {
     
     // MARK: - Properties
-    private var seconds: Int?
+    private var seconds: Double?
     private var color: UIColor?
     
     //MARK: - public get/set properties
-    public var thisSeconds: Int? {
+    public var thisSeconds: Double? {
         get { return seconds}
         set {
             seconds = newValue
@@ -50,7 +81,7 @@ public struct IntervalTimerInterval {
     }
     
     // MARK: - Initializers
-    public init(seconds: Int?, color: UIColor?) {
+    public init(seconds: Double?, color: UIColor?) {
         guard let theSeconds = seconds, theSeconds > 0 else {
             return
         }

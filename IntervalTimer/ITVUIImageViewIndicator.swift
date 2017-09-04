@@ -1,5 +1,5 @@
 //
-//  IntervalTimerIndicatorUIImageView.swift
+//  IntervalTimerUIImageViewIndicator.swift
 //  IntervalTimer
 //
 //  Created by Paul Addy on 2017-06-25.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IntervalTimerIndicatorUIImageView: UIImageView {
+class ITVUIImageViewIndicator: UIImageView {
     var isSelected = false
     
     func roundImageView(){

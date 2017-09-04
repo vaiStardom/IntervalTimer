@@ -1,18 +1,21 @@
 //
-//  TimerViewControllerWeather.swift
+//  EditTimerViewControllerWeather.swift
 //  IntervalTimer
 //
-//  Created by Paul Addy on 2017-08-20.
+//  Created by Paul Addy on 2017-09-03.
 //  Copyright © 2017 Paul Addy. All rights reserved.
 //
+
+import Foundation
+
 
 import UIKit
 
 //MARK: - Weather Management
-extension TimerViewController{
+extension EditTimerViewController{
     func activityIndicatorStart(){
-        weatherImageView.addSubview(activityIndicator)
-        activityIndicator.frame = weatherImageView.bounds
+        weatherIconImageView.addSubview(activityIndicator)
+        activityIndicator.frame = weatherIconImageView.bounds
         activityIndicator.startAnimating()
     }
     func activityIndicatorStop(){
@@ -51,16 +54,16 @@ extension TimerViewController{
         
         print("------> TimerViewController didGetCurrentWeather theTemperature = \(theTemperature), theImage = \(theIcon)")
         
-        weatherImageView.alpha = 0.0
+        weatherIconImageView.alpha = 0.0
         weatherTemperatureLabel.alpha = 0.0
         
         aesthetics_hideMissingWeatherWarning()
         
         weatherTemperatureLabel.text = theTemperature
-        weatherImageView.image = theImage
+        weatherIconImageView.image = theImage
         
         UIView.animate(withDuration: 1.5, animations: {
-            self.weatherImageView.alpha = 1.0
+            self.weatherIconImageView.alpha = 1.0
             self.weatherTemperatureLabel.alpha = 1.0
         })
         

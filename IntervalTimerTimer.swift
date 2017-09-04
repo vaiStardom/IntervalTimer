@@ -11,14 +11,14 @@ import Foundation
 //MOCKDATA:
 let timers = [
     IntervalTimerTimer(name: "Peak 8", showWeather: true, temperatureUnit: nil, intervals: intervals)
-    , IntervalTimerTimer(name: "Streches", showWeather: false, temperatureUnit: TemperatureUnit.kelvin, intervals: intervals)
-    , IntervalTimerTimer(name: "Legs", showWeather: true, temperatureUnit: TemperatureUnit.fahrenheit, intervals: intervals)
+    , IntervalTimerTimer(name: "Streches", showWeather: false, temperatureUnit: TemperatureUnit.kelvin, intervals: intervalsHours)
+    , IntervalTimerTimer(name: "Legs", showWeather: true, temperatureUnit: TemperatureUnit.fahrenheit, intervals: intervalsSeconds)
     , IntervalTimerTimer(name: "Upperbody", showWeather: false, temperatureUnit: TemperatureUnit.celcius, intervals: intervals)
-    , IntervalTimerTimer(name: "Arms", showWeather: true, temperatureUnit: nil, intervals: intervals)
-    , IntervalTimerTimer(name: "Crossfit", showWeather: false, temperatureUnit: TemperatureUnit.kelvin, intervals: intervals)
+    , IntervalTimerTimer(name: "Arms", showWeather: true, temperatureUnit: nil, intervals: intervalsHours)
+    , IntervalTimerTimer(name: "Crossfit", showWeather: false, temperatureUnit: TemperatureUnit.kelvin, intervals: intervalsSeconds)
     , IntervalTimerTimer(name: "Park run", showWeather: true, temperatureUnit: TemperatureUnit.fahrenheit, intervals: intervals)
-    , IntervalTimerTimer(name: "Beach run", showWeather: false, temperatureUnit: TemperatureUnit.celcius, intervals: intervals)
-    , IntervalTimerTimer(name: "Mountain run", showWeather: true, temperatureUnit: nil, intervals: intervals)
+    , IntervalTimerTimer(name: "Beach run", showWeather: false, temperatureUnit: TemperatureUnit.celcius, intervals: intervalsHours)
+    , IntervalTimerTimer(name: "Mountain run", showWeather: true, temperatureUnit: nil, intervals: intervalsSeconds)
 ]
 
 public struct IntervalTimerTimer {
@@ -74,11 +74,5 @@ public struct IntervalTimerTimer {
         self.thisShowWeather = theShowWeather
         self.thisTemperatureUnit = temperatureUnit
         self.thisIntervals = theIntervals
-    }
-}
-extension IntervalTimerTimer{
-//        fileprivate var totalTime: Double? //this is the sum of seconds of its interval arrays
-    func totalTime(){
-        //TODO: return the total time of this timer
     }
 }

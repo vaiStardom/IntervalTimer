@@ -11,19 +11,21 @@ import UIKit
 //MARK: Actions
 extension TimerViewController{
     @IBAction func startPauseResumeTimer(_ sender: Any) {
-        if startPauseResume == (true, false, false) { //start the timer
-            runIntervalTimer()
-            aesthetics_timerStart()
-            startPauseResume = (false, true, false)
-        } else if startPauseResume == (false, true, false) { //pause the timer
-            timer.invalidate()
-            aesthetics_timerPause()
-            startPauseResume = (false, false, true)
-        } else if startPauseResume == (false, false, true) { //resume the timer
-            runIntervalTimer()
-            aesthetics_timerResume()
-            startPauseResume = (false, true, false)
-        }
+        aesthetics_showAllowLocationServicesWarning()
+        
+//        if startPauseResume == (true, false, false) { //start the timer
+//            runIntervalTimer()
+//            aesthetics_timerStart()
+//            startPauseResume = (false, true, false)
+//        } else if startPauseResume == (false, true, false) { //pause the timer
+//            timer.invalidate()
+//            aesthetics_timerPause()
+//            startPauseResume = (false, false, true)
+//        } else if startPauseResume == (false, false, true) { //resume the timer
+//            runIntervalTimer()
+//            aesthetics_timerResume()
+//            startPauseResume = (false, true, false)
+//        }
     }
     @IBAction func cancel(_ sender: UIButton) {
         startPauseResume = (true, false, false)
@@ -32,19 +34,13 @@ extension TimerViewController{
         aesthetics_timerCancel()
     }
     @IBAction func weatherMissing(_ sender: Any) {
-        showMessage(title: "Waether Missing", message: "Are you sure you are connected to the internet?")
-    }
-    @IBAction func dismissAllowLocationServicesView(_ sender: Any) {
-        aesthetics_animateOut_AllowLocationServicesView()
-    }
-    @IBAction func takeMeToSettings(_ sender: Any) {
-        UIApplication.shared.open(URL(string:UIApplicationOpenSettingsURLString)!)
+        
+        showMessage(title: "Weather Missing", message: "Are you sure you are connected to the internet?")
     }
     func back(){
         _ = navigationController?.popViewController(animated: true)
     }
     func edit(){
-        //aesthetics_animateIn_AllowLocationServicesView()
-        performSegue(withIdentifier: "TimersToEditTimer", sender: nil)
+        performSegue(withIdentifier: "TimerToEditTimer", sender: nil)
     }
 }

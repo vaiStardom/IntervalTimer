@@ -11,27 +11,26 @@
 
 import UIKit
 
+//TODO: Leave the request location access here.
+//Since it is here the user first indicates the need for it by switching the weather on.
+//TODO: Show warning that airplane mode is on by simply putting that icon where the weather is (no alert)
 class TimerViewController: UIViewController {
     
-    @IBOutlet var allowLocationServicesView: UIView!
-    @IBOutlet weak var visualEffectView: UIVisualEffectView!
+//    @IBOutlet weak var visualEffectView: UIVisualEffectView!
     
     //ImageViews
     @IBOutlet weak var weatherImageView: UIImageView!
     @IBOutlet weak var cancelImageView: UIImageView!
     @IBOutlet weak var startPauseResumeImageView: UIImageView!
-    @IBOutlet weak var dismissAllowLocationServicesViewImageView: UIImageView!
+    @IBOutlet weak var warningImageView: UIImageView!
     
     //Buttons
     @IBOutlet weak var startPauseResumeButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
-    @IBOutlet weak var dismissAllowLocationServicesViewButton: UIButton!
     
     //Title labels
     @IBOutlet weak var weatherTemperatureLabel: UILabel!
     @IBOutlet weak var timerNameLabel: UILabel!
-    @IBOutlet weak var showMissingTemperatureWarningButton: UIButton!
-    @IBOutlet weak var missingTemperatureImageView: UIImageView!
 
     //Hours label
     @IBOutlet weak var timerHoursLabel: UILabel!
@@ -44,6 +43,9 @@ class TimerViewController: UIViewController {
     @IBOutlet weak var timerSecondsLabel: UILabel!
     @IBOutlet weak var timerMillisecondsForSecondsLabel: UILabel!
 
+    var intervalTimer: IntervalTimerTimer?
+    var startIntervalTimer: Bool? = false
+    
     var totalSeconds = 3602 //seconds
     var ellapsedSeconds = 0.0
     var startPauseResume : (Bool, Bool, Bool) = (false, false, false)
@@ -53,4 +55,5 @@ class TimerViewController: UIViewController {
     var visualEffect: UIVisualEffect!
     
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    
 }

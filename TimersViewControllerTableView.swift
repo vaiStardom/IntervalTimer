@@ -12,37 +12,12 @@ import UIKit
 extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let selectedTimerIndex = indexPath.row
-        let selectedTimer = timers[indexPath.row]
-
+        selectedIntervalTimer = timers[indexPath.row]
+        startSelectedIntervalTimer = false
         performSegue(withIdentifier: "TimersToTimer", sender: nil)
-//        switch inthusiaNotifications[selectedNotificationIndex!].thisEventType {
-//        case NotificationType.newArtist.rawValue:
-//            
-//            self.performSegue(withIdentifier: "NotificationToBiography", sender: nil)
-//        case NotificationType.newArtistHosting.rawValue:
-//            
-//            self.performSegue(withIdentifier: "NotificationToBiography", sender: nil)
-//        case NotificationType.newBeaconCrossing.rawValue:
-//            
-//            let masterpieceName = inthusiaNotifications[selectedNotificationIndex!].thisMasterpieceName
-//            //selectedMasterpiece = masterpieces.filter{ $0.thisName == masterpieceName }.first
-//            masterpiece = masterpieces.filter{ $0.thisName == masterpieceName }.first
-//            self.performSegue(withIdentifier: "NotificationToLabel", sender: nil)
-//        case NotificationType.newMasterpeicesByArtist.rawValue:
-//            
-//            self.performSegue(withIdentifier: "NotificationToMasterpieces", sender: nil)
-//        case NotificationType.newVenue.rawValue:
-//            
-//            let venueName = inthusiaNotifications[selectedNotificationIndex!].thisVenueName!
-//            (self.tabBarController as! ExplorationTabBarController).venueToSelect = inthusiaVenues.index(where: {$0.thisName == venueName})!
-//            self.tabBarController?.selectedIndex = ExplorationViews.venues.rawValue
-//            (self.tabBarController as! ExplorationTabBarController).configureTabBarItems(item: ExplorationViews.venues.rawValue)
-//        default:
-//            self.performSegue(withIdentifier: "NotificationToLabel", sender: nil)
-//        }
     }
 
+    //TODO: Only do this animation only when app launches, stop doing it at every view appear 
     func animateTable(){
         tableView.reloadData()
         
@@ -72,16 +47,19 @@ extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "TimersCell") as! TimersTableViewCell
         let index = (indexPath as NSIndexPath).row
+        let timer = timers[index]
         
-        cell.timerLabel?.text = timers[index].thisName
+        cell.timerLabel?.text = timer.thisName
         cell.startTimerImageView.image = UIImage(named: "start")
+        cell.totalTimeLabel.text = timer.totalTime()
         
         cell.startTimerImageView.layer.borderWidth = 1.0
         cell.startTimerImageView.layer.masksToBounds = false
         cell.startTimerImageView.layer.borderColor = IntervalTimerColors.Orange.cgColor
         cell.startTimerImageView.layer.cornerRadius = cell.startTimerImageView.frame.size.height/2
-
         
+        cell.startTimerButton.tag = index
+        cell.startTimerButton.addTarget(self, action: #selector(TimersViewController.startTimer(_:)), for: .touchUpInside)
         
         return cell
     }

@@ -17,3 +17,16 @@ func showMessage(title: String, message: String) {
         UIApplication.topViewController()?.present(alert, animated: true, completion: nil)
     }
 }
+
+func getWeatherFromNetwork(){
+    //TODO: call this when user starts a timer
+    //IntervalTimerUser.sharedInstance.startUpdatingLocationManager()
+    print("------> TimerViewController viewDidLoad() requesting Location")
+    IntervalTimerCoreLocation.sharedInstance.requestLocation()
+    
+    print("------> TimerViewController viewDidLoad() attempting to set weather")
+    IntervalTimerCurrentWeather.getWeatherByPriority()
+}
+
+
+

@@ -14,12 +14,16 @@ class TimersViewController: UIViewController {
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
 
+    var selectedIntervalTimer: IntervalTimerTimer?
+    var startSelectedIntervalTimer: Bool? = false
+    
 //    private var selectedTimerIndex: Int?
 }
 //MARK: - Life-Cycle
 extension TimersViewController{
     override func viewWillAppear(_ animated: Bool) {
         animateTable()
+        print("thisCurrentWeather = \(String(describing: IntervalTimerUser.sharedInstance.thisCurrentWeather))")
     }
     override func viewDidLoad() {
         super.viewDidLoad()

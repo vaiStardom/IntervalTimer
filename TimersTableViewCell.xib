@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fBe-Fg-veo">
-                        <rect key="frame" x="10" y="19" width="251" height="41"/>
+                        <rect key="frame" x="10" y="8" width="251" height="41"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="251" id="J5C-5a-bbf"/>
                             <constraint firstAttribute="height" constant="41" id="rPE-rn-cyE"/>
@@ -30,22 +30,34 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="start" translatesAutoresizingMaskIntoConstraints="NO" id="eO4-Iv-Qhs">
-                        <rect key="frame" x="269" y="17" width="44" height="44"/>
+                        <rect key="frame" x="269" y="17.5" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="44" id="eZw-FJ-cTp"/>
                             <constraint firstAttribute="height" constant="44" id="rru-8r-xdi"/>
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NpZ-p7-q8y">
-                        <rect key="frame" x="269" y="17" width="44" height="44"/>
+                        <rect key="frame" x="269" y="17.5" width="44" height="44"/>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sAx-w7-yfN">
+                        <rect key="frame" x="10" y="49" width="181" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="SUu-wA-eps"/>
+                            <constraint firstAttribute="width" constant="181" id="cLx-Qe-RfA"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="NpZ-p7-q8y" firstAttribute="centerX" secondItem="eO4-Iv-Qhs" secondAttribute="centerX" id="0O7-JX-sn4"/>
-                    <constraint firstItem="fBe-Fg-veo" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="2Oe-ue-zfh"/>
+                    <constraint firstItem="fBe-Fg-veo" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="-10.75" id="2Oe-ue-zfh"/>
+                    <constraint firstItem="sAx-w7-yfN" firstAttribute="leading" secondItem="fBe-Fg-veo" secondAttribute="leading" id="3uy-q4-N9I"/>
+                    <constraint firstItem="sAx-w7-yfN" firstAttribute="top" secondItem="fBe-Fg-veo" secondAttribute="bottom" id="9EX-BG-wDF"/>
                     <constraint firstItem="NpZ-p7-q8y" firstAttribute="height" secondItem="eO4-Iv-Qhs" secondAttribute="height" id="CQ2-R4-GdI"/>
-                    <constraint firstItem="eO4-Iv-Qhs" firstAttribute="centerY" secondItem="fBe-Fg-veo" secondAttribute="centerY" id="blN-lz-Zbc"/>
+                    <constraint firstItem="eO4-Iv-Qhs" firstAttribute="centerY" secondItem="fBe-Fg-veo" secondAttribute="centerY" constant="11" id="blN-lz-Zbc"/>
                     <constraint firstItem="fBe-Fg-veo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="lzH-yn-baF"/>
                     <constraint firstItem="NpZ-p7-q8y" firstAttribute="width" secondItem="eO4-Iv-Qhs" secondAttribute="width" id="o2r-Mq-exi"/>
                     <constraint firstItem="NpZ-p7-q8y" firstAttribute="centerY" secondItem="eO4-Iv-Qhs" secondAttribute="centerY" id="p31-5v-Bl0"/>
@@ -53,8 +65,10 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="startTimerButton" destination="NpZ-p7-q8y" id="RbI-eB-aIP"/>
                 <outlet property="startTimerImageView" destination="eO4-Iv-Qhs" id="irO-9C-zoP"/>
                 <outlet property="timerLabel" destination="fBe-Fg-veo" id="sMz-kA-TU6"/>
+                <outlet property="totalTimeLabel" destination="sAx-w7-yfN" id="LpV-7v-QYc"/>
             </connections>
             <point key="canvasLocation" x="35" y="53.5"/>
         </tableViewCell>

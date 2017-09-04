@@ -163,3 +163,13 @@ enum WeatherDictionaryKey{
 enum WeatherQueryPriority: Int {
     case byCityId = 0, byLocationName, byCoordinates, none
 }
+
+
+enum Views: String {
+    case WarningAllowLocationServicesView = "ITVWarningAllowLocationServicesView" //NIB Name
+    case view2 = "View2"
+    
+    func getView() -> UIView {
+        return Bundle.main.loadNibNamed(self.rawValue, owner: nil, options: nil)![0] as! UIView
+    }
+}

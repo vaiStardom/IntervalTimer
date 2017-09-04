@@ -11,7 +11,9 @@ import UIKit
 class TimersTableViewCell: UITableViewCell {
 
     @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var totalTimeLabel: UILabel!
     @IBOutlet weak var startTimerImageView: UIImageView!
+    @IBOutlet weak var startTimerButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,8 +22,6 @@ class TimersTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
-    
 }

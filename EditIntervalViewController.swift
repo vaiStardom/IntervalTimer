@@ -17,12 +17,12 @@ class EditIntervalViewController: UIViewController  {
     @IBOutlet weak var secondTextField2: UITextField!
     @IBOutlet weak var secondTextField1: UITextField!
     
-    @IBOutlet weak var firstIndicatorImageView: IntervalTimerIndicatorUIImageView!
-    @IBOutlet weak var secondIndicatorImageView: IntervalTimerIndicatorUIImageView!
-    @IBOutlet weak var thirdIndicatorImageView: IntervalTimerIndicatorUIImageView!
-    @IBOutlet weak var fourthIndicatorImageView: IntervalTimerIndicatorUIImageView!
-    @IBOutlet weak var fifthIndicatorImageView: IntervalTimerIndicatorUIImageView!
-    @IBOutlet weak var sixthIndicatorImageView: IntervalTimerIndicatorUIImageView!
+    @IBOutlet weak var firstIndicatorImageView: ITVUIImageViewIndicator!
+    @IBOutlet weak var secondIndicatorImageView: ITVUIImageViewIndicator!
+    @IBOutlet weak var thirdIndicatorImageView: ITVUIImageViewIndicator!
+    @IBOutlet weak var fourthIndicatorImageView: ITVUIImageViewIndicator!
+    @IBOutlet weak var fifthIndicatorImageView: ITVUIImageViewIndicator!
+    @IBOutlet weak var sixthIndicatorImageView: ITVUIImageViewIndicator!
     
     @IBOutlet weak var firstIndicatorButton: UIButton!
     @IBOutlet weak var secondIndicatorButton: UIButton!
@@ -34,6 +34,6 @@ class EditIntervalViewController: UIViewController  {
     let zeroWidthSpace = "\u{200B}" //ZWSP, a non-printing character
     let allowedChars: String = "0123456789"
     
-    var indicators:[(imageView: IntervalTimerIndicatorUIImageView, activeFillColor: UIColor, inactiveFillColor: UIColor, borderColor: UIColor)] = []
+    var indicators:[(imageView: ITVUIImageViewIndicator, activeFillColor: UIColor, inactiveFillColor: UIColor, borderColor: UIColor)] = []
     var selectedIndicator = false
 }
