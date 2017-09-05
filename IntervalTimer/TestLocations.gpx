@@ -1,10 +1,12 @@
 <?xml version="1.0"?>
 <gpx version="1.1" creator="Xcode">
 
-<!--CLPlacemark is nil-->
-<wpt lat="2.74354485062819" lon="101.685946199138">
-    <name>KLIA2 - Starbucks</name>
-</wpt>
+<!--<!--CLPlacemark is nil-->-->
+<!--<wpt lat="2.74354485062819" lon="101.685946199138">-->
+<!--    <name>KLIA2 - Starbucks</name>-->
+<!--</wpt>-->
+<!--<!--CLPlacemark is nil-->-->
+
 
 <!--NO LOCATION NAME, NO CITY ID-->
 <!--<wpt lat="26.936955" lon="-5.417850">-->
@@ -13,9 +15,9 @@
 <!--NO LOCATION NAME, NO CITY ID-->
 
 <!--LOCATION NAME KNOWN, CITY ID UNKNOWN -->
-<!--    <wpt lat="45.514589" lon="-73.559794">-->
-<!--        <name>Metr0 Berri/Uqam</name>-->
-<!--    </wpt>-->
+    <wpt lat="45.514589" lon="-73.559794">
+        <name>Metr0 Berri/Uqam</name>
+    </wpt>
 <!--    <wpt lat="-8.549590" lon="116.072074">-->
 <!--        <name>Grand Villa</name>-->
 <!--    </wpt>-->

@@ -9,22 +9,22 @@
 import Foundation
 
 //MARK: - Helpers
-extension IntervalTimerUser {
+extension ITVUser {
     
     func weatherQueryPriority() -> Int {
         
         //priority 1 = byCityId
-        if IntervalTimerCoreLocation.sharedInstance.thisCityId != -1 {
+        if ITVCoreLocation.sharedInstance.thisCityId != -1 {
             return WeatherQueryPriority.byCityId.rawValue
         }
         
         //priority 2 = location name
-        if !IntervalTimerCoreLocation.sharedInstance.thisCityName!.isEmpty && !IntervalTimerCoreLocation.sharedInstance.thisCountryCode!.isEmpty {
+        if !ITVCoreLocation.sharedInstance.thisCityName!.isEmpty && !ITVCoreLocation.sharedInstance.thisCountryCode!.isEmpty {
             return WeatherQueryPriority.byLocationName.rawValue
         }
         
         //priority 3 = coordinates
-        if IntervalTimerCoreLocation.sharedInstance.thisLatitude != -1 && IntervalTimerCoreLocation.sharedInstance.thisLongitude != -1 {
+        if ITVCoreLocation.sharedInstance.thisLatitude != -1 && ITVCoreLocation.sharedInstance.thisLongitude != -1 {
             return WeatherQueryPriority.byCoordinates.rawValue
         }
         

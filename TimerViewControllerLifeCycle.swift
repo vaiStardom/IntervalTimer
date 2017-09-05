@@ -54,7 +54,7 @@ extension TimerViewController{
         //Only register if user wants weather for this timer
         self.registerNotifications() //will register at first weather use
 
-        if IntervalTimerUser.sharedInstance.thisShouldUpdateWeather! {
+        if ITVUser.sharedInstance.thisShouldUpdateWeather! {
             setWeatherFromNetwork()
 //            activityIndicatorStart()
 //            
@@ -67,7 +67,7 @@ extension TimerViewController{
 //            IntervalTimerCurrentWeather.getWeatherByPriority()
         } else {
             //has the weather been retreived before, if yes update the saved weather
-            if IntervalTimerUser.sharedInstance.thisCurrentWeather != nil {
+            if ITVUser.sharedInstance.thisCurrentWeather != nil {
                 updateWeatherInformation()
             } else {
                 setWeatherFromNetwork()

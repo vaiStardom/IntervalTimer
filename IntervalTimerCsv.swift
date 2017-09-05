@@ -104,7 +104,7 @@ class IntervalTimerCsv {
             if theCityId != nil {
                 DispatchQueue.main.async(execute: {
                     print("------> IntervalTimerCsv getCityId(cityName:countryCode:) setting IntervalTimerCoreLocation.sharedInstance.thisCityId = \(String(describing: theCityId))")
-                    IntervalTimerCoreLocation.sharedInstance.thisCityId = theCityId
+                    ITVCoreLocation.sharedInstance.thisCityId = theCityId
                 })
             } else {
                 didGetCityId = false

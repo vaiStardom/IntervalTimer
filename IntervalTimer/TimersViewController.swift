@@ -23,7 +23,7 @@ class TimersViewController: UIViewController {
 extension TimersViewController{
     override func viewWillAppear(_ animated: Bool) {
         animateTable()
-        print("thisCurrentWeather = \(String(describing: IntervalTimerUser.sharedInstance.thisCurrentWeather))")
+        print("thisCurrentWeather = \(String(describing: ITVUser.sharedInstance.thisCurrentWeather))")
     }
     override func viewDidLoad() {
         super.viewDidLoad()

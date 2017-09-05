@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-extension IntervalTimerCoreLocation {
+extension ITVCoreLocation {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         let latestLocation = locations.last!
@@ -31,44 +31,81 @@ extension IntervalTimerCoreLocation {
                 thisLongitude = nil
             }
             
-            //            //ReverseGeocoding to get location name using BADAPPLES
-            //            //BADAPPLE: forced to use GoogleMap API to get ENGLISH city name, bypassing userdefaults
-            //            //TODO: Other possible BADAPPLES https://stackoverflow.com/questions/31331093/clgeocoder-returns-wrong-results-when-city-name-is-equal-to-some-countrys-name
-            thisGeocoder.reverseGeocodeLocation(latestLocation, completionHandler: { (placemarks, error) in
-                if error == nil, let placemark = placemarks, !placemark.isEmpty {
-                    self.thisPlacemark = placemark.last
-                }
-                //Parse location information
-                self.parsePlacemarks()
-            })
-            
+            reverseGeocodeLocation(latestLocation)
+////            //            //ReverseGeocoding to get location name using BADAPPLES
+////            //            //BADAPPLE: forced to use GoogleMap API to get ENGLISH city name, bypassing userdefaults
+////            //            //TODO: Other possible BADAPPLES https://stackoverflow.com/questions/31331093/clgeocoder-returns-wrong-results-when-city-name-is-equal-to-some-countrys-name
+////            //TODO: place this call inside a oneshot dispatch work item
+//            thisGeocoder.reverseGeocodeLocation(latestLocation, completionHandler: { (placemarks, error) in
+//                if error == nil, let placemark = placemarks, !placemark.isEmpty {
+//                    self.thisPlacemark = placemark.last
+//                    //Parse location information
+//                    self.parsePlacemark()
+//                } else {
+//                    //Unable to get the rest of the location data, this should set didcompletelocationdetermination to true
+//                    print("------> ERROR IntervalTimerCoreLocation locationManager(manager:didUpdateLocations:), reverseGeocodeLocation error: \(String(describing: error?.localizedDescription))")
+//                    self.nilLocationName()
+//                }
+//            })
         } else {
-            //TODO: What do we do here in this condition?
+            //TODO: Raise location unavailable from iPhone error screen .
             //thisDidCompleteLocationDetermination = false
         }
     }
-    func parsePlacemarks() {
+    func reverseGeocodeLocation(_ location: CLLocation?){
+        guard let theLocation = location else {
+            print("------> ERROR IntervalTimerCoreLocation reverseGeocodeLocation(location:) CLLocation = nil")
+            nilLocationName()
+            return
+        }
+        
+        let reverseGeocodeLocation_WorkItem = DispatchWorkItem {
+            self.thisGeocoder.reverseGeocodeLocation(theLocation, completionHandler: { (placemarks, error) in
+                if error == nil, let placemark = placemarks, !placemark.isEmpty {
+                    self.thisPlacemark = placemark.last
+                    //Parse location information
+                    self.parsePlacemark()
+                } else {
+                    //Unable to get the rest of the location data, this should set didcompletelocationdetermination to true
+                    print("------> ERROR IntervalTimerCoreLocation locationManager(manager:didUpdateLocations:), reverseGeocodeLocation error: \(String(describing: error?.localizedDescription))")
+                    self.nilLocationName()
+                }
+            })
+        }
+        
+        print("------> IntervalTimerCoreLocation reverseGeocodeLocation(location:) reverseGeocodeLocation_WorkItem will execute")
+        UTILITY_GLOBAL_DISPATCHQUEUE.async(execute: reverseGeocodeLocation_WorkItem)
+        
+        reverseGeocodeLocation_WorkItem.notify(queue: DispatchQueue.main) {
+            print("------> IntervalTimerCoreLocation reverseGeocodeLocation(location:) reverseGeocodeLocation_WorkItem did complete")
+            if self.thisCityName != nil && self.thisCountryCode != nil {
+                print("------> IntervalTimerCoreLocation reverseGeocodeLocation(location:) reverseGeocodeLocation_WorkItem did complete called getCityId()")
+                self.getCityId()
+            }
+        }
+    }
+    func parsePlacemark() {
         
         guard let _ = thisLocation else {
-            print("------> IntervalTimerCoreLocation parsePlacemarks() CLLocation = nil")
+            print("------> ERROR IntervalTimerCoreLocation parsePlacemarks() CLLocation = nil")
             nilLocationName()
             return
         }
         
         guard let thePlacemark = thisPlacemark else {
-            print("------> IntervalTimerCoreLocation parsePlacemarks() CLPlacemark = nil")
+            print("------> ERROR IntervalTimerCoreLocation parsePlacemarks() CLPlacemark = nil")
             nilLocationName()
             return
         }
         
         guard let theCityName = thePlacemark.locality, !theCityName.isEmpty else {
-            print("------> IntervalTimerCoreLocation parsePlacemarks() CLPlacemark.locality = nil or empty")
+            print("------> ERROR IntervalTimerCoreLocation parsePlacemarks() CLPlacemark.locality = nil or empty")
             nilLocationName()
             return
         }
         
         guard let theCountryShortName = thePlacemark.isoCountryCode, !theCountryShortName.isEmpty else {
-            print("------> IntervalTimerCoreLocation parsePlacemarks() CLPlacemark.isoCountryCode = nil or empty")
+            print("------> ERROR IntervalTimerCoreLocation parsePlacemarks() CLPlacemark.isoCountryCode = nil or empty")
             nilLocationName()
             return
         }
@@ -76,7 +113,7 @@ extension IntervalTimerCoreLocation {
         thisCityName = theCityName
         thisCountryCode = theCountryShortName
         
-        getCityId()
+//        getCityId()
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -88,11 +125,14 @@ extension IntervalTimerCoreLocation {
         //TODO: if the weather is not updated after 1minute, than put the warning icon to warn user that the network is not working, do the same thing if insufficient data exists to determine a location
         
         print("------> ERROR IntervalTimerCoreLocation locationManager(manager:didFailWithError:) -> \(error.localizedDescription)")
+        
+        //TODO: restart the manager at a later appropriate state (maybe by user tapping on the warning icon of the weather!)
         stopUpdatingLocationManager()
         
         let theError = error as NSError
         switch (theError.code) {
         case CoreLocationError.LocationUnknown.rawValue: //location is currently unknown
+            //TODO: raise error from here, error should say device was unable to determine the location
             print("------> ERROR Location is currently unknown. Code: \(theError.code). Message: \(theError.localizedDescription).")
         case CoreLocationError.Denied.rawValue:
             print("------> ERROR Access to location has been denied by the user. Code: \(theError.code). Message: \(theError.localizedDescription).")
@@ -101,7 +141,6 @@ extension IntervalTimerCoreLocation {
         default:
             print("------> ERROR Failed location default error. Code: \(theError.code). Message: \(theError.localizedDescription).")
         }
-        
     }
     func requestLocation(){
         thisLocationManager.requestLocation()

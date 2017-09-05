@@ -19,7 +19,7 @@ class IntervalTimerCurrentWeather: NSObject, NSCoding {
     //MARK: - public get/set properties
     var thisTemperature: String?{
         get {
-            return convertTemperature(kelvins: thisKelvin, forUnits: IntervalTimerUser.sharedInstance.thisTemperatureUnit)
+            return convertTemperature(kelvins: thisKelvin, forUnits: ITVUser.sharedInstance.thisTemperatureUnit)
         }
     }
     var thisIcon: String?{
@@ -112,12 +112,12 @@ extension IntervalTimerCurrentWeather{
 extension IntervalTimerCurrentWeather{
     static func getWeatherByPriority(){
         
-        print("------> IntervalTimerCurrentWeather getWeatherByPriority() thisDidCompleteLocationDetermination = \(String(describing: IntervalTimerCoreLocation.sharedInstance.thisDidCompleteLocationDetermination))")
+        print("------> IntervalTimerCurrentWeather getWeatherByPriority() thisDidCompleteLocationDetermination = \(String(describing: ITVCoreLocation.sharedInstance.thisDidCompleteLocationDetermination))")
         
-        if IntervalTimerCoreLocation.sharedInstance.thisDidCompleteLocationDetermination! {
+        if ITVCoreLocation.sharedInstance.thisDidCompleteLocationDetermination! {
             
             let getWeather_WorkItem = DispatchWorkItem {//get city id by cl info failed, get alternative info from mapquest
-                switch IntervalTimerUser.sharedInstance.weatherQueryPriority() {
+                switch ITVUser.sharedInstance.weatherQueryPriority() {
                 case WeatherQueryPriority.byCityId.rawValue:
                     print("------> IntervalTimerCurrentWeather getWeatherByPriority() byCityId")
                     do {
@@ -157,12 +157,12 @@ extension IntervalTimerCurrentWeather{
     
     static func getWeatherByCityId() throws {
         
-        guard let thisShouldUpdateWeeather = IntervalTimerUser.sharedInstance.thisShouldUpdateWeather, thisShouldUpdateWeeather else {
-            throw GetWeatherError.shouldNotUpdateWeather(reason: "Should Update Weather = \(String(describing: IntervalTimerUser.sharedInstance.thisShouldUpdateWeather))")
+        guard let thisShouldUpdateWeeather = ITVUser.sharedInstance.thisShouldUpdateWeather, thisShouldUpdateWeeather else {
+            throw GetWeatherError.shouldNotUpdateWeather(reason: "Should Update Weather = \(String(describing: ITVUser.sharedInstance.thisShouldUpdateWeather))")
         }
         
-        guard let theCityId = IntervalTimerCoreLocation.sharedInstance.thisCityId else {
-            throw GetWeatherError.noWeatherForCityId(reason: " CityId = \(String(describing: IntervalTimerCoreLocation.sharedInstance.thisCityId))")
+        guard let theCityId = ITVCoreLocation.sharedInstance.thisCityId else {
+            throw GetWeatherError.noWeatherForCityId(reason: " CityId = \(String(describing: ITVCoreLocation.sharedInstance.thisCityId))")
         }
         
         print("------> IntervalTimerCurrentWeather getWeatherByCityId()")
@@ -182,16 +182,16 @@ extension IntervalTimerCurrentWeather{
         }
     }
     static func getWeatherByLocationName() throws {
-        guard let thisShouldUpdateWeeather = IntervalTimerUser.sharedInstance.thisShouldUpdateWeather, thisShouldUpdateWeeather else {
-            throw GetWeatherError.shouldNotUpdateWeather(reason: "Should Update Weather = \(String(describing: IntervalTimerUser.sharedInstance.thisShouldUpdateWeather))")
+        guard let thisShouldUpdateWeeather = ITVUser.sharedInstance.thisShouldUpdateWeather, thisShouldUpdateWeeather else {
+            throw GetWeatherError.shouldNotUpdateWeather(reason: "Should Update Weather = \(String(describing: ITVUser.sharedInstance.thisShouldUpdateWeather))")
         }
         
-        guard let theCityName = IntervalTimerCoreLocation.sharedInstance.thisCityName else {
-            throw GetWeatherError.noWeatherForLocationName(reason: " City Name = \(String(describing: IntervalTimerCoreLocation.sharedInstance.thisCityName))")
+        guard let theCityName = ITVCoreLocation.sharedInstance.thisCityName else {
+            throw GetWeatherError.noWeatherForLocationName(reason: " City Name = \(String(describing: ITVCoreLocation.sharedInstance.thisCityName))")
         }
         
-        guard let theCountryCode = IntervalTimerCoreLocation.sharedInstance.thisCountryCode else {
-            throw GetWeatherError.noWeatherForLocationName(reason: " Country Code = \(String(describing: IntervalTimerCoreLocation.sharedInstance.thisCountryCode))")
+        guard let theCountryCode = ITVCoreLocation.sharedInstance.thisCountryCode else {
+            throw GetWeatherError.noWeatherForLocationName(reason: " Country Code = \(String(describing: ITVCoreLocation.sharedInstance.thisCountryCode))")
         }
         
         print("------> IntervalTimerCurrentWeather getWeatherByLocationName() theCityName= \(theCityName), theCountryCode= \(theCountryCode)")
@@ -212,16 +212,16 @@ extension IntervalTimerCurrentWeather{
     }
     static func getWeatherByCoordinates() throws {
         
-        guard let thisShouldUpdateWeeather = IntervalTimerUser.sharedInstance.thisShouldUpdateWeather, thisShouldUpdateWeeather else {
-            throw GetWeatherError.shouldNotUpdateWeather(reason: "Should Update Weather = \(String(describing: IntervalTimerUser.sharedInstance.thisShouldUpdateWeather))")
+        guard let thisShouldUpdateWeeather = ITVUser.sharedInstance.thisShouldUpdateWeather, thisShouldUpdateWeeather else {
+            throw GetWeatherError.shouldNotUpdateWeather(reason: "Should Update Weather = \(String(describing: ITVUser.sharedInstance.thisShouldUpdateWeather))")
         }
         
-        guard let theLatitude = IntervalTimerCoreLocation.sharedInstance.thisLatitude else {
-            throw GetWeatherError.noWeatherForCoordinates(reason: " Latitude = \(String(describing: IntervalTimerCoreLocation.sharedInstance.thisLatitude))")
+        guard let theLatitude = ITVCoreLocation.sharedInstance.thisLatitude else {
+            throw GetWeatherError.noWeatherForCoordinates(reason: " Latitude = \(String(describing: ITVCoreLocation.sharedInstance.thisLatitude))")
         }
         
-        guard let theLongitude = IntervalTimerCoreLocation.sharedInstance.thisLongitude else {
-            throw GetWeatherError.noWeatherForCoordinates(reason: " Longitude = \(String(describing: IntervalTimerCoreLocation.sharedInstance.thisLongitude))")
+        guard let theLongitude = ITVCoreLocation.sharedInstance.thisLongitude else {
+            throw GetWeatherError.noWeatherForCoordinates(reason: " Longitude = \(String(describing: ITVCoreLocation.sharedInstance.thisLongitude))")
         }
         
         let weatherService = IntervalTimerWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)

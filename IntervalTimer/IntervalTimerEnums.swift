@@ -66,7 +66,13 @@ enum JsonError: Error {
 enum UrlError: Error {
     case unsucessfulUrl(reason: String)
 }
-
+enum UserWarning: Int {
+    case AirPlaneModeEnabled
+    case LocationManagerDidFail
+    case LocationServicesDisabled
+    case NoInternet
+    
+}
 //MARK: - Fonts
 enum SystemFont{
     static let Bold15: UIFont = UIFont.systemFont(ofSize: 15, weight: UIFontWeightBold)

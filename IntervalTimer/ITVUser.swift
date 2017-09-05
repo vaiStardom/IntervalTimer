@@ -1,5 +1,5 @@
 //
-//  IntervalTimerUser.swift
+//  ITVUser.swift
 //  IntervalTimer
 //
 //  Created by Paul Addy on 2017-07-02.
@@ -27,10 +27,10 @@ import UIKit
 //Also if there are NO identifialble city ids in this radius, then stop reverse geocoding and only get weather using coordinates
 //TODO: Protect this singletons from concurrency
 //TODO: Rename all interval timer classes and structs to ITV
-class IntervalTimerUser: NSObject, NSCoding {
+class ITVUser: NSObject, NSCoding {
     
     //MARK: - Singleton
-    static let sharedInstance = IntervalTimerUser()
+    static let sharedInstance = ITVUser()
 
     //MARK: - fileprivate properties
     fileprivate var temperatureUnit: TemperatureUnit = .celcius //TODO : delete from here and move to the timer class

@@ -9,10 +9,10 @@
 import Foundation
 import CoreLocation
 
-class IntervalTimerCoreLocation: NSObject, CLLocationManagerDelegate {
+class ITVCoreLocation: NSObject, CLLocationManagerDelegate {
     
     //MARK: - Singleton
-    static let sharedInstance = IntervalTimerCoreLocation()
+    static let sharedInstance = ITVCoreLocation()
     
     //MARK: - Fileprivate properties
     fileprivate var cityId: Int?
@@ -25,6 +25,7 @@ class IntervalTimerCoreLocation: NSObject, CLLocationManagerDelegate {
     fileprivate var latitude: Double?
     fileprivate var longitude: Double?
     fileprivate var location: CLLocation?
+    
     fileprivate var placemark: CLPlacemark?
     
     let thisGeocoder = CLGeocoder()

@@ -22,11 +22,8 @@ func getWeatherFromNetwork(){
     //TODO: call this when user starts a timer
     //IntervalTimerUser.sharedInstance.startUpdatingLocationManager()
     print("------> TimerViewController viewDidLoad() requesting Location")
-    IntervalTimerCoreLocation.sharedInstance.requestLocation()
+    ITVCoreLocation.sharedInstance.requestLocation()
     
     print("------> TimerViewController viewDidLoad() attempting to set weather")
     IntervalTimerCurrentWeather.getWeatherByPriority()
 }
-
-
-

@@ -37,14 +37,14 @@ extension EditTimerViewController{
         
         // Background Thread Or Service call Or DB fetch etc
         print("------> TimerViewController didGetCurrentWeather notification received")
-        guard let theTemperature = IntervalTimerUser.sharedInstance.thisCurrentWeather?.thisTemperature else {
+        guard let theTemperature = ITVUser.sharedInstance.thisCurrentWeather?.thisTemperature else {
             aesthetics_showMissingWeatherWarning()
-            fatalError("------> ERROR - TimerViewController didGetCurrentWeather invalid temperature \(String(describing: IntervalTimerUser.sharedInstance.thisCurrentWeather?.thisTemperature))")
+            fatalError("------> ERROR - TimerViewController didGetCurrentWeather invalid temperature \(String(describing: ITVUser.sharedInstance.thisCurrentWeather?.thisTemperature))")
         }
         
-        guard let theIcon = IntervalTimerUser.sharedInstance.thisCurrentWeather?.thisIcon! else {
+        guard let theIcon = ITVUser.sharedInstance.thisCurrentWeather?.thisIcon! else {
             aesthetics_showMissingWeatherWarning()
-            fatalError("------> ERROR TimerViewController didGetCurrentWeather invalid icon \(String(describing: IntervalTimerUser.sharedInstance.thisCurrentWeather?.thisIcon!))")
+            fatalError("------> ERROR TimerViewController didGetCurrentWeather invalid icon \(String(describing: ITVUser.sharedInstance.thisCurrentWeather?.thisIcon!))")
         }
         
         guard let theImage = UIImage(named: theIcon) else {
@@ -68,6 +68,6 @@ extension EditTimerViewController{
         })
         
         //Weather updated, no need to update location until 3 hrs have passed or user has moved 1KM
-        IntervalTimerUser.sharedInstance.thisShouldUpdateWeather = false
+        ITVUser.sharedInstance.thisShouldUpdateWeather = false
     }
 }

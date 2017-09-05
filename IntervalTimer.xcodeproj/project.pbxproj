@@ -19,10 +19,10 @@
 		BA42AB651F49BAB100CF1239 /* TimersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA42AB631F49BAB100CF1239 /* TimersTableViewCell.xib */; };
 		BA42AB671F49E84A00CF1239 /* TimersViewControllerTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA42AB661F49E84A00CF1239 /* TimersViewControllerTableView.swift */; };
 		BA42AB691F49E8B500CF1239 /* TimersViewControllerNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA42AB681F49E8B500CF1239 /* TimersViewControllerNavigationBar.swift */; };
-		BA42AB6D1F49EA1B00CF1239 /* IntervalTimerUserHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA42AB6C1F49EA1B00CF1239 /* IntervalTimerUserHelpers.swift */; };
-		BA42AB731F4A679C00CF1239 /* IntervalTimerCoreLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA42AB721F4A679C00CF1239 /* IntervalTimerCoreLocation.swift */; };
-		BA4370291F59261600E144D2 /* IntervalTimerCoreLocationHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4370281F59261600E144D2 /* IntervalTimerCoreLocationHelpers.swift */; };
-		BA43702B1F59289E00E144D2 /* IntervalTimerCoreLocationCoreLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA43702A1F59289E00E144D2 /* IntervalTimerCoreLocationCoreLocation.swift */; };
+		BA42AB6D1F49EA1B00CF1239 /* ITVUserHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA42AB6C1F49EA1B00CF1239 /* ITVUserHelpers.swift */; };
+		BA42AB731F4A679C00CF1239 /* ITVCoreLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA42AB721F4A679C00CF1239 /* ITVCoreLocation.swift */; };
+		BA4370291F59261600E144D2 /* ITVCoreLocationHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4370281F59261600E144D2 /* ITVCoreLocationHelpers.swift */; };
+		BA43702B1F59289E00E144D2 /* ITVCoreLocationCoreLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA43702A1F59289E00E144D2 /* ITVCoreLocationCoreLocation.swift */; };
 		BA4A1C6E1F4ED7080092DD89 /* TimerViewControllerLifeCycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4A1C6D1F4ED7080092DD89 /* TimerViewControllerLifeCycle.swift */; };
 		BA4BFE751EFF4D9D00E341DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4BFE741EFF4D9D00E341DC /* AppDelegate.swift */; };
 		BA4BFE771EFF4D9D00E341DC /* TimersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4BFE761EFF4D9D00E341DC /* TimersViewController.swift */; };
@@ -57,12 +57,12 @@
 		BAA11C431F5BB56B005F3259 /* EditTimerViewControllerWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA11C421F5BB56B005F3259 /* EditTimerViewControllerWeather.swift */; };
 		BAA11C471F5BB7BF005F3259 /* ITVWarningAllowLocationServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA11C461F5BB7BF005F3259 /* ITVWarningAllowLocationServicesView.swift */; };
 		BAA11C491F5BB7CD005F3259 /* ITVWarningAllowLocationServicesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAA11C481F5BB7CD005F3259 /* ITVWarningAllowLocationServicesView.xib */; };
-		BAA11C4D1F5BFC8A005F3259 /* ITVUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA11C4C1F5BFC8A005F3259 /* ITVUIView.swift */; };
+		BAA11C4D1F5BFC8A005F3259 /* ITVUIViewWarning.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA11C4C1F5BFC8A005F3259 /* ITVUIViewWarning.swift */; };
 		BAA11C4F1F5D43F4005F3259 /* ITVProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA11C4E1F5D43F4005F3259 /* ITVProtocols.swift */; };
-		BAA11C511F5D4F3F005F3259 /* ITVWarningDisableAirPlaneMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA11C501F5D4F3F005F3259 /* ITVWarningDisableAirPlaneMode.swift */; };
-		BAA11C531F5D4F49005F3259 /* ITVWarningDisableAirPlaneMode.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAA11C521F5D4F49005F3259 /* ITVWarningDisableAirPlaneMode.xib */; };
-		BAA11C561F5D58B9005F3259 /* ITVWarningConnectToInternet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA11C551F5D58B9005F3259 /* ITVWarningConnectToInternet.swift */; };
-		BAA11C581F5D58D2005F3259 /* ITVWarningConnectToInternet.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAA11C571F5D58D2005F3259 /* ITVWarningConnectToInternet.xib */; };
+		BAA11C511F5D4F3F005F3259 /* ITVWarningDisableAirPlaneModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA11C501F5D4F3F005F3259 /* ITVWarningDisableAirPlaneModeView.swift */; };
+		BAA11C531F5D4F49005F3259 /* ITVWarningDisableAirPlaneModeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAA11C521F5D4F49005F3259 /* ITVWarningDisableAirPlaneModeView.xib */; };
+		BAA11C561F5D58B9005F3259 /* ITVWarningConnectToInternetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA11C551F5D58B9005F3259 /* ITVWarningConnectToInternetView.swift */; };
+		BAA11C581F5D58D2005F3259 /* ITVWarningConnectToInternetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAA11C571F5D58D2005F3259 /* ITVWarningConnectToInternetView.xib */; };
 		BAABCA801F555474008C5B85 /* IntervalTimerTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAABCA7F1F555474008C5B85 /* IntervalTimerTimer.swift */; };
 		BAABCA821F56610E008C5B85 /* IntervalTimerInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAABCA811F56610E008C5B85 /* IntervalTimerInterval.swift */; };
 		BAABCA841F5674E8008C5B85 /* EditIntervalViewControllerAesthetics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAABCA831F5674E8008C5B85 /* EditIntervalViewControllerAesthetics.swift */; };
@@ -72,10 +72,14 @@
 		BAC38F8B1F2EF54400AE0057 /* IntervalTimerCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC38F8A1F2EF54400AE0057 /* IntervalTimerCity.swift */; };
 		BAC38F8D1F2F15B900AE0057 /* IntervalTimerCityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC38F8C1F2F15B900AE0057 /* IntervalTimerCityService.swift */; };
 		BAC38F8F1F2F7D1400AE0057 /* IntervalTimerCsv.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC38F8E1F2F7D1400AE0057 /* IntervalTimerCsv.swift */; };
-		BACD18231F08E5FC0072FF2C /* IntervalTimerUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACD18221F08E5FC0072FF2C /* IntervalTimerUser.swift */; };
+		BACD18231F08E5FC0072FF2C /* ITVUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACD18221F08E5FC0072FF2C /* ITVUser.swift */; };
 		BACD18251F08E6C40072FF2C /* IntervalTimerEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACD18241F08E6C40072FF2C /* IntervalTimerEnums.swift */; };
 		BAD8A4B41F554C58007F8DEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAD8A4B31F554C58007F8DEA /* Assets.xcassets */; };
 		BAD8A4B61F55531E007F8DEA /* TimersViewControllerActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD8A4B51F55531E007F8DEA /* TimersViewControllerActions.swift */; };
+		BAED0C2F1F5EB32300F9A3FC /* TimerViewControllerWarnings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAED0C2E1F5EB32300F9A3FC /* TimerViewControllerWarnings.swift */; };
+		BAED0C311F5EB58B00F9A3FC /* EditTimerViewControllerWarnings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAED0C301F5EB58B00F9A3FC /* EditTimerViewControllerWarnings.swift */; };
+		BAED0C331F5EB90200F9A3FC /* ITVWarningLocationManagerDidFailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAED0C321F5EB90200F9A3FC /* ITVWarningLocationManagerDidFailView.xib */; };
+		BAED0C351F5EBA0700F9A3FC /* ITVWarningLocationManagerDidFailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAED0C341F5EBA0700F9A3FC /* ITVWarningLocationManagerDidFailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,10 +112,10 @@
 		BA42AB631F49BAB100CF1239 /* TimersTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimersTableViewCell.xib; sourceTree = "<group>"; };
 		BA42AB661F49E84A00CF1239 /* TimersViewControllerTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimersViewControllerTableView.swift; sourceTree = "<group>"; };
 		BA42AB681F49E8B500CF1239 /* TimersViewControllerNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimersViewControllerNavigationBar.swift; sourceTree = "<group>"; };
-		BA42AB6C1F49EA1B00CF1239 /* IntervalTimerUserHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalTimerUserHelpers.swift; sourceTree = "<group>"; };
-		BA42AB721F4A679C00CF1239 /* IntervalTimerCoreLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalTimerCoreLocation.swift; sourceTree = "<group>"; };
-		BA4370281F59261600E144D2 /* IntervalTimerCoreLocationHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalTimerCoreLocationHelpers.swift; sourceTree = "<group>"; };
-		BA43702A1F59289E00E144D2 /* IntervalTimerCoreLocationCoreLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalTimerCoreLocationCoreLocation.swift; sourceTree = "<group>"; };
+		BA42AB6C1F49EA1B00CF1239 /* ITVUserHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITVUserHelpers.swift; sourceTree = "<group>"; };
+		BA42AB721F4A679C00CF1239 /* ITVCoreLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITVCoreLocation.swift; sourceTree = "<group>"; };
+		BA4370281F59261600E144D2 /* ITVCoreLocationHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITVCoreLocationHelpers.swift; sourceTree = "<group>"; };
+		BA43702A1F59289E00E144D2 /* ITVCoreLocationCoreLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITVCoreLocationCoreLocation.swift; sourceTree = "<group>"; };
 		BA4A1C6D1F4ED7080092DD89 /* TimerViewControllerLifeCycle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewControllerLifeCycle.swift; sourceTree = "<group>"; };
 		BA4BFE711EFF4D9D00E341DC /* IntervalTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IntervalTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA4BFE741EFF4D9D00E341DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -152,12 +156,12 @@
 		BAA11C421F5BB56B005F3259 /* EditTimerViewControllerWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTimerViewControllerWeather.swift; sourceTree = "<group>"; };
 		BAA11C461F5BB7BF005F3259 /* ITVWarningAllowLocationServicesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITVWarningAllowLocationServicesView.swift; sourceTree = "<group>"; };
 		BAA11C481F5BB7CD005F3259 /* ITVWarningAllowLocationServicesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITVWarningAllowLocationServicesView.xib; sourceTree = "<group>"; };
-		BAA11C4C1F5BFC8A005F3259 /* ITVUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITVUIView.swift; sourceTree = "<group>"; };
+		BAA11C4C1F5BFC8A005F3259 /* ITVUIViewWarning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITVUIViewWarning.swift; sourceTree = "<group>"; };
 		BAA11C4E1F5D43F4005F3259 /* ITVProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITVProtocols.swift; sourceTree = "<group>"; };
-		BAA11C501F5D4F3F005F3259 /* ITVWarningDisableAirPlaneMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITVWarningDisableAirPlaneMode.swift; sourceTree = "<group>"; };
-		BAA11C521F5D4F49005F3259 /* ITVWarningDisableAirPlaneMode.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITVWarningDisableAirPlaneMode.xib; sourceTree = "<group>"; };
-		BAA11C551F5D58B9005F3259 /* ITVWarningConnectToInternet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITVWarningConnectToInternet.swift; sourceTree = "<group>"; };
-		BAA11C571F5D58D2005F3259 /* ITVWarningConnectToInternet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITVWarningConnectToInternet.xib; sourceTree = "<group>"; };
+		BAA11C501F5D4F3F005F3259 /* ITVWarningDisableAirPlaneModeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITVWarningDisableAirPlaneModeView.swift; sourceTree = "<group>"; };
+		BAA11C521F5D4F49005F3259 /* ITVWarningDisableAirPlaneModeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITVWarningDisableAirPlaneModeView.xib; sourceTree = "<group>"; };
+		BAA11C551F5D58B9005F3259 /* ITVWarningConnectToInternetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITVWarningConnectToInternetView.swift; sourceTree = "<group>"; };
+		BAA11C571F5D58D2005F3259 /* ITVWarningConnectToInternetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITVWarningConnectToInternetView.xib; sourceTree = "<group>"; };
 		BAABCA7F1F555474008C5B85 /* IntervalTimerTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalTimerTimer.swift; sourceTree = "<group>"; };
 		BAABCA811F56610E008C5B85 /* IntervalTimerInterval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalTimerInterval.swift; sourceTree = "<group>"; };
 		BAABCA831F5674E8008C5B85 /* EditIntervalViewControllerAesthetics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditIntervalViewControllerAesthetics.swift; sourceTree = "<group>"; };
@@ -167,10 +171,14 @@
 		BAC38F8A1F2EF54400AE0057 /* IntervalTimerCity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalTimerCity.swift; sourceTree = "<group>"; };
 		BAC38F8C1F2F15B900AE0057 /* IntervalTimerCityService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalTimerCityService.swift; sourceTree = "<group>"; };
 		BAC38F8E1F2F7D1400AE0057 /* IntervalTimerCsv.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalTimerCsv.swift; sourceTree = "<group>"; };
-		BACD18221F08E5FC0072FF2C /* IntervalTimerUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntervalTimerUser.swift; path = IntervalTimer/IntervalTimerUser.swift; sourceTree = "<group>"; };
+		BACD18221F08E5FC0072FF2C /* ITVUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ITVUser.swift; path = IntervalTimer/ITVUser.swift; sourceTree = "<group>"; };
 		BACD18241F08E6C40072FF2C /* IntervalTimerEnums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalTimerEnums.swift; sourceTree = "<group>"; };
 		BAD8A4B31F554C58007F8DEA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BAD8A4B51F55531E007F8DEA /* TimersViewControllerActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimersViewControllerActions.swift; sourceTree = "<group>"; };
+		BAED0C2E1F5EB32300F9A3FC /* TimerViewControllerWarnings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewControllerWarnings.swift; sourceTree = "<group>"; };
+		BAED0C301F5EB58B00F9A3FC /* EditTimerViewControllerWarnings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTimerViewControllerWarnings.swift; sourceTree = "<group>"; };
+		BAED0C321F5EB90200F9A3FC /* ITVWarningLocationManagerDidFailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITVWarningLocationManagerDidFailView.xib; sourceTree = "<group>"; };
+		BAED0C341F5EBA0700F9A3FC /* ITVWarningLocationManagerDidFailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITVWarningLocationManagerDidFailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,7 +226,7 @@
 				BA2B280B1F35D35E00823B93 /* IntervalTimerUIButton.swift */,
 				BA4BFEB41EFFD5E400E341DC /* ITVUIImageViewIndicator.swift */,
 				BA4BFEAE1EFFB8EB00E341DC /* IntervalTimerUILabel.swift */,
-				BAA11C4C1F5BFC8A005F3259 /* ITVUIView.swift */,
+				BAA11C4C1F5BFC8A005F3259 /* ITVUIViewWarning.swift */,
 			);
 			name = "UI Subclasses and Extensions";
 			path = IntervalTimer;
@@ -314,12 +322,13 @@
 				BA77AE861F49444B00AD34BE /* EditIntervalViewControllerNavigationBar.swift */,
 				BA77AE841F4943F300AD34BE /* EditIntervalViewControllerTextField.swift */,
 				BA4BFEAB1EFFAF2100E341DC /* EditTimerViewController.swift */,
-				BAA11C421F5BB56B005F3259 /* EditTimerViewControllerWeather.swift */,
 				BA90FA691F5958D2006EB239 /* EditTimerViewControllerActions.swift */,
 				BA90FA711F596C7C006EB239 /* EditTimerViewControllerAesthetics.swift */,
 				BA90FA6F1F59597C006EB239 /* EditTimerViewControllerHelpers.swift */,
 				BA90FA6B1F595921006EB239 /* EditTimerViewControllerLifeCycle.swift */,
 				BA90FA6D1F59594C006EB239 /* EditTimerViewControllerNavigationBar.swift */,
+				BAED0C301F5EB58B00F9A3FC /* EditTimerViewControllerWarnings.swift */,
+				BAA11C421F5BB56B005F3259 /* EditTimerViewControllerWeather.swift */,
 				BA4BFE761EFF4D9D00E341DC /* TimersViewController.swift */,
 				BAD8A4B51F55531E007F8DEA /* TimersViewControllerActions.swift */,
 				BA42AB681F49E8B500CF1239 /* TimersViewControllerNavigationBar.swift */,
@@ -332,6 +341,7 @@
 				BA77AE801F49432500AD34BE /* TimerViewControllerNavigationBar.swift */,
 				BA77AE7E1F4942FC00AD34BE /* TimerViewControllerNotifications.swift */,
 				BA77AE781F4941DC00AD34BE /* TimerViewControllerTimer.swift */,
+				BAED0C2E1F5EB32300F9A3FC /* TimerViewControllerWarnings.swift */,
 				BA77AE7A1F49424F00AD34BE /* TimerViewControllerWeather.swift */,
 			);
 			name = ViewControllers;
@@ -350,8 +360,9 @@
 			isa = PBXGroup;
 			children = (
 				BAA11C481F5BB7CD005F3259 /* ITVWarningAllowLocationServicesView.xib */,
-				BAA11C571F5D58D2005F3259 /* ITVWarningConnectToInternet.xib */,
-				BAA11C521F5D4F49005F3259 /* ITVWarningDisableAirPlaneMode.xib */,
+				BAA11C571F5D58D2005F3259 /* ITVWarningConnectToInternetView.xib */,
+				BAA11C521F5D4F49005F3259 /* ITVWarningDisableAirPlaneModeView.xib */,
+				BAED0C321F5EB90200F9A3FC /* ITVWarningLocationManagerDidFailView.xib */,
 				BA42AB631F49BAB100CF1239 /* TimersTableViewCell.xib */,
 			);
 			name = Nibs;
@@ -373,11 +384,11 @@
 			isa = PBXGroup;
 			children = (
 				BAC38F8E1F2F7D1400AE0057 /* IntervalTimerCsv.swift */,
-				BACD18221F08E5FC0072FF2C /* IntervalTimerUser.swift */,
-				BA42AB6C1F49EA1B00CF1239 /* IntervalTimerUserHelpers.swift */,
-				BA42AB721F4A679C00CF1239 /* IntervalTimerCoreLocation.swift */,
-				BA43702A1F59289E00E144D2 /* IntervalTimerCoreLocationCoreLocation.swift */,
-				BA4370281F59261600E144D2 /* IntervalTimerCoreLocationHelpers.swift */,
+				BACD18221F08E5FC0072FF2C /* ITVUser.swift */,
+				BA42AB6C1F49EA1B00CF1239 /* ITVUserHelpers.swift */,
+				BA42AB721F4A679C00CF1239 /* ITVCoreLocation.swift */,
+				BA43702A1F59289E00E144D2 /* ITVCoreLocationCoreLocation.swift */,
+				BA4370281F59261600E144D2 /* ITVCoreLocationHelpers.swift */,
 			);
 			name = Singletons;
 			sourceTree = "<group>";
@@ -386,8 +397,9 @@
 			isa = PBXGroup;
 			children = (
 				BAA11C461F5BB7BF005F3259 /* ITVWarningAllowLocationServicesView.swift */,
-				BAA11C551F5D58B9005F3259 /* ITVWarningConnectToInternet.swift */,
-				BAA11C501F5D4F3F005F3259 /* ITVWarningDisableAirPlaneMode.swift */,
+				BAA11C551F5D58B9005F3259 /* ITVWarningConnectToInternetView.swift */,
+				BAA11C501F5D4F3F005F3259 /* ITVWarningDisableAirPlaneModeView.swift */,
+				BAED0C341F5EBA0700F9A3FC /* ITVWarningLocationManagerDidFailView.swift */,
 				BA42AB621F49BAB100CF1239 /* TimersTableViewCell.swift */,
 			);
 			name = NibClasses;
@@ -504,13 +516,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BAA11C531F5D4F49005F3259 /* ITVWarningDisableAirPlaneMode.xib in Resources */,
+				BAA11C531F5D4F49005F3259 /* ITVWarningDisableAirPlaneModeView.xib in Resources */,
 				BA4BFE7F1EFF4D9D00E341DC /* LaunchScreen.storyboard in Resources */,
 				BAA11C491F5BB7CD005F3259 /* ITVWarningAllowLocationServicesView.xib in Resources */,
 				BA724BCE1F0B3BD100A211BD /* cityList.20170703.csv in Resources */,
 				BA42AB651F49BAB100CF1239 /* TimersTableViewCell.xib in Resources */,
+				BAED0C331F5EB90200F9A3FC /* ITVWarningLocationManagerDidFailView.xib in Resources */,
 				BA1CCB931F2443D500A3D0B3 /* TestLocations.gpx in Resources */,
-				BAA11C581F5D58D2005F3259 /* ITVWarningConnectToInternet.xib in Resources */,
+				BAA11C581F5D58D2005F3259 /* ITVWarningConnectToInternetView.xib in Resources */,
 				BAD8A4B41F554C58007F8DEA /* Assets.xcassets in Resources */,
 				BA4BFE7A1EFF4D9D00E341DC /* Main.storyboard in Resources */,
 			);
@@ -562,22 +575,24 @@
 				BAA11C431F5BB56B005F3259 /* EditTimerViewControllerWeather.swift in Sources */,
 				BAC38F8D1F2F15B900AE0057 /* IntervalTimerCityService.swift in Sources */,
 				BA90FA6A1F5958D2006EB239 /* EditTimerViewControllerActions.swift in Sources */,
+				BAED0C351F5EBA0700F9A3FC /* ITVWarningLocationManagerDidFailView.swift in Sources */,
 				BAABCA861F56750E008C5B85 /* EditIntervalViewControllerLifeCycle.swift in Sources */,
 				BA116C8C1F08A847001CDA80 /* IntervalTimerWeatherService.swift in Sources */,
 				BA90FA721F596C7C006EB239 /* EditTimerViewControllerAesthetics.swift in Sources */,
 				BA4BFEA91EFFA16500E341DC /* IntervalTimerGlobals.swift in Sources */,
 				BA42AB641F49BAB100CF1239 /* TimersTableViewCell.swift in Sources */,
 				BAABCA841F5674E8008C5B85 /* EditIntervalViewControllerAesthetics.swift in Sources */,
+				BAED0C311F5EB58B00F9A3FC /* EditTimerViewControllerWarnings.swift in Sources */,
 				BA4BFEA31EFF52CF00E341DC /* IntervalTimerColors.swift in Sources */,
 				BA77AE7B1F49424F00AD34BE /* TimerViewControllerWeather.swift in Sources */,
 				BA4BFEB11EFFC55700E341DC /* EditIntervalViewController.swift in Sources */,
-				BA43702B1F59289E00E144D2 /* IntervalTimerCoreLocationCoreLocation.swift in Sources */,
+				BA43702B1F59289E00E144D2 /* ITVCoreLocationCoreLocation.swift in Sources */,
 				BAAFE4511F0A366000D3619E /* IntervalTimerDownloadJSON.swift in Sources */,
 				BA4BFEAC1EFFAF2100E341DC /* EditTimerViewController.swift in Sources */,
 				BAA11C4F1F5D43F4005F3259 /* ITVProtocols.swift in Sources */,
 				BA4BFEAF1EFFB8EB00E341DC /* IntervalTimerUILabel.swift in Sources */,
-				BA42AB731F4A679C00CF1239 /* IntervalTimerCoreLocation.swift in Sources */,
-				BACD18231F08E5FC0072FF2C /* IntervalTimerUser.swift in Sources */,
+				BA42AB731F4A679C00CF1239 /* ITVCoreLocation.swift in Sources */,
+				BACD18231F08E5FC0072FF2C /* ITVUser.swift in Sources */,
 				BAD8A4B61F55531E007F8DEA /* TimersViewControllerActions.swift in Sources */,
 				BAC38F8F1F2F7D1400AE0057 /* IntervalTimerCsv.swift in Sources */,
 				BA77AE7F1F4942FC00AD34BE /* TimerViewControllerNotifications.swift in Sources */,
@@ -588,16 +603,16 @@
 				BA90FA6C1F595921006EB239 /* EditTimerViewControllerLifeCycle.swift in Sources */,
 				BA77AE771F49415200AD34BE /* TimerViewControllerActions.swift in Sources */,
 				BA2B280C1F35D35E00823B93 /* IntervalTimerUIButton.swift in Sources */,
-				BAA11C561F5D58B9005F3259 /* ITVWarningConnectToInternet.swift in Sources */,
-				BAA11C511F5D4F3F005F3259 /* ITVWarningDisableAirPlaneMode.swift in Sources */,
-				BA42AB6D1F49EA1B00CF1239 /* IntervalTimerUserHelpers.swift in Sources */,
+				BAA11C561F5D58B9005F3259 /* ITVWarningConnectToInternetView.swift in Sources */,
+				BAA11C511F5D4F3F005F3259 /* ITVWarningDisableAirPlaneModeView.swift in Sources */,
+				BA42AB6D1F49EA1B00CF1239 /* ITVUserHelpers.swift in Sources */,
 				BA77AE811F49432500AD34BE /* TimerViewControllerNavigationBar.swift in Sources */,
 				BA116C8E1F08AB39001CDA80 /* IntervalTimerWeatherCurrent.swift in Sources */,
 				BA90FA701F59597C006EB239 /* EditTimerViewControllerHelpers.swift in Sources */,
 				BA4BFEA51EFFA0FD00E341DC /* IntervalTimerUIBarButtonItems.swift in Sources */,
 				BAAFE44C1F0A04BF00D3619E /* IntervalTimerFuncs.swift in Sources */,
-				BA4370291F59261600E144D2 /* IntervalTimerCoreLocationHelpers.swift in Sources */,
-				BAA11C4D1F5BFC8A005F3259 /* ITVUIView.swift in Sources */,
+				BA4370291F59261600E144D2 /* ITVCoreLocationHelpers.swift in Sources */,
+				BAA11C4D1F5BFC8A005F3259 /* ITVUIViewWarning.swift in Sources */,
 				BAC38F8B1F2EF54400AE0057 /* IntervalTimerCity.swift in Sources */,
 				BA77AE831F4943C500AD34BE /* EditIntervalViewControllerActions.swift in Sources */,
 				BA77AE7D1F4942B100AD34BE /* TimerViewControllerAesthetics.swift in Sources */,
@@ -611,6 +626,7 @@
 				BA77AE8D1F49883D00AD34BE /* IntervalTimerCityServiceCityRetreival.swift in Sources */,
 				BA4BFE751EFF4D9D00E341DC /* AppDelegate.swift in Sources */,
 				BACD18251F08E6C40072FF2C /* IntervalTimerEnums.swift in Sources */,
+				BAED0C2F1F5EB32300F9A3FC /* TimerViewControllerWarnings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

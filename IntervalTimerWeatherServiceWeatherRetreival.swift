@@ -93,7 +93,7 @@ extension IntervalTimerWeatherService {
             didGetCurrentWeather = true
             DispatchQueue.main.async(execute: {
                 print("------> IntervalTimerWeatherService getWeatherWith(url:) = \(String(describing: theCurrentWeather.thisTemperature))")
-                IntervalTimerUser.sharedInstance.thisCurrentWeather = theCurrentWeather
+                ITVUser.sharedInstance.thisCurrentWeather = theCurrentWeather
                 
                 NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCurrentWeather"), object: nil)
             })

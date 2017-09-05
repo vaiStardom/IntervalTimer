@@ -43,15 +43,7 @@ extension TimerViewController {
         aesthetics_timerCancel()
         aesthetics_timerLabels()
         aesthetics_timerLabelsInitialText()
-        aesthetics_allowLocationServices()
-    }
-    func aesthetics_allowLocationServices(){
-        
-        //                visualEffect = warnView.visualEffectsView.effect
-        //                warnView.visualEffectsView.effect = nil
-        //                warnView.isHidden = true
-        //                warnView.informationView.layer.cornerRadius = 5
-        
+//        aesthetics_allowLocationServices()
     }
     func aesthetics_minutes(){
         
@@ -140,43 +132,5 @@ extension TimerViewController {
         //Seconds labels
         timerSecondsLabel.font = ViewFont.TimerSeconds
         timerMillisecondsForSecondsLabel.font = ViewFont.TimerMilliseconds
-    }
-    
-    func aesthetics_showAllowLocationServicesWarning(){
-        
-        //let warnView: ITVWarningAllowLocationServicesView = UIView.fromNib()
-        //let warnView: ITVWarningConnectToInternet = UIView.fromNib()
-        let warnView: ITVWarningDisableAirPlaneMode = UIView.fromNib()
-        
-        warnView.frame = self.view.bounds
-        warnView.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
-        warnView.informationView.center = warnView.center
-        warnView.informationView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
-        warnView.informationView.layer.cornerRadius = 5
-        warnView.informationView.alpha = 0.0
-        warnView.visualEffectsView.isHidden = false
-        warnView.visualEffectsView.effect = nil
-        warnView.tag = 1
-        warnView.dismissWarningButton.addTarget(self, action: #selector(TimerViewController.dismissAllowLocationServicesWarning), for: .touchUpInside)
-        
-        self.view.addSubview(warnView)
-        
-        UIView.animate(withDuration: 0.4) {
-            self.navigationController?.isNavigationBarHidden = true
-            warnView.visualEffectsView.effect = UIBlurEffect(style: .light)
-            warnView.informationView.alpha = 1.0
-            warnView.informationView.transform =  CGAffineTransform.identity
-        }
-    }
-    
-    func dismissAllowLocationServicesWarning() {
-        if let warnView = self.view.viewWithTag(1) {
-            UIView.animate(withDuration: 0.3, animations: {
-                self.navigationController?.isNavigationBarHidden = false
-                warnView.alpha = 0.0
-            }) {(success: Bool) in
-                warnView.removeFromSuperview()
-            }
-        }
     }
 }

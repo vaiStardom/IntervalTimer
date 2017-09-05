@@ -10,7 +10,7 @@ import Foundation
 import CoreLocation
 
 //MARK: - Helpers
-extension IntervalTimerCoreLocation {
+extension ITVCoreLocation{
     func nilLocationName(){
         print("------> IntervalTimerCoreLocation nilLocationName()")
         thisCityName = ""
