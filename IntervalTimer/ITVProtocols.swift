@@ -2,12 +2,15 @@
 //  ITVProtocols.swift
 //  IntervalTimer
 //
-//  Created by Paul Addy on 2017-09-04.
+//  Created by Paul Addy on 2017-09-06.
 //  Copyright © 2017 Paul Addy. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-//protocol WarningViewDelegate {
-//    func dismissView()
-//}
+protocol ITVUserWarningProtocol {
+    func show(animated:Bool)
+    func dismiss(animated:Bool)
+    var backgroundView:UIView {get}
+    var dialogView:UIView {get set}
+}
