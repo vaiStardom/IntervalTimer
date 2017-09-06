@@ -10,20 +10,25 @@ import UIKit
 
 //MARK: Actions
 extension TimerViewController{
-    @IBAction func startPauseResumeTimer(_ sender: Any) {        
-        if startPauseResume == (true, false, false) { //start the timer
-            runIntervalTimer()
-            aesthetics_timerStart()
-            startPauseResume = (false, true, false)
-        } else if startPauseResume == (false, true, false) { //pause the timer
-            timer.invalidate()
-            aesthetics_timerPause()
-            startPauseResume = (false, false, true)
-        } else if startPauseResume == (false, false, true) { //resume the timer
-            runIntervalTimer()
-            aesthetics_timerResume()
-            startPauseResume = (false, true, false)
-        }
+    @IBAction func startPauseResumeTimer(_ sender: Any) {
+        
+        let alert = ITVUIViewWarningAlert(type: UserWarning.LocationManagerDidFail)
+        alert.show(animated: true)
+        
+
+//        if startPauseResume == (true, false, false) { //start the timer
+//            runIntervalTimer()
+//            aesthetics_timerStart()
+//            startPauseResume = (false, true, false)
+//        } else if startPauseResume == (false, true, false) { //pause the timer
+//            timer.invalidate()
+//            aesthetics_timerPause()
+//            startPauseResume = (false, false, true)
+//        } else if startPauseResume == (false, false, true) { //resume the timer
+//            runIntervalTimer()
+//            aesthetics_timerResume()
+//            startPauseResume = (false, true, false)
+//        }
     }
     @IBAction func cancel(_ sender: UIButton) {
         startPauseResume = (true, false, false)

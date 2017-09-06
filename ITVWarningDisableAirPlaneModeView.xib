@@ -11,118 +11,59 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="zTp-ai-qzb" customClass="ITVWarningDisableAirPlaneModeView" customModule="IntervalTimer" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F43-oq-CTV" customClass="ITVWarningDisableAirPlaneModeView" customModule="IntervalTimer" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="238" height="184"/>
             <subviews>
-                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9k-QG-JSF">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="eMM-wq-tbz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kKN-R4-sF8">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="NKX-mN-Nt6">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                                <vibrancyEffect>
-                                    <blurEffect style="light"/>
-                                </vibrancyEffect>
-                            </visualEffectView>
-                        </subviews>
-                    </view>
-                    <blurEffect style="light"/>
-                </visualEffectView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="close" translatesAutoresizingMaskIntoConstraints="NO" id="Ufw-xO-J6f">
-                    <rect key="frame" x="14.5" y="532" width="20" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please disable Air Plane mode." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jSp-mO-IVd">
+                    <rect key="frame" x="26" y="30" width="186" height="45"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="21" id="HmV-0Z-bwB"/>
-                        <constraint firstAttribute="width" constant="20" id="Nm8-22-4hF"/>
+                        <constraint firstAttribute="height" constant="45" id="F0o-yy-KhV"/>
+                        <constraint firstAttribute="width" constant="186" id="ena-kw-cdh"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d8d-IM-a9W">
+                    <rect key="frame" x="50" y="105" width="138" height="54"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="138" id="YUi-3P-rKM"/>
+                        <constraint firstAttribute="height" constant="54" id="jTe-9C-qhY"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DZ0-6g-8Dg">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5yA-cw-VG0">
-                    <rect key="frame" x="41" y="184" width="238" height="184"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please disable Air Plane mode." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q8D-CC-Nbs">
-                            <rect key="frame" x="26" y="30" width="186" height="45"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="45" id="3NS-iU-DBZ"/>
-                                <constraint firstAttribute="width" constant="186" id="iK8-S1-S3b"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OlP-ie-cBg">
-                            <rect key="frame" x="50" y="105" width="138" height="54"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="54" id="ESx-A3-qtp"/>
-                                <constraint firstAttribute="width" constant="138" id="Rea-wr-YAZ"/>
-                            </constraints>
-                        </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="airPlaneModeEnabled" translatesAutoresizingMaskIntoConstraints="NO" id="3A6-NI-t9m">
-                            <rect key="frame" x="50" y="105" width="54" height="54"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="54" id="bGW-zs-DMv"/>
-                                <constraint firstAttribute="height" constant="54" id="zdc-Pv-qzX"/>
-                            </constraints>
-                        </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="airPlaneModeDisabled" translatesAutoresizingMaskIntoConstraints="NO" id="e9g-52-M7e">
-                            <rect key="frame" x="134" y="105" width="54" height="54"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="54" id="FlN-Ic-jII"/>
-                                <constraint firstAttribute="height" constant="54" id="UyN-j3-y1G"/>
-                            </constraints>
-                        </imageView>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="airPlaneModeEnabled" translatesAutoresizingMaskIntoConstraints="NO" id="orE-QT-RYZ">
+                    <rect key="frame" x="50" y="105" width="54" height="54"/>
                     <constraints>
-                        <constraint firstItem="Q8D-CC-Nbs" firstAttribute="centerX" secondItem="5yA-cw-VG0" secondAttribute="centerX" id="7Jp-Kg-O0r"/>
-                        <constraint firstItem="OlP-ie-cBg" firstAttribute="top" secondItem="Q8D-CC-Nbs" secondAttribute="bottom" constant="30" id="7sa-FS-8vJ"/>
-                        <constraint firstAttribute="height" constant="184" id="HP1-BJ-iRt"/>
-                        <constraint firstItem="e9g-52-M7e" firstAttribute="trailing" secondItem="OlP-ie-cBg" secondAttribute="trailing" id="Hmj-g5-W3G"/>
-                        <constraint firstItem="OlP-ie-cBg" firstAttribute="centerX" secondItem="Q8D-CC-Nbs" secondAttribute="centerX" id="Mjr-Hb-N7U"/>
-                        <constraint firstItem="Q8D-CC-Nbs" firstAttribute="top" secondItem="5yA-cw-VG0" secondAttribute="top" constant="30" id="kCd-KA-VQe"/>
-                        <constraint firstAttribute="width" constant="238" id="lcv-SP-gLQ"/>
-                        <constraint firstItem="3A6-NI-t9m" firstAttribute="centerY" secondItem="OlP-ie-cBg" secondAttribute="centerY" id="qgQ-pJ-0Xm"/>
-                        <constraint firstItem="3A6-NI-t9m" firstAttribute="leading" secondItem="OlP-ie-cBg" secondAttribute="leading" id="v4u-Ef-Aii"/>
-                        <constraint firstItem="e9g-52-M7e" firstAttribute="centerY" secondItem="OlP-ie-cBg" secondAttribute="centerY" id="vCP-qj-Jla"/>
+                        <constraint firstAttribute="height" constant="54" id="DbD-Ry-Chv"/>
+                        <constraint firstAttribute="width" constant="54" id="e7p-PE-9vW"/>
                     </constraints>
-                </view>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="airPlaneModeDisabled" translatesAutoresizingMaskIntoConstraints="NO" id="6Ve-AV-vDf">
+                    <rect key="frame" x="134" y="105" width="54" height="54"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="54" id="n20-5x-bxV"/>
+                        <constraint firstAttribute="width" constant="54" id="vfk-Os-A42"/>
+                    </constraints>
+                </imageView>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="d9k-QG-JSF" firstAttribute="width" secondItem="zTp-ai-qzb" secondAttribute="width" id="73o-IW-jix"/>
-                <constraint firstItem="5yA-cw-VG0" firstAttribute="centerX" secondItem="d9k-QG-JSF" secondAttribute="centerX" id="T3Q-bN-ROA"/>
-                <constraint firstItem="DZ0-6g-8Dg" firstAttribute="width" secondItem="d9k-QG-JSF" secondAttribute="width" id="TWJ-MV-Tka"/>
-                <constraint firstItem="Ufw-xO-J6f" firstAttribute="leading" secondItem="d9k-QG-JSF" secondAttribute="leading" constant="15" id="bkt-Ui-JlS"/>
-                <constraint firstItem="d9k-QG-JSF" firstAttribute="centerX" secondItem="zTp-ai-qzb" secondAttribute="centerX" id="cgE-9J-DZm"/>
-                <constraint firstItem="d9k-QG-JSF" firstAttribute="height" secondItem="zTp-ai-qzb" secondAttribute="height" id="cue-ys-j3t"/>
-                <constraint firstItem="DZ0-6g-8Dg" firstAttribute="centerY" secondItem="d9k-QG-JSF" secondAttribute="centerY" id="e2D-6a-uKD"/>
-                <constraint firstItem="5yA-cw-VG0" firstAttribute="centerY" secondItem="d9k-QG-JSF" secondAttribute="centerY" constant="-8" id="fk6-LU-WIM"/>
-                <constraint firstItem="d9k-QG-JSF" firstAttribute="centerY" secondItem="zTp-ai-qzb" secondAttribute="centerY" id="jwU-Bj-zPH"/>
-                <constraint firstItem="DZ0-6g-8Dg" firstAttribute="centerX" secondItem="d9k-QG-JSF" secondAttribute="centerX" id="rBW-CI-wxG"/>
-                <constraint firstItem="Ufw-xO-J6f" firstAttribute="bottom" secondItem="d9k-QG-JSF" secondAttribute="bottom" constant="-15" id="wDl-RR-PKI"/>
-                <constraint firstItem="DZ0-6g-8Dg" firstAttribute="height" secondItem="d9k-QG-JSF" secondAttribute="height" id="zuY-Hc-uED"/>
+                <constraint firstAttribute="width" constant="238" id="9nA-bs-A4C"/>
+                <constraint firstItem="orE-QT-RYZ" firstAttribute="centerY" secondItem="d8d-IM-a9W" secondAttribute="centerY" id="Alc-3h-m5w"/>
+                <constraint firstItem="d8d-IM-a9W" firstAttribute="top" secondItem="jSp-mO-IVd" secondAttribute="bottom" constant="30" id="BLB-vL-PK9"/>
+                <constraint firstItem="jSp-mO-IVd" firstAttribute="top" secondItem="F43-oq-CTV" secondAttribute="top" constant="30" id="DOu-rC-WIH"/>
+                <constraint firstAttribute="height" constant="184" id="Jyn-qO-mW0"/>
+                <constraint firstItem="orE-QT-RYZ" firstAttribute="leading" secondItem="d8d-IM-a9W" secondAttribute="leading" id="VcZ-Sg-geU"/>
+                <constraint firstItem="jSp-mO-IVd" firstAttribute="centerX" secondItem="F43-oq-CTV" secondAttribute="centerX" id="Zdi-gB-cbv"/>
+                <constraint firstItem="d8d-IM-a9W" firstAttribute="centerX" secondItem="jSp-mO-IVd" secondAttribute="centerX" id="bWl-II-SvN"/>
+                <constraint firstItem="6Ve-AV-vDf" firstAttribute="trailing" secondItem="d8d-IM-a9W" secondAttribute="trailing" id="d5P-cj-RK8"/>
+                <constraint firstItem="6Ve-AV-vDf" firstAttribute="centerY" secondItem="d8d-IM-a9W" secondAttribute="centerY" id="z9K-kJ-wVN"/>
             </constraints>
-            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <connections>
-                <outlet property="dismissWarningButton" destination="DZ0-6g-8Dg" id="LCT-V7-fqb"/>
-                <outlet property="informationView" destination="5yA-cw-VG0" id="N29-CA-Go3"/>
-                <outlet property="visualEffectsView" destination="d9k-QG-JSF" id="rYF-nv-wCx"/>
-            </connections>
         </view>
     </objects>
     <resources>
         <image name="airPlaneModeDisabled" width="54" height="54"/>
         <image name="airPlaneModeEnabled" width="54" height="54"/>
-        <image name="close" width="20" height="20"/>
     </resources>
 </document>
