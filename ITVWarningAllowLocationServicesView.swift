@@ -1,34 +1,19 @@
 //
-//  ITVWarningAllowLocationServicesView.swift
+//  testView.swift
 //  IntervalTimer
 //
-//  Created by Paul Addy on 2017-09-03.
+//  Created by Paul Addy on 2017-09-06.
 //  Copyright © 2017 Paul Addy. All rights reserved.
 //
 
 import UIKit
 
 class ITVWarningAllowLocationServicesView: UIView {
-    @IBOutlet weak var dismissWarningButton: UIButton!
+
     @IBOutlet weak var openSettingsButton: UIButton!
-    @IBOutlet weak var informationView: UIView!
-    @IBOutlet weak var visualEffectsView: UIVisualEffectView!
-    
+
     @IBAction func openSettings(_ sender: Any) {
-        UIApplication.shared.open(URL(string:UIApplicationOpenSettingsURLString)!)   
-    }
-    
-    func setupDefault()
-    {
-        self.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
-        self.informationView.center = self.center
-        self.informationView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
-        self.informationView.layer.cornerRadius = 5
-        self.informationView.alpha = 0.0
-        self.visualEffectsView.isHidden = false
-        self.visualEffectsView.effect = nil
-        self.tag = 1
+        UIApplication.shared.open(URL(string:UIApplicationOpenSettingsURLString)!)
     }
 }
-
 
