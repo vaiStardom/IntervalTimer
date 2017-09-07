@@ -26,15 +26,17 @@ extension ITVCoreLocation {
             if let theLatitude = thisLocation?.coordinate.latitude, let theLongitude = thisLocation?.coordinate.longitude {
                 thisLatitude = theLatitude
                 thisLongitude = theLongitude
+                reverseGeocodeLocation(latestLocation)
             } else {
                 thisLatitude = nil
                 thisLongitude = nil
+                
+                //TODO: Complete locatin determination and show warning that location information is unavailable
             }
-            
-            reverseGeocodeLocation(latestLocation)
         } else {
             //TODO: Raise location unavailable from iPhone error screen .
             //thisDidCompleteLocationDetermination = false
+            //TODO: Complete locatin determination and show warning that location information is unavailable
         }
     }
     func reverseGeocodeLocation(_ location: CLLocation?){
@@ -44,25 +46,6 @@ extension ITVCoreLocation {
             return
         }
         
-//        let reverseGeocodeLocation_WorkItem = DispatchWorkItem {
-//            self.thisGeocoder.reverseGeocodeLocation(theLocation, completionHandler: { (placemarks, error) in
-//                print("------> IntervalTimerCoreLocation reverseGeocodeLocation(location:) cheking for errors")
-//                if error == nil, let placemark = placemarks, !placemark.isEmpty {
-//                    self.thisPlacemark = placemark.last
-//                    //Parse location information
-//                    print("------> IntervalTimerCoreLocation reverseGeocodeLocation(location:) Parsing location information")
-//                    self.parsePlacemark()
-//                } else {
-//                    //Unable to get the rest of the location data, this should set didcompletelocationdetermination to true
-//                    print("------> ERROR IntervalTimerCoreLocation reverseGeocodeLocation(location:) error: \(String(describing: error))")
-//                    self.nilLocationName()
-//                }
-//            })
-//        }
-        
-//        print("------> IntervalTimerCoreLocation reverseGeocodeLocation(location:) reverseGeocodeLocation_WorkItem will execute")
-//        UTILITY_GLOBAL_DISPATCHQUEUE.async(execute: reverseGeocodeLocation_WorkItem)
-
         let group = DispatchGroup()
         print("------> 1 - IntervalTimerCoreLocation reverseGeocodeLocation(location:) entering group")
         group.enter()
@@ -89,18 +72,12 @@ extension ITVCoreLocation {
             if self.thisCityName != nil && self.thisCountryCode != nil {
                 print("------> 6 - IntervalTimerCoreLocation reverseGeocodeLocation(location:) reverseGeocodeLocation_WorkItem did complete called getCityId()")
                 self.getCityId()
+            } else {
+                print("------> 7 - IntervalTimerCoreLocation reverseGeocodeLocation(location:) reverseGeocodeLocation_WorkItem did complete no location names available or CLPlacemark was nil")
+                self.thisDidCompleteLocationDetermination = true
+                //TODO: location determination should be completed here
             }
         }
-
-
-        
-//        reverseGeocodeLocation_WorkItem.notify(queue: DispatchQueue.main) {
-//            print("------> IntervalTimerCoreLocation reverseGeocodeLocation(location:) reverseGeocodeLocation_WorkItem did complete")
-//            if self.thisCityName != nil && self.thisCountryCode != nil {
-//                print("------> IntervalTimerCoreLocation reverseGeocodeLocation(location:) reverseGeocodeLocation_WorkItem did complete called getCityId()")
-//                self.getCityId()
-//            }
-//        }
     }
     func parsePlacemark() {
         
@@ -130,13 +107,9 @@ extension ITVCoreLocation {
         
         thisCityName = theCityName
         thisCountryCode = theCountryShortName
-        
-//        getCityId()
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        //TODO: Handle core location errors
-        //TODO: Stop the loading progression, and replace it with the warning icon
         //TODO: Handle diabled location services for app error: present a nice alert view to advise the user to enable location services
         //TODO: error code 0 -> reset location settings (i tried juust clearing the ram)
         //TODO: error code 1 -> Code 1 occurs when the user has denied your app access to location services.
@@ -153,7 +126,7 @@ extension ITVCoreLocation {
         switch (theError.code) {
         case 0:
 //        case CoreLocationError.LocationUnknown.rawValue: //location is currently unknown
-            errorMessage = "Location is currently unknown. Code: \(theError.code). Message: \(theError)."
+            errorMessage = "Location is currently unknown. Code: \(theError.code). Message: localizedDescription: \(theError.localizedDescription), localizedFailureReason: \(theError.localizedFailureReason), localizedRecoveryOptions: \(theError.localizedRecoveryOptions), localizedRecoverySuggestion: \(theError.localizedRecoverySuggestion)."
             
             print("------> ERROR \(errorMessage)")
             showUserWarning(type: UserWarning.LocationManagerDidFail, with: errorMessage)
@@ -180,34 +153,6 @@ extension ITVCoreLocation {
             print("------> ERROR \(errorMessage)")
             showUserWarning(type: UserWarning.LocationManagerDidFail, with: errorMessage)
         }
-
-//        switch (theError.code) {
-//        case CoreLocationError.LocationUnknown.rawValue: //location is currently unknown
-//            errorMessage = "Location is currently unknown. Code: \(theError.code). Message: \(theError)."
-//            
-//            print("------> ERROR \(errorMessage)")
-//            showUserWarning(type: UserWarning.LocationManagerDidFail, with: errorMessage)
-//
-//        case CoreLocationError.Denied.rawValue:
-//            
-//            errorMessage = "Access to location has been denied by the user. Code: \(theError.code). Message: \(theError)."
-//            
-//            print("------> ERROR \(errorMessage)")
-//            showUserWarning(type: UserWarning.LocationServicesDisabled)
-//            
-//        case CoreLocationError.Network.rawValue:
-//            errorMessage = "Network-related error. Code: \(theError.code). Message: \(theError)."
-//            
-//            print("------> ERROR \(errorMessage)")
-//            showUserWarning(type: UserWarning.NoInternet)
-//            
-//        default:
-//
-//            errorMessage = "Failed location default error. Code: \(theError.code). Message: \(theError)."
-//            
-//            print("------> ERROR \(errorMessage)")
-//            showUserWarning(type: UserWarning.LocationManagerDidFail, with: errorMessage)
-//        }
     }
     func requestLocation(){
         thisLocationManager.requestLocation()

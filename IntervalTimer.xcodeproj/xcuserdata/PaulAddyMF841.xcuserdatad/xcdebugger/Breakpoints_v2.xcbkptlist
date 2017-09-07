@@ -58,12 +58,12 @@
                   moduleName = "IntervalTimer"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/PaulAddyMF841/Library/Mobile%20Documents/com~apple~CloudDocs/Docs%20iCloud/_OceanScales/Dev/IntervalTimer/IntervalTimer/IntervalTimer/IntervalTimerWeatherServiceWeatherRetreival.swift"
-                  timestampString = "526464087.880931"
+                  timestampString = "526485217.327406"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "178"
                   endingLineNumber = "178"
-                  offsetFromSymbolStart = "156">
+                  offsetFromSymbolStart = "166">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -73,12 +73,12 @@
                   moduleName = "IntervalTimer"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/PaulAddyMF841/Library/Mobile%20Documents/com~apple~CloudDocs/Docs%20iCloud/_OceanScales/Dev/IntervalTimer/IntervalTimer/IntervalTimer/IntervalTimerWeatherServiceWeatherRetreival.swift"
-                  timestampString = "526464087.883655"
+                  timestampString = "526485217.331223"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "180"
                   endingLineNumber = "180"
-                  offsetFromSymbolStart = "48">
+                  offsetFromSymbolStart = "49">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -192,6 +192,22 @@
             startingLineNumber = "104"
             endingLineNumber = "104"
             landmarkName = "getWeatherWith(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ITVCoreLocationCoreLocation.swift"
+            timestampString = "526485397.175163"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "reverseGeocodeLocation(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

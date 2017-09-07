@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<gpx version="1.1" creator="Xcode">
+    <!--UC - No location name, nor alternative, and no city id-->
+    <wpt lat="26.936955" lon="-5.417850">
+        <name>Algeria Sahara Desert</name>
+        <time>2014-09-24T14:55:37Z</time>
+    </wpt>
+    
+</gpx>

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<gpx version="1.1" creator="Xcode">
+    
+    <!--UC - Bad URL Location name based weather query does not find weather (no city ID with original nor alternative city names).-->
+    <wpt lat="-8.36424285397347" lon="116.087381823429">
+            <name>Scallywags Beach Club - Gili Air</name>
+            <time>2014-09-24T14:55:37Z</time>
+    </wpt>
+    
+</gpx>

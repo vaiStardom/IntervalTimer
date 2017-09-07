@@ -19,7 +19,10 @@ extension ITVUser {
         }
         
         //priority 2 = location name
-        if !ITVCoreLocation.sharedInstance.thisCityName!.isEmpty && !ITVCoreLocation.sharedInstance.thisCountryCode!.isEmpty {
+        if ITVCoreLocation.sharedInstance.thisCityName != nil
+            && !ITVCoreLocation.sharedInstance.thisCityName!.isEmpty
+            && ITVCoreLocation.sharedInstance.thisCountryCode != nil
+            && !ITVCoreLocation.sharedInstance.thisCountryCode!.isEmpty {
             return WeatherQueryPriority.byLocationName.rawValue
         }
         

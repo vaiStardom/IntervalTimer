@@ -8,6 +8,7 @@
 
 //TODO: create a network bundle
 //TODO: create a weather bundle
+//TODO: If the timer is running, do not show alerts, just show the warning icon
 
 import UIKit
 
