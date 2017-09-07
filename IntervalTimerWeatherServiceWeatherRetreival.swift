@@ -25,12 +25,14 @@ extension IntervalTimerWeatherService {
     //http://api.openweathermap.org/data/2.5/weather?id=1635882&APPID=448af267f0d35a22b6e00178e163deb3
     func getWeatherFor(_ cityId: Int) throws {
         guard let theUrl = URL(string: "\(providerUrl)id=\(cityId)&APPID=\(apiKey)") else {
-            throw GetWeatherError.urlIsNil(reason: " URL = \(providerUrl)id=\(cityId)&APPID=\(apiKey)")
+            throw ITVError.GetWeather_UrlIsNil(reason: " URL = \(providerUrl)id=\(cityId)&APPID=\(apiKey)")
+//            throw GetWeatherError.urlIsNil(reason: " URL = \(providerUrl)id=\(cityId)&APPID=\(apiKey)")
         }
         do {
             try getWeatherWith(theUrl)
         } catch let error {
             print("------> ERROR IntervalTimerWeatherService getWeatherFor(cityId:) -> \(error)")
+            throw error
         }
     }
     
@@ -39,12 +41,14 @@ extension IntervalTimerWeatherService {
     //Mataram,id (ISO 3166)
     func getWeatherFor(_ cityName: String, in countryCode: String) throws {
         guard let theUrl = URL(string: "\(providerUrl)q=\(cityName),\(countryCode.lowercased())&APPID=\(apiKey)") else {
-            throw GetWeatherError.urlIsNil(reason: " URL = \(providerUrl)q=\(cityName),\(countryCode.lowercased())&APPID=\(apiKey)")
+            throw ITVError.GetWeather_UrlIsNil(reason: " URL = \(providerUrl)q=\(cityName),\(countryCode.lowercased())&APPID=\(apiKey)")
+//            throw GetWeatherError.urlIsNil(reason: " URL = \(providerUrl)q=\(cityName),\(countryCode.lowercased())&APPID=\(apiKey)")
         }
         do {
             try getWeatherWith(theUrl)
         } catch let error {
             print("------> ERROR IntervalTimerWeatherService getWeatherFor(cityId:) -> \(error)")
+            throw error
         }
     }
     
@@ -54,38 +58,53 @@ extension IntervalTimerWeatherService {
     //-8.549790, 116.072037
     func getWeatherAt(latitude: Double, longitude: Double) throws {
         guard let theUrl = URL(string: "\(providerUrl)lat=\(latitude)&lon=\(longitude)&APPID=\(apiKey)") else {
-            throw GetWeatherError.urlIsNil(reason: " URL = \(providerUrl)lat=\(latitude)&lon=\(longitude)&APPID=\(apiKey)")
+            throw ITVError.GetWeather_UrlIsNil(reason: " URL = \(providerUrl)lat=\(latitude)&lon=\(longitude)&APPID=\(apiKey)")
+//            throw GetWeatherError.urlIsNil(reason: " URL = \(providerUrl)lat=\(latitude)&lon=\(longitude)&APPID=\(apiKey)")
         }
         do {
             try getWeatherWith(theUrl)
         } catch let error {
             print("------> ERROR IntervalTimerWeatherService getWeatherFor(cityId:) -> \(error)")
+            throw error
         }
     }
-    
+
     private func getWeatherWith(_ url: URL) throws {
         
         guard let theUrl = url as URL? else {
-            throw GetWeatherError.urlIsNil(reason: " URL = \(url)")
+            throw ITVError.GetWeather_UrlIsNil(reason: " URL = \(url)")
+//            throw GetWeatherError.urlIsNil(reason: " URL = \(url)")
         }
         
-        var didGetCurrentWeather: Bool?
-        
-        fromNetwork(with: theUrl) { (intervalTimerCurrentWeather) in
+        var didGetCurrentWeather = true
+        var error: Error?
+        fromNetwork(with: theUrl) { (itvWeatherServiceHandler) in
             
-            guard let theCurrentWeather = intervalTimerCurrentWeather else {
+            guard itvWeatherServiceHandler.1 == nil else {
+                error = itvWeatherServiceHandler.1
+                didGetCurrentWeather = false
+                return
+            }
+            
+            guard let theCurrentWeather = itvWeatherServiceHandler.0 else {
+                error = ITVError.GetWeather_DidNotGetWeather(reason: "Could not create the weather object.")
+//                error = GetWeatherError.didNotGetWeather(reason: "Could not create the weather object.")
                 didGetCurrentWeather = false
                 return
             }
             
             guard theCurrentWeather.thisTemperature != nil else {
                 print("------> IntervalTimerWeatherService getWeather() guard let theTemperature = nil")
+                error = ITVError.GetWeather_DidNotGetWeather(reason: "The temperature is nil.")
+//                error = GetWeatherError.didNotGetWeather(reason: "The temperature is nil.")
                 didGetCurrentWeather = false
                 return
             }
             
             guard theCurrentWeather.thisIcon != nil else {
                 print("------> IntervalTimerWeatherService getWeather() guard let theIcon = nil")
+                error = ITVError.GetWeather_DidNotGetWeather(reason: "The icon is nil.")
+//                error = GetWeatherError.didNotGetWeather(reason: "The icon is nil.")
                 didGetCurrentWeather = false
                 return
             }
@@ -94,41 +113,110 @@ extension IntervalTimerWeatherService {
             DispatchQueue.main.async(execute: {
                 print("------> IntervalTimerWeatherService getWeatherWith(url:) = \(String(describing: theCurrentWeather.thisTemperature))")
                 ITVUser.sharedInstance.thisCurrentWeather = theCurrentWeather
-                
                 NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCurrentWeather"), object: nil)
             })
         }
         
-        if didGetCurrentWeather == false {
-            throw GetWeatherError.didNotGetWeather(reason: "Could not get weather from URL \(theUrl) ")
+        if didGetCurrentWeather == false, error != nil {
+            throw error!
+            //throw GetWeatherError.didNotGetWeather(reason: "Could not get weather from URL \(theUrl) ")
         }
     }
+
+//    private func getWeatherWith(_ url: URL) throws {
+//        
+//        guard let theUrl = url as URL? else {
+//            throw GetWeatherError.urlIsNil(reason: " URL = \(url)")
+//        }
+//        
+//        var didGetCurrentWeather: Bool?
+//        
+//        fromNetwork(with: theUrl) { (intervalTimerCurrentWeather) in
+//            
+//            guard let theCurrentWeather = intervalTimerCurrentWeather else {
+//                didGetCurrentWeather = false
+//                return
+//            }
+//            
+//            guard theCurrentWeather.thisTemperature != nil else {
+//                print("------> IntervalTimerWeatherService getWeather() guard let theTemperature = nil")
+//                didGetCurrentWeather = false
+//                return
+//            }
+//            
+//            guard theCurrentWeather.thisIcon != nil else {
+//                print("------> IntervalTimerWeatherService getWeather() guard let theIcon = nil")
+//                didGetCurrentWeather = false
+//                return
+//            }
+//            
+//            didGetCurrentWeather = true
+//            DispatchQueue.main.async(execute: {
+//                print("------> IntervalTimerWeatherService getWeatherWith(url:) = \(String(describing: theCurrentWeather.thisTemperature))")
+//                ITVUser.sharedInstance.thisCurrentWeather = theCurrentWeather
+//                
+//                NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCurrentWeather"), object: nil)
+//            })
+//        }
+//        
+//        if didGetCurrentWeather == false {
+//            throw GetWeatherError.didNotGetWeather(reason: "Could not get weather from URL \(theUrl) ")
+//        }
+//    }
     
-    private func fromNetwork(with url: URL, completion: @escaping (IntervalTimerCurrentWeather?) -> Void ){
+    //MARK: - Typealias
+    typealias ITVWeatherServiceHandler = ((ITVCurrentWeather?, Error?) -> Void)
+    
+    private func fromNetwork(with url: URL, completion: @escaping ITVWeatherServiceHandler){
         
         guard let theNetworkJson = IntervalTimerDownloadJSON(url: url) else {
-            completion(nil)
+//            completion(nil, JsonError.missing("The JSON is nil."))
+            completion(nil, ITVError.JSON_Missing("The JSON is nil."))
             return
         }
         
-        theNetworkJson.downloadJSON({ (json) in
+        theNetworkJson.downloadJSON({ (jsonHandler) in
+            
+            guard jsonHandler.1 == nil else {
+                completion(nil, jsonHandler.1)
+                return
+            }
             
             do {
-                let theWeather = try IntervalTimerCurrentWeather(json: json!)
-                guard theWeather.thisTemperature != nil else {
-                    completion(nil)
-                    return
-                }
-                guard theWeather.thisIcon != nil else {
-                    completion(nil)
-                    return
-                }
-                
-                completion(theWeather)
+                let theWeather = try ITVCurrentWeather(json: jsonHandler.0!)
+                completion(theWeather, nil)
             } catch let error {
                 print("------> ERROR IntervalTimerWeatherService fromNetwork() -> \(error)")
-                completion(nil)
+                completion(nil, error)
             }
         })
     }
+    
+//    private func fromNetwork(with url: URL, completion: @escaping (IntervalTimerCurrentWeather?) -> Void ){
+//        
+//        guard let theNetworkJson = IntervalTimerDownloadJSON(url: url) else {
+//            completion(nil)
+//            return
+//        }
+//        
+//        theNetworkJson.downloadJSON({ (json) in
+//            
+//            do {
+//                let theWeather = try IntervalTimerCurrentWeather(json: json!)
+//                guard theWeather.thisTemperature != nil else {
+//                    completion(nil)
+//                    return
+//                }
+//                guard theWeather.thisIcon != nil else {
+//                    completion(nil)
+//                    return
+//                }
+//                
+//                completion(theWeather)
+//            } catch let error {
+//                print("------> ERROR IntervalTimerWeatherService fromNetwork() -> \(error)")
+//                completion(nil)
+//            }
+//        })
+//    }
 }

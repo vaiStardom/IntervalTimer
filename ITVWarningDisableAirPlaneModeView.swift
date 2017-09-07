@@ -9,20 +9,4 @@
 import UIKit
 
 class ITVWarningDisableAirPlaneModeView: UIView {
-    @IBOutlet weak var dismissWarningButton: UIButton!
-    @IBOutlet weak var informationView: UIView!
-    @IBOutlet weak var visualEffectsView: UIVisualEffectView!
-
-    func setupDefault()
-    {
-        self.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
-        self.informationView.center = self.center
-        self.informationView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
-        self.informationView.layer.cornerRadius = 5
-        self.informationView.alpha = 0.0
-        self.visualEffectsView.isHidden = false
-        self.visualEffectsView.effect = nil
-        self.tag = 1
-    }
-
 }

@@ -10,7 +10,7 @@ import Foundation
 
 extension EditTimerViewController {
     func aesthetics_initial(){
-        activityIndicator.color = IntervalTimerColors.Orange
+        activityIndicator.color = ITVColors.Orange
     }
     func aesthetics_showMissingWeatherWarning(){
         //TODO: program the alert to show when this button is pressed

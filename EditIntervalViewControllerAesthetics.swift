@@ -12,12 +12,12 @@ import Foundation
 extension EditIntervalViewController {
     func aesthetics_initial(){
         
-        indicators.append((imageView: firstIndicatorImageView, activeFillColor: IntervalTimerColors.IntervalRed, inactiveFillColor: IntervalTimerColors.Black, borderColor: IntervalTimerColors.IntervalRed))
-        indicators.append((imageView: secondIndicatorImageView, activeFillColor: IntervalTimerColors.IntervalGreen, inactiveFillColor: IntervalTimerColors.Black, borderColor: IntervalTimerColors.IntervalGreen))
-        indicators.append((imageView: thirdIndicatorImageView, activeFillColor: IntervalTimerColors.IntervalYellow, inactiveFillColor: IntervalTimerColors.Black, borderColor: IntervalTimerColors.IntervalYellow))
-        indicators.append((imageView: fourthIndicatorImageView, activeFillColor: IntervalTimerColors.IntervalBlue, inactiveFillColor: IntervalTimerColors.Black, borderColor: IntervalTimerColors.IntervalBlue))
-        indicators.append((imageView: fifthIndicatorImageView, activeFillColor: IntervalTimerColors.IntervalWhite, inactiveFillColor: IntervalTimerColors.Black, borderColor: IntervalTimerColors.IntervalWhite))
-        indicators.append((imageView: sixthIndicatorImageView, activeFillColor: IntervalTimerColors.IntervalPink, inactiveFillColor: IntervalTimerColors.Black, borderColor: IntervalTimerColors.IntervalPink))
+        indicators.append((imageView: firstIndicatorImageView, activeFillColor: ITVColors.IntervalRed, inactiveFillColor: ITVColors.Black, borderColor: ITVColors.IntervalRed))
+        indicators.append((imageView: secondIndicatorImageView, activeFillColor: ITVColors.IntervalGreen, inactiveFillColor: ITVColors.Black, borderColor: ITVColors.IntervalGreen))
+        indicators.append((imageView: thirdIndicatorImageView, activeFillColor: ITVColors.IntervalYellow, inactiveFillColor: ITVColors.Black, borderColor: ITVColors.IntervalYellow))
+        indicators.append((imageView: fourthIndicatorImageView, activeFillColor: ITVColors.IntervalBlue, inactiveFillColor: ITVColors.Black, borderColor: ITVColors.IntervalBlue))
+        indicators.append((imageView: fifthIndicatorImageView, activeFillColor: ITVColors.IntervalWhite, inactiveFillColor: ITVColors.Black, borderColor: ITVColors.IntervalWhite))
+        indicators.append((imageView: sixthIndicatorImageView, activeFillColor: ITVColors.IntervalPink, inactiveFillColor: ITVColors.Black, borderColor: ITVColors.IntervalPink))
 
         firstIndicatorImageView.roundImageView()
         secondIndicatorImageView.roundImageView()

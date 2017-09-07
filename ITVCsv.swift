@@ -1,5 +1,5 @@
 //
-//  IntervalTimerCsv.swift
+//  ITVCsv.swift
 //  IntervalTimer
 //
 //  Created by Paul Addy on 2017-07-31.
@@ -8,10 +8,10 @@
 
 import Foundation
 
-class IntervalTimerCsv {
+class ITVCsv {
     
     //MARK: - Singleton
-    static let sharedInstance = IntervalTimerCsv()
+    static let sharedInstance = ITVCsv()
     
     //MARK: - Fileprivate properties
     fileprivate var data: [[String:String]] = []
@@ -22,7 +22,8 @@ class IntervalTimerCsv {
     
     private func getCityIdFromCsv(file: String, cityName: String, countryCode: String) throws -> Int? {
         guard let filePath = Bundle.main.path(forResource: file, ofType: "csv") else {
-            throw CsvError.readError("file \(file) not read")
+            throw ITVError.CSV_ReadError("file \(file) not read")
+            //throw CsvError.readError("file \(file) not read")
         }
         do {
             let contents = try String(contentsOfFile: filePath, encoding: String.Encoding.macOSRoman)
@@ -86,14 +87,28 @@ class IntervalTimerCsv {
         return cleanFile
     }
     
-    func getCityId(cityName: String, countryCode: String) throws {
+    //MARK: - Typealias
+    typealias ITVCsvErrorHandler = ((Error?) -> Void)
+    
+    func getCityId(cityName: String, countryCode: String, completion: @escaping ITVCsvErrorHandler) {
+//    func getCityId(cityName: String, countryCode: String) throws {
+    
+        var error: Error?
         
         guard let theCityName = cityName as String? else {
-            throw GetCityIdError.cityNameIsNil(reason: "City name is nil")
+            error = ITVError.GetCityId_CityNameIsNil(reason: "City name is nil")
+            completion(error)
+            return
+            //throw ITVError.GetCityId_CityNameIsNil(reason: "City name is nil")
+            //throw GetCityIdError.cityNameIsNil(reason: "City name is nil")
         }
         
         guard let theCountryCode = countryCode as String? else {
-            throw GetCityIdError.countryCodeIsNil(reason: "Country code is nil")
+            error = ITVError.GetCityId_CountryCodeIsNil(reason: "Country code is nil")
+            completion(error)
+            return
+            //throw ITVError.GetCityId_CountryCodeIsNil(reason: "Country code is nil")
+            //throw GetCityIdError.countryCodeIsNil(reason: "Country code is nil")
         }
         
         var didGetCityId: Bool?
@@ -106,17 +121,22 @@ class IntervalTimerCsv {
                     print("------> IntervalTimerCsv getCityId(cityName:countryCode:) setting IntervalTimerCoreLocation.sharedInstance.thisCityId = \(String(describing: theCityId))")
                     ITVCoreLocation.sharedInstance.thisCityId = theCityId
                 })
+                completion(nil)
             } else {
                 didGetCityId = false
             }
         } catch let error {
             print("------> ERROR IntervalTimerCsv getCityId() -> \(error)")
+            completion(error)
             didGetCityId = false
         }
         
         //TODO: find another way to throw errors from the dispatch queue, since this line never gets executed because the dispacth is async, so execution just goes over this..
         if let theDidGetCityId = didGetCityId, theDidGetCityId == false {
-            throw GetCityIdError.noCityId(reason: "No city id for city name \(theCityName) and country code \(theCountryCode)")
+            error = ITVError.GetCityId_NoCityId(reason: "No city id for city name \(theCityName) and country code \(theCountryCode)")
+            completion(error)
+            //throw ITVError.GetCityId_NoCityId(reason: "No city id for city name \(theCityName) and country code \(theCountryCode)")
+//            throw GetCityIdError.noCityId(reason: "No city id for city name \(theCityName) and country code \(theCountryCode)")
         }
     }
 }

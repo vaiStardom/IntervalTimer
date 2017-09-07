@@ -9,13 +9,32 @@
 import Foundation
 import UIKit
 
-//MARK: - Messaging Function
+//MARK: - Messaging Functions
 func showMessage(title: String, message: String) {
     let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
     DispatchQueue.main.async() { () -> Void in
         UIApplication.topViewController()?.present(alert, animated: true, completion: nil)
     }
+}
+
+func showUserWarning(type: UserWarning?, with message: String? = nil){
+    
+    var errorMessage: String?
+    
+    guard let theUserWarning = type else {
+        fatalError("A UserWarning type must be provided.")
+    }
+    
+    if message != nil, !(message?.isEmpty)! {
+        errorMessage = message
+    } else {
+        errorMessage = ""
+    }
+    
+    let alert = ITVUIViewWarningAlert(type: theUserWarning, with: errorMessage)
+    alert.show(animated: true)
+
 }
 
 func getWeatherFromNetwork(){
@@ -25,5 +44,10 @@ func getWeatherFromNetwork(){
     ITVCoreLocation.sharedInstance.requestLocation()
     
     print("------> TimerViewController viewDidLoad() attempting to set weather")
-    IntervalTimerCurrentWeather.getWeatherByPriority()
+    do {
+        try ITVCurrentWeather.getWeatherByPriority()
+    } catch let error {
+        showUserWarning(type: UserWarning.LocationManagerDidFail, with: "\(error)")
+    }
+
 }

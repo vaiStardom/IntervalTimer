@@ -392,6 +392,7 @@
                         <outlet property="timerMinutesLabel" destination="eYs-Rk-chp" id="VhX-ea-3tL"/>
                         <outlet property="timerNameLabel" destination="94b-Co-cGT" id="ojG-MX-uS7"/>
                         <outlet property="timerSecondsLabel" destination="PD0-Qt-9de" id="zRv-N4-2rW"/>
+                        <outlet property="warningButton" destination="sfs-bU-sq4" id="lKP-vD-fYi"/>
                         <outlet property="warningImageView" destination="Ev8-d3-Dzu" id="D9W-ib-dE1"/>
                         <outlet property="weatherImageView" destination="UL6-1S-xfh" id="rVk-tK-7qj"/>
                         <outlet property="weatherTemperatureLabel" destination="50V-60-GfP" id="c7x-8M-jRJ"/>
@@ -771,6 +772,6 @@
         <image name="warning" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="OLr-AH-l8u"/>
+        <segue reference="hy5-TF-qq9"/>
     </inferredMetricsTieBreakers>
 </document>

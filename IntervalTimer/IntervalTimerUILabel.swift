@@ -10,13 +10,13 @@ import UIKit
 
 class IntervalTimerUILabel: UILabel {
     func navBarNewTimerTitle() -> UILabel {
-        let label = createLabel(frame: NavigationBarCgRect.NewTimerTitle, textAlignment: NSTextAlignment.center, font: NavigationBarFont.Title, text: NavigationBarLitterals.NewTimer, color: IntervalTimerColors.Orange)
+        let label = createLabel(frame: NavigationBarCgRect.NewTimerTitle, textAlignment: NSTextAlignment.center, font: NavigationBarFont.Title, text: NavigationBarLitterals.NewTimer, color: ITVColors.Orange)
         return label
     }
     
     func navBarNewIntervalTitle() -> UILabel {
         
-        let label = createLabel(frame: NavigationBarCgRect.NewTimerTitle, textAlignment: NSTextAlignment.center, font: NavigationBarFont.Title, text: NavigationBarLitterals.NewInterval, color: IntervalTimerColors.Orange)
+        let label = createLabel(frame: NavigationBarCgRect.NewTimerTitle, textAlignment: NSTextAlignment.center, font: NavigationBarFont.Title, text: NavigationBarLitterals.NewInterval, color: ITVColors.Orange)
         return label
 
     }

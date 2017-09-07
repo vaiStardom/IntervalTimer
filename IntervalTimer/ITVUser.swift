@@ -34,7 +34,7 @@ class ITVUser: NSObject, NSCoding {
 
     //MARK: - fileprivate properties
     fileprivate var temperatureUnit: TemperatureUnit = .celcius //TODO : delete from here and move to the timer class
-    fileprivate var currentWeather: IntervalTimerCurrentWeather?
+    fileprivate var currentWeather: ITVCurrentWeather?
     fileprivate var lastWeatherUpdate: Date?
     fileprivate var shouldUpdateWeather: Bool? = true
         
@@ -48,7 +48,7 @@ class ITVUser: NSObject, NSCoding {
             print("------> WROTE IntervalTimerUser temperatureUnit = \(temperatureUnit)")
         }
     }
-    var thisCurrentWeather: IntervalTimerCurrentWeather? {
+    var thisCurrentWeather: ITVCurrentWeather? {
         get { return currentWeather}
         set {
             currentWeather = newValue
@@ -90,7 +90,7 @@ class ITVUser: NSObject, NSCoding {
         //self.shouldUpdateWeather = UserDefaults.standard.bool(forKey: "shouldUpdateWeather")
         self.shouldUpdateWeather = true
         self.lastWeatherUpdate = UserDefaults.standard.object(forKey: "lastWeatherUpdate") as? Date
-        self.currentWeather = UserDefaults.standard.object(forKey: "currentWeather") as? IntervalTimerCurrentWeather
+        self.currentWeather = UserDefaults.standard.object(forKey: "currentWeather") as? ITVCurrentWeather
     }
     
     //MARK: - NSCoding protocol methods
@@ -106,7 +106,7 @@ class ITVUser: NSObject, NSCoding {
             temperatureUnit = TemperatureUnit(rawValue: theTemperatureUnit)!
         }
         if let theCurrentWeather = UserDefaults.standard.value(forKey: "currentWeather") as? NSData {
-            currentWeather = NSKeyedUnarchiver.unarchiveObject(with: theCurrentWeather as Data) as! IntervalTimerCurrentWeather?
+            currentWeather = NSKeyedUnarchiver.unarchiveObject(with: theCurrentWeather as Data) as! ITVCurrentWeather?
         }
         if let theLastWeatherUpdate = decoder.decodeObject(forKey: "lastWeatherUpdate") as! Date? {
             lastWeatherUpdate = theLastWeatherUpdate

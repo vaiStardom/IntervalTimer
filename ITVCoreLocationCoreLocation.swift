@@ -32,21 +32,6 @@ extension ITVCoreLocation {
             }
             
             reverseGeocodeLocation(latestLocation)
-////            //            //ReverseGeocoding to get location name using BADAPPLES
-////            //            //BADAPPLE: forced to use GoogleMap API to get ENGLISH city name, bypassing userdefaults
-////            //            //TODO: Other possible BADAPPLES https://stackoverflow.com/questions/31331093/clgeocoder-returns-wrong-results-when-city-name-is-equal-to-some-countrys-name
-////            //TODO: place this call inside a oneshot dispatch work item
-//            thisGeocoder.reverseGeocodeLocation(latestLocation, completionHandler: { (placemarks, error) in
-//                if error == nil, let placemark = placemarks, !placemark.isEmpty {
-//                    self.thisPlacemark = placemark.last
-//                    //Parse location information
-//                    self.parsePlacemark()
-//                } else {
-//                    //Unable to get the rest of the location data, this should set didcompletelocationdetermination to true
-//                    print("------> ERROR IntervalTimerCoreLocation locationManager(manager:didUpdateLocations:), reverseGeocodeLocation error: \(String(describing: error?.localizedDescription))")
-//                    self.nilLocationName()
-//                }
-//            })
         } else {
             //TODO: Raise location unavailable from iPhone error screen .
             //thisDidCompleteLocationDetermination = false
@@ -59,30 +44,63 @@ extension ITVCoreLocation {
             return
         }
         
-        let reverseGeocodeLocation_WorkItem = DispatchWorkItem {
+//        let reverseGeocodeLocation_WorkItem = DispatchWorkItem {
+//            self.thisGeocoder.reverseGeocodeLocation(theLocation, completionHandler: { (placemarks, error) in
+//                print("------> IntervalTimerCoreLocation reverseGeocodeLocation(location:) cheking for errors")
+//                if error == nil, let placemark = placemarks, !placemark.isEmpty {
+//                    self.thisPlacemark = placemark.last
+//                    //Parse location information
+//                    print("------> IntervalTimerCoreLocation reverseGeocodeLocation(location:) Parsing location information")
+//                    self.parsePlacemark()
+//                } else {
+//                    //Unable to get the rest of the location data, this should set didcompletelocationdetermination to true
+//                    print("------> ERROR IntervalTimerCoreLocation reverseGeocodeLocation(location:) error: \(String(describing: error))")
+//                    self.nilLocationName()
+//                }
+//            })
+//        }
+        
+//        print("------> IntervalTimerCoreLocation reverseGeocodeLocation(location:) reverseGeocodeLocation_WorkItem will execute")
+//        UTILITY_GLOBAL_DISPATCHQUEUE.async(execute: reverseGeocodeLocation_WorkItem)
+
+        let group = DispatchGroup()
+        print("------> 1 - IntervalTimerCoreLocation reverseGeocodeLocation(location:) entering group")
+        group.enter()
+        DispatchQueue.main.async {
             self.thisGeocoder.reverseGeocodeLocation(theLocation, completionHandler: { (placemarks, error) in
+                print("------> 2 - IntervalTimerCoreLocation reverseGeocodeLocation(location:) cheking for errors")
                 if error == nil, let placemark = placemarks, !placemark.isEmpty {
                     self.thisPlacemark = placemark.last
                     //Parse location information
+                    print("------> 3 - IntervalTimerCoreLocation reverseGeocodeLocation(location:) Parsing location information")
                     self.parsePlacemark()
                 } else {
                     //Unable to get the rest of the location data, this should set didcompletelocationdetermination to true
-                    print("------> ERROR IntervalTimerCoreLocation locationManager(manager:didUpdateLocations:), reverseGeocodeLocation error: \(String(describing: error?.localizedDescription))")
+                    print("------> ERROR IntervalTimerCoreLocation reverseGeocodeLocation(location:) error: \(String(describing: error))")
                     self.nilLocationName()
                 }
+                print("------> 4 - IntervalTimerCoreLocation reverseGeocodeLocation(location:) leaving group")
+                group.leave()
             })
         }
-        
-        print("------> IntervalTimerCoreLocation reverseGeocodeLocation(location:) reverseGeocodeLocation_WorkItem will execute")
-        UTILITY_GLOBAL_DISPATCHQUEUE.async(execute: reverseGeocodeLocation_WorkItem)
-        
-        reverseGeocodeLocation_WorkItem.notify(queue: DispatchQueue.main) {
-            print("------> IntervalTimerCoreLocation reverseGeocodeLocation(location:) reverseGeocodeLocation_WorkItem did complete")
+
+        group.notify(queue: .main) {
+            print("------> 5 - IntervalTimerCoreLocation reverseGeocodeLocation(location:) reverseGeocodeLocation_WorkItem did complete")
             if self.thisCityName != nil && self.thisCountryCode != nil {
-                print("------> IntervalTimerCoreLocation reverseGeocodeLocation(location:) reverseGeocodeLocation_WorkItem did complete called getCityId()")
+                print("------> 6 - IntervalTimerCoreLocation reverseGeocodeLocation(location:) reverseGeocodeLocation_WorkItem did complete called getCityId()")
                 self.getCityId()
             }
         }
+
+
+        
+//        reverseGeocodeLocation_WorkItem.notify(queue: DispatchQueue.main) {
+//            print("------> IntervalTimerCoreLocation reverseGeocodeLocation(location:) reverseGeocodeLocation_WorkItem did complete")
+//            if self.thisCityName != nil && self.thisCountryCode != nil {
+//                print("------> IntervalTimerCoreLocation reverseGeocodeLocation(location:) reverseGeocodeLocation_WorkItem did complete called getCityId()")
+//                self.getCityId()
+//            }
+//        }
     }
     func parsePlacemark() {
         
@@ -124,23 +142,72 @@ extension ITVCoreLocation {
         //TODO: error code 1 -> Code 1 occurs when the user has denied your app access to location services.
         //TODO: if the weather is not updated after 1minute, than put the warning icon to warn user that the network is not working, do the same thing if insufficient data exists to determine a location
         
-        print("------> ERROR IntervalTimerCoreLocation locationManager(manager:didFailWithError:) -> \(error.localizedDescription)")
+        print("------> ERROR IntervalTimerCoreLocation locationManager(manager:didFailWithError:) -> \(error)")
         
         //TODO: restart the manager at a later appropriate state (maybe by user tapping on the warning icon of the weather!)
         stopUpdatingLocationManager()
         
         let theError = error as NSError
+        var errorMessage = ""
+
         switch (theError.code) {
-        case CoreLocationError.LocationUnknown.rawValue: //location is currently unknown
-            //TODO: raise error from here, error should say device was unable to determine the location
-            print("------> ERROR Location is currently unknown. Code: \(theError.code). Message: \(theError.localizedDescription).")
-        case CoreLocationError.Denied.rawValue:
-            print("------> ERROR Access to location has been denied by the user. Code: \(theError.code). Message: \(theError.localizedDescription).")
-        case CoreLocationError.Network.rawValue:
-            print("------> ERROR Network-related error. Code: \(theError.code). Message: \(theError.localizedDescription).")
+        case 0:
+//        case CoreLocationError.LocationUnknown.rawValue: //location is currently unknown
+            errorMessage = "Location is currently unknown. Code: \(theError.code). Message: \(theError)."
+            
+            print("------> ERROR \(errorMessage)")
+            showUserWarning(type: UserWarning.LocationManagerDidFail, with: errorMessage)
+            
+//        case CoreLocationError.Denied.rawValue:
+        case 1:
+            
+            errorMessage = "Access to location has been denied by the user. Code: \(theError.code). Message: \(theError)."
+            
+            print("------> ERROR \(errorMessage)")
+            showUserWarning(type: UserWarning.LocationServicesDisabled)
+            
+//        case CoreLocationError.Network.rawValue:
+        case 2:
+            errorMessage = "Network-related error. Code: \(theError.code). Message: \(theError)."
+            
+            print("------> ERROR \(errorMessage)")
+            showUserWarning(type: UserWarning.NoInternet)
+            
         default:
-            print("------> ERROR Failed location default error. Code: \(theError.code). Message: \(theError.localizedDescription).")
+            
+            errorMessage = "Failed location default error. Code: \(theError.code). Message: \(theError)."
+            
+            print("------> ERROR \(errorMessage)")
+            showUserWarning(type: UserWarning.LocationManagerDidFail, with: errorMessage)
         }
+
+//        switch (theError.code) {
+//        case CoreLocationError.LocationUnknown.rawValue: //location is currently unknown
+//            errorMessage = "Location is currently unknown. Code: \(theError.code). Message: \(theError)."
+//            
+//            print("------> ERROR \(errorMessage)")
+//            showUserWarning(type: UserWarning.LocationManagerDidFail, with: errorMessage)
+//
+//        case CoreLocationError.Denied.rawValue:
+//            
+//            errorMessage = "Access to location has been denied by the user. Code: \(theError.code). Message: \(theError)."
+//            
+//            print("------> ERROR \(errorMessage)")
+//            showUserWarning(type: UserWarning.LocationServicesDisabled)
+//            
+//        case CoreLocationError.Network.rawValue:
+//            errorMessage = "Network-related error. Code: \(theError.code). Message: \(theError)."
+//            
+//            print("------> ERROR \(errorMessage)")
+//            showUserWarning(type: UserWarning.NoInternet)
+//            
+//        default:
+//
+//            errorMessage = "Failed location default error. Code: \(theError.code). Message: \(theError)."
+//            
+//            print("------> ERROR \(errorMessage)")
+//            showUserWarning(type: UserWarning.LocationManagerDidFail, with: errorMessage)
+//        }
     }
     func requestLocation(){
         thisLocationManager.requestLocation()

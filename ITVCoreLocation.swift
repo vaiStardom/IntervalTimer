@@ -18,14 +18,12 @@ class ITVCoreLocation: NSObject, CLLocationManagerDelegate {
     fileprivate var cityId: Int?
     fileprivate var cityName: String?
     fileprivate var countryCode: String?
-    fileprivate var didCityIdRetreivalFail: Bool? = false
-    fileprivate var didCityInfoRetreivalFail: Bool? = false
     fileprivate var didCompleteLocationDetermination: Bool? = false
+    fileprivate var error: Error?
     fileprivate var firstTimeLocationService: Date? = nil
     fileprivate var latitude: Double?
     fileprivate var longitude: Double?
     fileprivate var location: CLLocation?
-    
     fileprivate var placemark: CLPlacemark?
     
     let thisGeocoder = CLGeocoder()
@@ -85,22 +83,13 @@ class ITVCoreLocation: NSObject, CLLocationManagerDelegate {
             }
         }
     }
-    var thisDidCityInfoRetreivalFail: Bool? {
-        get { return didCityInfoRetreivalFail }
+    var thisError: Error?{
+        get { return error }
         set {
-            didCityInfoRetreivalFail = newValue
-            UserDefaults.standard.set(newValue, forKey: "didCityInfoRetreivalFail")
-            UserDefaults.standard.synchronize()
+            error = newValue
         }
     }
-    var thisDidCityIdRetreivalFail: Bool? {
-        get { return didCityIdRetreivalFail }
-        set {
-            didCityIdRetreivalFail = newValue
-            UserDefaults.standard.set(newValue, forKey: "didCityIdRetreivalFail")
-            UserDefaults.standard.synchronize()
-        }
-    }
+
     var thisFirstTimeLocationService: Date?{
         get { return firstTimeLocationService }
         set {

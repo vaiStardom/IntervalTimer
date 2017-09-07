@@ -27,6 +27,7 @@ class TimerViewController: UIViewController {
     //Buttons
     @IBOutlet weak var startPauseResumeButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var warningButton: UIButton!
     
     //Title labels
     @IBOutlet weak var weatherTemperatureLabel: UILabel!

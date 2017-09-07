@@ -14,3 +14,6 @@ protocol ITVUserWarningProtocol {
     var backgroundView:UIView {get}
     var dialogView:UIView {get set}
 }
+
+protocol ITVUtilitiesProtocol {
+}

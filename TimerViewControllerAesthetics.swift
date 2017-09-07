@@ -12,16 +12,23 @@ import UIKit
 extension TimerViewController {
     func aesthetics_showMissingWeatherWarning(){
         //TODO: program the alert to show when this button is pressed
-        //        showMissingTemperatureWarningButton.isHidden = false
-        //        missingTemperatureImageView.isHidden = false
-        
+        activityIndicatorStop()
         weatherImageView.isHidden = true
         weatherTemperatureLabel.isHidden = true
+
+        warningButton.isHidden = false
+        warningImageView.alpha = 0.0
+
+        warningButton.isHidden = false
+        warningImageView.isHidden = false
+
+        UIView.animate(withDuration: 1.5, animations: {
+            self.warningImageView.alpha = 1.0
+        })
     }
     func aesthetics_hideMissingWeatherWarning(){
-        //        showMissingTemperatureWarningButton.isHidden = true
-        //        missingTemperatureImageView.isHidden = true
-        
+        warningButton.isHidden = true
+        warningImageView.isHidden = true
         weatherImageView.isHidden = false
         weatherTemperatureLabel.isHidden = false
     }
@@ -35,7 +42,7 @@ extension TimerViewController {
         }
     }
     func aesthetics_initial(){
-        activityIndicator.color = IntervalTimerColors.Orange
+        activityIndicator.color = ITVColors.Orange
         cancelButton.isEnabled = false
         
         aesthetics_hideMissingWeatherWarning()

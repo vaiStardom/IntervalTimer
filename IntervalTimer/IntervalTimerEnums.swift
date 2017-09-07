@@ -28,51 +28,88 @@ enum CsvControls{
     static let LineSeperator: String = "\n"
 }
 //MARK: - Errors
-enum CoreLocationError : Int {
-    case LocationUnknown // location is currently unknown, but CL will keep trying
-    case Denied // Access to location or ranging has been denied by the user
-    case Network // general, network-related error
+enum ITVError: Error {
+    case CSV_ReadError(String)
+    case CSV_Missing(String)
+    case GetCityId_CityNameIsNil(reason: String)
+    case GetCityId_CountryCodeIsNil(reason: String)
+    case GetCityId_LatitudeIsNil(reason: String)
+    case GetCityId_LongitudeIsNil(reason: String)
+    case GetCityId_UrlIsNil(reason: String)
+    case GetCityId_NoCityId(reason: String)
+    case GetCityId_NoCityName(reason: String)
+    case GetWeather_NoWeatherForCityId(reason: String)
+    case GetWeather_NoWeatherForLocationName(reason: String)
+    case GetWeather_NoWeatherForCoordinates(reason: String)
+    case GetWeather_NoWeatherForUnknownReason(reason: String)
+    case GetWeather_ShouldNotUpdateWeather(reason: String)
+    case GetWeather_DidNotGetWeather(reason: String)
+    case GetWeather_UrlIsNil(reason: String)
+    case Http_UnsucessfulHttpResponse(code: String) //For a an http response code enum, look here: //https://gist.github.com/brennanMKE/482452bb9ac5f578907f413902753eec
+    case JSON_UnsucessfulProcessing
+    case JSON_Missing(String)
+    case JSON_MissingTemperature
+    case JSON_MissingIcon
+    case URL_UnsucessfulUrl(reason: String)
+    case Reachability_notReachable(reason: String)
 }
-enum CsvError: Error {
-    case readError(String)
-    case missing(String)
-}
-enum GetCityIdError: Error {
-    case cityNameIsNil(reason: String)
-    case countryCodeIsNil(reason: String)
-    case latitudeIsNil(reason: String)
-    case longitudeIsNil(reason: String)
-    case urlIsNil(reason: String)
-    case noCityId(reason: String)
-    case noCityName(reason: String)
-}
-enum GetWeatherError: Error {
-    case noWeatherForCityId(reason: String)
-    case noWeatherForLocationName(reason: String)
-    case noWeatherForCoordinates(reason: String)
-    case shouldNotUpdateWeather(reason: String)
-    case didNotGetWeather(reason: String)
-    case urlIsNil(reason: String)
-}
-enum HttpError: Error { //For a an http response code enum, look here: //https://gist.github.com/brennanMKE/482452bb9ac5f578907f413902753eec
-    case unsucessfulHttpResponse(code: String)
-}
-enum JsonError: Error {
-    case unsucessfulProcessing
-    case missing(String)
-    case missingTemperature
-    case missingIcon
-}
-enum UrlError: Error {
-    case unsucessfulUrl(reason: String)
-}
+////MARK: - Errors
+//enum CoreLocationError : Int {
+//    case LocationUnknown // location is currently unknown, but CL will keep trying
+//    case Denied // Access to location or ranging has been denied by the user
+//    case Network // general, network-related error
+//}
+//enum CsvError: Error {
+//    case readError(String)
+//    case missing(String)
+//}
+//enum GetCityIdError: Error {
+//    case cityNameIsNil(reason: String)
+//    case countryCodeIsNil(reason: String)
+//    case latitudeIsNil(reason: String)
+//    case longitudeIsNil(reason: String)
+//    case urlIsNil(reason: String)
+//    case noCityId(reason: String)
+//    case noCityName(reason: String)
+//}
+//enum GetWeatherError: Error {
+//    case noWeatherForCityId(reason: String)
+//    case noWeatherForLocationName(reason: String)
+//    case noWeatherForCoordinates(reason: String)
+//    case noWeatherForUnknownReason(reason: String)
+//    case shouldNotUpdateWeather(reason: String)
+//    case didNotGetWeather(reason: String)
+//    case urlIsNil(reason: String)
+//}
+//enum HttpError: Error { //For a an http response code enum, look here: //https://gist.github.com/brennanMKE/482452bb9ac5f578907f413902753eec
+//    case unsucessfulHttpResponse(code: String)
+//}
+//enum JsonError: Error {
+//    case unsucessfulProcessing
+//    case missing(String)
+//    case missingTemperature
+//    case missingIcon
+//}
+//enum UrlError: Error {
+//    case unsucessfulUrl(reason: String)
+//}
+//enum ReachabilityError: Error {
+//    case notReachable(reason: String)
+//}
+
+//MARK: - Others
 enum UserWarning: Int {
     case AirPlaneModeEnabled
     case LocationManagerDidFail
     case LocationServicesDisabled
     case NoInternet
-    
 }
+enum ReachabilityStatus {
+    case notReachable
+    case reachableViaWWAN
+    case reachableViaWiFi
+}
+
 //MARK: - Fonts
 enum SystemFont{
     static let Bold15: UIFont = UIFont.systemFont(ofSize: 15, weight: UIFontWeightBold)

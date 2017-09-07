@@ -1,5 +1,5 @@
 //
-//  IntervalTimerColors.swift
+//  ITVColors.swift
 //  IntervalTimer
 //
 //  Created by Paul Addy on 2017-06-25.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct IntervalTimerColors{
+struct ITVColors{
     static let Black = UIColor(red: 0, green: 0, blue: 0, alpha: 1.0)
     static let BlueProgress = UIColor(red: 109.0/255.0, green: 158.0/255.0, blue: 225.0/255.0, alpha: 1.0)
     static let GreenProgress = UIColor(red: 125.0/255.0, green: 225.0/255.0, blue: 103.0/255.0, alpha: 1.0)

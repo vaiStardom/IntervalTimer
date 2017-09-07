@@ -39,6 +39,6 @@ extension AppDelegate {
 // MARK: - Navigation and Tabbar Configurations
 extension AppDelegate {
     fileprivate func configureNavigationTabBar(){
-        UINavigationBar.appearance().backgroundColor = IntervalTimerColors.Black
+        UINavigationBar.appearance().backgroundColor = ITVColors.Black
     }
 }

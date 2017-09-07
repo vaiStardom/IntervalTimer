@@ -20,10 +20,18 @@ extension TimerViewController{
     }
     func canAttemptWeatherUpdate(_ notification: Notification){
         print("------> TimerViewController canAttemptWeatherUpdate notification received")
-        IntervalTimerCurrentWeather.getWeatherByPriority()
+        do {
+            try ITVCurrentWeather.getWeatherByPriority()
+        } catch let error {
+            activityIndicatorStop()
+            showUserWarning(type: UserWarning.LocationManagerDidFail, with: "\(error)")
+        }
     }
     func didGetCurrentWeather(_ notification: Notification){
         updateWeatherInformation()
+    }
+    func errorGettingWeather(_ notification: Notification){
+        aesthetics_showMissingWeatherWarning()
     }
     func setWeatherFromNetwork(){
         activityIndicatorStart()

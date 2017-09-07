@@ -12,14 +12,25 @@ class ITVUIViewWarningAlert: UIView, ITVUserWarningProtocol {
     var backgroundView = UIView()
     var dialogView = UIView()
     var visualEffectsView = UIVisualEffectView()
+    var errorMessage: String?
     
-    convenience init(type: UserWarning?) {
+    
+    convenience init(type: UserWarning?, with message: String? = nil) {
         self.init(frame: UIScreen.main.bounds)
 
         guard let theUserWarning = type else {
             fatalError("Please provide a UserWarning type.")
         }
-
+        
+        ITVWarningForUser.sharedInstance.thisUserWarning = theUserWarning
+        
+        if message != nil, !(message?.isEmpty)! {
+            errorMessage = message
+        } else {
+            errorMessage = nil
+        }
+        ITVWarningForUser.sharedInstance.thisMessage = errorMessage
+        
         initialize(with: theUserWarning)
     }
     
@@ -48,11 +59,14 @@ class ITVUIViewWarningAlert: UIView, ITVUserWarningProtocol {
         addSubview(dialogView)
 
         dialogView.translatesAutoresizingMaskIntoConstraints = true
+        
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[view]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["view":dialogView]))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[view]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["view":dialogView]))
 
     }
     func warningView(with warningType: UserWarning) -> UIView {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "errorGettingWeather"), object: nil)
+        
         switch warningType {
         case UserWarning.AirPlaneModeEnabled:
             let warningView: ITVWarningDisableAirPlaneModeView = UIView.fromNib()
@@ -60,6 +74,9 @@ class ITVUIViewWarningAlert: UIView, ITVUserWarningProtocol {
 
         case UserWarning.LocationManagerDidFail:
             let warningView: ITVWarningLocationManagerDidFailView = UIView.fromNib()
+            warningView.errorMessageTextView.text = errorMessage!
+            warningView.errorMessageTextView.layer.borderColor = ITVColors.Orange.cgColor
+            warningView.errorMessageTextView.layer.borderWidth = 1.0
             return warningView
 
         case UserWarning.LocationServicesDisabled:
@@ -69,8 +86,8 @@ class ITVUIViewWarningAlert: UIView, ITVUserWarningProtocol {
         case UserWarning.NoInternet:
             let warningView: ITVWarningConnectToInternetView = UIView.fromNib()
             return warningView
-
         }
+        
     }
     func didTappedOnBackgroundView(){
         dismiss(animated: true)

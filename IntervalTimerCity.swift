@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct IntervalTimerCity {
+public struct ITVCity {
     
     // MARK: - Properties
     private var name: String?
@@ -28,42 +28,83 @@ public struct IntervalTimerCity {
     
     public init(json: [String: Any]) throws {
         guard let theAddress = json["address"] as? [String: String] else {
-            throw JsonError.missing("json key address")
+            //throw JsonError.missing("json key address")
+            throw ITVError.JSON_Missing("json key address")
         }
         guard let theCity = theAddress["city"] else {
-            throw JsonError.missing("json key city")
+            //throw JsonError.missing("json key city")
+            throw ITVError.JSON_Missing("json key city")
         }
         self.name = theCity
     }
 }
 //MARK: - Weather Retreival Static Functions
-extension IntervalTimerCity{
+extension ITVCity{
+    //MARK: - Typealias
+    typealias ITVNewCityErrorHandler = ((Error?) -> Void)
     
-    static func getCityAlternativeInfoByCoordinates() throws {
+//    private func fromNetwork(with url: URL, completion: @escaping ITVCityHandler ) {
+    static func getAlternativeLocationNameByCoordinates(completion: @escaping ITVNewCityErrorHandler) {
+        
+        var errorMessage: Error?
         
         print("------> IntervalTimerCity getCityAlternativeInfoByCoordinates()")
         guard let theLatitude = ITVCoreLocation.sharedInstance.thisLatitude else {
             print("------> IntervalTimerCity getCityAlternativeInfoByCoordinates() GetCityIdError.latitudeIsNil")
-            throw GetCityIdError.latitudeIsNil(reason: "Latitude is nil")
+            errorMessage = ITVError.GetCityId_LatitudeIsNil(reason: "Latitude is nil")
+            completion(errorMessage)
+            return
+//            throw GetCityIdError.latitudeIsNil(reason: "Latitude is nil")
+//            throw ITVError.GetCityId_LatitudeIsNil(reason: "Latitude is nil")
         }
         
         guard let theLongitude = ITVCoreLocation.sharedInstance.thisLongitude else {
             print("------> IntervalTimerCity getCityAlternativeInfoByCoordinates() GetCityIdError.longitudeIsNil")
-            throw GetCityIdError.longitudeIsNil(reason: "Longitude is nil")
+            errorMessage = ITVError.GetCityId_LongitudeIsNil(reason: "Longitude is nil")
+            completion(errorMessage)
+            return
+//            throw ITVError.GetCityId_LongitudeIsNil(reason: "Longitude is nil")
+//            throw GetCityIdError.longitudeIsNil(reason: "Longitude is nil")
         }
-        
-        var didGetCityName: Bool?
+
         let cityService = IntervalTimerCityService(apiKey: MapQuestApi.key, providerUrl: MapQuestApi.baseUrl)
-        
         do {
             try cityService?.getCityNameAt(latitude: theLatitude, longitude: theLongitude)
         } catch let error {
             print("------> ERROR IntervalTimerCity getCityAlternativeInfoByCoordinates() -> \(error)")
-            didGetCityName = false
-        }
-        
-        if let theDidGetCityName = didGetCityName, theDidGetCityName == false {
-            throw GetCityIdError.noCityName(reason: "No city name found at latitude \(theLatitude) and longitude \(theLongitude)")
+            errorMessage = ITVError.GetCityId_NoCityName(reason: "No city name found at latitude \(theLatitude) and longitude \(theLongitude). Error is \(error)")
+            completion(errorMessage)
+            return
+
+            //throw ITVError.GetCityId_NoCityName(reason: "No city name found at latitude \(theLatitude) and longitude \(theLongitude). Error is \(error)")
+//            throw GetCityIdError.noCityName(reason: "No city name found at latitude \(theLatitude) and longitude \(theLongitude). Error is \(error)")
         }
     }
+//    static func getCityAlternativeInfoByCoordinates() throws {
+//        
+//        print("------> IntervalTimerCity getCityAlternativeInfoByCoordinates()")
+//        guard let theLatitude = ITVCoreLocation.sharedInstance.thisLatitude else {
+//            print("------> IntervalTimerCity getCityAlternativeInfoByCoordinates() GetCityIdError.latitudeIsNil")
+//            throw GetCityIdError.latitudeIsNil(reason: "Latitude is nil")
+//        }
+//        
+//        guard let theLongitude = ITVCoreLocation.sharedInstance.thisLongitude else {
+//            print("------> IntervalTimerCity getCityAlternativeInfoByCoordinates() GetCityIdError.longitudeIsNil")
+//            throw GetCityIdError.longitudeIsNil(reason: "Longitude is nil")
+//        }
+//        
+//        var didGetCityName = true
+//        let cityService = IntervalTimerCityService(apiKey: MapQuestApi.key, providerUrl: MapQuestApi.baseUrl)
+//        
+//        do {
+//            try cityService?.getCityNameAt(latitude: theLatitude, longitude: theLongitude)
+//        } catch let error {
+//            print("------> ERROR IntervalTimerCity getCityAlternativeInfoByCoordinates() -> \(error)")
+//            didGetCityName = false
+//        }
+//        
+//        if let theDidGetCityName = didGetCityName, theDidGetCityName == false {
+//            throw GetCityIdError.noCityName(reason: "No city name found at latitude \(theLatitude) and longitude \(theLongitude)")
+//        }
+//    }
 }

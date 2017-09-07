@@ -55,7 +55,7 @@ extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.startTimerImageView.layer.borderWidth = 1.0
         cell.startTimerImageView.layer.masksToBounds = false
-        cell.startTimerImageView.layer.borderColor = IntervalTimerColors.Orange.cgColor
+        cell.startTimerImageView.layer.borderColor = ITVColors.Orange.cgColor
         cell.startTimerImageView.layer.cornerRadius = cell.startTimerImageView.frame.size.height/2
         
         cell.startTimerButton.tag = index

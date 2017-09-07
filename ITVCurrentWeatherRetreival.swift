@@ -1,118 +1,20 @@
 //
-//  IntervalTimerWeatherCurrent.swift
+//  ITVCurrentWeatherRetreival.swift
 //  IntervalTimer
 //
-//  Created by Paul Addy on 2017-07-02.
+//  Created by Paul Addy on 2017-09-06.
 //  Copyright © 2017 Paul Addy. All rights reserved.
 //
 
 import Foundation
 
-//TODO: Change this to a struct, we dont want to pass around copies of this
-class IntervalTimerCurrentWeather: NSObject, NSCoding {
-    
-    //MARK: - fileprivate properties
-    fileprivate var kelvin: Double? //source (JSON) gives temperature in kelvins
-    fileprivate var temperature: String?
-    fileprivate var icon: String?
-    
-    //MARK: - public get/set properties
-    var thisTemperature: String?{
-        get {
-            return convertTemperature(kelvins: thisKelvin, forUnits: ITVUser.sharedInstance.thisTemperatureUnit)
-        }
-    }
-    var thisIcon: String?{
-        get {
-            return icon
-        }
-        set {
-            icon = ICON_DICTIONARY[newValue!]
-            UserDefaults.standard.set(newValue, forKey: "icon")
-            UserDefaults.standard.synchronize()
-        }
-    }
-    var thisKelvin: Double?{
-        get { return kelvin}
-        set {
-            kelvin = newValue
-            UserDefaults.standard.set(newValue, forKey: "kelvin")
-            UserDefaults.standard.synchronize()
-        }
-    }
-    
-    //MARK: - Initializers
-    init?(kelvin: Double?, icon: String?){
-        guard  let theKelvin = kelvin else {
-            return nil
-        }
-        
-        guard let theIcon = icon else {
-            return nil
-        }
-        
-        self.kelvin = theKelvin
-        self.icon = ICON_DICTIONARY[theIcon]
-    }
-    public init(json: [String: Any]) throws {
-        
-        guard let theMain = json["main"] as? [String: Any] else {
-            throw JsonError.missing("json key main")
-        }
-        guard let theKelvin = theMain["temp"] as? Double else {
-            throw JsonError.missing("json key temp")
-        }
-        guard let theWeatherArray = json["weather"] as? [[String: AnyObject]] else {
-            throw JsonError.missing("json key weather")
-        }
-        guard let theIcon = theWeatherArray[0]["icon"] as? String else {
-            throw JsonError.missing("json key icon")
-        }
-        self.kelvin = theKelvin
-        self.icon = ICON_DICTIONARY[theIcon]
-    }
-    
-    //MARK: - NSCoding protocol methods
-    func encode(with coder: NSCoder){
-        coder.encode(self.thisKelvin, forKey: "kelvin")
-        coder.encode(self.thisIcon, forKey: "icon")
-    }
-    required init(coder decoder: NSCoder) {
-        if let theKelvin = decoder.decodeDouble(forKey: "kelvin") as Double? {
-            kelvin = theKelvin
-        }
-        if let theIcon = decoder.decodeObject(forKey: "icon") as! String? {
-            icon = theIcon
-        }
-    }
-}
-
-//MARK: - Temperature conversions
-extension IntervalTimerCurrentWeather{
-    func convertTemperature(kelvins: Double?, forUnits temperatureUnit: TemperatureUnit?) -> String? {
-        guard let theKelvin = kelvins else {
-            return nil
-        }
-        
-        guard let theTemperatureUnit = temperatureUnit else {
-            return nil
-        }
-        
-        switch theTemperatureUnit {
-        case .kelvin :
-            return "\(Int(theKelvin))\(DEGREE)K"
-        case .fahrenheit:
-            return "\(Int(theKelvin - 459.67))\(DEGREE)F"
-        case .celcius:
-            return "\(Int(theKelvin - 273.15))\(DEGREE)C"
-        }
-    }
-}
 //MARK: - Weather Retreival Static Functions
-extension IntervalTimerCurrentWeather{
-    static func getWeatherByPriority(){
+extension ITVCurrentWeather {
+    static func getWeatherByPriority() throws {
         
         print("------> IntervalTimerCurrentWeather getWeatherByPriority() thisDidCompleteLocationDetermination = \(String(describing: ITVCoreLocation.sharedInstance.thisDidCompleteLocationDetermination))")
+        
+        var errorGettingWeather: Error?
         
         if ITVCoreLocation.sharedInstance.thisDidCompleteLocationDetermination! {
             
@@ -122,28 +24,42 @@ extension IntervalTimerCurrentWeather{
                     print("------> IntervalTimerCurrentWeather getWeatherByPriority() byCityId")
                     do {
                         try getWeatherByCityId()
+                        errorGettingWeather = nil
                     } catch let error {
                         print("------> ERROR IntervalTimerCurrentWeather getWeatherByPriority() byCityId -> \(error)")
+                        errorGettingWeather = error
                     }
                 case WeatherQueryPriority.byLocationName.rawValue:
                     print("------> IntervalTimerCurrentWeather getWeatherByPriority() byLocationName")
                     do {
                         try getWeatherByLocationName()
+                        errorGettingWeather = nil
                     } catch let error {
                         print("------> ERROR IntervalTimerCurrentWeather getWeatherByPriority() byLocationName -> \(error)")
+                        errorGettingWeather = error
                     }
                 case WeatherQueryPriority.byCoordinates.rawValue:
                     print("------> IntervalTimerCurrentWeather getWeatherByPriority() byCoordinates")
                     do {
                         try getWeatherByCoordinates()
+                        errorGettingWeather = nil
                     } catch let error {
                         print("------> ERROR IntervalTimerCurrentWeather getWeatherByPriority() byLocationName -> \(error)")
+                        errorGettingWeather = error
                     }
                 default:
+                    //TODO: Stop spinner and show warning icon
+                    
                     //TODO: if user wanted to have the weather, and we cant get it, then show a no-connection error icon in place of the weather
                     //Msg option 1 - "It is impossible to determine your location at the moment and give you the weather."
                     //Msg option 2 - "...
                     print("------> IntervalTimerCurrentWeather getWeatherByPriority() unable to retreive temperature")
+                    if ITVCoreLocation.sharedInstance.thisError != nil {
+                        errorGettingWeather = ITVCoreLocation.sharedInstance.thisError
+                    } else {
+                        errorGettingWeather = ITVError.GetWeather_NoWeatherForUnknownReason(reason: "Weather priority was set to none and ITVCoreLocation.sharedInstance.thisError is nil")
+//                        errorGettingWeather = GetWeatherError.noWeatherForUnknownReason(reason: )
+                    }
                 }
             }
             
@@ -158,17 +74,19 @@ extension IntervalTimerCurrentWeather{
     static func getWeatherByCityId() throws {
         
         guard let thisShouldUpdateWeeather = ITVUser.sharedInstance.thisShouldUpdateWeather, thisShouldUpdateWeeather else {
-            throw GetWeatherError.shouldNotUpdateWeather(reason: "Should Update Weather = \(String(describing: ITVUser.sharedInstance.thisShouldUpdateWeather))")
+            throw ITVError.GetWeather_ShouldNotUpdateWeather(reason: "Should Update Weather = \(String(describing: ITVUser.sharedInstance.thisShouldUpdateWeather))")
+//            throw GetWeatherError.shouldNotUpdateWeather(reason: "Should Update Weather = \(String(describing: ITVUser.sharedInstance.thisShouldUpdateWeather))")
         }
         
         guard let theCityId = ITVCoreLocation.sharedInstance.thisCityId else {
-            throw GetWeatherError.noWeatherForCityId(reason: " CityId = \(String(describing: ITVCoreLocation.sharedInstance.thisCityId))")
+            throw ITVError.GetWeather_NoWeatherForCityId(reason: " CityId = \(String(describing: ITVCoreLocation.sharedInstance.thisCityId))")
+//            throw GetWeatherError.noWeatherForCityId(reason: " CityId = \(String(describing: ITVCoreLocation.sharedInstance.thisCityId))")
         }
         
         print("------> IntervalTimerCurrentWeather getWeatherByCityId()")
         //TODO: allow this weather get attempt to complete
         let weatherService = IntervalTimerWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
-
+        
         do{
             try weatherService?.getWeatherFor(theCityId)
         } catch let error {
@@ -183,19 +101,22 @@ extension IntervalTimerCurrentWeather{
     }
     static func getWeatherByLocationName() throws {
         guard let thisShouldUpdateWeeather = ITVUser.sharedInstance.thisShouldUpdateWeather, thisShouldUpdateWeeather else {
-            throw GetWeatherError.shouldNotUpdateWeather(reason: "Should Update Weather = \(String(describing: ITVUser.sharedInstance.thisShouldUpdateWeather))")
+            throw ITVError.GetWeather_ShouldNotUpdateWeather(reason: "Should Update Weather = \(String(describing: ITVUser.sharedInstance.thisShouldUpdateWeather))")
+//            throw GetWeatherError.shouldNotUpdateWeather(reason: "Should Update Weather = \(String(describing: ITVUser.sharedInstance.thisShouldUpdateWeather))")
         }
         
         guard let theCityName = ITVCoreLocation.sharedInstance.thisCityName else {
-            throw GetWeatherError.noWeatherForLocationName(reason: " City Name = \(String(describing: ITVCoreLocation.sharedInstance.thisCityName))")
+            throw ITVError.GetWeather_NoWeatherForLocationName(reason: " City Name = \(String(describing: ITVCoreLocation.sharedInstance.thisCityName))")
+//            throw GetWeatherError.noWeatherForLocationName(reason: " City Name = \(String(describing: ITVCoreLocation.sharedInstance.thisCityName))")
         }
         
         guard let theCountryCode = ITVCoreLocation.sharedInstance.thisCountryCode else {
-            throw GetWeatherError.noWeatherForLocationName(reason: " Country Code = \(String(describing: ITVCoreLocation.sharedInstance.thisCountryCode))")
+            throw ITVError.GetWeather_NoWeatherForLocationName(reason: " Country Code = \(String(describing: ITVCoreLocation.sharedInstance.thisCountryCode))")
+//            throw GetWeatherError.noWeatherForLocationName(reason: " Country Code = \(String(describing: ITVCoreLocation.sharedInstance.thisCountryCode))")
         }
         
         print("------> IntervalTimerCurrentWeather getWeatherByLocationName() theCityName= \(theCityName), theCountryCode= \(theCountryCode)")
-
+        
         let weatherService = IntervalTimerWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
         
         do{
@@ -213,15 +134,18 @@ extension IntervalTimerCurrentWeather{
     static func getWeatherByCoordinates() throws {
         
         guard let thisShouldUpdateWeeather = ITVUser.sharedInstance.thisShouldUpdateWeather, thisShouldUpdateWeeather else {
-            throw GetWeatherError.shouldNotUpdateWeather(reason: "Should Update Weather = \(String(describing: ITVUser.sharedInstance.thisShouldUpdateWeather))")
+            throw ITVError.GetWeather_ShouldNotUpdateWeather(reason: "Should Update Weather = \(String(describing: ITVUser.sharedInstance.thisShouldUpdateWeather))")
+//            throw GetWeatherError.shouldNotUpdateWeather(reason: "Should Update Weather = \(String(describing: ITVUser.sharedInstance.thisShouldUpdateWeather))")
         }
         
         guard let theLatitude = ITVCoreLocation.sharedInstance.thisLatitude else {
-            throw GetWeatherError.noWeatherForCoordinates(reason: " Latitude = \(String(describing: ITVCoreLocation.sharedInstance.thisLatitude))")
+            throw ITVError.GetWeather_NoWeatherForCoordinates(reason: " Latitude = \(String(describing: ITVCoreLocation.sharedInstance.thisLatitude))")
+//            throw GetWeatherError.noWeatherForCoordinates(reason: " Latitude = \(String(describing: ITVCoreLocation.sharedInstance.thisLatitude))")
         }
         
         guard let theLongitude = ITVCoreLocation.sharedInstance.thisLongitude else {
-            throw GetWeatherError.noWeatherForCoordinates(reason: " Longitude = \(String(describing: ITVCoreLocation.sharedInstance.thisLongitude))")
+            throw ITVError.GetWeather_NoWeatherForCoordinates(reason: " Longitude = \(String(describing: ITVCoreLocation.sharedInstance.thisLongitude))")
+//            throw GetWeatherError.noWeatherForCoordinates(reason: " Longitude = \(String(describing: ITVCoreLocation.sharedInstance.thisLongitude))")
         }
         
         let weatherService = IntervalTimerWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)

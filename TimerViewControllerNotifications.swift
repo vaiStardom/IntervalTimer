@@ -13,5 +13,6 @@ extension TimerViewController{
     func registerNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(TimerViewController.didGetCurrentWeather(_:)), name:NSNotification.Name(rawValue: "didGetCurrentWeather"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(TimerViewController.canAttemptWeatherUpdate(_:)), name:NSNotification.Name(rawValue: "canAttemptWeatherUpdate"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(TimerViewController.errorGettingWeather(_:)), name:NSNotification.Name(rawValue: "errorGettingWeather"), object: nil)
     }
 }
