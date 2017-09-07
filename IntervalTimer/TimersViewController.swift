@@ -14,7 +14,7 @@ class TimersViewController: UIViewController {
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
 
-    var selectedIntervalTimer: IntervalTimerTimer?
+    var selectedIntervalTimer: ITVTimer?
     var startSelectedIntervalTimer: Bool? = false
     
 //    private var selectedTimerIndex: Int?

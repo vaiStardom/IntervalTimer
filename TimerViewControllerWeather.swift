@@ -10,14 +10,6 @@ import UIKit
 
 //MARK: - Weather Management
 extension TimerViewController{
-    func activityIndicatorStart(){
-        weatherImageView.addSubview(activityIndicator)
-        activityIndicator.frame = weatherImageView.bounds
-        activityIndicator.startAnimating()
-    }
-    func activityIndicatorStop(){
-        activityIndicator.stopAnimating()
-    }
     func canAttemptWeatherUpdate(_ notification: Notification){
         print("------> TimerViewController canAttemptWeatherUpdate notification received")
         do {

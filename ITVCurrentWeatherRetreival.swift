@@ -58,7 +58,6 @@ extension ITVCurrentWeather {
                         errorGettingWeather = ITVCoreLocation.sharedInstance.thisError
                     } else {
                         errorGettingWeather = ITVError.GetWeather_NoWeatherForUnknownReason(reason: "Weather priority was set to none and ITVCoreLocation.sharedInstance.thisError is nil")
-//                        errorGettingWeather = GetWeatherError.noWeatherForUnknownReason(reason: )
                     }
                 }
             }
@@ -75,17 +74,15 @@ extension ITVCurrentWeather {
         
         guard let thisShouldUpdateWeeather = ITVUser.sharedInstance.thisShouldUpdateWeather, thisShouldUpdateWeeather else {
             throw ITVError.GetWeather_ShouldNotUpdateWeather(reason: "Should Update Weather = \(String(describing: ITVUser.sharedInstance.thisShouldUpdateWeather))")
-//            throw GetWeatherError.shouldNotUpdateWeather(reason: "Should Update Weather = \(String(describing: ITVUser.sharedInstance.thisShouldUpdateWeather))")
         }
         
         guard let theCityId = ITVCoreLocation.sharedInstance.thisCityId else {
             throw ITVError.GetWeather_NoWeatherForCityId(reason: " CityId = \(String(describing: ITVCoreLocation.sharedInstance.thisCityId))")
-//            throw GetWeatherError.noWeatherForCityId(reason: " CityId = \(String(describing: ITVCoreLocation.sharedInstance.thisCityId))")
         }
         
         print("------> IntervalTimerCurrentWeather getWeatherByCityId()")
         //TODO: allow this weather get attempt to complete
-        let weatherService = IntervalTimerWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
+        let weatherService = ITVWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
         
         do{
             try weatherService?.getWeatherFor(theCityId)
@@ -102,22 +99,19 @@ extension ITVCurrentWeather {
     static func getWeatherByLocationName() throws {
         guard let thisShouldUpdateWeeather = ITVUser.sharedInstance.thisShouldUpdateWeather, thisShouldUpdateWeeather else {
             throw ITVError.GetWeather_ShouldNotUpdateWeather(reason: "Should Update Weather = \(String(describing: ITVUser.sharedInstance.thisShouldUpdateWeather))")
-//            throw GetWeatherError.shouldNotUpdateWeather(reason: "Should Update Weather = \(String(describing: ITVUser.sharedInstance.thisShouldUpdateWeather))")
         }
         
         guard let theCityName = ITVCoreLocation.sharedInstance.thisCityName else {
             throw ITVError.GetWeather_NoWeatherForLocationName(reason: " City Name = \(String(describing: ITVCoreLocation.sharedInstance.thisCityName))")
-//            throw GetWeatherError.noWeatherForLocationName(reason: " City Name = \(String(describing: ITVCoreLocation.sharedInstance.thisCityName))")
         }
         
         guard let theCountryCode = ITVCoreLocation.sharedInstance.thisCountryCode else {
             throw ITVError.GetWeather_NoWeatherForLocationName(reason: " Country Code = \(String(describing: ITVCoreLocation.sharedInstance.thisCountryCode))")
-//            throw GetWeatherError.noWeatherForLocationName(reason: " Country Code = \(String(describing: ITVCoreLocation.sharedInstance.thisCountryCode))")
         }
         
         print("------> IntervalTimerCurrentWeather getWeatherByLocationName() theCityName= \(theCityName), theCountryCode= \(theCountryCode)")
         
-        let weatherService = IntervalTimerWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
+        let weatherService = ITVWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
         
         do{
             try weatherService?.getWeatherFor(theCityName, in: theCountryCode)
@@ -135,20 +129,17 @@ extension ITVCurrentWeather {
         
         guard let thisShouldUpdateWeeather = ITVUser.sharedInstance.thisShouldUpdateWeather, thisShouldUpdateWeeather else {
             throw ITVError.GetWeather_ShouldNotUpdateWeather(reason: "Should Update Weather = \(String(describing: ITVUser.sharedInstance.thisShouldUpdateWeather))")
-//            throw GetWeatherError.shouldNotUpdateWeather(reason: "Should Update Weather = \(String(describing: ITVUser.sharedInstance.thisShouldUpdateWeather))")
         }
         
         guard let theLatitude = ITVCoreLocation.sharedInstance.thisLatitude else {
             throw ITVError.GetWeather_NoWeatherForCoordinates(reason: " Latitude = \(String(describing: ITVCoreLocation.sharedInstance.thisLatitude))")
-//            throw GetWeatherError.noWeatherForCoordinates(reason: " Latitude = \(String(describing: ITVCoreLocation.sharedInstance.thisLatitude))")
         }
         
         guard let theLongitude = ITVCoreLocation.sharedInstance.thisLongitude else {
             throw ITVError.GetWeather_NoWeatherForCoordinates(reason: " Longitude = \(String(describing: ITVCoreLocation.sharedInstance.thisLongitude))")
-//            throw GetWeatherError.noWeatherForCoordinates(reason: " Longitude = \(String(describing: ITVCoreLocation.sharedInstance.thisLongitude))")
         }
         
-        let weatherService = IntervalTimerWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
+        let weatherService = ITVWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
         
         do{
             try weatherService?.getWeatherAt(latitude: theLatitude, longitude: theLongitude)

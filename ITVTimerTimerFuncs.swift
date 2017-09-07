@@ -9,7 +9,7 @@
 import Foundation
 
 //MARK: - Time functions
-extension IntervalTimerTimer{
+extension ITVTimer{
     func totalTime() -> String {
 
         var time = (0, 0, 0)

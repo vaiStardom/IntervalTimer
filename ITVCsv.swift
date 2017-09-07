@@ -17,6 +17,9 @@ class ITVCsv {
     fileprivate var data: [[String:String]] = []
     fileprivate var columnTitles: [String] = []
     
+    //MARK: - Typealias
+    typealias ITVCsvErrorHandler = ((Error?) -> Void)
+    
     //MARK: - init()
     private init(){}
     
@@ -87,11 +90,7 @@ class ITVCsv {
         return cleanFile
     }
     
-    //MARK: - Typealias
-    typealias ITVCsvErrorHandler = ((Error?) -> Void)
-    
     func getCityId(cityName: String, countryCode: String, completion: @escaping ITVCsvErrorHandler) {
-//    func getCityId(cityName: String, countryCode: String) throws {
     
         var error: Error?
         
@@ -99,16 +98,12 @@ class ITVCsv {
             error = ITVError.GetCityId_CityNameIsNil(reason: "City name is nil")
             completion(error)
             return
-            //throw ITVError.GetCityId_CityNameIsNil(reason: "City name is nil")
-            //throw GetCityIdError.cityNameIsNil(reason: "City name is nil")
         }
         
         guard let theCountryCode = countryCode as String? else {
             error = ITVError.GetCityId_CountryCodeIsNil(reason: "Country code is nil")
             completion(error)
             return
-            //throw ITVError.GetCityId_CountryCodeIsNil(reason: "Country code is nil")
-            //throw GetCityIdError.countryCodeIsNil(reason: "Country code is nil")
         }
         
         var didGetCityId: Bool?
@@ -135,8 +130,6 @@ class ITVCsv {
         if let theDidGetCityId = didGetCityId, theDidGetCityId == false {
             error = ITVError.GetCityId_NoCityId(reason: "No city id for city name \(theCityName) and country code \(theCountryCode)")
             completion(error)
-            //throw ITVError.GetCityId_NoCityId(reason: "No city id for city name \(theCityName) and country code \(theCountryCode)")
-//            throw GetCityIdError.noCityId(reason: "No city id for city name \(theCityName) and country code \(theCountryCode)")
         }
     }
 }

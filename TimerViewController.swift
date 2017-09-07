@@ -45,7 +45,7 @@ class TimerViewController: UIViewController {
     @IBOutlet weak var timerSecondsLabel: UILabel!
     @IBOutlet weak var timerMillisecondsForSecondsLabel: UILabel!
 
-    var intervalTimer: IntervalTimerTimer?
+    var intervalTimer: ITVTimer?
     var startIntervalTimer: Bool? = false
     
     var totalSeconds = 3602 //seconds
