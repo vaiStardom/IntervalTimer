@@ -23,7 +23,7 @@ class ITVCurrentWeather: NSObject, NSCoding {
         }
         set {
             icon = ICON_DICTIONARY[newValue!]
-            UserDefaults.standard.set(newValue, forKey: "icon")
+            UserDefaults.standard.set(icon, forKey: "icon")
             UserDefaults.standard.synchronize()
         }
     }
@@ -31,8 +31,10 @@ class ITVCurrentWeather: NSObject, NSCoding {
         get { return kelvin}
         set {
             kelvin = newValue
-            UserDefaults.standard.set(newValue, forKey: "kelvin")
-            UserDefaults.standard.synchronize()
+            if let theKelvin = newValue {
+                UserDefaults.standard.set(theKelvin, forKey: "kelvin")
+                UserDefaults.standard.synchronize()
+            }
         }
     }
     var thisTemperature: String?{
@@ -58,19 +60,15 @@ class ITVCurrentWeather: NSObject, NSCoding {
         
         guard let theMain = json["main"] as? [String: Any] else {
             throw ITVError.JSON_Missing("json key main")
-//            throw JsonError.missing("json key main")
         }
         guard let theKelvin = theMain["temp"] as? Double else {
             throw ITVError.JSON_Missing("json key temp")
-//            throw JsonError.missing("json key temp")
         }
         guard let theWeatherArray = json["weather"] as? [[String: AnyObject]] else {
             throw ITVError.JSON_Missing("json key weather")
-//            throw JsonError.missing("json key weather")
         }
         guard let theIcon = theWeatherArray[0]["icon"] as? String else {
             throw ITVError.JSON_Missing("json key icon")
-//            throw JsonError.missing("json key icon")
         }
         self.kelvin = theKelvin
         self.icon = ICON_DICTIONARY[theIcon]
@@ -82,7 +80,10 @@ class ITVCurrentWeather: NSObject, NSCoding {
         coder.encode(self.thisIcon, forKey: "icon")
     }
     required init(coder decoder: NSCoder) {
-        if let theKelvin = decoder.decodeDouble(forKey: "kelvin") as Double? {
+        
+//        let amount = aDecoder.decodeDouble(forKey:PropertyKey.amountKey) as Double?
+        
+        if let theKelvin = decoder.decodeObject(forKey: "kelvin") as! Double? {
             kelvin = theKelvin
         }
         if let theIcon = decoder.decodeObject(forKey: "icon") as! String? {

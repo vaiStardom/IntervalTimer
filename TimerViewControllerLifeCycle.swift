@@ -21,6 +21,7 @@ extension TimerViewController{
         if let theIntervalTimer = intervalTimer {
             //yes
             timerNameLabel.text = theIntervalTimer.thisName
+            
             //does user want to start it immedialy
             if let theStartIntervalTimer = startIntervalTimer, theStartIntervalTimer {
                 //yes
@@ -34,44 +35,28 @@ extension TimerViewController{
             }
             
             //Second, if this is a selected timer, do we show the weather
+            //TODO: cache the weather, update it only every 3 hours or if user has moved more than 5 kilometers
             if theIntervalTimer.thisShowWeather! {
-            
+                if ITVCoreLocation.sharedInstance.isLocationServicesAndNetworkAvailable() {
+                    self.registerNotifications() //will register at first weather use
+                    //IntervalTimerCoreLocation.sharedInstance.firstTimeLocationUsage()
+                    if ITVUser.sharedInstance.thisShouldUpdateWeather {
+                        setWeatherFromNetwork()
+                    } else {
+                        if ITVUser.sharedInstance.thisCurrentWeather != nil {
+                            updateWeatherInformation()
+                        } else {
+                            setWeatherFromNetwork()
+                        }
+                    }
+                } else {
+                    aesthetics_showMissingWeatherWarning()
+                }
             }
-            
         } else {
             //no, user probably wants to create a new timer
             timerNameLabel.text = ""
             startPauseResume = (true, false, false)
-        }
-
-        //TODO: If timer is set to show weather {..do all the below...}
-        //TODO: call this when user switches on weather for the first time
-        //TODO: cache the weather, update it only every 3 hours or if user has moved more than 5 kilometers
-        
-
-        //IntervalTimerCoreLocation.sharedInstance.firstTimeLocationUsage()
-        
-        //Only register if user wants weather for this timer
-        self.registerNotifications() //will register at first weather use
-
-        if ITVUser.sharedInstance.thisShouldUpdateWeather! {
-            setWeatherFromNetwork()
-//            activityIndicatorStart()
-//            
-//            //TODO: call this when user starts a timer
-//            //IntervalTimerUser.sharedInstance.startUpdatingLocationManager()
-//            print("------> TimerViewController viewDidLoad() requesting Location")
-//            IntervalTimerCoreLocation.sharedInstance.requestLocation()
-//            
-//            print("------> TimerViewController viewDidLoad() attempting to set weather")
-//            IntervalTimerCurrentWeather.getWeatherByPriority()
-        } else {
-            //has the weather been retreived before, if yes update the saved weather
-            if ITVUser.sharedInstance.thisCurrentWeather != nil {
-                updateWeatherInformation()
-            } else {
-                setWeatherFromNetwork()
-            }
         }
     }
     override func didReceiveMemoryWarning() {

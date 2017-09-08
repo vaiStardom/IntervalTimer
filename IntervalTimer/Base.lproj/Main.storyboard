@@ -103,6 +103,13 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="warning" translatesAutoresizingMaskIntoConstraints="NO" id="ZXO-ao-VKA">
+                                <rect key="frame" x="281" y="23" width="20" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="45n-Em-ops"/>
+                                    <constraint firstAttribute="height" constant="21" id="9AB-i3-R6y"/>
+                                </constraints>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6h6-e5-JRa">
                                 <rect key="frame" x="261" y="13" width="44" height="44"/>
                                 <constraints>
@@ -110,8 +117,7 @@
                                     <constraint firstAttribute="height" constant="44" id="xDT-bd-4QV"/>
                                 </constraints>
                                 <connections>
-                                    <action selector="showWarning:" destination="f9n-YU-8Y8" eventType="touchUpInside" id="ufA-KT-pmv"/>
-                                    <action selector="weatherMissing:" destination="FOr-RH-OJ6" eventType="touchUpInside" id="sle-pY-08I"/>
+                                    <action selector="weatherMissing:" destination="f9n-YU-8Y8" eventType="touchUpInside" id="rlD-w7-O9D"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Intervals" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PE3-Mm-Agf">
@@ -165,6 +171,7 @@
                             <constraint firstItem="S7x-6F-qaa" firstAttribute="leading" secondItem="kNo-zw-Loh" secondAttribute="leading" constant="8" id="Gp2-s5-3Wr"/>
                             <constraint firstItem="kNo-zw-Loh" firstAttribute="leading" secondItem="P0h-2u-Jp0" secondAttribute="leading" constant="-8" id="HGx-iW-vNs"/>
                             <constraint firstItem="xGP-Cf-6VF" firstAttribute="centerX" secondItem="nmF-3N-dED" secondAttribute="centerX" id="JcZ-fU-qxa"/>
+                            <constraint firstItem="ZXO-ao-VKA" firstAttribute="trailing" secondItem="TuX-E6-30a" secondAttribute="trailing" constant="-4" id="Kv3-Xp-gJg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="TuX-E6-30a" secondAttribute="trailing" constant="-1" id="LED-fM-yfG"/>
                             <constraint firstItem="S7x-6F-qaa" firstAttribute="top" secondItem="kNo-zw-Loh" secondAttribute="bottom" constant="8" id="NJd-i4-A4D"/>
                             <constraint firstItem="PE3-Mm-Agf" firstAttribute="leading" secondItem="S7x-6F-qaa" secondAttribute="leading" id="SUx-xj-aIa"/>
@@ -179,6 +186,7 @@
                             <constraint firstItem="CUf-Fm-Bka" firstAttribute="centerY" secondItem="TuX-E6-30a" secondAttribute="centerY" constant="-1.5" id="lyk-CW-Gy2"/>
                             <constraint firstItem="PE3-Mm-Agf" firstAttribute="top" secondItem="S7x-6F-qaa" secondAttribute="bottom" constant="45" id="pV5-kE-aVV"/>
                             <constraint firstItem="6h6-e5-JRa" firstAttribute="centerX" secondItem="TuX-E6-30a" secondAttribute="centerX" id="qHC-CN-UkF"/>
+                            <constraint firstItem="ZXO-ao-VKA" firstAttribute="centerY" secondItem="kNo-zw-Loh" secondAttribute="centerY" constant="-1.5" id="thy-md-dE7"/>
                             <constraint firstItem="xGP-Cf-6VF" firstAttribute="centerY" secondItem="nmF-3N-dED" secondAttribute="centerY" id="vGS-zP-bAz"/>
                         </constraints>
                     </view>
@@ -186,6 +194,7 @@
                         <outlet property="showWeatherSwitch" destination="XKR-oh-FiO" id="fNU-fJ-DWs"/>
                         <outlet property="timerNameLabel" destination="kNo-zw-Loh" id="zXw-SH-45L"/>
                         <outlet property="warningButton" destination="6h6-e5-JRa" id="q2A-mI-t0Y"/>
+                        <outlet property="warningImageView" destination="ZXO-ao-VKA" id="CdL-cx-vXV"/>
                         <outlet property="weatherIconImageView" destination="TuX-E6-30a" id="ckC-uX-DtM"/>
                         <outlet property="weatherTemperatureLabel" destination="CUf-Fm-Bka" id="8vQ-hz-aMh"/>
                         <segue destination="lHH-oS-twA" kind="show" identifier="EditTimerToEditInterval" id="L7u-Ms-i3S"/>
@@ -193,7 +202,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pGy-uc-BVQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2723" y="138"/>
+            <point key="canvasLocation" x="2722.5" y="137.32394366197184"/>
         </scene>
         <!--Timer View Controller-->
         <scene sceneID="Ykg-SE-M8p">
@@ -432,8 +441,9 @@
                                     <constraint firstAttribute="width" constant="97" id="zgH-uo-QpG"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" background="timeTextFieldFrame" translatesAutoresizingMaskIntoConstraints="NO" id="Joj-t6-671">
+                            <textField opaque="NO" clipsSubviews="YES" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Joj-t6-671">
                                 <rect key="frame" x="5" y="37" width="47" height="75"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="Nud-1E-BQx"/>
                                     <constraint firstAttribute="width" constant="47" id="XwO-i2-BbF"/>
@@ -448,8 +458,9 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="allowedChars" value="0123456789"/>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" background="timeTextFieldFrame" translatesAutoresizingMaskIntoConstraints="NO" id="EpP-GQ-y65">
+                            <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EpP-GQ-y65">
                                 <rect key="frame" x="55" y="37" width="47" height="75"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="Mu5-l6-iLj"/>
                                     <constraint firstAttribute="width" constant="47" id="dEu-se-6hl"/>
@@ -472,8 +483,9 @@
                                     <constraint firstAttribute="width" constant="97" id="Znq-B1-rPT"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" background="timeTextFieldFrame" translatesAutoresizingMaskIntoConstraints="NO" id="FRr-D4-ZQQ">
+                            <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FRr-D4-ZQQ">
                                 <rect key="frame" x="112" y="37" width="47" height="75"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="47" id="1Jv-b6-NQs"/>
                                     <constraint firstAttribute="height" constant="75" id="H5Z-AW-pOQ"/>
@@ -488,8 +500,9 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="allowedChars" value="0123456789"/>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" background="timeTextFieldFrame" translatesAutoresizingMaskIntoConstraints="NO" id="hnG-TJ-RWj">
+                            <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hnG-TJ-RWj">
                                 <rect key="frame" x="162" y="37" width="47" height="75"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="47" id="TUk-OW-hDv"/>
                                     <constraint firstAttribute="height" constant="75" id="yjV-ZL-Lcy"/>
@@ -511,8 +524,9 @@
                                     <constraint firstAttribute="width" constant="97" id="T6e-eF-adg"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" background="timeTextFieldFrame" translatesAutoresizingMaskIntoConstraints="NO" id="8sG-yc-kw7">
+                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8sG-yc-kw7">
                                 <rect key="frame" x="218" y="37" width="47" height="75"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="Ad4-FJ-GpY"/>
                                     <constraint firstAttribute="width" constant="47" id="vJy-KF-7Ac"/>
@@ -527,8 +541,9 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="allowedChars" value="0123456789"/>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" background="timeTextFieldFrame" translatesAutoresizingMaskIntoConstraints="NO" id="KBH-PH-Tdb">
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KBH-PH-Tdb">
                                 <rect key="frame" x="268" y="37" width="47" height="75"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="47" id="ZPH-Ws-N0D"/>
                                     <constraint firstAttribute="height" constant="75" id="ko5-IM-imJ"/>
@@ -741,7 +756,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hNc-Cr-GkD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3707" y="138"/>
+            <point key="canvasLocation" x="3706.875" y="137.32394366197184"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yZq-CX-7ky">
@@ -768,7 +783,6 @@
         <image name="barButtonAdd" width="18" height="18"/>
         <image name="cancel" width="132" height="132"/>
         <image name="start" width="132" height="132"/>
-        <image name="timeTextFieldFrame" width="47" height="75"/>
         <image name="warning" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>

@@ -72,7 +72,7 @@ extension ITVCurrentWeather {
     
     static func getWeatherByCityId() throws {
         
-        guard let thisShouldUpdateWeeather = ITVUser.sharedInstance.thisShouldUpdateWeather, thisShouldUpdateWeeather else {
+        guard ITVUser.sharedInstance.thisShouldUpdateWeather else {
             throw ITVError.GetWeather_ShouldNotUpdateWeather(reason: "Should Update Weather = \(String(describing: ITVUser.sharedInstance.thisShouldUpdateWeather))")
         }
         
@@ -97,7 +97,7 @@ extension ITVCurrentWeather {
         }
     }
     static func getWeatherByLocationName() throws {
-        guard let thisShouldUpdateWeeather = ITVUser.sharedInstance.thisShouldUpdateWeather, thisShouldUpdateWeeather else {
+        guard ITVUser.sharedInstance.thisShouldUpdateWeather else {
             throw ITVError.GetWeather_ShouldNotUpdateWeather(reason: "Should Update Weather = \(String(describing: ITVUser.sharedInstance.thisShouldUpdateWeather))")
         }
         
@@ -127,7 +127,7 @@ extension ITVCurrentWeather {
     }
     static func getWeatherByCoordinates() throws {
         
-        guard let thisShouldUpdateWeeather = ITVUser.sharedInstance.thisShouldUpdateWeather, thisShouldUpdateWeeather else {
+        guard ITVUser.sharedInstance.thisShouldUpdateWeather else {
             throw ITVError.GetWeather_ShouldNotUpdateWeather(reason: "Should Update Weather = \(String(describing: ITVUser.sharedInstance.thisShouldUpdateWeather))")
         }
         

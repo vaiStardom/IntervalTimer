@@ -11,6 +11,13 @@ import CoreLocation
 
 //MARK: - Helpers
 extension ITVCoreLocation{
+    func requestLocation(){
+        thisLocationManager.requestLocation()
+    }
+    //Called when a timer has finished running
+    func stopUpdatingLocationManager(){
+        thisLocationManager.stopUpdatingLocation() //will cancel any requested location updates
+    }
     func nilLocationName(){
         print("------> IntervalTimerCoreLocation nilLocationName()")
         thisCityName = nil
@@ -55,49 +62,6 @@ extension ITVCoreLocation{
                 self.getNewCityName()
             }
         }
-        
-        
-        
-        
-        
-        
-        
-        //        let getCityId_WorkItem = DispatchWorkItem {
-        //            do {
-        //                try IntervalTimerCsv.sharedInstance.getCityId(cityName: self.thisCityName!, countryCode: self.thisCountryCode!)
-        //                self.thisError = nil
-        //            } catch let error {
-        //                print("------> ERROR IntervalTimerCoreLocation getCityId() getCityId_WorkItem -> \(error)")
-        //                self.thisError = error
-        //            }
-        //        }
-        //
-        //        let getNewCityName_WorkItem = DispatchWorkItem {//get city id by cl info failed, get alternative info from mapquest
-        //            do {
-        //                try IntervalTimerCity.getCityAlternativeInfoByCoordinates()
-        //                self.thisError = nil
-        //            } catch let error {
-        //                print("------> ERROR IntervalTimerCoreLocation getCityId() getNewCityName_WorkItem -> \(error)")
-        //                self.thisError = error
-        //            }
-        //        }
-        //
-        //        UTILITY_GLOBAL_DISPATCHQUEUE.async(execute: getCityId_WorkItem)
-        //
-        //        getCityId_WorkItem.notify(queue: DispatchQueue.main) {
-        //            if self.thisError != nil {
-        //                UTILITY_GLOBAL_DISPATCHQUEUE.async(execute: getNewCityName_WorkItem)
-        //            }
-        //        }
-        //
-        //        getNewCityName_WorkItem.notify(queue: DispatchQueue.main) {
-        //            print("------> IntervalTimerCoreLocation getCityId() getNewCityName_WorkItem completed error = \(String(describing: self.thisError?))")
-        //            if self.thisError != nil {
-        //                NotificationCenter.default.addObserver(self, selector: #selector(self.didGetNewCityName(_:)), name:NSNotification.Name(rawValue: "didGetNewCityName"), object: nil)
-        //            } else {
-        //
-        //            }
-        //        }
     }
     func getNewCityName(){
         let group = DispatchGroup()
@@ -131,7 +95,7 @@ extension ITVCoreLocation{
         }
     }
     func didGetNewCityName(_ notification: Notification){
-       
+        
         print("------> IntervalTimerCoreLocation didGetNewCityName(notification:) notification received")
         guard !thisCityName!.isEmpty, thisCityName != nil else {
             thisCityId = -1
@@ -170,26 +134,6 @@ extension ITVCoreLocation{
         }
     }
     
-    //    func didGetNewCityName(_ notification: Notification){
-    //
-    //        let getNewCityNameCityId_WorkItem = DispatchWorkItem {
-    //            do {
-    //                try ITVCsv.sharedInstance.getCityId(cityName: self.thisCityName!, countryCode: self.thisCountryCode!)
-    //                self.thisError = nil
-    //            } catch let error {
-    //                print("------> ERROR IntervalTimerCoreLocation didGetNewCityName(notification:) getNewCityNameCityId_WorkItem -> \(error)")
-    //                self.thisError = error
-    //            }
-    //        }
-    //
-    //        UTILITY_GLOBAL_DISPATCHQUEUE.async(execute: getNewCityNameCityId_WorkItem)
-    //        getNewCityNameCityId_WorkItem.notify(queue: DispatchQueue.main) {
-    //            if self.thisError != nil {
-    //                self.thisCityId = -1
-    //            }
-    //        }
-    //    }
-    
     func checkIfLocationDeterminationIsComplete(){
         
         //TODO: Validate that the weather retreival is functionning properly by priority
@@ -210,46 +154,36 @@ extension ITVCoreLocation{
         if authStatus == .notDetermined {
             thisLocationManager.delegate = self
             thisLocationManager.requestWhenInUseAuthorization()
-        }
-        
-        if authStatus == .denied || authStatus == .restricted {
-            //TODO: add the new alert screen to ask the user to enable location services (and possibly design a new screen that show if location services are at all possible on current device)
+        } else {
+            if authStatus == .restricted || authStatus == .denied{
+                ITVWarningForUser.sharedInstance.thisUserWarning = UserWarning.LocationServicesDisabled
+            }
         }
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    func isLocationServicesAndNetworkAvailable() -> Bool {
+        if CLLocationManager.locationServicesEnabled() {
+            switch(CLLocationManager.authorizationStatus()) {
+            case .notDetermined, .restricted, .denied:
+                ITVWarningForUser.sharedInstance.thisUserWarning = UserWarning.LocationServicesDisabled
+                return false
+            case .authorizedAlways, .authorizedWhenInUse:
+                if currentReachabilityStatus != .notReachable {
+                    return true
+                } else {
+                    ITVWarningForUser.sharedInstance.thisUserWarning = UserWarning.NoInternet
+                    return false
+                }
+                
+            default:
+                print("Something wrong with Location services")
+                //TODO: New warning screen for this default which should never be executed (something wrong with users device location services...)
+                ITVWarningForUser.sharedInstance.thisUserWarning = UserWarning.LocationServicesDisabled
+                return false
+            }
+        } else {
+            ITVWarningForUser.sharedInstance.thisUserWarning = UserWarning.LocationServicesDisabled
+            return false
+        }
+    }
 }

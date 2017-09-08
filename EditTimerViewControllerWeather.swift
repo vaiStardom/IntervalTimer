@@ -21,17 +21,39 @@ extension EditTimerViewController{
     func activityIndicatorStop(){
         activityIndicator.stopAnimating()
     }
+    func errorGettingWeather(_ notification: Notification){
+        aesthetics_showMissingWeatherWarning()
+    }
     func canAttemptWeatherUpdate(_ notification: Notification){
-        print("------> TimerViewController canAttemptWeatherUpdate notification received")
+        print("------> EditTimerViewController canAttemptWeatherUpdate notification received")
         do {
             try ITVCurrentWeather.getWeatherByPriority()
         } catch let error {
             activityIndicatorStop()
             showUserWarning(type: UserWarning.LocationManagerDidFail, with: "\(error)")
         }
-        
+    }
+    func startSettingWeather(){
+        if ITVUser.sharedInstance.thisShouldUpdateWeather {
+            //TODO: cache the weather, update it only every 3 hours or if user has moved more than 5 kilometers
+            print("------> EditTimerViewController startSettingWeather() will update weather from Network")
+            setWeatherFromNetwork()
+        } else {
+            if ITVUser.sharedInstance.thisCurrentWeather != nil {
+                print("------> EditTimerViewController startSettingWeather() will update weather from UserDefaults")
+                updateWeatherInformation()
+            } else {
+                print("------> EditTimerViewController startSettingWeather() will update weather from Network")
+                setWeatherFromNetwork()
+            }
+        }
+    }
+    func didAuthorizeLocationServices(_ notification: Notification){
+        //IntervalTimerCoreLocation.sharedInstance.firstTimeLocationUsage()
+        startSettingWeather()
     }
     func didGetCurrentWeather(_ notification: Notification){
+        print("------> TimerViewController didGetCurrentWeather notification received")
         updateWeatherInformation()
     }
     func setWeatherFromNetwork(){
@@ -42,23 +64,23 @@ extension EditTimerViewController{
         activityIndicatorStop()
         
         // Background Thread Or Service call Or DB fetch etc
-        print("------> TimerViewController didGetCurrentWeather notification received")
+        
         guard let theTemperature = ITVUser.sharedInstance.thisCurrentWeather?.thisTemperature else {
             aesthetics_showMissingWeatherWarning()
-            fatalError("------> ERROR - TimerViewController didGetCurrentWeather invalid temperature \(String(describing: ITVUser.sharedInstance.thisCurrentWeather?.thisTemperature))")
+            fatalError("------> ERROR - TimerViewController updateWeatherInformation invalid temperature \(String(describing: ITVUser.sharedInstance.thisCurrentWeather?.thisTemperature))")
         }
         
         guard let theIcon = ITVUser.sharedInstance.thisCurrentWeather?.thisIcon! else {
             aesthetics_showMissingWeatherWarning()
-            fatalError("------> ERROR TimerViewController didGetCurrentWeather invalid icon \(String(describing: ITVUser.sharedInstance.thisCurrentWeather?.thisIcon!))")
+            fatalError("------> ERROR TimerViewController updateWeatherInformation invalid icon \(String(describing: ITVUser.sharedInstance.thisCurrentWeather?.thisIcon!))")
         }
         
         guard let theImage = UIImage(named: theIcon) else {
             aesthetics_showMissingWeatherWarning()
-            fatalError("------> ERROR TimerViewController didGetCurrentWeather invalid image for icon name \(theIcon)")
+            fatalError("------> ERROR TimerViewController updateWeatherInformation invalid image for icon name \(theIcon)")
         }
         
-        print("------> TimerViewController didGetCurrentWeather theTemperature = \(theTemperature), theImage = \(theIcon)")
+        print("------> TimerViewController updateWeatherInformation theTemperature = \(theTemperature), theImage = \(theIcon)")
         
         weatherIconImageView.alpha = 0.0
         weatherTemperatureLabel.alpha = 0.0
@@ -72,8 +94,5 @@ extension EditTimerViewController{
             self.weatherIconImageView.alpha = 1.0
             self.weatherTemperatureLabel.alpha = 1.0
         })
-        
-        //Weather updated, no need to update location until 3 hrs have passed or user has moved 1KM
-        ITVUser.sharedInstance.thisShouldUpdateWeather = false
     }
 }

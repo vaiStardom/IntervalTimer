@@ -12,6 +12,27 @@ import Foundation
 extension EditIntervalViewController {
     func aesthetics_initial(){
         
+        hourTextField2.layer.borderColor = ITVColors.Orange.cgColor
+        hourTextField1.layer.borderColor = ITVColors.Orange.cgColor
+        minuteTextField2.layer.borderColor = ITVColors.Orange.cgColor
+        minuteTextField1.layer.borderColor = ITVColors.Orange.cgColor
+        secondTextField2.layer.borderColor = ITVColors.Orange.cgColor
+        secondTextField1.layer.borderColor = ITVColors.Orange.cgColor
+
+        hourTextField2.layer.borderWidth = 1.5
+        hourTextField1.layer.borderWidth = 1.5
+        minuteTextField2.layer.borderWidth = 1.5
+        minuteTextField1.layer.borderWidth = 1.5
+        secondTextField2.layer.borderWidth = 1.5
+        secondTextField1.layer.borderWidth = 1.5
+
+        hourTextField2.layer.cornerRadius = 9
+        hourTextField1.layer.cornerRadius = 9
+        minuteTextField2.layer.cornerRadius = 9
+        minuteTextField1.layer.cornerRadius = 9
+        secondTextField2.layer.cornerRadius = 9
+        secondTextField1.layer.cornerRadius = 9
+        
         indicators.append((imageView: firstIndicatorImageView, activeFillColor: ITVColors.IntervalRed, inactiveFillColor: ITVColors.Black, borderColor: ITVColors.IntervalRed))
         indicators.append((imageView: secondIndicatorImageView, activeFillColor: ITVColors.IntervalGreen, inactiveFillColor: ITVColors.Black, borderColor: ITVColors.IntervalGreen))
         indicators.append((imageView: thirdIndicatorImageView, activeFillColor: ITVColors.IntervalYellow, inactiveFillColor: ITVColors.Black, borderColor: ITVColors.IntervalYellow))

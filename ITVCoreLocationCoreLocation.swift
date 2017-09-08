@@ -109,6 +109,16 @@ extension ITVCoreLocation {
         thisCountryCode = theCountryShortName
     }
     
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if(status == .authorizedAlways || status == .authorizedWhenInUse){
+            //Send notification to update the weather
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "didAuthorizeLocationServices"), object: nil)
+        }else {
+            //TODO: Maybe design a screen asking the user to please authorize location service for the app
+            ITVWarningForUser.sharedInstance.thisUserWarning = UserWarning.LocationServicesDisabled
+        }
+    }
+    
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         //TODO: Handle diabled location services for app error: present a nice alert view to advise the user to enable location services
         //TODO: error code 0 -> reset location settings (i tried juust clearing the ram)
@@ -153,12 +163,5 @@ extension ITVCoreLocation {
             print("------> ERROR \(errorMessage)")
             showUserWarning(type: UserWarning.LocationManagerDidFail, with: errorMessage)
         }
-    }
-    func requestLocation(){
-        thisLocationManager.requestLocation()
-    }
-    //Called when a timer has finished running
-    func stopUpdatingLocationManager(){
-        thisLocationManager.stopUpdatingLocation() //will cancel any requested location updates
     }
 }

@@ -37,6 +37,7 @@ func showUserWarning(type: UserWarning?, with message: String? = nil){
 
 }
 
+//MARK: - Weather Functions
 func getWeatherFromNetwork(){
     //TODO: call this when user starts a timer
     //IntervalTimerUser.sharedInstance.startUpdatingLocationManager()
@@ -49,5 +50,25 @@ func getWeatherFromNetwork(){
     } catch let error {
         showUserWarning(type: UserWarning.LocationManagerDidFail, with: "\(error)")
     }
+}
 
+//MARK: - Date Functions
+func hoursSince(from: Date?, to: Date?) -> Int? {
+    guard let theFrom = from else {
+        fatalError("You must provide a non-nil from date")
+    }
+    guard let theTo = to else {
+        fatalError("You must provide a non-nil to date")
+    }
+    
+    if let dateCompoenent = Calendar.current.dateComponents([.hour], from: theFrom, to: theTo) as DateComponents? {
+        if let hoursSince = dateCompoenent.hour {
+            return hoursSince
+        } else {
+            return nil
+        }
+    } else {
+        return nil
+    }
+    
 }
