@@ -18,15 +18,18 @@ extension EditIntervalViewController {
             let backButton = ITVUIBarButtonItem().backButton(target: self, selector: #selector(EditIntervalViewController.back))
             self.navigationItem.leftBarButtonItems = [backButton]
         } else {
-            let saveButton = ITVUIBarButtonItem().backButton(target: self, selector: #selector(EditIntervalViewController.save))
+            let saveButton = ITVUIBarButtonItem().saveButton(target: self, selector: #selector(EditIntervalViewController.save))
             self.navigationItem.leftBarButtonItems = [saveButton]
         }
+        
+        let negativeSpace = ITVUIBarButtonItem().negativeSpace()
+        let cancelButton = ITVUIBarButtonItem().cancelButton(target: self, selector: #selector(EditIntervalViewController.cancel))
+        
+        self.navigationItem.rightBarButtonItems = [negativeSpace, cancelButton]
 
         let label = ITVUILabel().navBarNewIntervalTitle()
         self.navigationItem.titleView = label
         
-        let negativeSpace = ITVUIBarButtonItem().negativeSpace()
-        let cancelButton = ITVUIBarButtonItem().cancelButton(target: self, selector: #selector(EditIntervalViewController.cancel))
-        self.navigationItem.rightBarButtonItems = [negativeSpace, cancelButton]
+
     }
 }

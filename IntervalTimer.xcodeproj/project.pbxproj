@@ -41,6 +41,7 @@
 		BA4BFEB11EFFC55700E341DC /* EditIntervalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4BFEB01EFFC55700E341DC /* EditIntervalViewController.swift */; };
 		BA4BFEB51EFFD5E400E341DC /* ITVUIImageViewIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4BFEB41EFFD5E400E341DC /* ITVUIImageViewIndicator.swift */; };
 		BA6D2AC41F63DB04007D29DD /* ITVString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6D2AC31F63DB04007D29DD /* ITVString.swift */; };
+		BA6D2AC61F63E561007D29DD /* EditIntervalViewControllerHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6D2AC51F63E561007D29DD /* EditIntervalViewControllerHelpers.swift */; };
 		BA724BCE1F0B3BD100A211BD /* cityList.20170703.csv in Resources */ = {isa = PBXBuildFile; fileRef = BA724BCD1F0B3BD100A211BD /* cityList.20170703.csv */; };
 		BA77AE771F49415200AD34BE /* TimerViewControllerActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA77AE761F49415200AD34BE /* TimerViewControllerActions.swift */; };
 		BA77AE791F4941DC00AD34BE /* TimerViewControllerTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA77AE781F4941DC00AD34BE /* TimerViewControllerTimer.swift */; };
@@ -152,6 +153,7 @@
 		BA4BFEB01EFFC55700E341DC /* EditIntervalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditIntervalViewController.swift; sourceTree = "<group>"; };
 		BA4BFEB41EFFD5E400E341DC /* ITVUIImageViewIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITVUIImageViewIndicator.swift; sourceTree = "<group>"; };
 		BA6D2AC31F63DB04007D29DD /* ITVString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITVString.swift; sourceTree = "<group>"; };
+		BA6D2AC51F63E561007D29DD /* EditIntervalViewControllerHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditIntervalViewControllerHelpers.swift; sourceTree = "<group>"; };
 		BA724BCD1F0B3BD100A211BD /* cityList.20170703.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cityList.20170703.csv; sourceTree = "<group>"; };
 		BA77AE761F49415200AD34BE /* TimerViewControllerActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewControllerActions.swift; sourceTree = "<group>"; };
 		BA77AE781F4941DC00AD34BE /* TimerViewControllerTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewControllerTimer.swift; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 				BA4BFEB01EFFC55700E341DC /* EditIntervalViewController.swift */,
 				BA77AE821F4943C500AD34BE /* EditIntervalViewControllerActions.swift */,
 				BAABCA831F5674E8008C5B85 /* EditIntervalViewControllerAesthetics.swift */,
+				BA6D2AC51F63E561007D29DD /* EditIntervalViewControllerHelpers.swift */,
 				BAABCA851F56750E008C5B85 /* EditIntervalViewControllerLifeCycle.swift */,
 				BA77AE861F49444B00AD34BE /* EditIntervalViewControllerNavigationBar.swift */,
 				BA77AE841F4943F300AD34BE /* EditIntervalViewControllerTextField.swift */,
@@ -632,6 +635,7 @@
 				BA43702B1F59289E00E144D2 /* ITVCoreLocationCoreLocation.swift in Sources */,
 				BAAFE4511F0A366000D3619E /* ITVDownloadJSON.swift in Sources */,
 				BA4BFEAC1EFFAF2100E341DC /* EditTimerViewController.swift in Sources */,
+				BA6D2AC61F63E561007D29DD /* EditIntervalViewControllerHelpers.swift in Sources */,
 				BAC748BF1F613B21003F9E31 /* ITVWarningForUser.swift in Sources */,
 				BA21FDB11F62469600ABC94E /* EditTimerViewControllerNotifications.swift in Sources */,
 				BA4BFEAF1EFFB8EB00E341DC /* ITVUILabel.swift in Sources */,

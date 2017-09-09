@@ -33,12 +33,19 @@ extension EditIntervalViewController {
         secondTextField2.layer.cornerRadius = 9
         secondTextField1.layer.cornerRadius = 9
         
-        indicators.append((imageView: firstIndicatorImageView, activeFillColor: ITVColors.IntervalRed, inactiveFillColor: ITVColors.Black, borderColor: ITVColors.IntervalRed))
-        indicators.append((imageView: secondIndicatorImageView, activeFillColor: ITVColors.IntervalGreen, inactiveFillColor: ITVColors.Black, borderColor: ITVColors.IntervalGreen))
-        indicators.append((imageView: thirdIndicatorImageView, activeFillColor: ITVColors.IntervalYellow, inactiveFillColor: ITVColors.Black, borderColor: ITVColors.IntervalYellow))
-        indicators.append((imageView: fourthIndicatorImageView, activeFillColor: ITVColors.IntervalBlue, inactiveFillColor: ITVColors.Black, borderColor: ITVColors.IntervalBlue))
-        indicators.append((imageView: fifthIndicatorImageView, activeFillColor: ITVColors.IntervalWhite, inactiveFillColor: ITVColors.Black, borderColor: ITVColors.IntervalWhite))
-        indicators.append((imageView: sixthIndicatorImageView, activeFillColor: ITVColors.IntervalPink, inactiveFillColor: ITVColors.Black, borderColor: ITVColors.IntervalPink))
+        hourTextField2.tintColor = ITVColors.Orange
+        hourTextField1.tintColor = ITVColors.Orange
+        minuteTextField2.tintColor = ITVColors.Orange
+        minuteTextField1.tintColor = ITVColors.Orange
+        secondTextField2.tintColor = ITVColors.Orange
+        secondTextField1.tintColor = ITVColors.Orange
+        
+        indicators.append((imageView: firstIndicatorImageView, activeFillColor: Indicator.Red, inactiveFillColor: ITVColors.Black, borderColor: Indicator.Red))
+        indicators.append((imageView: secondIndicatorImageView, activeFillColor: Indicator.Green, inactiveFillColor: ITVColors.Black, borderColor: Indicator.Green))
+        indicators.append((imageView: thirdIndicatorImageView, activeFillColor: Indicator.Yellow, inactiveFillColor: ITVColors.Black, borderColor: Indicator.Yellow))
+        indicators.append((imageView: fourthIndicatorImageView, activeFillColor: Indicator.Blue, inactiveFillColor: ITVColors.Black, borderColor: Indicator.Blue))
+        indicators.append((imageView: fifthIndicatorImageView, activeFillColor: Indicator.White, inactiveFillColor: ITVColors.Black, borderColor: Indicator.White))
+        indicators.append((imageView: sixthIndicatorImageView, activeFillColor: Indicator.Pink, inactiveFillColor: ITVColors.Black, borderColor: Indicator.Pink))
 
         firstIndicatorImageView.roundImageView()
         secondIndicatorImageView.roundImageView()
@@ -49,22 +56,28 @@ extension EditIntervalViewController {
         
         aesthetics_unselectAllIndicators()
     }
+    func aesthetics_editingMode(){
+        
+        
+    }
+    
     func aesthetics_manageSelectedColorIndicator(indicatorIndex: Int){
         indicators[indicatorIndex].imageView.isSelected = !indicators[indicatorIndex].imageView.isSelected
-        selectedIndicator = indicators[indicatorIndex].imageView.isSelected
+        isSelectedIndicator = indicators[indicatorIndex].imageView.isSelected
         aesthetics_unselectAllIndicators()
-        indicators[indicatorIndex].imageView.isSelected = selectedIndicator
-        if selectedIndicator == true {
-            //indicators[indicatorIndex].imageView.image = UIImage(named: indicators[indicatorIndex].activeImageName)
-            indicators[indicatorIndex].imageView.backgroundColor = indicators[indicatorIndex].activeFillColor
-            indicators[indicatorIndex].imageView.layer.borderColor = indicators[indicatorIndex].borderColor.cgColor
+        indicators[indicatorIndex].imageView.isSelected = isSelectedIndicator
+        if isSelectedIndicator == true {
+            selectedIndicator = indicators[indicatorIndex].activeFillColor
+            indicators[indicatorIndex].imageView.backgroundColor = indicators[indicatorIndex].activeFillColor.uiColor()
+            indicators[indicatorIndex].imageView.layer.borderColor = indicators[indicatorIndex].borderColor.uiColor().cgColor
+            
         }
     }
     func aesthetics_unselectAllIndicators(){
         for indicator in indicators {
             indicator.imageView.isSelected = false
             indicator.imageView.backgroundColor = indicator.inactiveFillColor
-            indicator.imageView.layer.borderColor = indicator.borderColor.cgColor
+            indicator.imageView.layer.borderColor = indicator.borderColor.uiColor().cgColor
         }
     }
 }

@@ -30,7 +30,14 @@ extension EditIntervalViewController {
         minuteTextField1.text = zeroWidthSpace
         secondTextField2.text = zeroWidthSpace
         secondTextField1.text = zeroWidthSpace
-                
+        
+        textFields.append(hourTextField2)
+        textFields.append(hourTextField1)
+        textFields.append(minuteTextField2)
+        textFields.append(minuteTextField1)
+        textFields.append(secondTextField2)
+        textFields.append(secondTextField1)
+        
         aesthetics_initial()
     }
     override func didReceiveMemoryWarning() {

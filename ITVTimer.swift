@@ -21,7 +21,7 @@ let timers = [
     , ITVTimer(name: "Mountain run", showWeather: true, temperatureUnit: nil, intervals: intervalsSeconds)
 ]
 
-public struct ITVTimer {
+class ITVTimer {
         
     // MARK: - Properties
     fileprivate var name: String?

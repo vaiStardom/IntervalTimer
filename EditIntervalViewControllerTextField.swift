@@ -10,6 +10,14 @@ import UIKit
 
 //MARK: - Text Field Management
 extension EditIntervalViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textFields.contains(textField) {
+            compareFieldsWithSavedInterval()
+            configureNavBar()
+            print("------> EditIntervalViewController textFieldDidEndEditing(textField:) total seconds = \(totalSeconds())")
+        }
+    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         //trim out the invisible sign

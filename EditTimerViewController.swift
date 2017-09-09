@@ -12,7 +12,7 @@ class EditTimerViewController: UIViewController {
     
     @IBOutlet weak var showWeatherSwitch: UISwitch!
     
-    @IBOutlet weak var timerNameLabel: UITextField!
+    @IBOutlet weak var timerNameTextField: UITextField!
     
     @IBOutlet weak var warningButton: UIButton!
     

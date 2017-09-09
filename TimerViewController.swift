@@ -17,8 +17,6 @@ import UIKit
 //TODO: Show warning that airplane mode is on by simply putting that icon where the weather is (no alert)
 class TimerViewController: UIViewController {
     
-//    @IBOutlet weak var visualEffectView: UIVisualEffectView!
-    
     //ImageViews
     @IBOutlet weak var weatherImageView: UIImageView!
     @IBOutlet weak var cancelImageView: UIImageView!

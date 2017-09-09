@@ -54,19 +54,43 @@ enum ITVError: Error {
     case Reachability_notReachable(reason: String)
 }
 
-//MARK: - Others
 enum UserWarning: Int {
     case AirPlaneModeEnabled
     case LocationManagerDidFail
     case LocationServicesDisabled
     case NoInternet
 }
+
+//MARK: - Others
 enum ReachabilityStatus {
     case notReachable
     case reachableViaWWAN
     case reachableViaWiFi
 }
-
+enum TimeType: Int {
+    case Seconds
+    case Minutes
+    case Hours    
+    func toSeconds(from: Int?) -> Double {
+        if let theFrom = from {
+            let theTime = Double(theFrom)
+            if theTime <= 0 {
+                return 0.0
+            } else {
+                switch self {
+                case .Seconds:
+                    return theTime
+                case .Minutes:
+                    return theTime * 60.0
+                case .Hours:
+                    return theTime * 3600.0
+                }
+            }
+        } else {
+            return 0.0
+        }
+    }
+}
 //MARK: - Fonts
 enum SystemFont{
     static let Bold15: UIFont = UIFont.systemFont(ofSize: 15, weight: UIFontWeightBold)
@@ -120,20 +144,46 @@ enum NavigationBarImage{
     static let Add = "barButtonAdd"
     static let Back = "barButtonBack"
 }
-enum IntervalImage{
-    static let Red = "redIndicator"
-    static let Green = "greenIndicator"
-    static let Orange = "orangeIndicator"
-    static let Blue = "blueIndicator"
-    static let Yellow = "yellowIndicator"
-    static let Purple = "purpleIndicator"
-    static let RedUnselected = "redIndicatorUnselected"
-    static let GreenUnselected = "greenIndicatorUnselected"
-    static let OrangeUnselected = "orangeIndicatorUnselected"
-    static let BlueUnselected = "blueIndicatorUnselected"
-    static let YellowUnselected = "yellowIndicatorUnselected"
-    static let PurpleUnselected = "purpleIndicatorUnselected"
+
+enum Indicator {
+    case Blue
+    case Green
+    case Pink
+    case Red
+    case Yellow
+    case White
+    
+    func uiColor() -> UIColor {
+        switch self {
+        case .Blue:
+            return UIColor(red: 45.0/255.0, green: 255.0/255.0, blue: 254.0/255.0, alpha: 1.0)
+        case .Green:
+            return UIColor(red: 0.0/255.0, green: 255.0/255.0, blue: 58.0/255.0, alpha: 1.0)
+        case .Pink:
+            return UIColor(red: 252.0/255.0, green: 34.0/255.0, blue: 211.0/255.0, alpha: 1.0)
+        case .Red:
+            return UIColor(red: 255.0/255.0, green: 17.0/255.0, blue: 0.0/255.0, alpha: 1.0)
+        case .Yellow:
+            return UIColor(red: 255.0/255.0, green: 251.0/255.0, blue: 0.0/255.0, alpha: 1.0)
+        case .White:
+            return UIColor(red: 243.0/255.0, green: 243.0/255.0, blue: 243.0/255.0, alpha: 1.0)
+        }
+    }
 }
+//enum IntervalImage{
+//    static let Red = "redIndicator"
+//    static let Green = "greenIndicator"
+//    static let Orange = "orangeIndicator"
+//    static let Blue = "blueIndicator"
+//    static let Yellow = "yellowIndicator"
+//    static let Purple = "purpleIndicator"
+//    static let RedUnselected = "redIndicatorUnselected"
+//    static let GreenUnselected = "greenIndicatorUnselected"
+//    static let OrangeUnselected = "orangeIndicatorUnselected"
+//    static let BlueUnselected = "blueIndicatorUnselected"
+//    static let YellowUnselected = "yellowIndicatorUnselected"
+//    static let PurpleUnselected = "purpleIndicatorUnselected"
+//}
 //MARK: - Litterals
 enum NavigationBarLitterals{
     static let Back = "Back"
@@ -142,7 +192,7 @@ enum NavigationBarLitterals{
     static let Edit = "Edit"
     static let NewTimer = "Timer"
     static let NewInterval = "Interval"
-    static let Save = "Back"
+    static let Save = "Save"
 }
 //MARK: - MapQuest
 enum MapQuestApi {
