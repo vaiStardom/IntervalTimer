@@ -19,12 +19,12 @@ extension TimersViewController {
         self.navigationItem.rightBarButtonItems = [negativeSpace, addButton]
     }
     func leftTitleLabel() -> UIBarButtonItem {
-        return IntervalTimerUIBarButtonItem().leftTitle()
+        return ITVUIBarButtonItem().leftTitle()
     }
     func addBtn() -> UIBarButtonItem {
-        return IntervalTimerUIBarButtonItem().addButton(target: self, selector: #selector(TimersViewController.addTimer))
+        return ITVUIBarButtonItem().addButton(target: self, selector: #selector(TimersViewController.addTimer))
     }
     func negativeSpc() -> UIBarButtonItem{
-        return IntervalTimerUIBarButtonItem().negativeSpace()
+        return ITVUIBarButtonItem().negativeSpace()
     }
 }

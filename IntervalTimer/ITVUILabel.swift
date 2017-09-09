@@ -1,5 +1,5 @@
 //
-//  IntervalTimerUILabel.swift
+//  ITVUILabel.swift
 //  IntervalTimer
 //
 //  Created by Paul Addy on 2017-06-25.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IntervalTimerUILabel: UILabel {
+class ITVUILabel: UILabel {
     func navBarNewTimerTitle() -> UILabel {
         let label = createLabel(frame: NavigationBarCgRect.NewTimerTitle, textAlignment: NSTextAlignment.center, font: NavigationBarFont.Title, text: NavigationBarLitterals.NewTimer, color: ITVColors.Orange)
         return label

@@ -1,5 +1,5 @@
 //
-//  IntervalTimerUIButton.swift
+//  ITVUIButton.swift
 //  IntervalTimer
 //
 //  Created by Paul Addy on 2017-08-05.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IntervalTimerUIButton: UIButton {
+class ITVUIButton: UIButton {
 
     static func createButton(frame: CGRect, target: UIViewController, selector: Selector) -> UIButton {
         

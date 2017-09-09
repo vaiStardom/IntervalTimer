@@ -8,6 +8,8 @@
 
 import UIKit
 
+//TODO: User can enter any values he wants in the fields, when he saves, we convert it to the proper hour, min, and seconds values
+//TODO: a fade in fade out view telling him about the conversion
 class EditIntervalViewController: UIViewController  {
 
     @IBOutlet weak var hourTextField2: UITextField!
@@ -36,4 +38,6 @@ class EditIntervalViewController: UIViewController  {
     
     var indicators:[(imageView: ITVUIImageViewIndicator, activeFillColor: UIColor, inactiveFillColor: UIColor, borderColor: UIColor)] = []
     var selectedIndicator = false
+    
+    var isEditingAnInterval: Bool? = false
 }

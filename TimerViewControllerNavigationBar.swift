@@ -13,11 +13,11 @@ extension TimerViewController {
     func configureNavBar(){
         self.navigationItem.hidesBackButton = true
         
-        let backButton = IntervalTimerUIBarButtonItem().backButton(target: self, selector: #selector(TimerViewController.back))
+        let backButton = ITVUIBarButtonItem().backButton(target: self, selector: #selector(TimerViewController.back))
         self.navigationItem.leftBarButtonItems = [backButton]
         
-        let negativeSpace = IntervalTimerUIBarButtonItem().negativeSpace()
-        let editButton = IntervalTimerUIBarButtonItem().editButton(target: self, selector: #selector(TimerViewController.edit))
+        let negativeSpace = ITVUIBarButtonItem().negativeSpace()
+        let editButton = ITVUIBarButtonItem().editButton(target: self, selector: #selector(TimerViewController.edit))
         self.navigationItem.rightBarButtonItems = [negativeSpace, editButton]
     }
 }

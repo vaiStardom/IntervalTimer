@@ -1,5 +1,5 @@
 //
-//  IntervalTimerUIApplication.swift
+//  ITVUIApplication.swift
 //  IntervalTimer
 //
 //  Created by Paul Addy on 2017-07-06.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IntervalTimerUIApplication: UIApplication {
+class ITVUIApplication: UIApplication {
 }
 extension UIApplication {
     static func topViewController(base: UIViewController? = UIApplication.shared.delegate?.window??.rootViewController) -> UIViewController? {

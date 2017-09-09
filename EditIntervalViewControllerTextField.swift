@@ -8,13 +8,6 @@
 
 import UIKit
 
-fileprivate extension String{
-    func containsOnlyCharactersIn(matchCharacter: String) -> Bool {
-        let disallowedCharacterSet = CharacterSet(charactersIn: matchCharacter).inverted
-        return self.rangeOfCharacter(from: disallowedCharacterSet) == nil
-    }
-}
-
 //MARK: - Text Field Management
 extension EditIntervalViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

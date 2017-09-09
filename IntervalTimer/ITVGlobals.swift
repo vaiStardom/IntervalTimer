@@ -1,5 +1,5 @@
 //
-//  IntervalTimerGlobals.swift
+//  ITVGlobals.swift
 //  IntervalTimer
 //
 //  Created by Paul Addy on 2017-06-25.

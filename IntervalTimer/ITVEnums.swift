@@ -1,5 +1,5 @@
 //
-//  IntervalTimerEnums.swift
+//  ITVEnums.swift
 //  IntervalTimer
 //
 //  Created by Paul Addy on 2017-07-02.
@@ -53,49 +53,6 @@ enum ITVError: Error {
     case URL_UnsucessfulUrl(reason: String)
     case Reachability_notReachable(reason: String)
 }
-////MARK: - Errors
-//enum CoreLocationError : Int {
-//    case LocationUnknown // location is currently unknown, but CL will keep trying
-//    case Denied // Access to location or ranging has been denied by the user
-//    case Network // general, network-related error
-//}
-//enum CsvError: Error {
-//    case readError(String)
-//    case missing(String)
-//}
-//enum GetCityIdError: Error {
-//    case cityNameIsNil(reason: String)
-//    case countryCodeIsNil(reason: String)
-//    case latitudeIsNil(reason: String)
-//    case longitudeIsNil(reason: String)
-//    case urlIsNil(reason: String)
-//    case noCityId(reason: String)
-//    case noCityName(reason: String)
-//}
-//enum GetWeatherError: Error {
-//    case noWeatherForCityId(reason: String)
-//    case noWeatherForLocationName(reason: String)
-//    case noWeatherForCoordinates(reason: String)
-//    case noWeatherForUnknownReason(reason: String)
-//    case shouldNotUpdateWeather(reason: String)
-//    case didNotGetWeather(reason: String)
-//    case urlIsNil(reason: String)
-//}
-//enum HttpError: Error { //For a an http response code enum, look here: //https://gist.github.com/brennanMKE/482452bb9ac5f578907f413902753eec
-//    case unsucessfulHttpResponse(code: String)
-//}
-//enum JsonError: Error {
-//    case unsucessfulProcessing
-//    case missing(String)
-//    case missingTemperature
-//    case missingIcon
-//}
-//enum UrlError: Error {
-//    case unsucessfulUrl(reason: String)
-//}
-//enum ReachabilityError: Error {
-//    case notReachable(reason: String)
-//}
 
 //MARK: - Others
 enum UserWarning: Int {
@@ -179,12 +136,13 @@ enum IntervalImage{
 }
 //MARK: - Litterals
 enum NavigationBarLitterals{
+    static let Back = "Back"
+    static let BackToTimers = "Timers"
     static let Cancel = "Cancel"
     static let Edit = "Edit"
-    static let BackToTimers = "Timers"
-    static let Back = "Back"
     static let NewTimer = "Timer"
     static let NewInterval = "Interval"
+    static let Save = "Back"
 }
 //MARK: - MapQuest
 enum MapQuestApi {

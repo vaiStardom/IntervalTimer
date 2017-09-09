@@ -31,6 +31,9 @@ extension EditIntervalViewController {
     func back(){
         _ = navigationController?.popViewController(animated: true)
     }
+    func save(){
+        _ = navigationController?.popViewController(animated: true)
+    }
     func cancel(){
         _ = navigationController?.popViewController(animated: true)
     }
