@@ -10,7 +10,7 @@ import UIKit
 
 class IntervalTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var indicatorImageView: UIImageView!
+    @IBOutlet weak var indicatorImageView: ITVUIImageViewIndicator!
     @IBOutlet weak var intervalNumberLabel: UILabel!
     @IBOutlet weak var intervalTimeLabel: UILabel!
     

@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="78.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qtb-W6-9Dv">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ITVUIImageViewIndicator" translatesAutoresizingMaskIntoConstraints="NO" id="qtb-W6-9Dv" customClass="ITVUIImageViewIndicator" customModule="IntervalTimer" customModuleProvider="target">
                         <rect key="frame" x="277" y="25" width="28" height="28"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="28" id="3T9-gj-9Mu"/>
@@ -39,8 +39,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ERH-A6-KHl">
                         <rect key="frame" x="33" y="11" width="236" height="56"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="56" id="HnK-gp-tuJ"/>
-                            <constraint firstAttribute="width" constant="236" id="fdC-ap-Gf9"/>
+                            <constraint firstAttribute="height" constant="56" id="noH-6N-5a0"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="60"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -49,11 +48,12 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="qtb-W6-9Dv" secondAttribute="trailing" constant="7" id="9yf-t0-cTb"/>
-                    <constraint firstItem="ERH-A6-KHl" firstAttribute="centerY" secondItem="qtb-W6-9Dv" secondAttribute="centerY" id="N1U-NG-UlP"/>
+                    <constraint firstItem="ERH-A6-KHl" firstAttribute="centerY" secondItem="KCA-le-xj6" secondAttribute="centerY" id="Csr-TN-RmQ"/>
+                    <constraint firstItem="ERH-A6-KHl" firstAttribute="leading" secondItem="KCA-le-xj6" secondAttribute="trailing" constant="1" id="Eav-lY-b5i"/>
                     <constraint firstItem="KCA-le-xj6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="dRW-8Y-YZF"/>
                     <constraint firstItem="KCA-le-xj6" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="i7O-Js-I6Z"/>
                     <constraint firstItem="qtb-W6-9Dv" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="mwe-hA-Olt"/>
-                    <constraint firstItem="qtb-W6-9Dv" firstAttribute="leading" secondItem="ERH-A6-KHl" secondAttribute="trailing" constant="8" id="qBJ-CN-Z4z"/>
+                    <constraint firstItem="qtb-W6-9Dv" firstAttribute="leading" secondItem="ERH-A6-KHl" secondAttribute="trailing" constant="8" id="u9k-gO-f6R"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -65,4 +65,7 @@
             <point key="canvasLocation" x="34" y="54.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="ITVUIImageViewIndicator" width="16" height="16"/>
+    </resources>
 </document>

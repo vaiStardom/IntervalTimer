@@ -62,6 +62,7 @@
 		BA90FA701F59597C006EB239 /* EditTimerViewControllerHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA90FA6F1F59597C006EB239 /* EditTimerViewControllerHelpers.swift */; };
 		BA90FA721F596C7C006EB239 /* EditTimerViewControllerAesthetics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA90FA711F596C7C006EB239 /* EditTimerViewControllerAesthetics.swift */; };
 		BA9E61D41F65220200FFCF20 /* TimerViewControllerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9E61D31F65220200FFCF20 /* TimerViewControllerSegue.swift */; };
+		BA9E61D61F652FB500FFCF20 /* EditTimerViewControllerTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9E61D51F652FB500FFCF20 /* EditTimerViewControllerTableView.swift */; };
 		BAA11C431F5BB56B005F3259 /* EditTimerViewControllerWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA11C421F5BB56B005F3259 /* EditTimerViewControllerWeather.swift */; };
 		BAA11C4D1F5BFC8A005F3259 /* ITVUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA11C4C1F5BFC8A005F3259 /* ITVUIView.swift */; };
 		BAA11C511F5D4F3F005F3259 /* ITVWarningDisableAirPlaneModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA11C501F5D4F3F005F3259 /* ITVWarningDisableAirPlaneModeView.swift */; };
@@ -78,7 +79,6 @@
 		BAC38F8D1F2F15B900AE0057 /* ITVCityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC38F8C1F2F15B900AE0057 /* ITVCityService.swift */; };
 		BAC38F8F1F2F7D1400AE0057 /* ITVCsv.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC38F8E1F2F7D1400AE0057 /* ITVCsv.swift */; };
 		BAC748B91F5FE4DD003F9E31 /* ITVNSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC748B81F5FE4DD003F9E31 /* ITVNSObject.swift */; };
-		BAC748BB1F5FFF23003F9E31 /* ITVCurrentWeatherHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC748BA1F5FFF23003F9E31 /* ITVCurrentWeatherHelpers.swift */; };
 		BAC748BD1F5FFF4E003F9E31 /* ITVCurrentWeatherRetreival.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC748BC1F5FFF4E003F9E31 /* ITVCurrentWeatherRetreival.swift */; };
 		BAC748BF1F613B21003F9E31 /* ITVWarningForUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC748BE1F613B21003F9E31 /* ITVWarningForUser.swift */; };
 		BACD18231F08E5FC0072FF2C /* ITVUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACD18221F08E5FC0072FF2C /* ITVUser.swift */; };
@@ -177,6 +177,7 @@
 		BA90FA6F1F59597C006EB239 /* EditTimerViewControllerHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTimerViewControllerHelpers.swift; sourceTree = "<group>"; };
 		BA90FA711F596C7C006EB239 /* EditTimerViewControllerAesthetics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTimerViewControllerAesthetics.swift; sourceTree = "<group>"; };
 		BA9E61D31F65220200FFCF20 /* TimerViewControllerSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewControllerSegue.swift; sourceTree = "<group>"; };
+		BA9E61D51F652FB500FFCF20 /* EditTimerViewControllerTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTimerViewControllerTableView.swift; sourceTree = "<group>"; };
 		BAA11C421F5BB56B005F3259 /* EditTimerViewControllerWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTimerViewControllerWeather.swift; sourceTree = "<group>"; };
 		BAA11C4C1F5BFC8A005F3259 /* ITVUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITVUIView.swift; sourceTree = "<group>"; };
 		BAA11C501F5D4F3F005F3259 /* ITVWarningDisableAirPlaneModeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITVWarningDisableAirPlaneModeView.swift; sourceTree = "<group>"; };
@@ -193,7 +194,6 @@
 		BAC38F8C1F2F15B900AE0057 /* ITVCityService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITVCityService.swift; sourceTree = "<group>"; };
 		BAC38F8E1F2F7D1400AE0057 /* ITVCsv.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITVCsv.swift; sourceTree = "<group>"; };
 		BAC748B81F5FE4DD003F9E31 /* ITVNSObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITVNSObject.swift; sourceTree = "<group>"; };
-		BAC748BA1F5FFF23003F9E31 /* ITVCurrentWeatherHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITVCurrentWeatherHelpers.swift; sourceTree = "<group>"; };
 		BAC748BC1F5FFF4E003F9E31 /* ITVCurrentWeatherRetreival.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITVCurrentWeatherRetreival.swift; sourceTree = "<group>"; };
 		BAC748BE1F613B21003F9E31 /* ITVWarningForUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITVWarningForUser.swift; sourceTree = "<group>"; };
 		BACD18221F08E5FC0072FF2C /* ITVUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ITVUser.swift; path = IntervalTimer/ITVUser.swift; sourceTree = "<group>"; };
@@ -374,6 +374,7 @@
 				BA90FA6B1F595921006EB239 /* EditTimerViewControllerLifeCycle.swift */,
 				BA90FA6D1F59594C006EB239 /* EditTimerViewControllerNavigationBar.swift */,
 				BA21FDB01F62469600ABC94E /* EditTimerViewControllerNotifications.swift */,
+				BA9E61D51F652FB500FFCF20 /* EditTimerViewControllerTableView.swift */,
 				BAA11C421F5BB56B005F3259 /* EditTimerViewControllerWeather.swift */,
 				BA4BFE761EFF4D9D00E341DC /* TimersViewController.swift */,
 				BAD8A4B51F55531E007F8DEA /* TimersViewControllerActions.swift */,
@@ -422,7 +423,6 @@
 				BAC38F8A1F2EF54400AE0057 /* ITVCity.swift */,
 				BA21FDAC1F618C4500ABC94E /* ITVCityRetreival.swift */,
 				BA116C8D1F08AB39001CDA80 /* ITVCurrentWeather.swift */,
-				BAC748BA1F5FFF23003F9E31 /* ITVCurrentWeatherHelpers.swift */,
 				BAC748BC1F5FFF4E003F9E31 /* ITVCurrentWeatherRetreival.swift */,
 				BAABCA811F56610E008C5B85 /* ITVInterval.swift */,
 				BAABCA7F1F555474008C5B85 /* ITVTimer.swift */,
@@ -620,7 +620,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BAC748BB1F5FFF23003F9E31 /* ITVCurrentWeatherHelpers.swift in Sources */,
 				BA42AB671F49E84A00CF1239 /* TimersViewControllerTableView.swift in Sources */,
 				BA12B9521F0E01000036C7AB /* ITVUIApplication.swift in Sources */,
 				BA153CB61F64BC6800D57CB2 /* IntervalTableViewCell.swift in Sources */,
@@ -628,6 +627,7 @@
 				BAABCA801F555474008C5B85 /* ITVTimer.swift in Sources */,
 				BA21FDAD1F618C4500ABC94E /* ITVCityRetreival.swift in Sources */,
 				BA324EE81F067AB700F38DE4 /* TimerViewController.swift in Sources */,
+				BA9E61D61F652FB500FFCF20 /* EditTimerViewControllerTableView.swift in Sources */,
 				BAA11C431F5BB56B005F3259 /* EditTimerViewControllerWeather.swift in Sources */,
 				BAC38F8D1F2F15B900AE0057 /* ITVCityService.swift in Sources */,
 				BA9E61D41F65220200FFCF20 /* TimerViewControllerSegue.swift in Sources */,

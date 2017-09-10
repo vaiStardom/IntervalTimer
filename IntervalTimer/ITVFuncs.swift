@@ -69,5 +69,22 @@ func hoursSince(from: Date?, to: Date?) -> Int? {
     } else {
         return nil
     }
-    
 }
+
+//MARK: - Time Functions
+func realTimeOf(seconds: Double) -> String {
+    
+    let theSeconds = Int(seconds)
+    let sec: Int = theSeconds % 60
+    let minutes: Int = (theSeconds / 60) % 60
+    let hours: Int = theSeconds / 3600
+    
+    if hours > 0 {
+        return "\(String(format: "%02d:%02d:%02d", hours, minutes, sec))h"
+    } else if minutes > 0 {
+        return "\(String(format: "%02d:%02d", minutes, sec))m"
+    } else {
+        return "\(String(format: "%02d", sec))s"
+    }
+}
+

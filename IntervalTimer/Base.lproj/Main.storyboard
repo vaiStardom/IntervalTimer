@@ -190,15 +190,28 @@ Kelvin, Fahrenheight, or Celcius.</string>
                                     <action selector="selectedTemperatureUnit:" destination="f9n-YU-8Y8" eventType="valueChanged" id="x2c-4s-tPY"/>
                                 </connections>
                             </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="79" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Rbc-6K-3co">
+                                <rect key="frame" x="0.0" y="166" width="320" height="338"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="f9n-YU-8Y8" id="rBG-zj-pfm"/>
+                                    <outlet property="delegate" destination="f9n-YU-8Y8" id="0hE-Eh-vRG"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Rbc-6K-3co" secondAttribute="trailing" id="3I4-wb-FrP"/>
                             <constraint firstItem="TuX-E6-30a" firstAttribute="leading" secondItem="CUf-Fm-Bka" secondAttribute="trailing" constant="5" id="4Ii-Pa-zDp"/>
                             <constraint firstItem="Nyu-CI-egr" firstAttribute="leading" secondItem="NEn-CZ-lrq" secondAttribute="leading" constant="15" id="B4a-tI-Qs9"/>
                             <constraint firstItem="kNo-zw-Loh" firstAttribute="top" secondItem="P0h-2u-Jp0" secondAttribute="bottom" constant="-1" id="E3U-6T-wyG"/>
                             <constraint firstItem="S7x-6F-qaa" firstAttribute="leading" secondItem="kNo-zw-Loh" secondAttribute="leading" constant="8" id="Gp2-s5-3Wr"/>
                             <constraint firstItem="kNo-zw-Loh" firstAttribute="leading" secondItem="P0h-2u-Jp0" secondAttribute="leading" constant="-8" id="HGx-iW-vNs"/>
                             <constraint firstItem="xGP-Cf-6VF" firstAttribute="centerX" secondItem="nmF-3N-dED" secondAttribute="centerX" id="JcZ-fU-qxa"/>
+                            <constraint firstItem="Rbc-6K-3co" firstAttribute="leading" secondItem="NEn-CZ-lrq" secondAttribute="leading" id="JpM-LV-Z7C"/>
+                            <constraint firstItem="nJW-tv-Sy0" firstAttribute="top" secondItem="Rbc-6K-3co" secondAttribute="bottom" id="KA6-c6-39F"/>
                             <constraint firstItem="ZXO-ao-VKA" firstAttribute="trailing" secondItem="TuX-E6-30a" secondAttribute="trailing" constant="-4" id="Kv3-Xp-gJg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="TuX-E6-30a" secondAttribute="trailing" constant="-1" id="LED-fM-yfG"/>
                             <constraint firstItem="S7x-6F-qaa" firstAttribute="top" secondItem="kNo-zw-Loh" secondAttribute="bottom" constant="8" id="NJd-i4-A4D"/>
@@ -216,6 +229,7 @@ Kelvin, Fahrenheight, or Celcius.</string>
                             <constraint firstItem="XKR-oh-FiO" firstAttribute="centerY" secondItem="S7x-6F-qaa" secondAttribute="centerY" id="kry-CH-K7O"/>
                             <constraint firstItem="CUf-Fm-Bka" firstAttribute="centerY" secondItem="TuX-E6-30a" secondAttribute="centerY" constant="-1.5" id="lyk-CW-Gy2"/>
                             <constraint firstItem="PE3-Mm-Agf" firstAttribute="top" secondItem="S7x-6F-qaa" secondAttribute="bottom" constant="45" id="pV5-kE-aVV"/>
+                            <constraint firstItem="Rbc-6K-3co" firstAttribute="top" secondItem="PE3-Mm-Agf" secondAttribute="bottom" constant="8" id="q39-zs-JPK"/>
                             <constraint firstItem="6h6-e5-JRa" firstAttribute="centerX" secondItem="TuX-E6-30a" secondAttribute="centerX" id="qHC-CN-UkF"/>
                             <constraint firstItem="ZXO-ao-VKA" firstAttribute="centerY" secondItem="kNo-zw-Loh" secondAttribute="centerY" constant="-1.5" id="thy-md-dE7"/>
                             <constraint firstAttribute="trailing" secondItem="L1H-Sv-svF" secondAttribute="trailing" constant="15" id="vBW-DX-ZZf"/>
@@ -226,6 +240,7 @@ Kelvin, Fahrenheight, or Celcius.</string>
                     <connections>
                         <outlet property="showWeatherDescriptionLabel" destination="Nyu-CI-egr" id="Rk4-QN-KbN"/>
                         <outlet property="showWeatherSwitch" destination="XKR-oh-FiO" id="fNU-fJ-DWs"/>
+                        <outlet property="tableView" destination="Rbc-6K-3co" id="16o-Id-gYi"/>
                         <outlet property="temperatureSegmentedControl" destination="L1H-Sv-svF" id="Ot4-Xd-uoe"/>
                         <outlet property="timerNameTextField" destination="kNo-zw-Loh" id="vsZ-4v-jNo"/>
                         <outlet property="warningButton" destination="6h6-e5-JRa" id="q2A-mI-t0Y"/>

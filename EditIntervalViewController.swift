@@ -10,6 +10,7 @@ import UIKit
 
 //TODO: User can enter any values he wants in the fields, when he saves, we convert it to the proper hour, min, and seconds values
 //TODO: a fade in fade out view telling him about the conversion
+//TODO: add alert to user so that they are not allowed to enter any interval higher than 99:59:59
 class EditIntervalViewController: UIViewController  {
 
     @IBOutlet weak var hourTextField2: UITextField!

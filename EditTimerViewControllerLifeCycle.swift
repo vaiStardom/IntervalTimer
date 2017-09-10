@@ -13,6 +13,11 @@ import UIKit
 extension EditTimerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(UINib(nibName: "IntervalTableViewCell", bundle: nil), forCellReuseIdentifier: "IntervalCell")
+        
         configureNavBar()
         aesthetics_initial()
         
