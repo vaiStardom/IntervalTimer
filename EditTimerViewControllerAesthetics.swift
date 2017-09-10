@@ -14,6 +14,9 @@ extension EditTimerViewController {
         activityIndicator.color = ITVColors.Orange
         showWeatherSwitch.isOn = false
         timerNameTextField.tintColor = ITVColors.Orange
+        temperatureSegmentedControl.isHidden = true
+        temperatureSegmentedControl.selectedSegmentIndex = 2
+        showWeatherDescriptionLabel.isHidden = false
     }
     
     func aesthetics_hideShowWeatherDescription(){
@@ -30,7 +33,7 @@ extension EditTimerViewController {
         warningButton.isHidden = false
         warningImageView.isHidden = false
         
-        UIView.animate(withDuration: 1.5, animations: {
+        UIView.animate(withDuration: 0.5, animations: {
             self.warningImageView.alpha = 1.0
         })
     }
@@ -38,28 +41,41 @@ extension EditTimerViewController {
         aesthetics_showWeatherViews()
     }
     func aesthetics_hideWeatherViews(){
+        
+        self.showWeatherDescriptionLabel.isHidden = false
+        
         UIView.animate(withDuration: 0.5, animations: {
             self.weatherIconImageView.alpha = 0.0
             self.weatherTemperatureLabel.alpha = 0.0
+            self.temperatureSegmentedControl.alpha = 0.0
+            self.showWeatherDescriptionLabel.alpha = 1.0
+
         }, completion: { (completed) in
             self.weatherIconImageView.isHidden = true
             self.weatherTemperatureLabel.isHidden = true
+            self.temperatureSegmentedControl.isHidden = true
         })
         weatherIconImageView.isHidden = true
         weatherTemperatureLabel.isHidden = true
     }
     func aesthetics_showWeatherViews(){
-        self.weatherIconImageView.alpha = 0.0
-        self.weatherTemperatureLabel.alpha = 0.0
-
-        self.weatherIconImageView.isHidden = false
-        self.weatherTemperatureLabel.isHidden = false
+        weatherIconImageView.alpha = 0.0
+        weatherTemperatureLabel.alpha = 0.0
+        temperatureSegmentedControl.alpha = 0.0
         
-        UIView.animate(withDuration: 1.5, animations: {
-            self.weatherIconImageView.alpha = 1.0
-            self.weatherTemperatureLabel.alpha = 1.0
-        })
         weatherIconImageView.isHidden = false
         weatherTemperatureLabel.isHidden = false
+        temperatureSegmentedControl.isHidden = false
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.weatherIconImageView.alpha = 1.0
+            self.weatherTemperatureLabel.alpha = 1.0
+            self.temperatureSegmentedControl.alpha = 1.0
+            self.showWeatherDescriptionLabel.alpha = 0.0
+        }, completion: { (completed) in
+            self.showWeatherDescriptionLabel.isHidden = true
+        })
+        
+        
     }
 }

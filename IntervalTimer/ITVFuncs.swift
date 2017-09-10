@@ -40,7 +40,6 @@ func showUserWarning(type: UserWarning?, with message: String? = nil){
 //MARK: - Weather Functions
 func getWeatherFromNetwork(){
     //TODO: call this when user starts a timer
-    //IntervalTimerUser.sharedInstance.startUpdatingLocationManager()
     print("------> TimerViewController viewDidLoad() requesting Location")
     ITVCoreLocation.sharedInstance.requestLocation()
     

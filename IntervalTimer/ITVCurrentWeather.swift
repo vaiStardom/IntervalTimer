@@ -37,11 +37,11 @@ class ITVCurrentWeather: NSObject, NSCoding {
             }
         }
     }
-    var thisTemperature: String?{
-        get {
-            return convertTemperature(kelvins: thisKelvin, forUnits: ITVUser.sharedInstance.thisTemperatureUnit)
-        }
-    }
+//    var thisTemperature: String?{
+//        get {
+//            return convertTemperature(kelvins: thisKelvin, forUnits: ITVUser.sharedInstance.thisTemperatureUnit)
+//        }
+//    }
     
     //MARK: - Initializers
     init?(kelvin: Double?, icon: String?){
@@ -80,9 +80,6 @@ class ITVCurrentWeather: NSObject, NSCoding {
         coder.encode(self.thisIcon, forKey: "icon")
     }
     required init(coder decoder: NSCoder) {
-        
-//        let amount = aDecoder.decodeDouble(forKey:PropertyKey.amountKey) as Double?
-        
         if let theKelvin = decoder.decodeObject(forKey: "kelvin") as! Double? {
             kelvin = theKelvin
         }

@@ -170,7 +170,7 @@
                                     <constraint firstAttribute="height" constant="29" id="jHY-rR-5n4"/>
                                 </constraints>
                                 <string key="text">Shows your current locations temperature in 
-Kelvins, Fahrenheight, or Celcius.</string>
+Kelvin, Fahrenheight, or Celcius.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -186,6 +186,9 @@ Kelvins, Fahrenheight, or Celcius.</string>
                                     <segment title="Celcius (C)"/>
                                 </segments>
                                 <color key="tintColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="selectedTemperatureUnit:" destination="f9n-YU-8Y8" eventType="valueChanged" id="oPQ-Ol-rHw"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>

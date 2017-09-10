@@ -10,61 +10,62 @@ import Foundation
 import UIKit
 
 //MOCKDATA:
+//MOCKDATA:
 let intervals = [
-    ITVInterval(seconds: 120, color: ITVColors.IntervalBlue)
-    , ITVInterval(seconds: 30, color: ITVColors.IntervalYellow)
-    , ITVInterval(seconds: 90, color: ITVColors.IntervalGreen)
-    , ITVInterval(seconds: 30, color: ITVColors.IntervalYellow)
-    , ITVInterval(seconds: 90, color: ITVColors.IntervalGreen)
-    , ITVInterval(seconds: 30, color: ITVColors.IntervalYellow)
-    , ITVInterval(seconds: 90, color: ITVColors.IntervalGreen)
-    , ITVInterval(seconds: 30, color: ITVColors.IntervalYellow)
-    , ITVInterval(seconds: 90, color: ITVColors.IntervalGreen)
-    , ITVInterval(seconds: 30, color: ITVColors.IntervalYellow)
-    , ITVInterval(seconds: 90, color: ITVColors.IntervalGreen)
-    , ITVInterval(seconds: 30, color: ITVColors.IntervalYellow)
-    , ITVInterval(seconds: 90, color: ITVColors.IntervalGreen)
-    , ITVInterval(seconds: 30, color: ITVColors.IntervalYellow)
-    , ITVInterval(seconds: 90, color: ITVColors.IntervalGreen)
-    , ITVInterval(seconds: 30, color: ITVColors.IntervalYellow)
-    , ITVInterval(seconds: 90, color: ITVColors.IntervalGreen)
-    , ITVInterval(seconds: 120, color: ITVColors.IntervalBlue)
+    ITVInterval(seconds: 120, indicator: Indicator.Blue)
+    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 90, indicator: Indicator.Green)
+    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 90, indicator: Indicator.Green)
+    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 90, indicator: Indicator.Green)
+    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 90, indicator: Indicator.Green)
+    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 90, indicator: Indicator.Green)
+    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 90, indicator: Indicator.Green)
+    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 90, indicator: Indicator.Green)
+    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 90, indicator: Indicator.Green)
+    , ITVInterval(seconds: 120, indicator: Indicator.Blue)
 ]
 let intervalsHours = [
-    ITVInterval(seconds: 120000, color: ITVColors.IntervalBlue)
-    , ITVInterval(seconds: 30000, color: ITVColors.IntervalYellow)
-    , ITVInterval(seconds: 90000, color: ITVColors.IntervalGreen)
-    , ITVInterval(seconds: 30000, color: ITVColors.IntervalYellow)
-    , ITVInterval(seconds: 90000, color: ITVColors.IntervalGreen)
-    , ITVInterval(seconds: 30, color: ITVColors.IntervalYellow)
-    , ITVInterval(seconds: 90, color: ITVColors.IntervalGreen)
-    , ITVInterval(seconds: 30, color: ITVColors.IntervalYellow)
-    , ITVInterval(seconds: 90, color: ITVColors.IntervalGreen)
-    , ITVInterval(seconds: 30, color: ITVColors.IntervalYellow)
-    , ITVInterval(seconds: 90, color: ITVColors.IntervalGreen)
-    , ITVInterval(seconds: 30, color: ITVColors.IntervalYellow)
-    , ITVInterval(seconds: 90000, color: ITVColors.IntervalGreen)
-    , ITVInterval(seconds: 30000, color: ITVColors.IntervalYellow)
-    , ITVInterval(seconds: 90, color: ITVColors.IntervalGreen)
-    , ITVInterval(seconds: 30, color: ITVColors.IntervalYellow)
-    , ITVInterval(seconds: 90000, color: ITVColors.IntervalGreen)
-    , ITVInterval(seconds: 120000, color: ITVColors.IntervalBlue)
+    ITVInterval(seconds: 120000, indicator: Indicator.Blue)
+    , ITVInterval(seconds: 30000, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 90000, indicator: Indicator.Green)
+    , ITVInterval(seconds: 30000, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 90000, indicator: Indicator.Green)
+    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 90, indicator: Indicator.Green)
+    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 90, indicator: Indicator.Green)
+    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 90, indicator: Indicator.Green)
+    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 90000, indicator: Indicator.Green)
+    , ITVInterval(seconds: 30000, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 90, indicator: Indicator.Green)
+    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 90000, indicator: Indicator.Green)
+    , ITVInterval(seconds: 120000, indicator: Indicator.Blue)
 ]
 let intervalsSeconds = [
-    ITVInterval(seconds: 3, color: ITVColors.IntervalYellow)
-    , ITVInterval(seconds: 9, color: ITVColors.IntervalGreen)
-    , ITVInterval(seconds: 3, color: ITVColors.IntervalYellow)
-    , ITVInterval(seconds: 9, color: ITVColors.IntervalGreen)
-    , ITVInterval(seconds: 3, color: ITVColors.IntervalYellow)
-    , ITVInterval(seconds: 9, color: ITVColors.IntervalGreen)
-    , ITVInterval(seconds: 3, color: ITVColors.IntervalYellow)
+    ITVInterval(seconds: 3, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 9, indicator: Indicator.Green)
+    , ITVInterval(seconds: 3, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 9, indicator: Indicator.Green)
+    , ITVInterval(seconds: 3, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 9, indicator: Indicator.Green)
+    , ITVInterval(seconds: 3, indicator: Indicator.Yellow)
 ]
 
 public struct ITVInterval {
     
     // MARK: - Properties
     private var seconds: Double?
-    private var color: UIColor?
+    private var indicator: Indicator?
     
     //MARK: - public get/set properties
     public var thisSeconds: Double? {
@@ -73,22 +74,22 @@ public struct ITVInterval {
             seconds = newValue
         }
     }
-    public var thisColor: UIColor? {
-        get { return color}
+    public var thisIndicator: Indicator? {
+        get { return indicator}
         set {
-            color = newValue
+            indicator = newValue
         }
     }
     
     // MARK: - Initializers
-    public init(seconds: Double?, color: UIColor?) {
+    public init(seconds: Double?, indicator: Indicator?) {
         guard let theSeconds = seconds, theSeconds > 0 else {
             return
         }
-        guard let theColor = color else {
+        guard let theIndicator = indicator else {
             return
         }
         thisSeconds = theSeconds
-        thisColor = theColor
+        thisIndicator = theIndicator
     }
 }

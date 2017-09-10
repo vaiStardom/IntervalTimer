@@ -88,8 +88,8 @@ extension ITVWeatherService {
                 return
             }
             
-            guard theCurrentWeather.thisTemperature != nil else {
-                print("------> IntervalTimerWeatherService getWeather() guard let theTemperature = nil")
+            guard theCurrentWeather.thisKelvin != nil else {
+                print("------> IntervalTimerWeatherService getWeather() guard let thisKelvin = nil")
                 error = ITVError.GetWeather_DidNotGetWeather(reason: "The temperature is nil.")
                 didGetCurrentWeather = false
                 return
@@ -104,7 +104,7 @@ extension ITVWeatherService {
             
             didGetCurrentWeather = true
             DispatchQueue.main.async(execute: {
-                print("------> IntervalTimerWeatherService getWeatherWith(url:) = \(String(describing: theCurrentWeather.thisTemperature))")
+                print("------> IntervalTimerWeatherService getWeatherWith(url:) = \(String(describing: theCurrentWeather.thisKelvin))")
                 ITVUser.sharedInstance.thisCurrentWeather = theCurrentWeather
                 NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCurrentWeather"), object: nil)
             })

@@ -12,7 +12,7 @@ import UIKit
 extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedIntervalTimer = timers[indexPath.row]
+        itvTimer = timers[indexPath.row]
         startSelectedIntervalTimer = false
         performSegue(withIdentifier: "TimersToTimer", sender: nil)
     }

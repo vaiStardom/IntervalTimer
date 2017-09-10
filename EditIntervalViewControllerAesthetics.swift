@@ -33,12 +33,12 @@ extension EditIntervalViewController {
         secondTextField2.layer.cornerRadius = 9
         secondTextField1.layer.cornerRadius = 9
         
-        indicators.append((imageView: firstIndicatorImageView, activeFillColor: ITVColors.IntervalRed, inactiveFillColor: ITVColors.Black, borderColor: ITVColors.IntervalRed))
-        indicators.append((imageView: secondIndicatorImageView, activeFillColor: ITVColors.IntervalGreen, inactiveFillColor: ITVColors.Black, borderColor: ITVColors.IntervalGreen))
-        indicators.append((imageView: thirdIndicatorImageView, activeFillColor: ITVColors.IntervalYellow, inactiveFillColor: ITVColors.Black, borderColor: ITVColors.IntervalYellow))
-        indicators.append((imageView: fourthIndicatorImageView, activeFillColor: ITVColors.IntervalBlue, inactiveFillColor: ITVColors.Black, borderColor: ITVColors.IntervalBlue))
-        indicators.append((imageView: fifthIndicatorImageView, activeFillColor: ITVColors.IntervalWhite, inactiveFillColor: ITVColors.Black, borderColor: ITVColors.IntervalWhite))
-        indicators.append((imageView: sixthIndicatorImageView, activeFillColor: ITVColors.IntervalPink, inactiveFillColor: ITVColors.Black, borderColor: ITVColors.IntervalPink))
+        indicators.append((imageView: firstIndicatorImageView, activeFillColor: Indicator.Red.uiColor(), inactiveFillColor: ITVColors.Black, borderColor: Indicator.Red.uiColor()))
+        indicators.append((imageView: secondIndicatorImageView, activeFillColor: Indicator.Green.uiColor(), inactiveFillColor: ITVColors.Black, borderColor: Indicator.Green.uiColor()))
+        indicators.append((imageView: thirdIndicatorImageView, activeFillColor: Indicator.Yellow.uiColor(), inactiveFillColor: ITVColors.Black, borderColor: Indicator.Yellow.uiColor()))
+        indicators.append((imageView: fourthIndicatorImageView, activeFillColor: Indicator.Blue.uiColor(), inactiveFillColor: ITVColors.Black, borderColor: Indicator.Blue.uiColor()))
+        indicators.append((imageView: fifthIndicatorImageView, activeFillColor: Indicator.White.uiColor(), inactiveFillColor: ITVColors.Black, borderColor: Indicator.White.uiColor()))
+        indicators.append((imageView: sixthIndicatorImageView, activeFillColor: Indicator.Pink.uiColor(), inactiveFillColor: ITVColors.Black, borderColor: Indicator.Pink.uiColor()))
 
         firstIndicatorImageView.roundImageView()
         secondIndicatorImageView.roundImageView()

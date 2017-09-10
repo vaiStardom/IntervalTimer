@@ -18,7 +18,7 @@ extension TimerViewController{
         aesthetics_initial()
         
         //First, is this a selected timer?
-        if let theIntervalTimer = intervalTimer {
+        if let theIntervalTimer = itvTimer {
             //yes
             timerNameLabel.text = theIntervalTimer.thisName
             

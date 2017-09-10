@@ -33,10 +33,9 @@ extension TimerViewController{
     func updateWeatherInformation(){
         activityIndicatorStop()
         
-        // Background Thread Or Service call Or DB fetch etc
-        guard let theTemperature = ITVUser.sharedInstance.thisCurrentWeather?.thisTemperature else {
+        guard let theTemperature = itvTimer?.thisTemperatureUnit?.temperature(kelvins: ITVUser.sharedInstance.thisCurrentWeather?.thisKelvin)  else {
             aesthetics_showMissingWeatherWarning()
-            fatalError("------> ERROR - TimerViewController updateWeatherInformation invalid temperature \(String(describing: ITVUser.sharedInstance.thisCurrentWeather?.thisTemperature))")
+            fatalError("------> ERROR - TimerViewController updateWeatherInformation invalid temperature \(String(describing: ITVUser.sharedInstance.thisCurrentWeather?.thisKelvin))")
         }
         
         guard let theIcon = ITVUser.sharedInstance.thisCurrentWeather?.thisIcon! else {

@@ -15,7 +15,7 @@ extension TimersViewController{
         //performSegue(withIdentifier: "TimersToTimer", sender: nil)
     }
     func startTimer(_ sender: UIButton) {
-        selectedIntervalTimer = timers[sender.tag]
+        itvTimer = timers[sender.tag]
         startSelectedIntervalTimer = true
         performSegue(withIdentifier: "TimersToTimer", sender: self)
     }

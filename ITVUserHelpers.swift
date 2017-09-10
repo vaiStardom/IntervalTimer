@@ -1,5 +1,5 @@
 //
-//  IntervalTimerUserHelpers.swift
+//  ITVUserHelpers.swift
 //  IntervalTimer
 //
 //  Created by Paul Addy on 2017-08-21.

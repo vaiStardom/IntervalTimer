@@ -145,7 +145,7 @@ enum NavigationBarImage{
     static let Back = "barButtonBack"
 }
 
-enum Indicator {
+public enum Indicator {
     case Blue
     case Green
     case Pink
@@ -170,22 +170,8 @@ enum Indicator {
         }
     }
 }
-//enum IntervalImage{
-//    static let Red = "redIndicator"
-//    static let Green = "greenIndicator"
-//    static let Orange = "orangeIndicator"
-//    static let Blue = "blueIndicator"
-//    static let Yellow = "yellowIndicator"
-//    static let Purple = "purpleIndicator"
-//    static let RedUnselected = "redIndicatorUnselected"
-//    static let GreenUnselected = "greenIndicatorUnselected"
-//    static let OrangeUnselected = "orangeIndicatorUnselected"
-//    static let BlueUnselected = "blueIndicatorUnselected"
-//    static let YellowUnselected = "yellowIndicatorUnselected"
-//    static let PurpleUnselected = "purpleIndicatorUnselected"
-//}
 //MARK: - Litterals
-enum NavigationBarLitterals{
+enum Litterals{
     static let Back = "Back"
     static let BackToTimers = "Timers"
     static let Cancel = "Cancel"
@@ -193,6 +179,7 @@ enum NavigationBarLitterals{
     static let NewTimer = "Timer"
     static let NewInterval = "Interval"
     static let Save = "Save"
+    static let TimerNamePlaceholder = "Enter name"
 }
 //MARK: - MapQuest
 enum MapQuestApi {
@@ -204,15 +191,34 @@ enum OpenWeatherApi {
     static let key = "448af267f0d35a22b6e00178e163deb3"
     static let baseUrl = "http://api.openweathermap.org/data/2.5/weather?"
 }
-public enum TemperatureUnit: Int { //has to be public for its use in IntervalTimerTimer class
-    case celcius = 0, fahrenheit, kelvin
+public enum TemperatureUnit: Int { //has to be public for its use as a property of ITVTimer class
+    case Kelvin = 0
+    case Fahrenheit
+    case Celcius
+    
+    func temperature(kelvins: Double?) -> String? {
+        guard let theKelvins = kelvins else {
+            return nil
+        }
+        switch self {
+        case .Kelvin :
+            return "\(Int(theKelvins))K"
+        case .Fahrenheit:
+            return "\(Int((theKelvins*(9/5)) - 459.67))\(DEGREE)F"
+        case .Celcius:
+            return "\(Int(theKelvins - 273.15))\(DEGREE)C"
+        }
+    }
 }
 enum WeatherDictionaryKey{
     static let temperature = "temp"
     static let weatherIcon = "icon"
 }
 enum WeatherQueryPriority: Int {
-    case byCityId = 0, byLocationName, byCoordinates, none
+    case byCityId = 0
+    case byLocationName
+    case byCoordinates
+    case none
 }
 
 

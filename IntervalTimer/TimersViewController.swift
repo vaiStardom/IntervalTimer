@@ -14,7 +14,7 @@ class TimersViewController: UIViewController {
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
 
-    var selectedIntervalTimer: ITVTimer?
+    var itvTimer: ITVTimer?
     var startSelectedIntervalTimer: Bool? = false
     
 //    private var selectedTimerIndex: Int?
@@ -25,7 +25,7 @@ extension TimersViewController{
         animateTable()
         print("UserDefaults Retreived Informations:")
         print("Last weather update = \(String(describing: ITVUser.sharedInstance.thisLastWeatherUpdate))")
-        print("Temperature = \(String(describing: ITVUser.sharedInstance.thisCurrentWeather?.thisTemperature!))")
+        print("Kelvin = \(String(describing: ITVUser.sharedInstance.thisCurrentWeather?.thisKelvin!))")
         print("Icon = \(String(describing: ITVUser.sharedInstance.thisCurrentWeather?.thisIcon!))")
     }
     override func viewDidLoad() {

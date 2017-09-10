@@ -63,13 +63,11 @@ extension EditTimerViewController{
     func updateWeatherInformation(){
         activityIndicatorStop()
         
-        // Background Thread Or Service call Or DB fetch etc
-        
-        guard let theTemperature = ITVUser.sharedInstance.thisCurrentWeather?.thisTemperature else {
+        guard let theTemperature = getTemperatureUnit(from: temperatureSegmentedControl).temperature(kelvins: ITVUser.sharedInstance.thisCurrentWeather?.thisKelvin)  else {
             aesthetics_showMissingWeatherWarning()
-            fatalError("------> ERROR - TimerViewController updateWeatherInformation invalid temperature \(String(describing: ITVUser.sharedInstance.thisCurrentWeather?.thisTemperature))")
+            fatalError("------> ERROR - TimerViewController updateWeatherInformation invalid temperature \(String(describing: ITVUser.sharedInstance.thisCurrentWeather?.thisKelvin))")
         }
-        
+
         guard let theIcon = ITVUser.sharedInstance.thisCurrentWeather?.thisIcon! else {
             aesthetics_showMissingWeatherWarning()
             fatalError("------> ERROR TimerViewController updateWeatherInformation invalid icon \(String(describing: ITVUser.sharedInstance.thisCurrentWeather?.thisIcon!))")
@@ -88,9 +86,5 @@ extension EditTimerViewController{
         weatherIconImageView.image = theImage
 
         aesthetics_showWeatherViews()
-//        UIView.animate(withDuration: 1.5, animations: {
-//            self.weatherIconImageView.alpha = 1.0
-//            self.weatherTemperatureLabel.alpha = 1.0
-//        })
     }
 }

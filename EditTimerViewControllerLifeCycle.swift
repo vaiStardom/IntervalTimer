@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 //MARK: - Life-cycle
 extension EditTimerViewController {
@@ -15,14 +16,22 @@ extension EditTimerViewController {
         configureNavBar()
         aesthetics_initial()
         
-        if selectedTimer != nil {
-            timerNameTextField.text = selectedTimer?.thisName
-            showWeatherSwitch.isOn = (selectedTimer?.thisShowWeather!)!
+        if itvTimer != nil {
+            timerNameTextField.text = itvTimer?.thisName
             
+            if (itvTimer?.thisShowWeather!)! {
+                showWeatherSwitch.isOn = true
+                aesthetics_showWeatherViews()
+            } else {
+                showWeatherSwitch.isOn = false
+                aesthetics_hideWeatherViews()
+            }
+            
+            //TODO: make sure that a timer cannot have a nil temeprature unit and a true show weather option
             //TODO: load all the intervals into the table view
         
         } else {
-        
+            timerNameTextField.attributedPlaceholder = NSAttributedString(string: Litterals.TimerNamePlaceholder, attributes: [NSForegroundColorAttributeName : ITVColors.OrangeAlpha50])
         }
     }
     override func didReceiveMemoryWarning() {

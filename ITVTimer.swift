@@ -10,15 +10,15 @@ import Foundation
 
 //MOCKDATA:
 let timers = [
-    ITVTimer(name: "Peak 8", showWeather: true, temperatureUnit: nil, intervals: intervals)
-    , ITVTimer(name: "Streches", showWeather: false, temperatureUnit: TemperatureUnit.kelvin, intervals: intervalsHours)
-    , ITVTimer(name: "Legs", showWeather: true, temperatureUnit: TemperatureUnit.fahrenheit, intervals: intervalsSeconds)
-    , ITVTimer(name: "Upperbody", showWeather: false, temperatureUnit: TemperatureUnit.celcius, intervals: intervals)
-    , ITVTimer(name: "Arms", showWeather: true, temperatureUnit: nil, intervals: intervalsHours)
-    , ITVTimer(name: "Crossfit", showWeather: false, temperatureUnit: TemperatureUnit.kelvin, intervals: intervalsSeconds)
-    , ITVTimer(name: "Park run", showWeather: true, temperatureUnit: TemperatureUnit.fahrenheit, intervals: intervals)
-    , ITVTimer(name: "Beach run", showWeather: false, temperatureUnit: TemperatureUnit.celcius, intervals: intervalsHours)
-    , ITVTimer(name: "Mountain run", showWeather: true, temperatureUnit: nil, intervals: intervalsSeconds)
+    ITVTimer(name: "Peak 8", showWeather: false, temperatureUnit: nil, intervals: intervals)
+    , ITVTimer(name: "Streches", showWeather: true, temperatureUnit: TemperatureUnit.Kelvin, intervals: intervalsHours)
+    , ITVTimer(name: "Legs", showWeather: true, temperatureUnit: TemperatureUnit.Fahrenheit, intervals: intervalsSeconds)
+    , ITVTimer(name: "Upperbody", showWeather: true, temperatureUnit: TemperatureUnit.Celcius, intervals: intervals)
+    , ITVTimer(name: "Arms", showWeather: false, temperatureUnit: nil, intervals: intervalsHours)
+    , ITVTimer(name: "Crossfit", showWeather: true, temperatureUnit: TemperatureUnit.Kelvin, intervals: intervalsSeconds)
+    , ITVTimer(name: "Park run", showWeather: true, temperatureUnit: TemperatureUnit.Fahrenheit, intervals: intervals)
+    , ITVTimer(name: "Beach run", showWeather: true, temperatureUnit: TemperatureUnit.Celcius, intervals: intervalsHours)
+    , ITVTimer(name: "Mountain run", showWeather: false, temperatureUnit: nil, intervals: intervalsSeconds)
 ]
 
 public struct ITVTimer {
@@ -26,8 +26,8 @@ public struct ITVTimer {
     // MARK: - Properties
     fileprivate var name: String?
     fileprivate var showWeather: Bool?
-    fileprivate var temperatureUnit: TemperatureUnit? = TemperatureUnit.celcius
-    
+    fileprivate var temperatureUnit: TemperatureUnit? = TemperatureUnit.Celcius
+
     //this should be a dictionary of [Order:Interval] (the order/or rank of the interval will be managed in this class
     //the index of this array could also seve has the order as well...
     private var intervals: [ITVInterval]?
@@ -59,7 +59,7 @@ public struct ITVTimer {
     }
     
     // MARK: - Initializers
-    public init(name: String?, showWeather: Bool?, temperatureUnit: TemperatureUnit? = TemperatureUnit.celcius, intervals: [ITVInterval]?) {
+    public init(name: String?, showWeather: Bool?, temperatureUnit: TemperatureUnit? = TemperatureUnit.Celcius, intervals: [ITVInterval]?) {
         guard let theName = name else {
             //TODO: add these fatal errors to the initializers of all oher structs and classes
             fatalError("name must contain a value")

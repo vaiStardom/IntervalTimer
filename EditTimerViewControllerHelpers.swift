@@ -8,7 +8,19 @@
 
 import Foundation
 import CoreLocation
+import UIKit
 
 extension EditTimerViewController {
-
+    func getTemperatureUnit(from: UISegmentedControl) -> TemperatureUnit {
+        switch from.selectedSegmentIndex {
+        case 0 :
+            return TemperatureUnit.Kelvin
+        case 1 :
+            return TemperatureUnit.Fahrenheit
+        case 2 :
+            return TemperatureUnit.Celcius
+        default:
+            return TemperatureUnit.Celcius
+        }
+    }
 }

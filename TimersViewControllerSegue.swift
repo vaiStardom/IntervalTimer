@@ -14,7 +14,7 @@ extension TimersViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "TimersToTimer") {
             if let nextVC = segue.destination as? TimerViewController {
-                nextVC.intervalTimer = selectedIntervalTimer
+                nextVC.itvTimer = itvTimer
                 nextVC.startIntervalTimer = startSelectedIntervalTimer
             }
         }
