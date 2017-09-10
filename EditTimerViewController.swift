@@ -20,6 +20,11 @@ class EditTimerViewController: UIViewController {
     @IBOutlet weak var warningImageView: UIImageView!
     
     @IBOutlet weak var weatherTemperatureLabel: UILabel!
+    @IBOutlet weak var showWeatherDescriptionLabel: UILabel!
+    
+    @IBOutlet weak var temperatureSegmentedControl: UISegmentedControl!
     
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    
+    var selectedTimer: ITVTimer?
 }

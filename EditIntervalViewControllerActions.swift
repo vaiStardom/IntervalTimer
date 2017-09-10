@@ -32,12 +32,6 @@ extension EditIntervalViewController {
         _ = navigationController?.popViewController(animated: true)
     }
     func save(){
-        if selectedInterval != nil {
-            selectedInterval?.thisSeconds = totalSeconds()
-            selectedInterval?.thisIndicator = selectedIndicator
-        } else {
-            
-        }
         _ = navigationController?.popViewController(animated: true)
     }
     func cancel(){

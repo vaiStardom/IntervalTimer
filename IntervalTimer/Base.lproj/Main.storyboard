@@ -140,8 +140,9 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XKR-oh-FiO">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="XKR-oh-FiO">
                                 <rect key="frame" x="256" y="60" width="51" height="31"/>
+                                <color key="onTintColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="showWeather:" destination="f9n-YU-8Y8" eventType="valueChanged" id="V2M-0w-AxN"/>
                                 </connections>
@@ -163,10 +164,34 @@
                                     <action selector="addInterval:" destination="f9n-YU-8Y8" eventType="touchUpInside" id="HYT-iF-KMu"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nyu-CI-egr">
+                                <rect key="frame" x="15" y="100" width="254" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="29" id="jHY-rR-5n4"/>
+                                </constraints>
+                                <string key="text">Shows your current locations temperature in 
+Kelvins, Fahrenheight, or Celcius.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="L1H-Sv-svF">
+                                <rect key="frame" x="15" y="101" width="290" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="ikf-K5-j1j"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Kelvin (K)"/>
+                                    <segment title="Fahrenheit (F)"/>
+                                    <segment title="Celcius (C)"/>
+                                </segments>
+                                <color key="tintColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="TuX-E6-30a" firstAttribute="leading" secondItem="CUf-Fm-Bka" secondAttribute="trailing" constant="5" id="4Ii-Pa-zDp"/>
+                            <constraint firstItem="Nyu-CI-egr" firstAttribute="leading" secondItem="NEn-CZ-lrq" secondAttribute="leading" constant="15" id="B4a-tI-Qs9"/>
                             <constraint firstItem="kNo-zw-Loh" firstAttribute="top" secondItem="P0h-2u-Jp0" secondAttribute="bottom" constant="-1" id="E3U-6T-wyG"/>
                             <constraint firstItem="S7x-6F-qaa" firstAttribute="leading" secondItem="kNo-zw-Loh" secondAttribute="leading" constant="8" id="Gp2-s5-3Wr"/>
                             <constraint firstItem="kNo-zw-Loh" firstAttribute="leading" secondItem="P0h-2u-Jp0" secondAttribute="leading" constant="-8" id="HGx-iW-vNs"/>
@@ -176,10 +201,13 @@
                             <constraint firstItem="S7x-6F-qaa" firstAttribute="top" secondItem="kNo-zw-Loh" secondAttribute="bottom" constant="8" id="NJd-i4-A4D"/>
                             <constraint firstItem="PE3-Mm-Agf" firstAttribute="leading" secondItem="S7x-6F-qaa" secondAttribute="leading" id="SUx-xj-aIa"/>
                             <constraint firstItem="P0h-2u-Jp0" firstAttribute="top" secondItem="2T0-jK-bi3" secondAttribute="bottom" id="Stn-Ll-UlA"/>
+                            <constraint firstItem="L1H-Sv-svF" firstAttribute="leading" secondItem="NEn-CZ-lrq" secondAttribute="leading" constant="15" id="Uec-eD-TNe"/>
                             <constraint firstAttribute="trailingMargin" secondItem="XKR-oh-FiO" secondAttribute="trailing" constant="-1" id="XmL-dF-yrf"/>
+                            <constraint firstItem="L1H-Sv-svF" firstAttribute="leading" secondItem="NEn-CZ-lrq" secondAttribute="leading" constant="15" id="XrC-bh-nKF"/>
                             <constraint firstItem="TuX-E6-30a" firstAttribute="centerY" secondItem="kNo-zw-Loh" secondAttribute="centerY" id="aiN-tU-GCO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="nmF-3N-dED" secondAttribute="trailing" constant="5" id="bCa-JD-oCk"/>
                             <constraint firstItem="P0h-2u-Jp0" firstAttribute="leading" secondItem="NEn-CZ-lrq" secondAttribute="leadingMargin" constant="-1" id="cll-AT-q3p"/>
+                            <constraint firstItem="Nyu-CI-egr" firstAttribute="top" secondItem="S7x-6F-qaa" secondAttribute="bottom" constant="8" id="f83-Rx-eYl"/>
                             <constraint firstItem="nmF-3N-dED" firstAttribute="centerY" secondItem="PE3-Mm-Agf" secondAttribute="centerY" id="hqZ-Zn-wxD"/>
                             <constraint firstItem="6h6-e5-JRa" firstAttribute="centerY" secondItem="TuX-E6-30a" secondAttribute="centerY" id="kg0-oR-sMJ"/>
                             <constraint firstItem="XKR-oh-FiO" firstAttribute="centerY" secondItem="S7x-6F-qaa" secondAttribute="centerY" id="kry-CH-K7O"/>
@@ -187,11 +215,15 @@
                             <constraint firstItem="PE3-Mm-Agf" firstAttribute="top" secondItem="S7x-6F-qaa" secondAttribute="bottom" constant="45" id="pV5-kE-aVV"/>
                             <constraint firstItem="6h6-e5-JRa" firstAttribute="centerX" secondItem="TuX-E6-30a" secondAttribute="centerX" id="qHC-CN-UkF"/>
                             <constraint firstItem="ZXO-ao-VKA" firstAttribute="centerY" secondItem="kNo-zw-Loh" secondAttribute="centerY" constant="-1.5" id="thy-md-dE7"/>
+                            <constraint firstAttribute="trailing" secondItem="L1H-Sv-svF" secondAttribute="trailing" constant="15" id="vBW-DX-ZZf"/>
                             <constraint firstItem="xGP-Cf-6VF" firstAttribute="centerY" secondItem="nmF-3N-dED" secondAttribute="centerY" id="vGS-zP-bAz"/>
+                            <constraint firstItem="L1H-Sv-svF" firstAttribute="top" secondItem="S7x-6F-qaa" secondAttribute="bottom" constant="9" id="yKb-Jj-AwX"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="showWeatherDescriptionLabel" destination="Nyu-CI-egr" id="Rk4-QN-KbN"/>
                         <outlet property="showWeatherSwitch" destination="XKR-oh-FiO" id="fNU-fJ-DWs"/>
+                        <outlet property="temperatureSegmentedControl" destination="L1H-Sv-svF" id="Ot4-Xd-uoe"/>
                         <outlet property="timerNameTextField" destination="kNo-zw-Loh" id="vsZ-4v-jNo"/>
                         <outlet property="warningButton" destination="6h6-e5-JRa" id="q2A-mI-t0Y"/>
                         <outlet property="warningImageView" destination="ZXO-ao-VKA" id="CdL-cx-vXV"/>
