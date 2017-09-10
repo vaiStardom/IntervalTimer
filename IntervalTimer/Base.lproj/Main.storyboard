@@ -187,7 +187,7 @@ Kelvin, Fahrenheight, or Celcius.</string>
                                 </segments>
                                 <color key="tintColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <action selector="selectedTemperatureUnit:" destination="f9n-YU-8Y8" eventType="valueChanged" id="oPQ-Ol-rHw"/>
+                                    <action selector="selectedTemperatureUnit:" destination="f9n-YU-8Y8" eventType="valueChanged" id="x2c-4s-tPY"/>
                                 </connections>
                             </segmentedControl>
                         </subviews>

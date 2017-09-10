@@ -27,10 +27,4 @@ class EditTimerViewController: UIViewController {
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     
     var itvTimer: ITVTimer?
-    
-    @IBAction func selectedTemperatureUnit(_ sender: Any) {
-    }
-    
-    
-    
 }

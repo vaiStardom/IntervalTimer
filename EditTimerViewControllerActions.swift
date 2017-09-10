@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 //MARK: - Actions
 extension EditTimerViewController {
@@ -47,5 +48,9 @@ extension EditTimerViewController {
         } else {
             showUserWarning(type: ITVWarningForUser.sharedInstance.thisUserWarning)
         }
+    }
+    @IBAction func selectedTemperatureUnit(_ sender: UISegmentedControl) {
+        let temperature = getTemperatureUnit(from: sender).temperature(kelvins: ITVUser.sharedInstance.thisCurrentWeather?.thisKelvin)
+        weatherTemperatureLabel.text = temperature
     }
 }
