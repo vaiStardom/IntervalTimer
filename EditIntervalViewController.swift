@@ -38,6 +38,7 @@ class EditIntervalViewController: UIViewController  {
     
     var indicators:[(imageView: ITVUIImageViewIndicator, activeFillColor: UIColor, inactiveFillColor: UIColor, borderColor: UIColor)] = []
     var selectedIndicator = false
-    
+    var selectedInterval: ITVInterval?
     var isEditingAnInterval: Bool? = false
+    var textFields: [UITextField] = []
 }

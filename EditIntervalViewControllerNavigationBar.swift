@@ -22,7 +22,7 @@ extension EditIntervalViewController {
             self.navigationItem.leftBarButtonItems = [saveButton]
         }
         
-        let negativeSpace = ITVUILabel().negativeSpace()
+        let negativeSpace = ITVUIBarButtonItem().negativeSpace()
         let cancelButton = ITVUIBarButtonItem().cancelButton(target: self, selector: #selector(EditIntervalViewController.cancel))
         
         self.navigationItem.rightBarButtonItems = [negativeSpace, cancelButton]

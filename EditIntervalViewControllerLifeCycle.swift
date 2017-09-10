@@ -30,6 +30,7 @@ extension EditIntervalViewController {
         secondTextField2.text = zeroWidthSpace
         secondTextField1.text = zeroWidthSpace
         
+        
         textFields.append(hourTextField2)
         textFields.append(hourTextField1)
         textFields.append(minuteTextField2)
