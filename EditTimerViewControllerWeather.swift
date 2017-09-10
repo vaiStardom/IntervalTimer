@@ -82,17 +82,15 @@ extension EditTimerViewController{
         
         print("------> TimerViewController updateWeatherInformation theTemperature = \(theTemperature), theImage = \(theIcon)")
         
-        weatherIconImageView.alpha = 0.0
-        weatherTemperatureLabel.alpha = 0.0
-        
         aesthetics_hideMissingWeatherWarning()
         
         weatherTemperatureLabel.text = theTemperature
         weatherIconImageView.image = theImage
-        
-        UIView.animate(withDuration: 1.5, animations: {
-            self.weatherIconImageView.alpha = 1.0
-            self.weatherTemperatureLabel.alpha = 1.0
-        })
+
+        aesthetics_showWeatherViews()
+//        UIView.animate(withDuration: 1.5, animations: {
+//            self.weatherIconImageView.alpha = 1.0
+//            self.weatherTemperatureLabel.alpha = 1.0
+//        })
     }
 }

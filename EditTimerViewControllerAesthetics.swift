@@ -13,6 +13,11 @@ extension EditTimerViewController {
     func aesthetics_initial(){
         activityIndicator.color = ITVColors.Orange
         showWeatherSwitch.isOn = false
+        timerNameTextField.tintColor = ITVColors.Orange
+    }
+    
+    func aesthetics_hideShowWeatherDescription(){
+    
     }
     func aesthetics_showMissingWeatherWarning(){
         //TODO: program the alert to show when this button is pressed
@@ -30,16 +35,30 @@ extension EditTimerViewController {
         })
     }
     func aesthetics_hideMissingWeatherWarning(){
-//        showMissingTemperatureWarningButton.isHidden = true
-//        missingTemperatureImageView.isHidden = true
-        
         aesthetics_showWeatherViews()
     }
     func aesthetics_hideWeatherViews(){
+        UIView.animate(withDuration: 0.5, animations: {
+            self.weatherIconImageView.alpha = 0.0
+            self.weatherTemperatureLabel.alpha = 0.0
+        }, completion: { (completed) in
+            self.weatherIconImageView.isHidden = true
+            self.weatherTemperatureLabel.isHidden = true
+        })
         weatherIconImageView.isHidden = true
         weatherTemperatureLabel.isHidden = true
     }
     func aesthetics_showWeatherViews(){
+        self.weatherIconImageView.alpha = 0.0
+        self.weatherTemperatureLabel.alpha = 0.0
+
+        self.weatherIconImageView.isHidden = false
+        self.weatherTemperatureLabel.isHidden = false
+        
+        UIView.animate(withDuration: 1.5, animations: {
+            self.weatherIconImageView.alpha = 1.0
+            self.weatherTemperatureLabel.alpha = 1.0
+        })
         weatherIconImageView.isHidden = false
         weatherTemperatureLabel.isHidden = false
     }

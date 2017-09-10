@@ -12,16 +12,22 @@ import Foundation
 extension EditTimerViewController {
     @IBAction func showWeather(_ sender: Any) {
         if showWeatherSwitch.isOn {
-            ITVCoreLocation.sharedInstance.configureLocationServices()
-            if ITVCoreLocation.sharedInstance.isLocationServicesAndNetworkAvailable() {
-                self.registerNotifications() //will register at first weather use
+            if ITVUser.sharedInstance.thisShouldUpdateWeather {
+                ITVCoreLocation.sharedInstance.configureLocationServices()
+                if ITVCoreLocation.sharedInstance.isLocationServicesAndNetworkAvailable() {
+                    self.registerNotifications() //will register at first weather use
+                } else {
+                    aesthetics_showMissingWeatherWarning()
+                }
+                activityIndicatorStart()
+                getWeatherFromNetwork()
             } else {
-                aesthetics_showMissingWeatherWarning()
+                updateWeatherInformation()
+                aesthetics_showWeatherViews()
             }
-            activityIndicatorStart()
-            getWeatherFromNetwork()
         } else {
             aesthetics_hideWeatherViews()
+            aesthetics_hideShowWeatherDescription()
         }
     }
     @IBAction func addInterval(_ sender: Any) {
