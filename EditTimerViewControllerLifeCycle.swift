@@ -21,24 +21,33 @@ extension EditTimerViewController {
         configureNavBar()
         aesthetics_initial()
         
-        if itvTimer != nil {
-            timerNameTextField.text = itvTimer?.thisName
-            
-            if (itvTimer?.thisShowWeather!)! {
-                showWeatherSwitch.isOn = true
-                aesthetics_showWeatherViews()
+        //First, is this a selected timer?
+        if let theItvTimer = itvTimer {
+            //yes
+            timerNameTextField.text = theItvTimer.thisName
+            //Second, if this is a selected timer, do we show the weather
+            if theItvTimer.thisShowWeather! {
+                aesthetics_startLoadingWeather()
+                showWeather()
             } else {
-                showWeatherSwitch.isOn = false
-                aesthetics_hideWeatherViews()
+                aesthetics_dontLoadWeather()
             }
-            
-            //TODO: make sure that a timer cannot have a nil temeprature unit and a true show weather option
-            //TODO: load all the intervals into the table view
-        
         } else {
             timerNameTextField.attributedPlaceholder = NSAttributedString(string: Litterals.TimerNamePlaceholder, attributes: [NSForegroundColorAttributeName : ITVColors.OrangeAlpha50])
         }
+
+//        if itvTimer != nil {
+//            timerNameTextField.text = itvTimer?.thisName
+//            
+//            if (itvTimer?.thisShowWeather!)! {
+//                showWeatherSwitch.isOn = true
+//                aesthetics_showWeatherViews()
+//            } else {
+//                showWeatherSwitch.isOn = false
+//                aesthetics_hideWeatherViews()
+//            }
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

@@ -13,19 +13,8 @@ import UIKit
 extension EditTimerViewController {
     @IBAction func showWeather(_ sender: Any) {
         if showWeatherSwitch.isOn {
-            if ITVUser.sharedInstance.thisShouldUpdateWeather {
-                ITVCoreLocation.sharedInstance.configureLocationServices()
-                if ITVCoreLocation.sharedInstance.isLocationServicesAndNetworkAvailable() {
-                    self.registerNotifications() //will register at first weather use
-                } else {
-                    aesthetics_showMissingWeatherWarning()
-                }
-                activityIndicatorStart()
-                getWeatherFromNetwork()
-            } else {
-                updateWeatherInformation()
-                aesthetics_showWeatherViews()
-            }
+            aesthetics_startLoadingWeather()            
+            showWeather()
         } else {
             aesthetics_hideWeatherViews()
             aesthetics_hideShowWeatherDescription()

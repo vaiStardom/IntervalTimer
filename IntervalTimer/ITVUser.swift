@@ -63,16 +63,17 @@ class ITVUser: NSObject, NSCoding {
     }
     var thisShouldUpdateWeather: Bool {
         get {
-            if let theHours = hoursSince(from: thisLastWeatherUpdate, to: Date()){
-                print("------> ITVUser thisShouldUpdateWeather hours since : \(theHours) ")
-                if theHours > 1 {
-                    return true
-                } else {
-                    return false
-                }
-            } else {
-                return true
-            }
+            return true
+//            if let theHours = hoursSince(from: thisLastWeatherUpdate, to: Date()){
+//                print("------> ITVUser thisShouldUpdateWeather hours since : \(theHours) ")
+//                if theHours > 1 {
+//                    return true
+//                } else {
+//                    return false
+//                }
+//            } else {
+//                return true
+//            }
         }
     }
     var thisTimers: [ITVTimer]? {

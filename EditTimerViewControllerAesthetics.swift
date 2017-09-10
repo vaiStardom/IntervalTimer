@@ -18,9 +18,23 @@ extension EditTimerViewController {
         temperatureSegmentedControl.selectedSegmentIndex = 2
         showWeatherDescriptionLabel.isHidden = false
     }
-    
+    func aesthetics_dontLoadWeather(){
+        showWeatherSwitch.isOn = false
+        weatherIconImageView.isHidden = true
+        weatherTemperatureLabel.isHidden = true
+        temperatureSegmentedControl.isHidden = true
+        showWeatherDescriptionLabel.isHidden = false
+    }
     func aesthetics_hideShowWeatherDescription(){
     
+    }
+    func aesthetics_startLoadingWeather() {
+        showWeatherSwitch.isOn = true
+        weatherIconImageView.isHidden = false
+        weatherTemperatureLabel.isHidden = true
+        temperatureSegmentedControl.isHidden = false
+        showWeatherDescriptionLabel.isHidden = true
+        activityIndicatorStart()
     }
     func aesthetics_showMissingWeatherWarning(){
         //TODO: program the alert to show when this button is pressed

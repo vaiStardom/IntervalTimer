@@ -50,7 +50,6 @@ extension TimerViewController {
         aesthetics_timerCancel()
         aesthetics_timerLabels()
         aesthetics_timerLabelsInitialText()
-//        aesthetics_allowLocationServices()
     }
     func aesthetics_minutes(){
         

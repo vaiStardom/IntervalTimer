@@ -13,6 +13,23 @@ import UIKit
 
 //MARK: - Weather Management
 extension EditTimerViewController{
+    func showWeather(){
+        if ITVCoreLocation.sharedInstance.isLocationServicesAndNetworkAvailable() {
+            self.registerNotifications() //will register at first weather use
+            if ITVUser.sharedInstance.thisShouldUpdateWeather {
+                setWeatherFromNetwork()
+            } else {
+                if ITVUser.sharedInstance.thisCurrentWeather != nil {
+                    updateWeatherInformation()
+                } else {
+                    setWeatherFromNetwork()
+                }
+            }
+        } else {
+            aesthetics_showMissingWeatherWarning()
+        }
+    }
+
     func activityIndicatorStart(){
         weatherIconImageView.addSubview(activityIndicator)
         activityIndicator.frame = weatherIconImageView.bounds
