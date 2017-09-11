@@ -84,8 +84,12 @@
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
                             </textField>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Jsf-Ag-Ots">
+                                <rect key="frame" x="273" y="25" width="20" height="20"/>
+                                <color key="color" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TuX-E6-30a">
                                 <rect key="frame" x="261" y="13" width="44" height="44"/>
                                 <constraints>
@@ -212,9 +216,11 @@ Kelvin, Fahrenheight, or Celcius.</string>
                             <constraint firstItem="xGP-Cf-6VF" firstAttribute="centerX" secondItem="nmF-3N-dED" secondAttribute="centerX" id="JcZ-fU-qxa"/>
                             <constraint firstItem="Rbc-6K-3co" firstAttribute="leading" secondItem="NEn-CZ-lrq" secondAttribute="leading" id="JpM-LV-Z7C"/>
                             <constraint firstItem="nJW-tv-Sy0" firstAttribute="top" secondItem="Rbc-6K-3co" secondAttribute="bottom" id="KA6-c6-39F"/>
+                            <constraint firstItem="Jsf-Ag-Ots" firstAttribute="centerY" secondItem="TuX-E6-30a" secondAttribute="centerY" id="KKJ-l2-xAM"/>
                             <constraint firstItem="ZXO-ao-VKA" firstAttribute="trailing" secondItem="TuX-E6-30a" secondAttribute="trailing" constant="-4" id="Kv3-Xp-gJg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="TuX-E6-30a" secondAttribute="trailing" constant="-1" id="LED-fM-yfG"/>
                             <constraint firstItem="S7x-6F-qaa" firstAttribute="top" secondItem="kNo-zw-Loh" secondAttribute="bottom" constant="8" id="NJd-i4-A4D"/>
+                            <constraint firstItem="Jsf-Ag-Ots" firstAttribute="centerX" secondItem="TuX-E6-30a" secondAttribute="centerX" id="QZa-Uq-IwG"/>
                             <constraint firstItem="PE3-Mm-Agf" firstAttribute="leading" secondItem="S7x-6F-qaa" secondAttribute="leading" id="SUx-xj-aIa"/>
                             <constraint firstItem="P0h-2u-Jp0" firstAttribute="top" secondItem="2T0-jK-bi3" secondAttribute="bottom" id="Stn-Ll-UlA"/>
                             <constraint firstItem="L1H-Sv-svF" firstAttribute="leading" secondItem="NEn-CZ-lrq" secondAttribute="leading" constant="15" id="Uec-eD-TNe"/>
@@ -245,6 +251,7 @@ Kelvin, Fahrenheight, or Celcius.</string>
                         <outlet property="timerNameTextField" destination="kNo-zw-Loh" id="vsZ-4v-jNo"/>
                         <outlet property="warningButton" destination="6h6-e5-JRa" id="q2A-mI-t0Y"/>
                         <outlet property="warningImageView" destination="ZXO-ao-VKA" id="CdL-cx-vXV"/>
+                        <outlet property="weatherActivityIndicator" destination="Jsf-Ag-Ots" id="T78-bl-JmG"/>
                         <outlet property="weatherIconImageView" destination="TuX-E6-30a" id="ckC-uX-DtM"/>
                         <outlet property="weatherTemperatureLabel" destination="CUf-Fm-Bka" id="8vQ-hz-aMh"/>
                         <segue destination="lHH-oS-twA" kind="show" identifier="EditTimerToEditInterval" id="L7u-Ms-i3S"/>

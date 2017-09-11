@@ -61,6 +61,7 @@
 		BA90FA6E1F59594C006EB239 /* EditTimerViewControllerNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA90FA6D1F59594C006EB239 /* EditTimerViewControllerNavigationBar.swift */; };
 		BA90FA701F59597C006EB239 /* EditTimerViewControllerHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA90FA6F1F59597C006EB239 /* EditTimerViewControllerHelpers.swift */; };
 		BA90FA721F596C7C006EB239 /* EditTimerViewControllerAesthetics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA90FA711F596C7C006EB239 /* EditTimerViewControllerAesthetics.swift */; };
+		BA9171381F654B2F00A69B2A /* EditTimerViewControllerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9171371F654B2F00A69B2A /* EditTimerViewControllerTextField.swift */; };
 		BA9E61D41F65220200FFCF20 /* TimerViewControllerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9E61D31F65220200FFCF20 /* TimerViewControllerSegue.swift */; };
 		BA9E61D61F652FB500FFCF20 /* EditTimerViewControllerTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9E61D51F652FB500FFCF20 /* EditTimerViewControllerTableView.swift */; };
 		BAA11C431F5BB56B005F3259 /* EditTimerViewControllerWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA11C421F5BB56B005F3259 /* EditTimerViewControllerWeather.swift */; };
@@ -176,6 +177,7 @@
 		BA90FA6D1F59594C006EB239 /* EditTimerViewControllerNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTimerViewControllerNavigationBar.swift; sourceTree = "<group>"; };
 		BA90FA6F1F59597C006EB239 /* EditTimerViewControllerHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTimerViewControllerHelpers.swift; sourceTree = "<group>"; };
 		BA90FA711F596C7C006EB239 /* EditTimerViewControllerAesthetics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTimerViewControllerAesthetics.swift; sourceTree = "<group>"; };
+		BA9171371F654B2F00A69B2A /* EditTimerViewControllerTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTimerViewControllerTextField.swift; sourceTree = "<group>"; };
 		BA9E61D31F65220200FFCF20 /* TimerViewControllerSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewControllerSegue.swift; sourceTree = "<group>"; };
 		BA9E61D51F652FB500FFCF20 /* EditTimerViewControllerTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTimerViewControllerTableView.swift; sourceTree = "<group>"; };
 		BAA11C421F5BB56B005F3259 /* EditTimerViewControllerWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTimerViewControllerWeather.swift; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 				BA90FA6D1F59594C006EB239 /* EditTimerViewControllerNavigationBar.swift */,
 				BA21FDB01F62469600ABC94E /* EditTimerViewControllerNotifications.swift */,
 				BA9E61D51F652FB500FFCF20 /* EditTimerViewControllerTableView.swift */,
+				BA9171371F654B2F00A69B2A /* EditTimerViewControllerTextField.swift */,
 				BAA11C421F5BB56B005F3259 /* EditTimerViewControllerWeather.swift */,
 				BA4BFE761EFF4D9D00E341DC /* TimersViewController.swift */,
 				BAD8A4B51F55531E007F8DEA /* TimersViewControllerActions.swift */,
@@ -674,6 +677,7 @@
 				BAED0C411F5FC4EE00F9A3FC /* ITVUserWarningProtocol.swift in Sources */,
 				BA90FA701F59597C006EB239 /* EditTimerViewControllerHelpers.swift in Sources */,
 				BA4BFEA51EFFA0FD00E341DC /* ITVUIBarButtonItem.swift in Sources */,
+				BA9171381F654B2F00A69B2A /* EditTimerViewControllerTextField.swift in Sources */,
 				BAAFE44C1F0A04BF00D3619E /* ITVFuncs.swift in Sources */,
 				BAC748B91F5FE4DD003F9E31 /* ITVNSObject.swift in Sources */,
 				BA4370291F59261600E144D2 /* ITVCoreLocationHelpers.swift in Sources */,

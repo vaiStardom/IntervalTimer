@@ -26,7 +26,7 @@ public struct ITVTimer {
     // MARK: - Properties
     fileprivate var name: String?
     fileprivate var showWeather: Bool?
-    fileprivate var temperatureUnit: TemperatureUnit? = TemperatureUnit.Celcius
+    fileprivate var temperatureUnit: TemperatureUnit = TemperatureUnit.Celcius
 
     //this should be a dictionary of [Order:Interval] (the order/or rank of the interval will be managed in this class
     //the index of this array could also seve has the order as well...
@@ -45,7 +45,7 @@ public struct ITVTimer {
             showWeather = newValue
         }
     }
-    public var thisTemperatureUnit: TemperatureUnit? {
+    public var thisTemperatureUnit: TemperatureUnit {
         get { return temperatureUnit}
         set {
             temperatureUnit = newValue
@@ -59,7 +59,7 @@ public struct ITVTimer {
     }
     
     // MARK: - Initializers
-    public init(name: String?, showWeather: Bool?, temperatureUnit: TemperatureUnit? = TemperatureUnit.Celcius, intervals: [ITVInterval]?) {
+    public init(name: String?, showWeather: Bool?, temperatureUnit: TemperatureUnit?, intervals: [ITVInterval]?) {
         guard let theName = name else {
             //TODO: add these fatal errors to the initializers of all oher structs and classes
             fatalError("name must contain a value")
@@ -72,7 +72,13 @@ public struct ITVTimer {
         }
         self.thisName = theName
         self.thisShowWeather = theShowWeather
-        self.thisTemperatureUnit = temperatureUnit
         self.thisIntervals = theIntervals
+        
+        if let theTemperatureUnit = temperatureUnit {
+            self.thisTemperatureUnit = theTemperatureUnit
+        } else {
+            self.thisTemperatureUnit = TemperatureUnit.Celcius
+        }
+        
     }
 }

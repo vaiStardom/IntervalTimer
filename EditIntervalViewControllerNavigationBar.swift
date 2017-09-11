@@ -30,6 +30,5 @@ extension EditIntervalViewController {
         let label = ITVUILabel().navBarNewIntervalTitle()
         self.navigationItem.titleView = label
         
-
     }
 }

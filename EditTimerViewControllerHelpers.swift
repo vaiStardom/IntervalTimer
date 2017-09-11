@@ -11,7 +11,26 @@ import CoreLocation
 import UIKit
 
 extension EditTimerViewController {
-    func getTemperatureUnit(from: UISegmentedControl) -> TemperatureUnit {
+    func didUserModifyATimer(){
+        if let theItvTimer = itvTimer  {
+            let theTimerName = timerNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+            let theTemperatureUnit = getTemperatureUnit(from: temperatureSegmentedControl)
+            let theShowWeather = showWeatherSwitch.isOn
+            
+            if theTimerName! != theItvTimer.thisName!
+                || theTemperatureUnit != theItvTimer.thisTemperatureUnit
+                || theShowWeather != theItvTimer.thisShowWeather! {
+                isEditing = true
+            } else {
+                isEditing = false
+            }
+        } else {
+            isEditing = false
+        }
+        configureNavBar()
+    }
+    
+    func getTemperatureUnit(from: UISegmentedControl) -> TemperatureUnit? {
         switch from.selectedSegmentIndex {
         case 0 :
             return TemperatureUnit.Kelvin

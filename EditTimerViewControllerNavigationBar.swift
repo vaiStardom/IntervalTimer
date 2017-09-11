@@ -11,11 +11,17 @@ import Foundation
 //MARK: - Navigation Bar Management
 extension EditTimerViewController {
     func configureNavBar(){
+
         self.navigationItem.hidesBackButton = true
         
-        let backButton = ITVUIBarButtonItem().backButton(target: self, selector: #selector(EditTimerViewController.back))
-        self.navigationItem.leftBarButtonItems = [backButton]
-        
+        if !isEditing {
+            let backButton = ITVUIBarButtonItem().backButton(target: self, selector: #selector(EditTimerViewController.back))
+            self.navigationItem.leftBarButtonItems = [backButton]
+        } else {
+            let saveButton = ITVUIBarButtonItem().saveButton(target: self, selector: #selector(EditTimerViewController.save))
+            self.navigationItem.leftBarButtonItems = [saveButton]
+        }
+
         let label = ITVUILabel().navBarNewTimerTitle()
         self.navigationItem.titleView = label
         

@@ -31,16 +31,19 @@ extension EditTimerViewController{
     }
 
     func activityIndicatorStart(){
-        weatherIconImageView.addSubview(activityIndicator)
-        activityIndicator.frame = weatherIconImageView.bounds
-        activityIndicator.startAnimating()
+        weatherActivityIndicator.isHidden = false
+        weatherActivityIndicator.startAnimating()
     }
+    
     func activityIndicatorStop(){
-        activityIndicator.stopAnimating()
+        weatherActivityIndicator.stopAnimating()
+        weatherActivityIndicator.isHidden = true
     }
+    
     func errorGettingWeather(_ notification: Notification){
         aesthetics_showMissingWeatherWarning()
     }
+    
     func canAttemptWeatherUpdate(_ notification: Notification){
         print("------> EditTimerViewController canAttemptWeatherUpdate notification received")
         do {
@@ -50,6 +53,7 @@ extension EditTimerViewController{
             showUserWarning(type: UserWarning.LocationManagerDidFail, with: "\(error)")
         }
     }
+    
     func startSettingWeather(){
         if ITVUser.sharedInstance.thisShouldUpdateWeather {
             //TODO: cache the weather, update it only every 3 hours or if user has moved more than 5 kilometers
@@ -70,8 +74,10 @@ extension EditTimerViewController{
         startSettingWeather()
     }
     func didGetCurrentWeather(_ notification: Notification){
-        print("------> TimerViewController didGetCurrentWeather notification received")
-        updateWeatherInformation()
+        print("------> EditTimerViewController didGetCurrentWeather notification received")
+        if showWeatherSwitch.isOn {
+            updateWeatherInformation()
+        }
     }
     func setWeatherFromNetwork(){
         activityIndicatorStart()
@@ -80,22 +86,22 @@ extension EditTimerViewController{
     func updateWeatherInformation(){
         activityIndicatorStop()
         
-        guard let theTemperature = getTemperatureUnit(from: temperatureSegmentedControl).temperature(kelvins: ITVUser.sharedInstance.thisCurrentWeather?.thisKelvin)  else {
+        guard let theTemperature = getTemperatureUnit(from: temperatureSegmentedControl!)?.temperature(kelvins: ITVUser.sharedInstance.thisCurrentWeather?.thisKelvin)  else {
             aesthetics_showMissingWeatherWarning()
-            fatalError("------> ERROR - TimerViewController updateWeatherInformation invalid temperature \(String(describing: ITVUser.sharedInstance.thisCurrentWeather?.thisKelvin))")
+            fatalError("------> ERROR - EditTimerViewController updateWeatherInformation invalid temperature \(String(describing: ITVUser.sharedInstance.thisCurrentWeather?.thisKelvin))")
         }
 
         guard let theIcon = ITVUser.sharedInstance.thisCurrentWeather?.thisIcon! else {
             aesthetics_showMissingWeatherWarning()
-            fatalError("------> ERROR TimerViewController updateWeatherInformation invalid icon \(String(describing: ITVUser.sharedInstance.thisCurrentWeather?.thisIcon!))")
+            fatalError("------> ERROR EditTimerViewController updateWeatherInformation invalid icon \(String(describing: ITVUser.sharedInstance.thisCurrentWeather?.thisIcon!))")
         }
         
         guard let theImage = UIImage(named: theIcon) else {
             aesthetics_showMissingWeatherWarning()
-            fatalError("------> ERROR TimerViewController updateWeatherInformation invalid image for icon name \(theIcon)")
+            fatalError("------> ERROR EditTimerViewController updateWeatherInformation invalid image for icon name \(theIcon)")
         }
         
-        print("------> TimerViewController updateWeatherInformation theTemperature = \(theTemperature), theImage = \(theIcon)")
+        print("------> EditTimerViewController updateWeatherInformation theTemperature = \(theTemperature), theImage = \(theIcon)")
         
         aesthetics_hideMissingWeatherWarning()
         

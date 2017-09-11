@@ -18,6 +18,8 @@ extension EditTimerViewController {
         tableView.delegate = self
         tableView.register(UINib(nibName: "IntervalTableViewCell", bundle: nil), forCellReuseIdentifier: "IntervalCell")
         
+        timerNameTextField.delegate = self
+        
         configureNavBar()
         aesthetics_initial()
         
@@ -35,17 +37,6 @@ extension EditTimerViewController {
         } else {
             timerNameTextField.attributedPlaceholder = NSAttributedString(string: Litterals.TimerNamePlaceholder, attributes: [NSForegroundColorAttributeName : ITVColors.OrangeAlpha50])
         }
-
-//        if itvTimer != nil {
-//            timerNameTextField.text = itvTimer?.thisName
-//            
-//            if (itvTimer?.thisShowWeather!)! {
-//                showWeatherSwitch.isOn = true
-//                aesthetics_showWeatherViews()
-//            } else {
-//                showWeatherSwitch.isOn = false
-//                aesthetics_hideWeatherViews()
-//            }
     }
     
     override func didReceiveMemoryWarning() {

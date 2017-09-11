@@ -16,9 +16,12 @@ extension EditTimerViewController {
             aesthetics_startLoadingWeather()            
             showWeather()
         } else {
+            //TODO: if switched OFF and weather has not finished loading, then cancel weather loading (cancel network calls)
+            activityIndicatorStop()
             aesthetics_hideWeatherViews()
-            aesthetics_hideShowWeatherDescription()
+            aesthetics_showWeatherDescription()
         }
+        didUserModifyATimer()
     }
     @IBAction func addInterval(_ sender: Any) {
         performSegue(withIdentifier: "EditTimerToEditInterval", sender: nil)
@@ -39,7 +42,11 @@ extension EditTimerViewController {
         }
     }
     @IBAction func selectedTemperatureUnit(_ sender: UISegmentedControl) {
-        let temperature = getTemperatureUnit(from: sender).temperature(kelvins: ITVUser.sharedInstance.thisCurrentWeather?.thisKelvin)
+        let temperature = getTemperatureUnit(from: sender)?.temperature(kelvins: ITVUser.sharedInstance.thisCurrentWeather?.thisKelvin)
         weatherTemperatureLabel.text = temperature
+        didUserModifyATimer()
+    }
+    func save(){
+        _ = navigationController?.popViewController(animated: true)
     }
 }

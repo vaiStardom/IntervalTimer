@@ -11,7 +11,8 @@ import UIKit
 
 extension EditTimerViewController {
     func aesthetics_initial(){
-        activityIndicator.color = ITVColors.Orange
+        weatherActivityIndicator.color = ITVColors.Orange
+        weatherActivityIndicator.isHidden = true
         showWeatherSwitch.isOn = false
         timerNameTextField.tintColor = ITVColors.Orange
         temperatureSegmentedControl.isHidden = true
@@ -25,16 +26,18 @@ extension EditTimerViewController {
         temperatureSegmentedControl.isHidden = true
         showWeatherDescriptionLabel.isHidden = false
     }
-    func aesthetics_hideShowWeatherDescription(){
-    
+    func aesthetics_showWeatherDescription(){
+        showWeatherDescriptionLabel.alpha = 1.0
+        showWeatherDescriptionLabel.isHidden = false
     }
     func aesthetics_startLoadingWeather() {
+        activityIndicatorStart()
         showWeatherSwitch.isOn = true
         weatherIconImageView.isHidden = false
         weatherTemperatureLabel.isHidden = true
         temperatureSegmentedControl.isHidden = false
         showWeatherDescriptionLabel.isHidden = true
-        activityIndicatorStart()
+        
     }
     func aesthetics_showMissingWeatherWarning(){
         //TODO: program the alert to show when this button is pressed
@@ -47,30 +50,19 @@ extension EditTimerViewController {
         warningButton.isHidden = false
         warningImageView.isHidden = false
         
-        UIView.animate(withDuration: 0.5, animations: {
-            self.warningImageView.alpha = 1.0
-        })
+        warningImageView.alpha = 1.0
     }
     func aesthetics_hideMissingWeatherWarning(){
         aesthetics_showWeatherViews()
     }
     func aesthetics_hideWeatherViews(){
-        
-        self.showWeatherDescriptionLabel.isHidden = false
-        
-        UIView.animate(withDuration: 0.5, animations: {
-            self.weatherIconImageView.alpha = 0.0
-            self.weatherTemperatureLabel.alpha = 0.0
-            self.temperatureSegmentedControl.alpha = 0.0
-            self.showWeatherDescriptionLabel.alpha = 1.0
 
-        }, completion: { (completed) in
-            self.weatherIconImageView.isHidden = true
-            self.weatherTemperatureLabel.isHidden = true
-            self.temperatureSegmentedControl.isHidden = true
-        })
         weatherIconImageView.isHidden = true
         weatherTemperatureLabel.isHidden = true
+        temperatureSegmentedControl.isHidden = true
+            
+        weatherIconImageView.image = nil
+        weatherTemperatureLabel.text = nil
     }
     func aesthetics_showWeatherViews(){
         weatherIconImageView.alpha = 0.0
@@ -80,16 +72,9 @@ extension EditTimerViewController {
         weatherIconImageView.isHidden = false
         weatherTemperatureLabel.isHidden = false
         temperatureSegmentedControl.isHidden = false
-        
-        UIView.animate(withDuration: 0.5, animations: {
-            self.weatherIconImageView.alpha = 1.0
-            self.weatherTemperatureLabel.alpha = 1.0
-            self.temperatureSegmentedControl.alpha = 1.0
-            self.showWeatherDescriptionLabel.alpha = 0.0
-        }, completion: { (completed) in
-            self.showWeatherDescriptionLabel.isHidden = true
-        })
-        
-        
+
+        weatherIconImageView.alpha = 1.0
+        weatherTemperatureLabel.alpha = 1.0
+        temperatureSegmentedControl.alpha = 1.0        
     }
 }
