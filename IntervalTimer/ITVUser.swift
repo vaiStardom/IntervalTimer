@@ -35,7 +35,7 @@ class ITVUser: NSObject, NSCoding {
     //MARK: - fileprivate properties
     fileprivate var currentWeather: ITVCurrentWeather?
     fileprivate var lastWeatherUpdate: Date?
-    fileprivate var timers: [ITVTimer]?
+    fileprivate var timers: [ITVTimer]? = []
     
     //MARK: - public get/set properties
     var thisCurrentWeather: ITVCurrentWeather? {

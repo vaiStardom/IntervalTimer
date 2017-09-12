@@ -17,6 +17,7 @@ extension EditTimerViewController {
                 nextVC.itvTimerIndex = itvTimerIndex
                 if itvTimerIndex == nil {
                     nextVC.itvUnsavedTimersIntervals = itvUnsavedTimersIntervals
+                    nextVC.itvIntervalsProtocolDelegate = self
                 }
             }
         }

@@ -12,39 +12,45 @@ import Foundation
 extension ITVTimer{
     func totalTime() -> String {
 
-        var time = (0, 0, 0)
-        var totalseconds = 0.0
         var timeLiteral = ""
-        var hours: String?
-        var minutes: String?
-        var seconds: String?
         
-        for interval in thisIntervals! {
-            totalseconds += interval.thisSeconds!
-        }
+        if let theIntervals = thisIntervals {
+            var time = (0, 0, 0)
+            var totalseconds = 0.0
+            var hours: String?
+            var minutes: String?
+            var seconds: String?
+            
+            for interval in theIntervals {
+                totalseconds += interval.thisSeconds!
+            }
+            
+            time = secondsToHoursMinutesSeconds(seconds : Int(totalseconds))
+            
+            if time.0 > 0 {
+                hours = " \(time.0) h"
+            }
+            
+            if time.1 > 0 {
+                minutes = " \(time.1) m"
+            }
+            
+            if time.2 > 0 {
+                seconds = " \(time.2) s"
+            }
+            
+            if hours != nil {
+                timeLiteral += hours!
+            }
+            if minutes != nil {
+                timeLiteral += minutes!
+            }
+            if seconds != nil {
+                timeLiteral += seconds!
+            }
         
-        time = secondsToHoursMinutesSeconds(seconds : Int(totalseconds))
-        
-        if time.0 > 0 {
-            hours = " \(time.0) h"
-        }
-        
-        if time.1 > 0 {
-            minutes = " \(time.1) m"
-        }
-        
-        if time.2 > 0 {
-            seconds = " \(time.2) s"
-        }
-        
-        if hours != nil {
-            timeLiteral += hours!
-        }
-        if minutes != nil {
-            timeLiteral += minutes!
-        }
-        if seconds != nil {
-            timeLiteral += seconds!
+        } else {
+            timeLiteral = "no intervals"
         }
         
         return timeLiteral

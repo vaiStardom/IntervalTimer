@@ -164,7 +164,10 @@ extension ITVCoreLocation{
     func isLocationServicesAndNetworkAvailable() -> Bool {
         if CLLocationManager.locationServicesEnabled() {
             switch(CLLocationManager.authorizationStatus()) {
-            case .notDetermined, .restricted, .denied:
+            case .notDetermined:
+                configureLocationServices()
+                return false
+            case .restricted, .denied:
                 ITVWarningForUser.sharedInstance.thisUserWarning = UserWarning.LocationServicesDisabled
                 return false
             case .authorizedAlways, .authorizedWhenInUse:

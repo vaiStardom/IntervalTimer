@@ -58,6 +58,7 @@
 		BA77AE8F1F498D3800AD34BE /* ITVWeatherServiceWeatherRetreival.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA77AE8E1F498D3800AD34BE /* ITVWeatherServiceWeatherRetreival.swift */; };
 		BA790BC51F678C5600AF4E04 /* EditTimerViewControllerItvIntervalsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA790BC41F678C5600AF4E04 /* EditTimerViewControllerItvIntervalsProtocol.swift */; };
 		BA790BC71F67928200AF4E04 /* EditTimerViewControllerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA790BC61F67928200AF4E04 /* EditTimerViewControllerSegue.swift */; };
+		BA790BCB1F68228B00AF4E04 /* TimerViewControllerTimersProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA790BCA1F68228B00AF4E04 /* TimerViewControllerTimersProtocol.swift */; };
 		BA90FA6A1F5958D2006EB239 /* EditTimerViewControllerActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA90FA691F5958D2006EB239 /* EditTimerViewControllerActions.swift */; };
 		BA90FA6C1F595921006EB239 /* EditTimerViewControllerLifeCycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA90FA6B1F595921006EB239 /* EditTimerViewControllerLifeCycle.swift */; };
 		BA90FA6E1F59594C006EB239 /* EditTimerViewControllerNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA90FA6D1F59594C006EB239 /* EditTimerViewControllerNavigationBar.swift */; };
@@ -179,6 +180,7 @@
 		BA77AE8E1F498D3800AD34BE /* ITVWeatherServiceWeatherRetreival.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITVWeatherServiceWeatherRetreival.swift; sourceTree = "<group>"; };
 		BA790BC41F678C5600AF4E04 /* EditTimerViewControllerItvIntervalsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTimerViewControllerItvIntervalsProtocol.swift; sourceTree = "<group>"; };
 		BA790BC61F67928200AF4E04 /* EditTimerViewControllerSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTimerViewControllerSegue.swift; sourceTree = "<group>"; };
+		BA790BCA1F68228B00AF4E04 /* TimerViewControllerTimersProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewControllerTimersProtocol.swift; sourceTree = "<group>"; };
 		BA90FA691F5958D2006EB239 /* EditTimerViewControllerActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTimerViewControllerActions.swift; sourceTree = "<group>"; };
 		BA90FA6B1F595921006EB239 /* EditTimerViewControllerLifeCycle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTimerViewControllerLifeCycle.swift; sourceTree = "<group>"; };
 		BA90FA6D1F59594C006EB239 /* EditTimerViewControllerNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTimerViewControllerNavigationBar.swift; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 				BA77AE761F49415200AD34BE /* TimerViewControllerActions.swift */,
 				BA77AE7C1F4942B100AD34BE /* TimerViewControllerAesthetics.swift */,
 				BA21FDAA1F61893300ABC94E /* TimerViewControllerHelpers.swift */,
+				BA790BCA1F68228B00AF4E04 /* TimerViewControllerTimersProtocol.swift */,
 				BA4A1C6D1F4ED7080092DD89 /* TimerViewControllerLifeCycle.swift */,
 				BA77AE801F49432500AD34BE /* TimerViewControllerNavigationBar.swift */,
 				BA77AE7E1F4942FC00AD34BE /* TimerViewControllerNotifications.swift */,
@@ -712,6 +715,7 @@
 				BA77AE851F4943F300AD34BE /* EditIntervalViewControllerTextField.swift in Sources */,
 				BA77AE791F4941DC00AD34BE /* TimerViewControllerTimer.swift in Sources */,
 				BA4BFEB51EFFD5E400E341DC /* ITVUIImageViewIndicator.swift in Sources */,
+				BA790BCB1F68228B00AF4E04 /* TimerViewControllerTimersProtocol.swift in Sources */,
 				BA77AE871F49444B00AD34BE /* EditIntervalViewControllerNavigationBar.swift in Sources */,
 				BA77AE8D1F49883D00AD34BE /* ITVCityServiceCityRetreival.swift in Sources */,
 				BA4BFE751EFF4D9D00E341DC /* AppDelegate.swift in Sources */,

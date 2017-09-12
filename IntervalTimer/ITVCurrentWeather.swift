@@ -37,11 +37,6 @@ class ITVCurrentWeather: NSObject, NSCoding {
             }
         }
     }
-//    var thisTemperature: String?{
-//        get {
-//            return convertTemperature(kelvins: thisKelvin, forUnits: ITVUser.sharedInstance.thisTemperatureUnit)
-//        }
-//    }
     
     //MARK: - Initializers
     init?(kelvin: Double?, icon: String?){

@@ -2,4 +2,166 @@
 <Bucket
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ITVTimer.swift"
+            timestampString = "526919889.436888"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "init(coder:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IntervalTimer/ITVUser.swift"
+            timestampString = "526920194.513096"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "encode(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IntervalTimer/ITVUser.swift"
+            timestampString = "526920197.859912"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "init(coder:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "IntervalTimer.ITVUser.init (coder : __ObjC.NSCoder) -&gt; IntervalTimer.ITVUser"
+                  moduleName = "IntervalTimer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/PaulAddyMF841/Library/Mobile%20Documents/com~apple~CloudDocs/Docs%20iCloud/_OceanScales/Dev/IntervalTimer/IntervalTimer/IntervalTimer/IntervalTimer/ITVUser.swift"
+                  timestampString = "526920392.786752"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "112"
+                  endingLineNumber = "112"
+                  offsetFromSymbolStart = "188">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "IntervalTimer.ITVUser.init (coder : __ObjC.NSCoder) -&gt; IntervalTimer.ITVUser"
+                  moduleName = "IntervalTimer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/PaulAddyMF841/Library/Mobile%20Documents/com~apple~CloudDocs/Docs%20iCloud/_OceanScales/Dev/IntervalTimer/IntervalTimer/IntervalTimer/IntervalTimer/ITVUser.swift"
+                  timestampString = "526920392.789388"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "112"
+                  endingLineNumber = "112"
+                  offsetFromSymbolStart = "788">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IntervalTimer/ITVUser.swift"
+            timestampString = "526920200.162527"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "init()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IntervalTimer/ITVUser.swift"
+            timestampString = "526920230.029743"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "init()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "IntervalTimer.ITVUser.init () -&gt; IntervalTimer.ITVUser"
+                  moduleName = "IntervalTimer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/PaulAddyMF841/Library/Mobile%20Documents/com~apple~CloudDocs/Docs%20iCloud/_OceanScales/Dev/IntervalTimer/IntervalTimer/IntervalTimer/IntervalTimer/ITVUser.swift"
+                  timestampString = "526920392.806695"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "2056">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "IntervalTimer.ITVUser.init () -&gt; IntervalTimer.ITVUser"
+                  moduleName = "IntervalTimer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/PaulAddyMF841/Library/Mobile%20Documents/com~apple~CloudDocs/Docs%20iCloud/_OceanScales/Dev/IntervalTimer/IntervalTimer/IntervalTimer/IntervalTimer/ITVUser.swift"
+                  timestampString = "526920392.809144"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "2648">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimerViewControllerTimersProtocol.swift"
+            timestampString = "526920338.018247"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "didUpdateTimers()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

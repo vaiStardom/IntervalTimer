@@ -40,7 +40,7 @@ extension TimerViewController{
             
             //Second, if this is a selected timer, do we show the weather
             //TODO: cache the weather, update it only every 3 hours or if user has moved more than 5 kilometers
-            if theIntervalTimer.thisShowWeather! {
+            if theIntervalTimer.thisShowWeather {
                 if ITVCoreLocation.sharedInstance.isLocationServicesAndNetworkAvailable() {
                     self.registerNotifications() //will register at first weather use
                     //IntervalTimerCoreLocation.sharedInstance.firstTimeLocationUsage()

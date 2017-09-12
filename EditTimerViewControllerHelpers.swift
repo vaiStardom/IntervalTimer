@@ -22,7 +22,7 @@ extension EditTimerViewController {
             if let theItvTimer = ITVUser.sharedInstance.thisTimers?[theTimerIndex] {
                 if theTimerName! != theItvTimer.thisName!
                     || theTemperatureUnit != theItvTimer.thisTemperatureUnit
-                    || theShowWeather != theItvTimer.thisShowWeather! {
+                    || theShowWeather != theItvTimer.thisShowWeather {
                     isEditing = true
                 } else {
                     isEditing = false

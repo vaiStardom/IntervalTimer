@@ -135,21 +135,16 @@ extension ITVCoreLocation {
 
         switch (theError.code) {
         case 0:
-//        case CoreLocationError.LocationUnknown.rawValue: //location is currently unknown
             errorMessage = "Location is currently unknown. Code: \(theError.code). Message: localizedDescription: \(theError.localizedDescription), localizedFailureReason: \(theError.localizedFailureReason), localizedRecoveryOptions: \(theError.localizedRecoveryOptions), localizedRecoverySuggestion: \(theError.localizedRecoverySuggestion)."
             
             print("------> ERROR \(errorMessage)")
             showUserWarning(type: UserWarning.LocationManagerDidFail, with: errorMessage)
-            
-//        case CoreLocationError.Denied.rawValue:
         case 1:
             
             errorMessage = "Access to location has been denied by the user. Code: \(theError.code). Message: \(theError)."
             
             print("------> ERROR \(errorMessage)")
             showUserWarning(type: UserWarning.LocationServicesDisabled)
-            
-//        case CoreLocationError.Network.rawValue:
         case 2:
             errorMessage = "Network-related error. Code: \(theError.code). Message: \(theError)."
             

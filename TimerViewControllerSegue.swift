@@ -15,6 +15,7 @@ extension TimerViewController {
         if(segue.identifier == "TimerToEditTimer") {
             if let nextVC = segue.destination as? EditTimerViewController {
                 nextVC.itvTimerIndex = itvTimerIndex
+                nextVC.itvTimersProtocolDelegate = self
             }
         }
     }

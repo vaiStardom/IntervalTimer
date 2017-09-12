@@ -45,7 +45,6 @@ class TimerViewController: UIViewController {
     @IBOutlet weak var timerSecondsLabel: UILabel!
     @IBOutlet weak var timerMillisecondsForSecondsLabel: UILabel!
 
-//    var itvTimer: ITVTimer?
     var itvTimerIndex: Int?
     var startIntervalTimer: Bool? = false
     
@@ -58,5 +57,4 @@ class TimerViewController: UIViewController {
     var visualEffect: UIVisualEffect!
     
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-    
 }
