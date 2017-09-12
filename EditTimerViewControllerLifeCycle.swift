@@ -24,11 +24,10 @@ extension EditTimerViewController {
         aesthetics_initial()
         
         //First, is this a selected timer?
-        if let theItvTimer = itvTimer {
-            //yes
-            timerNameTextField.text = theItvTimer.thisName
+        if let theTimerIndex = itvTimerIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil {
+            timerNameTextField.text = ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisName
             //Second, if this is a selected timer, do we show the weather
-            if theItvTimer.thisShowWeather! {
+            if (ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisShowWeather)! {
                 aesthetics_startLoadingWeather()
                 showWeather()
             } else {
@@ -39,6 +38,9 @@ extension EditTimerViewController {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        animateTable()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

@@ -23,6 +23,12 @@ class EditTimerViewController: UIViewController {
     
     
     //let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-    var itvTimer: ITVTimer?
-    var itvInterval: ITVInterval?
+    var itvTimerIndex: Int?
+//    var itvTimer: ITVTimer?
+//    var itvInterval: ITVInterval?
+//    var itvIntervals: [ITVInterval]?
+//    var itvTimerIndex: Int?
+    var itvUnsavedTimersIntervals: [ITVInterval]? //for when the user creates a new timer with new intervals
+    var itvIntervalIndex: Int?
+    var itvTimersProtocolDelegate: ITVTimersProtocol?
 }

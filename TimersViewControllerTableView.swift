@@ -12,7 +12,7 @@ import UIKit
 extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        itvTimer = timers[indexPath.row]
+        itvTimerIndex = indexPath.row
         startSelectedIntervalTimer = false
         performSegue(withIdentifier: "TimersToTimer", sender: nil)
     }
@@ -40,27 +40,35 @@ extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return timers.count
+        if let theCount = ITVUser.sharedInstance.thisTimers?.count {
+            return theCount
+        } else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "TimersCell") as! TimersTableViewCell
         let index = (indexPath as NSIndexPath).row
-        let timer = timers[index]
         
-        cell.timerLabel?.text = timer.thisName
-        cell.startTimerImageView.image = UIImage(named: "start")
-        cell.totalTimeLabel.text = timer.totalTime()
-        
-        cell.startTimerImageView.layer.borderWidth = 1.0
-        cell.startTimerImageView.layer.masksToBounds = false
-        cell.startTimerImageView.layer.borderColor = ITVColors.Orange.cgColor
-        cell.startTimerImageView.layer.cornerRadius = cell.startTimerImageView.frame.size.height/2
-        
-        cell.startTimerButton.tag = index
-        cell.startTimerButton.addTarget(self, action: #selector(TimersViewController.startTimer(_:)), for: .touchUpInside)
-        
-        return cell
+        if let theTimer = ITVUser.sharedInstance.thisTimers?[index] {
+            cell.timerLabel?.text = theTimer.thisName
+            
+            cell.totalTimeLabel.text = theTimer.totalTime()
+            
+            cell.startTimerImageView.image = UIImage(named: "start")
+            cell.startTimerImageView.layer.borderWidth = 1.0
+            cell.startTimerImageView.layer.masksToBounds = false
+            cell.startTimerImageView.layer.borderColor = ITVColors.Orange.cgColor
+            cell.startTimerImageView.layer.cornerRadius = cell.startTimerImageView.frame.size.height/2
+            
+            cell.startTimerButton.tag = index
+            cell.startTimerButton.addTarget(self, action: #selector(TimersViewController.startTimer(_:)), for: .touchUpInside)
+            
+            return cell
+        } else {
+            return cell
+        }
     }
 }

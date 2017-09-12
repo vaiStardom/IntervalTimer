@@ -86,7 +86,7 @@ extension EditTimerViewController{
     func updateWeatherInformation(){
         activityIndicatorStop()
         
-        guard let theTemperature = getTemperatureUnit(from: temperatureSegmentedControl!)?.temperature(kelvins: ITVUser.sharedInstance.thisCurrentWeather?.thisKelvin)  else {
+        guard let theTemperature = getTemperatureUnit(from: temperatureSegmentedControl!).temperature(kelvins: ITVUser.sharedInstance.thisCurrentWeather?.thisKelvin)  else {
             aesthetics_showMissingWeatherWarning()
             fatalError("------> ERROR - EditTimerViewController updateWeatherInformation invalid temperature \(String(describing: ITVUser.sharedInstance.thisCurrentWeather?.thisKelvin))")
         }

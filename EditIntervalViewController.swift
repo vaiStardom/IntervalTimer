@@ -37,9 +37,14 @@ class EditIntervalViewController: UIViewController  {
     let zeroWidthSpace = "\u{200B}" //ZWSP, a non-printing character
     let allowedChars: String = "0123456789"
     
-    var indicators:[(imageView: ITVUIImageViewIndicator, activeFillColor: UIColor, inactiveFillColor: UIColor, borderColor: UIColor)] = []
+    var indicators:[(imageView: ITVUIImageViewIndicator, activeFillColor: UIColor, inactiveFillColor: UIColor, borderColor: UIColor, indicator: Indicator)] = []
     var selectedIndicator = false
-    var selectedInterval: ITVInterval?
+    var indicator: Indicator? //TODO: what if user does wants NO indicators? Redising view.
     var isEditingAnInterval: Bool? = false
     var textFields: [UITextField] = []
+    var itvIntervalsProtocolDelegate: ITVIntervalsProtocol?
+    
+    var itvTimerIndex: Int?
+    var itvIntervalIndex: Int?
+    var itvUnsavedTimersIntervals: [ITVInterval]?
 }

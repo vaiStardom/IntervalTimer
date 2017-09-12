@@ -30,7 +30,6 @@ extension EditIntervalViewController {
         secondTextField2.text = zeroWidthSpace
         secondTextField1.text = zeroWidthSpace
         
-        
         textFields.append(hourTextField2)
         textFields.append(hourTextField1)
         textFields.append(minuteTextField2)
@@ -39,6 +38,26 @@ extension EditIntervalViewController {
         textFields.append(secondTextField1)
         
         aesthetics_initial()
+        
+        if let theTimerIndex = itvTimerIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil {
+            if let theIntervalIndex = itvIntervalIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals?[theIntervalIndex] != nil { //user is editing an interval inside a saved timer
+                if let theInterval = ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals?[theIntervalIndex] {
+                    setViewValues(with: theInterval)
+                }
+            } else { //user is adding an interval to a saved timer
+                aesthetics_unselectAllIndicators()
+            }
+        } else { //this interval is for an unsaved timer
+            if let theIntervalIndex = itvIntervalIndex, itvUnsavedTimersIntervals?[theIntervalIndex] != nil {
+                if let theInterval = itvUnsavedTimersIntervals?[theIntervalIndex] { //user is editing an interval of an unsaved timer
+                    setViewValues(with: theInterval)
+                } else {
+                    aesthetics_unselectAllIndicators()
+                }
+            } else { //user is adding an interval to an unsaved timer
+                aesthetics_unselectAllIndicators()
+            }
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

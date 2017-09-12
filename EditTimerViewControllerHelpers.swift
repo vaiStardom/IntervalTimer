@@ -12,25 +12,33 @@ import UIKit
 
 extension EditTimerViewController {
     func didUserModifyATimer(){
-        if let theItvTimer = itvTimer  {
-            let theTimerName = timerNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-            let theTemperatureUnit = getTemperatureUnit(from: temperatureSegmentedControl)
-            let theShowWeather = showWeatherSwitch.isOn
-            
-            if theTimerName! != theItvTimer.thisName!
-                || theTemperatureUnit != theItvTimer.thisTemperatureUnit
-                || theShowWeather != theItvTimer.thisShowWeather! {
+        
+        let theTimerName = timerNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let theTemperatureUnit = getTemperatureUnit(from: temperatureSegmentedControl)
+        let theShowWeather = showWeatherSwitch.isOn
+
+        //First, is this a selected timer?
+        if let theTimerIndex = itvTimerIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil {
+            if let theItvTimer = ITVUser.sharedInstance.thisTimers?[theTimerIndex] {
+                if theTimerName! != theItvTimer.thisName!
+                    || theTemperatureUnit != theItvTimer.thisTemperatureUnit
+                    || theShowWeather != theItvTimer.thisShowWeather! {
+                    isEditing = true
+                } else {
+                    isEditing = false
+                }
+            }
+        } else {
+            if (!theTimerName!.isEmpty){
                 isEditing = true
             } else {
                 isEditing = false
             }
-        } else {
-            isEditing = false
         }
         configureNavBar()
     }
     
-    func getTemperatureUnit(from: UISegmentedControl) -> TemperatureUnit? {
+    func getTemperatureUnit(from: UISegmentedControl) -> TemperatureUnit {
         switch from.selectedSegmentIndex {
         case 0 :
             return TemperatureUnit.Kelvin

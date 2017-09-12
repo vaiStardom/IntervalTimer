@@ -13,7 +13,7 @@ import UIKit
 extension EditTimerViewController {
     @IBAction func showWeather(_ sender: Any) {
         if showWeatherSwitch.isOn {
-            aesthetics_startLoadingWeather()            
+            aesthetics_startLoadingWeather()
             showWeather()
         } else {
             //TODO: if switched OFF and weather has not finished loading, then cancel weather loading (cancel network calls)
@@ -23,10 +23,13 @@ extension EditTimerViewController {
         }
         didUserModifyATimer()
     }
+    
     @IBAction func addInterval(_ sender: Any) {
         performSegue(withIdentifier: "EditTimerToEditInterval", sender: nil)
     }
     func back(){
+        print("------> EditTimerViewController back()")
+        
         //TODO: if a name was added, save the timer
         //TODO: if no name and no intervals were added, just delete and dont save anything
         _ = navigationController?.popViewController(animated: true)
@@ -42,11 +45,41 @@ extension EditTimerViewController {
         }
     }
     @IBAction func selectedTemperatureUnit(_ sender: UISegmentedControl) {
-        let temperature = getTemperatureUnit(from: sender)?.temperature(kelvins: ITVUser.sharedInstance.thisCurrentWeather?.thisKelvin)
+        let temperature = getTemperatureUnit(from: sender).temperature(kelvins: ITVUser.sharedInstance.thisCurrentWeather?.thisKelvin)
         weatherTemperatureLabel.text = temperature
         didUserModifyATimer()
     }
     func save(){
-        _ = navigationController?.popViewController(animated: true)
+        print("------> EditTimerViewController save()")
+        
+        if let theTimerName = timerNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !theTimerName.isEmpty  {
+            let theTemperatureUnit = getTemperatureUnit(from: temperatureSegmentedControl)
+            let theShowWeather = showWeatherSwitch.isOn
+            
+            if let theTimerIndex = itvTimerIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil {
+                    //this was a selected timer
+                    ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisName = theTimerName
+                    ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisShowWeather = theShowWeather
+                    ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisTemperatureUnit = theTemperatureUnit
+            } else {
+                //this is a new timer
+                if let theNewTimersIntervals = itvUnsavedTimersIntervals {
+                    let theNewTimer = ITVTimer(name: theTimerName, showWeather: theShowWeather, temperatureUnit: theTemperatureUnit, intervals: theNewTimersIntervals)
+                    ITVUser.sharedInstance.thisTimers?.append(theNewTimer)
+                } else {
+                    let theNewTimer = ITVTimer(name: theTimerName, showWeather: theShowWeather, temperatureUnit: theTemperatureUnit, intervals: nil)
+                    ITVUser.sharedInstance.thisTimers?.append(theNewTimer)
+                }
+            }
+            
+            if self.itvTimersProtocolDelegate != nil {
+                self.itvTimersProtocolDelegate?.didUpdateTimers()
+            }
+            
+            _ = navigationController?.popViewController(animated: true)
+
+        } else {
+            //TODO: Alert user that he must name the timer.
+        }
     }
 }

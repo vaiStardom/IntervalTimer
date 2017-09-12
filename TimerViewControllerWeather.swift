@@ -32,8 +32,12 @@ extension TimerViewController{
     }
     func updateWeatherInformation(){
         activityIndicatorStop()
+        guard let theTimerIndex = itvTimerIndex else {
+            aesthetics_showMissingWeatherWarning()
+            fatalError("------> ERROR - TimerViewController updateWeatherInformation invalid timer index \(itvTimerIndex))")
+        }
         
-        guard let theTemperature = itvTimer?.thisTemperatureUnit.temperature(kelvins: ITVUser.sharedInstance.thisCurrentWeather?.thisKelvin)  else {
+        guard let theTemperature = ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisTemperatureUnit.temperature(kelvins: ITVUser.sharedInstance.thisCurrentWeather?.thisKelvin)  else {
             aesthetics_showMissingWeatherWarning()
             fatalError("------> ERROR - TimerViewController updateWeatherInformation invalid temperature \(String(describing: ITVUser.sharedInstance.thisCurrentWeather?.thisKelvin))")
         }

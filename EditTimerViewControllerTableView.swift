@@ -13,7 +13,7 @@ import UIKit
 extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        itvInterval = itvTimer?.thisIntervals![indexPath.row]
+        itvIntervalIndex = indexPath.row
         performSegue(withIdentifier: "EditTimerToEditInterval", sender: nil)
     }
     
@@ -40,8 +40,13 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let theCount = itvTimer?.thisIntervals!.count {
-            return theCount
+        
+        if let theTimerIndex = itvTimerIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil {
+            if let theCount = ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals?.count {
+                return theCount
+            } else {
+                return 0
+            }
         } else {
             return 0
         }
@@ -51,17 +56,25 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "IntervalCell") as! IntervalTableViewCell
         let index = (indexPath as NSIndexPath).row
-        let interval = itvTimer?.thisIntervals?[index]
         
-        cell.indicatorImageView.backgroundColor = interval?.thisIndicator?.uiColor()
-        cell.indicatorImageView.layer.borderColor = interval?.thisIndicator?.uiColor().cgColor
-        cell.indicatorImageView.roundImageView()
-        cell.intervalNumberLabel.text = "\(index + 1)"
-        if let theSeconds = interval?.thisSeconds {
-            cell.intervalTimeLabel.text = realTimeOf(seconds: theSeconds)
+        if let theTimer = ITVUser.sharedInstance.thisTimers?[itvTimerIndex!] {
+            if let theInterval = theTimer.thisIntervals?[index] {
+                cell.indicatorImageView.backgroundColor = theInterval.thisIndicator?.uiColor()
+                cell.indicatorImageView.layer.borderColor = theInterval.thisIndicator?.uiColor().cgColor
+                cell.indicatorImageView.roundImageView()
+                cell.intervalNumberLabel.text = "\(index + 1)"
+                if let theSeconds = theInterval.thisSeconds {
+                    cell.intervalTimeLabel.text = timeOf(seconds: theSeconds)
+                } else {
+                    cell.intervalTimeLabel.text = "0"
+                }
+                return cell
+            } else {
+                return cell
+            }
         } else {
-            cell.intervalTimeLabel.text = "0"
+            return cell
         }
-        return cell
+
     }
 }

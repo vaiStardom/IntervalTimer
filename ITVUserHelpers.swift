@@ -10,7 +10,6 @@ import Foundation
 
 //MARK: - Helpers
 extension ITVUser {
-    
     func weatherQueryPriority() -> Int {
         
         //priority 1 = byCityId

@@ -145,8 +145,8 @@ enum NavigationBarImage{
     static let Back = "barButtonBack"
 }
 
-public enum Indicator {
-    case Blue
+public enum Indicator: Int {
+    case Blue = 0
     case Green
     case Pink
     case Red

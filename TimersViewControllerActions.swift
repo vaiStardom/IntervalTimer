@@ -11,11 +11,12 @@ import UIKit
 //MARK: - Actions
 extension TimersViewController{
     func addTimer(){
+        itvTimerIndex = nil
         performSegue(withIdentifier: "TimersToEditTimer", sender: nil)
         //performSegue(withIdentifier: "TimersToTimer", sender: nil)
     }
-    func startTimer(_ sender: UIButton) {
-        itvTimer = timers[sender.tag]
+    func startTimer(_ sender: UIButton) {        
+        itvTimerIndex = sender.tag
         startSelectedIntervalTimer = true
         performSegue(withIdentifier: "TimersToTimer", sender: self)
     }

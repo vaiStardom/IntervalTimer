@@ -17,8 +17,12 @@ extension TimerViewController{
         configureNavBar()
         aesthetics_initial()
         
+        guard let theTimerIndex = itvTimerIndex , ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil else {
+            fatalError("A timer index is needed in order to show a valid timer.")
+        }
+        
         //First, is this a selected timer?
-        if let theIntervalTimer = itvTimer {
+        if let theIntervalTimer = ITVUser.sharedInstance.thisTimers?[theTimerIndex] {
             //yes
             timerNameLabel.text = theIntervalTimer.thisName
             
@@ -53,11 +57,8 @@ extension TimerViewController{
                     aesthetics_showMissingWeatherWarning()
                 }
             }
-        } else {
-            //no, user probably wants to create a new timer
-            timerNameLabel.text = ""
-            startPauseResume = (true, false, false)
         }
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
