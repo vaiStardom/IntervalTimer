@@ -22,13 +22,12 @@ extension EditIntervalViewController {
             self.navigationItem.leftBarButtonItems = [saveButton]
         }
         
+        let label = ITVUILabel().navBarNewTimerTitle()
+        self.navigationItem.titleView = label
+        
         let negativeSpace = ITVUIBarButtonItem().negativeSpace()
         let cancelButton = ITVUIBarButtonItem().cancelButton(target: self, selector: #selector(EditIntervalViewController.cancel))
-        
         self.navigationItem.rightBarButtonItems = [negativeSpace, cancelButton]
-
-        let label = ITVUILabel().navBarNewIntervalTitle()
-        self.navigationItem.titleView = label
         
     }
 }

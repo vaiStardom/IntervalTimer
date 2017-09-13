@@ -47,4 +47,7 @@ class EditIntervalViewController: UIViewController  {
     var itvTimerIndex: Int?
     var itvIntervalIndex: Int?
     var itvUnsavedTimersIntervals: [ITVInterval]?
+    
+    //[TextField.Tag:TextField.Text]
+    var dictTextFieldValues: [Int:String] = [0:"", 1:"", 2:"", 3:"", 4:"", 5:""]
 }

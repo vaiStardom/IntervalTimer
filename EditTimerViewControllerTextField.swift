@@ -18,7 +18,7 @@ extension EditTimerViewController: UITextFieldDelegate, UITextViewDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        print("textField.text = \(textField.text), replacementString = \(string)")
+        print("------> EditTimerViewController textField.text = \(textField.text), replacementString = \(string)")
         
         if string.isEmpty {
             if let thePreviousText = textField.text, thePreviousText.characters.count == 1 {
