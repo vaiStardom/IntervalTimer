@@ -17,6 +17,9 @@ extension EditTimerViewController: UITextFieldDelegate, UITextViewDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        print("textField.text = \(textField.text), replacementString = \(string)")
+        
         if string.isEmpty {
             if let thePreviousText = textField.text, thePreviousText.characters.count == 1 {
                 isEditing = false
@@ -26,6 +29,9 @@ extension EditTimerViewController: UITextFieldDelegate, UITextViewDelegate {
             }
         } else {
             if let thePreviousText = textField.text, thePreviousText.characters.count == 0 {
+                isEditing = true
+                configureNavBar()
+            } else if string.trimmingCharacters(in: .whitespacesAndNewlines).characters.count > 0 {
                 isEditing = true
                 configureNavBar()
             } else {

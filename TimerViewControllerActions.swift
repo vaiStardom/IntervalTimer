@@ -28,40 +28,30 @@ extension TimerViewController{
     @IBAction func cancel(_ sender: UIButton) {
         startPauseResume = (true, false, false)
         timer.invalidate()
-        
         aesthetics_timerCancel()
     }
     
-    //TODO: Clicking here should also re-atempt to get the missing information by verifying first that the previous error no-longer exists, show the warning if it exists still, or re-attempt weathe retreival.
+    //TODO: Clicking here should also re-atempt to get the missing information by verifying first that the previous error no-longer exists, show the warning if it exists still, or re-attempt weather retreival.
     @IBAction func weatherMissing(_ sender: Any) {
-        
-        
-        
-//        if ITVCoreLocation.sharedInstance.isLocationServicesAndNetworkAvailable() {
-//            self.registerNotifications() //will register at first weather use
-//            //IntervalTimerCoreLocation.sharedInstance.firstTimeLocationUsage()
-//            if ITVUser.sharedInstance.thisShouldUpdateWeather {
-//                setWeatherFromNetwork()
-//            } else {
-//                if ITVUser.sharedInstance.thisCurrentWeather != nil {
-//                    updateWeatherInformation()
-//                } else {
-//                    setWeatherFromNetwork()
-//                }
-//            }
-//        } else {
-//            aesthetics_showMissingWeatherWarning()
-//        }
-
-        
-        
-        
-        
-        
-        if ITVWarningForUser.sharedInstance.thisMessage != nil, !(ITVWarningForUser.sharedInstance.thisMessage?.isEmpty)! {
-            showUserWarning(type: ITVWarningForUser.sharedInstance.thisUserWarning, with: ITVWarningForUser.sharedInstance.thisMessage)
+        if ITVCoreLocation.sharedInstance.isLocationServicesAndNetworkAvailable() {
+            self.registerNotifications() //will register at first weather use
+            //IntervalTimerCoreLocation.sharedInstance.firstTimeLocationUsage()
+            if ITVUser.sharedInstance.thisShouldUpdateWeather {
+                setWeatherFromNetwork()
+            } else {
+                if ITVUser.sharedInstance.thisCurrentWeather != nil {
+                    updateWeatherInformation()
+                } else {
+                    setWeatherFromNetwork()
+                }
+            }
         } else {
-            showUserWarning(type: ITVWarningForUser.sharedInstance.thisUserWarning)
+            aesthetics_showMissingWeatherWarning()
+            if ITVWarningForUser.sharedInstance.thisMessage != nil, !(ITVWarningForUser.sharedInstance.thisMessage?.isEmpty)! {
+                showUserWarning(type: ITVWarningForUser.sharedInstance.thisUserWarning, with: ITVWarningForUser.sharedInstance.thisMessage)
+            } else {
+                showUserWarning(type: ITVWarningForUser.sharedInstance.thisUserWarning)
+            }
         }
     }
     func back(){

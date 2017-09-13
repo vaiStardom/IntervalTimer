@@ -76,29 +76,25 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kNo-zw-Loh">
-                                <rect key="frame" x="7" y="20" width="254" height="30"/>
+                                <rect key="frame" x="7" y="20" width="268" height="30"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="254" id="4Bm-gC-Gqn"/>
+                                    <constraint firstAttribute="width" constant="268" id="4Bm-gC-Gqn"/>
                                     <constraint firstAttribute="height" constant="30" id="4dc-Pm-onY"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
                             </textField>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Jsf-Ag-Ots">
-                                <rect key="frame" x="273" y="25" width="20" height="20"/>
-                                <color key="color" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </activityIndicatorView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TuX-E6-30a">
-                                <rect key="frame" x="261" y="13" width="44" height="44"/>
+                                <rect key="frame" x="261" y="0.0" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="33F-qt-5ze"/>
                                     <constraint firstAttribute="height" constant="44" id="mEO-6h-cWG"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CUf-Fm-Bka">
-                                <rect key="frame" x="203" y="23" width="53" height="21"/>
+                                <rect key="frame" x="203" y="-1" width="53" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="53" id="ZvI-IX-tIj"/>
                                     <constraint firstAttribute="height" constant="21" id="m3i-TE-jud"/>
@@ -108,14 +104,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="warning" translatesAutoresizingMaskIntoConstraints="NO" id="ZXO-ao-VKA">
-                                <rect key="frame" x="281" y="23" width="20" height="21"/>
+                                <rect key="frame" x="273" y="11" width="20" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="45n-Em-ops"/>
                                     <constraint firstAttribute="height" constant="21" id="9AB-i3-R6y"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6h6-e5-JRa">
-                                <rect key="frame" x="261" y="13" width="44" height="44"/>
+                                <rect key="frame" x="261" y="0.0" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="CLh-1w-FTc"/>
                                     <constraint firstAttribute="height" constant="44" id="xDT-bd-4QV"/>
@@ -204,6 +200,10 @@ Kelvin, Fahrenheight, or Celcius.</string>
                                     <outlet property="delegate" destination="f9n-YU-8Y8" id="0hE-Eh-vRG"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Jsf-Ag-Ots">
+                                <rect key="frame" x="273" y="12" width="20" height="20"/>
+                                <color key="color" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -217,7 +217,7 @@ Kelvin, Fahrenheight, or Celcius.</string>
                             <constraint firstItem="Rbc-6K-3co" firstAttribute="leading" secondItem="NEn-CZ-lrq" secondAttribute="leading" id="JpM-LV-Z7C"/>
                             <constraint firstItem="nJW-tv-Sy0" firstAttribute="top" secondItem="Rbc-6K-3co" secondAttribute="bottom" id="KA6-c6-39F"/>
                             <constraint firstItem="Jsf-Ag-Ots" firstAttribute="centerY" secondItem="TuX-E6-30a" secondAttribute="centerY" id="KKJ-l2-xAM"/>
-                            <constraint firstItem="ZXO-ao-VKA" firstAttribute="trailing" secondItem="TuX-E6-30a" secondAttribute="trailing" constant="-4" id="Kv3-Xp-gJg"/>
+                            <constraint firstItem="ZXO-ao-VKA" firstAttribute="trailing" secondItem="TuX-E6-30a" secondAttribute="trailing" constant="-12" id="Kv3-Xp-gJg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="TuX-E6-30a" secondAttribute="trailing" constant="-1" id="LED-fM-yfG"/>
                             <constraint firstItem="S7x-6F-qaa" firstAttribute="top" secondItem="kNo-zw-Loh" secondAttribute="bottom" constant="8" id="NJd-i4-A4D"/>
                             <constraint firstItem="Jsf-Ag-Ots" firstAttribute="centerX" secondItem="TuX-E6-30a" secondAttribute="centerX" id="QZa-Uq-IwG"/>
@@ -226,18 +226,18 @@ Kelvin, Fahrenheight, or Celcius.</string>
                             <constraint firstItem="L1H-Sv-svF" firstAttribute="leading" secondItem="NEn-CZ-lrq" secondAttribute="leading" constant="15" id="Uec-eD-TNe"/>
                             <constraint firstAttribute="trailingMargin" secondItem="XKR-oh-FiO" secondAttribute="trailing" constant="-1" id="XmL-dF-yrf"/>
                             <constraint firstItem="L1H-Sv-svF" firstAttribute="leading" secondItem="NEn-CZ-lrq" secondAttribute="leading" constant="15" id="XrC-bh-nKF"/>
-                            <constraint firstItem="TuX-E6-30a" firstAttribute="centerY" secondItem="kNo-zw-Loh" secondAttribute="centerY" id="aiN-tU-GCO"/>
+                            <constraint firstItem="TuX-E6-30a" firstAttribute="centerY" secondItem="kNo-zw-Loh" secondAttribute="centerY" constant="-13" id="aiN-tU-GCO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="nmF-3N-dED" secondAttribute="trailing" constant="5" id="bCa-JD-oCk"/>
                             <constraint firstItem="P0h-2u-Jp0" firstAttribute="leading" secondItem="NEn-CZ-lrq" secondAttribute="leadingMargin" constant="-1" id="cll-AT-q3p"/>
                             <constraint firstItem="Nyu-CI-egr" firstAttribute="top" secondItem="S7x-6F-qaa" secondAttribute="bottom" constant="8" id="f83-Rx-eYl"/>
                             <constraint firstItem="nmF-3N-dED" firstAttribute="centerY" secondItem="PE3-Mm-Agf" secondAttribute="centerY" id="hqZ-Zn-wxD"/>
                             <constraint firstItem="6h6-e5-JRa" firstAttribute="centerY" secondItem="TuX-E6-30a" secondAttribute="centerY" id="kg0-oR-sMJ"/>
                             <constraint firstItem="XKR-oh-FiO" firstAttribute="centerY" secondItem="S7x-6F-qaa" secondAttribute="centerY" id="kry-CH-K7O"/>
-                            <constraint firstItem="CUf-Fm-Bka" firstAttribute="centerY" secondItem="TuX-E6-30a" secondAttribute="centerY" constant="-1.5" id="lyk-CW-Gy2"/>
+                            <constraint firstItem="CUf-Fm-Bka" firstAttribute="centerY" secondItem="TuX-E6-30a" secondAttribute="centerY" constant="-12.5" id="lyk-CW-Gy2"/>
                             <constraint firstItem="PE3-Mm-Agf" firstAttribute="top" secondItem="S7x-6F-qaa" secondAttribute="bottom" constant="45" id="pV5-kE-aVV"/>
                             <constraint firstItem="Rbc-6K-3co" firstAttribute="top" secondItem="PE3-Mm-Agf" secondAttribute="bottom" constant="8" id="q39-zs-JPK"/>
                             <constraint firstItem="6h6-e5-JRa" firstAttribute="centerX" secondItem="TuX-E6-30a" secondAttribute="centerX" id="qHC-CN-UkF"/>
-                            <constraint firstItem="ZXO-ao-VKA" firstAttribute="centerY" secondItem="kNo-zw-Loh" secondAttribute="centerY" constant="-1.5" id="thy-md-dE7"/>
+                            <constraint firstItem="ZXO-ao-VKA" firstAttribute="centerY" secondItem="kNo-zw-Loh" secondAttribute="centerY" constant="-13.5" id="thy-md-dE7"/>
                             <constraint firstAttribute="trailing" secondItem="L1H-Sv-svF" secondAttribute="trailing" constant="15" id="vBW-DX-ZZf"/>
                             <constraint firstItem="xGP-Cf-6VF" firstAttribute="centerY" secondItem="nmF-3N-dED" secondAttribute="centerY" id="vGS-zP-bAz"/>
                             <constraint firstItem="L1H-Sv-svF" firstAttribute="top" secondItem="S7x-6F-qaa" secondAttribute="bottom" constant="9" id="yKb-Jj-AwX"/>
@@ -274,17 +274,17 @@ Kelvin, Fahrenheight, or Celcius.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94b-Co-cGT">
-                                <rect key="frame" x="15" y="0.0" width="197" height="41"/>
+                                <rect key="frame" x="15" y="0.0" width="264" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="RjT-9Y-fQA"/>
-                                    <constraint firstAttribute="width" constant="197" id="aRN-PQ-iug"/>
+                                    <constraint firstAttribute="width" constant="264" id="aRN-PQ-iug"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="35"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50V-60-GfP">
-                                <rect key="frame" x="203" y="10" width="53" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50V-60-GfP">
+                                <rect key="frame" x="256" y="44" width="53" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="53" id="2VL-tc-gx3"/>
                                     <constraint firstAttribute="height" constant="21" id="Iow-2L-pyu"/>
@@ -301,7 +301,7 @@ Kelvin, Fahrenheight, or Celcius.</string>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sfs-bU-sq4">
-                                <rect key="frame" x="269" y="-2" width="44" height="44"/>
+                                <rect key="frame" x="261" y="0.0" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="tUH-BV-6hX"/>
                                     <constraint firstAttribute="height" constant="44" id="tc2-YI-2cE"/>
@@ -400,7 +400,7 @@ Kelvin, Fahrenheight, or Celcius.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="warning" translatesAutoresizingMaskIntoConstraints="NO" id="Ev8-d3-Dzu">
-                                <rect key="frame" x="281" y="10" width="20" height="21"/>
+                                <rect key="frame" x="273" y="11" width="20" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="7Gu-cx-r3N"/>
                                     <constraint firstAttribute="width" constant="20" id="I6o-il-dDM"/>
@@ -410,9 +410,9 @@ Kelvin, Fahrenheight, or Celcius.</string>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Vsl-ki-DBC" firstAttribute="width" secondItem="Cx7-MP-d6D" secondAttribute="width" id="1Eu-aK-anN"/>
-                            <constraint firstItem="50V-60-GfP" firstAttribute="centerY" secondItem="UL6-1S-xfh" secondAttribute="centerY" constant="-1.5" id="23N-c1-pto"/>
+                            <constraint firstItem="50V-60-GfP" firstAttribute="centerY" secondItem="UL6-1S-xfh" secondAttribute="centerY" constant="32.5" id="23N-c1-pto"/>
                             <constraint firstItem="eYs-Rk-chp" firstAttribute="centerY" secondItem="On6-vt-RSA" secondAttribute="centerY" id="2Fj-4D-7tb"/>
-                            <constraint firstItem="Ev8-d3-Dzu" firstAttribute="centerY" secondItem="94b-Co-cGT" secondAttribute="centerY" id="4aY-26-PEJ"/>
+                            <constraint firstItem="Ev8-d3-Dzu" firstAttribute="centerY" secondItem="94b-Co-cGT" secondAttribute="centerY" constant="1" id="4aY-26-PEJ"/>
                             <constraint firstItem="nv7-KQ-fE5" firstAttribute="centerX" secondItem="On6-vt-RSA" secondAttribute="centerX" id="6PM-7f-lAK"/>
                             <constraint firstItem="Cx7-MP-d6D" firstAttribute="trailing" secondItem="onz-dF-8ba" secondAttribute="trailing" constant="-15" id="8Ig-Wg-pjY"/>
                             <constraint firstItem="FQm-g8-Odx" firstAttribute="width" secondItem="Hwb-Ik-GIB" secondAttribute="width" id="Aeu-2C-Wlx"/>
@@ -441,9 +441,9 @@ Kelvin, Fahrenheight, or Celcius.</string>
                             <constraint firstItem="On6-vt-RSA" firstAttribute="centerX" secondItem="PD0-Qt-9de" secondAttribute="centerX" id="gBe-za-ksc"/>
                             <constraint firstItem="FQm-g8-Odx" firstAttribute="height" secondItem="Hwb-Ik-GIB" secondAttribute="height" id="l5K-Ca-7oZ"/>
                             <constraint firstItem="PD0-Qt-9de" firstAttribute="top" secondItem="94b-Co-cGT" secondAttribute="bottom" constant="8" id="ooU-xA-ssa"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Ev8-d3-Dzu" secondAttribute="trailing" constant="3" id="q2g-He-K3j"/>
-                            <constraint firstItem="sfs-bU-sq4" firstAttribute="centerY" secondItem="Ev8-d3-Dzu" secondAttribute="centerY" id="rha-gk-Dn3"/>
-                            <constraint firstItem="UL6-1S-xfh" firstAttribute="leading" secondItem="50V-60-GfP" secondAttribute="trailing" constant="5" id="tnd-vR-NMy"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ev8-d3-Dzu" secondAttribute="trailing" constant="11" id="q2g-He-K3j"/>
+                            <constraint firstItem="sfs-bU-sq4" firstAttribute="centerY" secondItem="Ev8-d3-Dzu" secondAttribute="centerY" constant="0.5" id="rha-gk-Dn3"/>
+                            <constraint firstItem="UL6-1S-xfh" firstAttribute="leading" secondItem="50V-60-GfP" secondAttribute="trailing" constant="-48" id="tnd-vR-NMy"/>
                             <constraint firstItem="94b-Co-cGT" firstAttribute="leading" secondItem="fnu-e3-O6b" secondAttribute="leadingMargin" constant="-1" id="vge-95-S66"/>
                         </constraints>
                     </view>
@@ -467,7 +467,7 @@ Kelvin, Fahrenheight, or Celcius.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fj6-a4-b0F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1766" y="539"/>
+            <point key="canvasLocation" x="1764.375" y="538.73239436619724"/>
         </scene>
         <!--Edit Interval View Controller-->
         <scene sceneID="Ues-dc-lfK">

@@ -18,4 +18,9 @@ extension TimerViewController{
     func activityIndicatorStop(){
         activityIndicator.stopAnimating()
     }
+    func timerInvalid(){
+        //TODO: desogn a warning for the user to add intervals, since this timer is empty
+        startPauseResume = (true, false, false)
+        startPauseResumeButton.isEnabled = false
+    }
 }

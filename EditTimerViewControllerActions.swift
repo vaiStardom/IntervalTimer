@@ -38,10 +38,25 @@ extension EditTimerViewController {
         _ = navigationController?.popViewController(animated: true)
     }
     @IBAction func weatherMissing(_ sender: Any) {
-        if ITVWarningForUser.sharedInstance.thisMessage != nil, !(ITVWarningForUser.sharedInstance.thisMessage?.isEmpty)! {
-            showUserWarning(type: ITVWarningForUser.sharedInstance.thisUserWarning, with: ITVWarningForUser.sharedInstance.thisMessage)
+        if ITVCoreLocation.sharedInstance.isLocationServicesAndNetworkAvailable() {
+            self.registerNotifications() //will register at first weather use
+            //IntervalTimerCoreLocation.sharedInstance.firstTimeLocationUsage()
+            if ITVUser.sharedInstance.thisShouldUpdateWeather {
+                setWeatherFromNetwork()
+            } else {
+                if ITVUser.sharedInstance.thisCurrentWeather != nil {
+                    updateWeatherInformation()
+                } else {
+                    setWeatherFromNetwork()
+                }
+            }
         } else {
-            showUserWarning(type: ITVWarningForUser.sharedInstance.thisUserWarning)
+            aesthetics_showMissingWeatherWarning()
+            if ITVWarningForUser.sharedInstance.thisMessage != nil, !(ITVWarningForUser.sharedInstance.thisMessage?.isEmpty)! {
+                showUserWarning(type: ITVWarningForUser.sharedInstance.thisUserWarning, with: ITVWarningForUser.sharedInstance.thisMessage)
+            } else {
+                showUserWarning(type: ITVWarningForUser.sharedInstance.thisUserWarning)
+            }
         }
     }
     @IBAction func selectedTemperatureUnit(_ sender: UISegmentedControl) {

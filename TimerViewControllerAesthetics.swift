@@ -112,6 +112,7 @@ extension TimerViewController {
         cancelImageView.isOpaque = true
         aesthetics_timerLabelsInitialText()
     }
+
     func aesthetics_timerLabelsInitialText(){
         
         timerHoursLabel.text = "00:00:00"

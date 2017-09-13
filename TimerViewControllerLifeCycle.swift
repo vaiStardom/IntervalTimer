@@ -26,17 +26,30 @@ extension TimerViewController{
             //yes
             timerNameLabel.text = theIntervalTimer.thisName
             
-            //does user want to start it immedialy
-            if let theStartIntervalTimer = startIntervalTimer, theStartIntervalTimer {
-                //yes
-                ellapsedSeconds = theIntervalTimer.thisIntervals![0].thisSeconds!
-                runIntervalTimer()
-                aesthetics_timerStart()
-                startPauseResume = (false, true, false)
+            //Is this a valid timer?
+            if let theFirstIntervals = theIntervalTimer.thisIntervals?.first {
+                if let theFirstIntervalsSeconds = theFirstIntervals.thisSeconds, theFirstIntervalsSeconds > 0.0 {
+                    //yes
+                    //does user want to start it immedialy
+                    if let theStartIntervalTimer = startIntervalTimer, theStartIntervalTimer {
+                        //yes
+                        ellapsedSeconds = theIntervalTimer.thisIntervals![0].thisSeconds!
+                        runIntervalTimer()
+                        aesthetics_timerStart()
+                        startPauseResume = (false, true, false)
+                    } else {
+                        //no
+                        startPauseResume = (true, false, false)
+                    }
+                } else {
+                    //interval empty, nothing to run
+                    timerInvalid()
+                }
             } else {
-                //no
-                startPauseResume = (true, false, false)
+                //interval empty, nothing to run
+                timerInvalid()
             }
+
             
             //Second, if this is a selected timer, do we show the weather
             //TODO: cache the weather, update it only every 3 hours or if user has moved more than 5 kilometers
