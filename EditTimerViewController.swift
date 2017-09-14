@@ -20,7 +20,7 @@ class EditTimerViewController: UIViewController {
     @IBOutlet weak var temperatureSegmentedControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var weatherActivityIndicator: UIActivityIndicatorView!
-    
+    @IBOutlet weak var addIntervalsToTimerLabel: UILabel!
     
     //let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     var itvTimerIndex: Int?
@@ -31,4 +31,6 @@ class EditTimerViewController: UIViewController {
     var itvUnsavedTimersIntervals: [ITVInterval]? //for when the user creates a new timer with new intervals
     var itvIntervalIndex: Int?
     var itvTimersProtocolDelegate: ITVTimersProtocol?
+    
+    //TODO: get kalvin out of the possible choices, no one uses kalvins, stick with the two other options
 }

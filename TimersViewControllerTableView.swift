@@ -17,28 +17,6 @@ extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
         performSegue(withIdentifier: "TimersToTimer", sender: nil)
     }
 
-    //TODO: Only do this animation only when app launches, stop doing it at every view appear 
-    func animateTable(){
-        tableView.reloadData()
-        
-        let cells = tableView.visibleCells
-        let tableHeight: CGFloat = tableView.bounds.size.height
-        
-        for i in cells {
-            let cell: UITableViewCell = i as UITableViewCell
-            cell.transform = CGAffineTransform(translationX: 0, y: tableHeight)
-        }
-        
-        var index = 0
-        for a in cells {
-            let cell : UITableViewCell = a as UITableViewCell
-            UIView.animate(withDuration: 1.5, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, animations: {
-                cell.transform = CGAffineTransform(translationX: 0,y: 0);
-            }, completion: nil)
-            index += 1
-        }
-    }
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let theCount = ITVUser.sharedInstance.thisTimers?.count {
             return theCount

@@ -43,8 +43,6 @@ extension EditIntervalViewController: UITextFieldDelegate {
             minuteTextField2.text = dictTextFieldValues[4]
             hourTextField1.text = dictTextFieldValues[5]
             hourTextField2.text = dictTextFieldValues[6]
-        
-        
         }
     }
     
@@ -65,7 +63,8 @@ extension EditIntervalViewController: UITextFieldDelegate {
         if textField.tag == 1 {
             if !string.isEmpty{
                 if let theCurrentText = currentText, theCurrentText.isEmpty {
-                    compareFieldsWithSavedInterval()
+                    isEditingAnInterval = true
+                    configureNavBar()
                     return true
                 } else {
                     manageTextFields2(string: string)
@@ -114,9 +113,7 @@ extension EditIntervalViewController: UITextFieldDelegate {
                 compareFieldsWithSavedInterval()
                 return false
             }
-
         }
-        
     }
 }
 //    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

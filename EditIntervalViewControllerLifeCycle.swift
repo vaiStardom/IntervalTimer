@@ -23,7 +23,15 @@ extension EditIntervalViewController {
         secondTextField2.delegate = self
         secondTextField1.delegate = self
         
-        dictTextFieldValues = [0:zeroWidthSpace, 1:zeroWidthSpace, 2:zeroWidthSpace, 3:zeroWidthSpace, 4:zeroWidthSpace, 5:zeroWidthSpace]
+        hourTextField2.clearsOnBeginEditing = true
+        
+        dictTextFieldValues = [
+            0:zeroWidthSpace,
+            1:zeroWidthSpace,
+            2:zeroWidthSpace,
+            3:zeroWidthSpace,
+            4:zeroWidthSpace,
+            5:zeroWidthSpace]
 
         textFields.append(hourTextField2)
         textFields.append(hourTextField1)

@@ -47,17 +47,26 @@ extension EditIntervalViewController {
         fifthIndicatorImageView.roundImageView()
         sixthIndicatorImageView.roundImageView()
     }
-    func aesthetics_manageSelectedColorIndicator(indicatorIndex: Int){
-        indicators[indicatorIndex].imageView.isSelected = !indicators[indicatorIndex].imageView.isSelected
-        selectedIndicator = indicators[indicatorIndex].imageView.isSelected
-        aesthetics_unselectAllIndicators()
-        indicators[indicatorIndex].imageView.isSelected = selectedIndicator
-        if selectedIndicator == true {
-            //indicators[indicatorIndex].imageView.image = UIImage(named: indicators[indicatorIndex].activeImageName)
-            indicators[indicatorIndex].imageView.backgroundColor = indicators[indicatorIndex].activeFillColor
-            indicators[indicatorIndex].imageView.layer.borderColor = indicators[indicatorIndex].borderColor.cgColor
-            indicator = indicators[indicatorIndex].indicator
+    func aesthetics_manageSelectedColorIndicator(indicatorIndex: Int?){
+        
+        if let theIndicatorIndex = indicatorIndex {
+            indicators[theIndicatorIndex].imageView.isSelected = !indicators[theIndicatorIndex].imageView.isSelected
+            selectedIndicator = indicators[theIndicatorIndex].imageView.isSelected
+            aesthetics_unselectAllIndicators()
+            indicators[theIndicatorIndex].imageView.isSelected = selectedIndicator
+            if selectedIndicator == true {
+                indicators[theIndicatorIndex].imageView.backgroundColor = indicators[theIndicatorIndex].activeFillColor
+                indicators[theIndicatorIndex].imageView.layer.borderColor = indicators[theIndicatorIndex].borderColor.cgColor
+                indicator = indicators[theIndicatorIndex].indicator
+            } else {
+                indicators[theIndicatorIndex].imageView.backgroundColor = indicators[theIndicatorIndex].inactiveFillColor
+                indicators[theIndicatorIndex].imageView.layer.borderColor = indicators[theIndicatorIndex].borderColor.cgColor
+                indicator = nil
+            }
+        } else {
+            aesthetics_unselectAllIndicators()
         }
+        compareFieldsWithSavedInterval()
     }
     func aesthetics_unselectAllIndicators(){
         for indicator in indicators {

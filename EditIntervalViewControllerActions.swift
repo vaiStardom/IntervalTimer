@@ -54,8 +54,10 @@ extension EditIntervalViewController {
                         itvUnsavedTimersIntervals?[theIntervalIndex].thisIndicator = theIndicator
                         self.itvIntervalsProtocolDelegate?.didUpdateIntervals(itvUnsavedTimersIntervals)
                     } else {
+                        itvUnsavedTimersIntervals = []
                         let newInterval = ITVInterval(seconds: totalSeconds(), indicator: indicator)
                         itvUnsavedTimersIntervals?.append(newInterval)
+                        self.itvIntervalsProtocolDelegate?.didUpdateIntervals(itvUnsavedTimersIntervals)
                     }
                 }
             } else {

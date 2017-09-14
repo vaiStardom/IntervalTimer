@@ -30,7 +30,7 @@ class ITVTimer: NSObject, NSCoding {
     
     //this should be a dictionary of [Order:Interval] (the order/or rank of the interval will be managed in this class
     //the index of this array could also seve has the order as well...
-    private var intervals: [ITVInterval]? = []
+    private var itvIntervals: [ITVInterval]? = []
     
     //MARK: - public get/set properties
     public var thisName: String? {
@@ -58,11 +58,17 @@ class ITVTimer: NSObject, NSCoding {
         }
     }
     public var thisIntervals: [ITVInterval]? {
-        get { return intervals}
+        get { return itvIntervals}
         set {
-            intervals = newValue
-            UserDefaults.standard.set(newValue, forKey: "intervals")
-            UserDefaults.standard.synchronize()
+            itvIntervals = newValue
+            if newValue != nil {
+                if let theIntervals = newValue {
+                    let theIntervalsData = NSKeyedArchiver.archivedData(withRootObject: theIntervals)
+                    UserDefaults.standard.set(theIntervalsData, forKey: "itvIntervals")
+                    UserDefaults.standard.synchronize()
+                }
+            }
+
         }
     }
     
@@ -80,8 +86,8 @@ class ITVTimer: NSObject, NSCoding {
             }
         }
         
-        if let theIntervals = UserDefaults.standard.value(forKey: "intervals") as? NSData {
-            self.intervals = NSKeyedUnarchiver.unarchiveObject(with: theIntervals as Data) as? [ITVInterval]
+        if let theIntervals = UserDefaults.standard.value(forKey: "itvIntervals") as? NSData {
+            self.itvIntervals = NSKeyedUnarchiver.unarchiveObject(with: theIntervals as Data) as? [ITVInterval]
         }
     }
 
@@ -114,7 +120,7 @@ class ITVTimer: NSObject, NSCoding {
         let theTemperatureUnitRawValue = thisTemperatureUnit.rawValue
         coder.encode(theTemperatureUnitRawValue, forKey: "temperatureUnit")
         
-        coder.encode(self.thisIntervals, forKey: "intervals")
+        coder.encode(self.thisIntervals, forKey: "itvIntervals")
     }
     
     required init(coder decoder: NSCoder) {
@@ -133,23 +139,9 @@ class ITVTimer: NSObject, NSCoding {
             }
         }
         
-        if let theIntervals = UserDefaults.standard.value(forKey: "intervals") as? NSData {
-            intervals = NSKeyedUnarchiver.unarchiveObject(with: theIntervals as Data) as! [ITVInterval]?
+        if let theIntervals = UserDefaults.standard.value(forKey: "itvIntervals") as? NSData {
+            itvIntervals = NSKeyedUnarchiver.unarchiveObject(with: theIntervals as Data) as! [ITVInterval]?
         }
     }
 
 }
-//public func ==(itvTimer1: ITVTimer, itvTimer2: ITVTimer) -> Bool {
-//    return itvTimer1 === itvTimer2
-//}
-
-//extension ITVTimer: CustomStringConvertible { //this extension allows for better debugging
-//    public var description: String {
-//        let name = (self.thisName != nil ? self.thisName! : "nil")
-//        let showWeather = (self.thisShowWeather != nil ? self.thisShowWeather : nil)
-//        let temperatureUnit = (self.thisTemperatureUnit != nil ? self.thisTemperatureUnit : nil)
-//        let itvIntervals = (self.thisIntervals != nil ? self.thisIntervals! : nil)
-//        let string = "Name -> \(name) showWeather -> \(showWeather) temperatureUnit -> \(temperatureUnit) itvIntervals -> \(itvIntervals)"
-//        return string
-//    }
-//}

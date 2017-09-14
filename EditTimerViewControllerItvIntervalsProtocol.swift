@@ -13,6 +13,7 @@ extension EditTimerViewController: ITVIntervalsProtocol {
         if let theNewIntervals = intervals {
             itvUnsavedTimersIntervals = theNewIntervals
         }
-        self.tableView.reloadData()
+        tableView.reloadData()
+        aesthetics_ShowTableView()
     }
 }

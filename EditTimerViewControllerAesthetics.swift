@@ -18,7 +18,54 @@ extension EditTimerViewController {
         temperatureSegmentedControl.isHidden = true
         temperatureSegmentedControl.selectedSegmentIndex = 2
         showWeatherDescriptionLabel.isHidden = false
+        
+        aesthetics_ShowTableView()
     }
+    func aesthetics_ShowTableView(){
+        
+        if let theTimerIndex = itvTimerIndex {
+            if let theTimersIntervals = ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals {
+                if theTimersIntervals.count > 0 {
+                    tableView.isHidden = false
+                    addIntervalsToTimerLabel.isHidden = true
+                } else {
+                    tableView.isHidden = true
+                    addIntervalsToTimerLabel.isHidden = false
+                }
+            }
+        } else {
+            if itvUnsavedTimersIntervals != nil {
+                tableView.isHidden = false
+                addIntervalsToTimerLabel.isHidden = true
+            } else {
+                tableView.isHidden = true
+                addIntervalsToTimerLabel.isHidden = false
+            }        
+        }
+        
+    }
+
+//    func aesthetics_animateTableLoad(){
+//        tableView.reloadData()
+//        
+//        let cells = tableView.visibleCells
+//        let tableHeight: CGFloat = tableView.bounds.size.height
+//        
+//        for i in cells {
+//            let cell: UITableViewCell = i as UITableViewCell
+//            cell.transform = CGAffineTransform(translationX: 0, y: tableHeight)
+//        }
+//        
+//        var index = 0
+//        for a in cells {
+//            let cell : UITableViewCell = a as UITableViewCell
+//            UIView.animate(withDuration: 1.5, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, animations: {
+//                cell.transform = CGAffineTransform(translationX: 0,y: 0);
+//            }, completion: nil)
+//            index += 1
+//        }
+//    }
+
     func aesthetics_dontLoadWeather(){
         showWeatherSwitch.isOn = false
         weatherIconImageView.isHidden = true

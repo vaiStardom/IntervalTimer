@@ -146,12 +146,12 @@ enum NavigationBarImage{
 }
 
 public enum Indicator: Int {
-    case Blue = 0
+    case Red = 0 //this order has to stay this way...
     case Green
-    case Pink
-    case Red
     case Yellow
+    case Blue
     case White
+    case Pink
     
     func uiColor() -> UIColor {
         switch self {

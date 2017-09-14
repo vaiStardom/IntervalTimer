@@ -38,9 +38,9 @@ extension EditTimerViewController {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        animateTable()
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        aesthetics_animateTableLoad()
+//    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

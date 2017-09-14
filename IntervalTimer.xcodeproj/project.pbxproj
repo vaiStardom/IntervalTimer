@@ -20,6 +20,7 @@
 		BA21FDB11F62469600ABC94E /* EditTimerViewControllerNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA21FDB01F62469600ABC94E /* EditTimerViewControllerNotifications.swift */; };
 		BA2B280C1F35D35E00823B93 /* ITVUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B280B1F35D35E00823B93 /* ITVUIButton.swift */; };
 		BA324EE81F067AB700F38DE4 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA324EE71F067AB700F38DE4 /* TimerViewController.swift */; };
+		BA37D1CC1F6A74380038D087 /* TimersViewControllerAesthetics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA37D1CB1F6A74380038D087 /* TimersViewControllerAesthetics.swift */; };
 		BA42AB641F49BAB100CF1239 /* TimersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA42AB621F49BAB100CF1239 /* TimersTableViewCell.swift */; };
 		BA42AB651F49BAB100CF1239 /* TimersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA42AB631F49BAB100CF1239 /* TimersTableViewCell.xib */; };
 		BA42AB671F49E84A00CF1239 /* TimersViewControllerTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA42AB661F49E84A00CF1239 /* TimersViewControllerTableView.swift */; };
@@ -136,6 +137,7 @@
 		BA21FDB01F62469600ABC94E /* EditTimerViewControllerNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTimerViewControllerNotifications.swift; sourceTree = "<group>"; };
 		BA2B280B1F35D35E00823B93 /* ITVUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITVUIButton.swift; sourceTree = "<group>"; };
 		BA324EE71F067AB700F38DE4 /* TimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
+		BA37D1CB1F6A74380038D087 /* TimersViewControllerAesthetics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimersViewControllerAesthetics.swift; sourceTree = "<group>"; };
 		BA42AB621F49BAB100CF1239 /* TimersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimersTableViewCell.swift; sourceTree = "<group>"; };
 		BA42AB631F49BAB100CF1239 /* TimersTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimersTableViewCell.xib; sourceTree = "<group>"; };
 		BA42AB661F49E84A00CF1239 /* TimersViewControllerTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimersViewControllerTableView.swift; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 				BA9171371F654B2F00A69B2A /* EditTimerViewControllerTextField.swift */,
 				BAA11C421F5BB56B005F3259 /* EditTimerViewControllerWeather.swift */,
 				BA4BFE761EFF4D9D00E341DC /* TimersViewController.swift */,
+				BA37D1CB1F6A74380038D087 /* TimersViewControllerAesthetics.swift */,
 				BAD8A4B51F55531E007F8DEA /* TimersViewControllerActions.swift */,
 				BA9171391F667E7300A69B2A /* TimersViewControllerItvTimersProtocol.swift */,
 				BA91713B1F667EA200A69B2A /* TimersViewControllerLifeCycle.swift */,
@@ -672,6 +675,7 @@
 				BA4BFEAC1EFFAF2100E341DC /* EditTimerViewController.swift in Sources */,
 				BA6D2AC61F63E561007D29DD /* EditIntervalViewControllerHelpers.swift in Sources */,
 				BAC748BF1F613B21003F9E31 /* ITVWarningForUser.swift in Sources */,
+				BA37D1CC1F6A74380038D087 /* TimersViewControllerAesthetics.swift in Sources */,
 				BA21FDB11F62469600ABC94E /* EditTimerViewControllerNotifications.swift in Sources */,
 				BA4BFEAF1EFFB8EB00E341DC /* ITVUILabel.swift in Sources */,
 				BA42AB731F4A679C00CF1239 /* ITVCoreLocation.swift in Sources */,
