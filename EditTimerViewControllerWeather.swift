@@ -101,6 +101,7 @@ extension EditTimerViewController{
             fatalError("------> ERROR EditTimerViewController updateWeatherInformation invalid image for icon name \(theIcon)")
         }
         
+        
         print("------> EditTimerViewController updateWeatherInformation theTemperature = \(theTemperature), theImage = \(theIcon)")
         
         aesthetics_hideMissingWeatherWarning()

@@ -82,11 +82,14 @@ extension EditTimerViewController {
     }
     func aesthetics_startLoadingWeather() {
         activityIndicatorStart()
-        showWeatherSwitch.isOn = true
-        weatherIconImageView.isHidden = false
-        weatherTemperatureLabel.isHidden = true
+        
         temperatureSegmentedControl.isHidden = false
+        weatherIconImageView.isHidden = false
+        
+        showWeatherSwitch.isOn = true
+        weatherTemperatureLabel.isHidden = true
         showWeatherDescriptionLabel.isHidden = true
+        warningImageView.isHidden = true
         
     }
     func aesthetics_showMissingWeatherWarning(){
