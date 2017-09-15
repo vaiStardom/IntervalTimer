@@ -21,24 +21,29 @@ extension EditTimerViewController: UITextFieldDelegate, UITextViewDelegate {
         print("------> EditTimerViewController textField.text = \(textField.text), replacementString = \(string)")
         
         if string.isEmpty {
-            if let thePreviousText = textField.text, thePreviousText.characters.count == 1 {
+            if let thePreviousText = textField.text, thePreviousText.characters.count == 1 { //user has emptied the textfield
                 isEditing = false
                 configureNavBar()
+                aesthetics_timerNamePlaceHolder()
+                return true
             } else {
                 didUserModifyATimer()
+                return true
             }
         } else {
             if let thePreviousText = textField.text, thePreviousText.characters.count == 0 {
                 isEditing = true
                 configureNavBar()
+                return true
             } else if string.trimmingCharacters(in: .whitespacesAndNewlines).characters.count > 0 {
                 isEditing = true
                 configureNavBar()
+                return true
             } else {
                 didUserModifyATimer()
+                return true
             }
         }
-        return true
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

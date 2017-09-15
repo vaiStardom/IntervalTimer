@@ -41,11 +41,11 @@ extension EditIntervalViewController {
                     if let theIntervalIndex = itvIntervalIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals?[theIntervalIndex] != nil { //user was editing an interval inside a saved timer
                         ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals?[theIntervalIndex].thisSeconds = totalSeconds()
                         ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals?[theIntervalIndex].thisIndicator = theIndicator
-                        self.itvIntervalsProtocolDelegate?.didUpdateIntervals(nil)
+                        self.itvIntervalsProtocolDelegate?.didEditASavedTimersInterval()
                     } else { //user is adding a new interval to a saved timer
                         let newInterval = ITVInterval(seconds: totalSeconds(), indicator: indicator)
                         ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals?.append(newInterval)
-                        self.itvIntervalsProtocolDelegate?.didUpdateIntervals(nil)
+                        self.itvIntervalsProtocolDelegate?.didEditASavedTimersInterval()
                     }
                 } else { //this interval is for an unsaved timer
                     if let theIntervalIndex = itvIntervalIndex, itvUnsavedTimersIntervals?[theIntervalIndex] != nil {
@@ -54,7 +54,9 @@ extension EditIntervalViewController {
                         itvUnsavedTimersIntervals?[theIntervalIndex].thisIndicator = theIndicator
                         self.itvIntervalsProtocolDelegate?.didUpdateIntervals(itvUnsavedTimersIntervals)
                     } else {
-                        itvUnsavedTimersIntervals = []
+                        if itvUnsavedTimersIntervals == nil {
+                            itvUnsavedTimersIntervals = []
+                        }
                         let newInterval = ITVInterval(seconds: totalSeconds(), indicator: indicator)
                         itvUnsavedTimersIntervals?.append(newInterval)
                         self.itvIntervalsProtocolDelegate?.didUpdateIntervals(itvUnsavedTimersIntervals)

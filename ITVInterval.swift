@@ -66,7 +66,7 @@ class ITVInterval: NSObject, NSCoding {
     
     // MARK: - Properties
     fileprivate var seconds: Double?
-    fileprivate var indicator: Indicator?
+    fileprivate var indicator: Indicator = Indicator.none
     
     //MARK: - public get/set properties
     public var thisSeconds: Double? {
@@ -77,11 +77,11 @@ class ITVInterval: NSObject, NSCoding {
             UserDefaults.standard.synchronize()
         }
     }
-    public var thisIndicator: Indicator? {
+    public var thisIndicator: Indicator {
         get { return indicator}
         set {
             indicator = newValue
-            UserDefaults.standard.set(newValue?.rawValue, forKey: "indicator")
+            UserDefaults.standard.set(newValue.rawValue, forKey: "indicator")
             UserDefaults.standard.synchronize()
         }
     }
@@ -100,7 +100,7 @@ class ITVInterval: NSObject, NSCoding {
     }
 
     // MARK: - Initializers
-    public init(seconds: Double?, indicator: Indicator?) {
+    public init(seconds: Double?, indicator: Indicator) {
         super.init()
         guard let theSeconds = seconds, theSeconds > 0 else {
             fatalError("seconds has to be greater than zero")
@@ -113,7 +113,7 @@ class ITVInterval: NSObject, NSCoding {
     func encode(with coder: NSCoder){
         coder.encode(thisSeconds, forKey: "seconds")
         
-        let theIndicatorRawValue = thisIndicator?.rawValue
+        let theIndicatorRawValue = thisIndicator.rawValue
         coder.encode(theIndicatorRawValue, forKey: "indicator")
     }
     

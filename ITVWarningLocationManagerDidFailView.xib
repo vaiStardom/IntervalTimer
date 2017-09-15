@@ -64,6 +64,7 @@
             <connections>
                 <outlet property="errorMessageImageView" destination="Xmz-it-fCl" id="r4K-kf-niB"/>
                 <outlet property="errorMessageTextView" destination="VsV-Mk-dlm" id="CxT-ki-nTl"/>
+                <outlet property="messageLabel" destination="1em-nR-SYE" id="U8p-l8-Xok"/>
             </connections>
             <point key="canvasLocation" x="33" y="145.5"/>
         </view>

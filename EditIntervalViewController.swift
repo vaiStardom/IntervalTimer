@@ -39,7 +39,7 @@ class EditIntervalViewController: UIViewController  {
     
     var indicators:[(imageView: ITVUIImageViewIndicator, activeFillColor: UIColor, inactiveFillColor: UIColor, borderColor: UIColor, indicator: Indicator)] = []
     var selectedIndicator = false
-    var indicator: Indicator? //TODO: what if user does wants NO indicators? Redising view.
+    var indicator: Indicator = Indicator.none
     var isEditingAnInterval: Bool? = false
     var textFields: [UITextField] = []
     var itvIntervalsProtocolDelegate: ITVIntervalsProtocol?

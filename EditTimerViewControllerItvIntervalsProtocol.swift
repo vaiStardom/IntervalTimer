@@ -12,8 +12,15 @@ extension EditTimerViewController: ITVIntervalsProtocol {
     func didUpdateIntervals(_ intervals:[ITVInterval]?) {
         if let theNewIntervals = intervals {
             itvUnsavedTimersIntervals = theNewIntervals
+            isEditing = true
+            configureNavBar()
         }
         tableView.reloadData()
         aesthetics_ShowTableView()
+    }
+    func didEditASavedTimersInterval(){
+        isEditing = true
+        configureNavBar()
+        tableView.reloadData()
     }
 }

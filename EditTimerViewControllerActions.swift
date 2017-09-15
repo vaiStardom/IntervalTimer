@@ -25,6 +25,7 @@ extension EditTimerViewController {
     }
     
     @IBAction func addInterval(_ sender: Any) {
+        itvIntervalIndex = nil
         performSegue(withIdentifier: "EditTimerToEditInterval", sender: nil)
     }
     func back(){
@@ -95,6 +96,8 @@ extension EditTimerViewController {
 
         } else {
             //TODO: Alert user that he must name the timer.
+            ITVWarningForUser.sharedInstance.thisUserWarning = UserWarning.MissingTimerName
+            showUserWarning(type: ITVWarningForUser.sharedInstance.thisUserWarning)
         }
     }
 }

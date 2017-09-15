@@ -60,6 +60,9 @@
                 <constraint firstItem="6Ve-AV-vDf" firstAttribute="centerY" secondItem="d8d-IM-a9W" secondAttribute="centerY" id="z9K-kJ-wVN"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="messageLabel" destination="jSp-mO-IVd" id="Jq2-i4-REI"/>
+            </connections>
         </view>
     </objects>
     <resources>

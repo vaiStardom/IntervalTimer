@@ -34,13 +34,9 @@ extension EditTimerViewController {
                 aesthetics_dontLoadWeather()
             }
         } else {
-            timerNameTextField.attributedPlaceholder = NSAttributedString(string: Litterals.TimerNamePlaceholder, attributes: [NSForegroundColorAttributeName : ITVColors.OrangeAlpha50])
+            aesthetics_timerNamePlaceHolder()
         }
     }
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        aesthetics_animateTableLoad()
-//    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

@@ -59,6 +59,7 @@ enum UserWarning: Int {
     case LocationManagerDidFail
     case LocationServicesDisabled
     case NoInternet
+    case MissingTimerName
 }
 
 //MARK: - Others
@@ -128,6 +129,7 @@ enum ViewFont{
     static let TimerName = SystemFont.Heavy35
     static let TimerTemperature = SystemFont.Regular17
     static let TimersName = SystemFont.Thin60
+    static let WarningBold = SystemFont.Bold17
 }
 enum WidgetFont{
     static let TimersName = SystemFont.Regular19
@@ -152,6 +154,7 @@ public enum Indicator: Int {
     case Blue
     case White
     case Pink
+    case none
     
     func uiColor() -> UIColor {
         switch self {
@@ -167,6 +170,8 @@ public enum Indicator: Int {
             return UIColor(red: 255.0/255.0, green: 251.0/255.0, blue: 0.0/255.0, alpha: 1.0)
         case .White:
             return UIColor(red: 243.0/255.0, green: 243.0/255.0, blue: 243.0/255.0, alpha: 1.0)
+        case .none:
+            return UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 1.0)
         }
     }
 }

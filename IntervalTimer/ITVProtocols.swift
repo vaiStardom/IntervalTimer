@@ -21,4 +21,5 @@ protocol ITVTimersProtocol{
 }
 protocol ITVIntervalsProtocol{
     func didUpdateIntervals(_ intervals:[ITVInterval]?) //if the is a value, then this is an array of intervals for an unsaved timer
+    func didEditASavedTimersInterval()
 }

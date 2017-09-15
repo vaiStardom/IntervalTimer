@@ -21,6 +21,9 @@ extension EditTimerViewController {
         
         aesthetics_ShowTableView()
     }
+    func aesthetics_timerNamePlaceHolder(){
+        timerNameTextField.attributedPlaceholder = NSAttributedString(string: Litterals.TimerNamePlaceholder, attributes: [NSForegroundColorAttributeName : ITVColors.OrangeAlpha50])
+    }
     func aesthetics_ShowTableView(){
         
         if let theTimerIndex = itvTimerIndex {

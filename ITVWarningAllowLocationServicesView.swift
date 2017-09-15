@@ -10,6 +10,7 @@ import UIKit
 
 class ITVWarningAllowLocationServicesView: UIView {
 
+    @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var openSettingsButton: UIButton!
 
     @IBAction func openSettings(_ sender: Any) {

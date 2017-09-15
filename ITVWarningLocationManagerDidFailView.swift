@@ -10,6 +10,7 @@ import UIKit
 
 class ITVWarningLocationManagerDidFailView: UIView {
     
+    @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var errorMessageTextView: UITextView!
     @IBOutlet weak var errorMessageImageView: UIImageView!
     

@@ -87,6 +87,9 @@
                 <constraint firstItem="G2G-nA-wA2" firstAttribute="centerX" secondItem="9EO-s5-z2V" secondAttribute="centerX" id="q6N-un-dTH"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="messageLabel" destination="9EO-s5-z2V" id="pgq-PK-Bub"/>
+            </connections>
         </view>
     </objects>
     <resources>

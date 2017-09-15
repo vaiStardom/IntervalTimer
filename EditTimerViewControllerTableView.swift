@@ -44,27 +44,30 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
         if let theTimerIndex = itvTimerIndex {
             if let theTimer = ITVUser.sharedInstance.thisTimers?[theTimerIndex] {
                 if let theInterval = theTimer.thisIntervals?[index] {
-                    cell.indicatorImageView.backgroundColor = theInterval.thisIndicator?.uiColor()
-                    cell.indicatorImageView.layer.borderColor = theInterval.thisIndicator?.uiColor().cgColor
+                    
+                    cell.indicatorImageView.backgroundColor = theInterval.thisIndicator.uiColor()
+                    cell.indicatorImageView.layer.borderColor = theInterval.thisIndicator.uiColor().cgColor
                     cell.indicatorImageView.roundImageView()
                     cell.intervalNumberLabel.text = "\(index + 1)"
                     if let theSeconds = theInterval.thisSeconds {
                         cell.intervalTimeLabel.text = timeOf(seconds: theSeconds)
+                        print("------> EditTimerViewController cellForRowAt timer = \(timeOf(seconds: theSeconds)), indicator = \(theInterval.thisIndicator.rawValue), color = \(theInterval.thisIndicator.uiColor())")
+
                     } else {
                         cell.intervalTimeLabel.text = "0"
                     }
                 }
-            } else if let theUnsavedIntervals = itvUnsavedTimersIntervals {
-                let theUnsavedInterval = theUnsavedIntervals[index]
-                cell.indicatorImageView.backgroundColor = theUnsavedInterval.thisIndicator?.uiColor()
-                cell.indicatorImageView.layer.borderColor = theUnsavedInterval.thisIndicator?.uiColor().cgColor
-                cell.indicatorImageView.roundImageView()
-                cell.intervalNumberLabel.text = "\(index + 1)"
-                if let theSeconds = theUnsavedInterval.thisSeconds {
-                    cell.intervalTimeLabel.text = timeOf(seconds: theSeconds)
-                } else {
-                    cell.intervalTimeLabel.text = "0"
-                }
+            }
+        } else if let theUnsavedIntervals = itvUnsavedTimersIntervals {
+            let theUnsavedInterval = theUnsavedIntervals[index]
+            cell.indicatorImageView.backgroundColor = theUnsavedInterval.thisIndicator.uiColor()
+            cell.indicatorImageView.layer.borderColor = theUnsavedInterval.thisIndicator.uiColor().cgColor
+            cell.indicatorImageView.roundImageView()
+            cell.intervalNumberLabel.text = "\(index + 1)"
+            if let theSeconds = theUnsavedInterval.thisSeconds {
+                cell.intervalTimeLabel.text = timeOf(seconds: theSeconds)
+            } else {
+                cell.intervalTimeLabel.text = "0"
             }
         }
         return cell

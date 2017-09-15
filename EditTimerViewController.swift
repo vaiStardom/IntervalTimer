@@ -22,15 +22,9 @@ class EditTimerViewController: UIViewController {
     @IBOutlet weak var weatherActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var addIntervalsToTimerLabel: UILabel!
     
-    //let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     var itvTimerIndex: Int?
-//    var itvTimer: ITVTimer?
-//    var itvInterval: ITVInterval?
-//    var itvIntervals: [ITVInterval]?
-//    var itvTimerIndex: Int?
     var itvUnsavedTimersIntervals: [ITVInterval]? //for when the user creates a new timer with new intervals
     var itvIntervalIndex: Int?
     var itvTimersProtocolDelegate: ITVTimersProtocol?
-    
-    //TODO: get kalvin out of the possible choices, no one uses kalvins, stick with the two other options
+    //TODO: get kelvin out of the possible choices, no one uses kalvins, stick with the two other options
 }

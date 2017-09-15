@@ -129,6 +129,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="messageLabel" destination="mKW-9d-p3Y" id="Yom-eU-Ikn"/>
                 <outlet property="openSettingsButton" destination="gEu-nI-TwT" id="XW8-kJ-SPd"/>
             </connections>
             <point key="canvasLocation" x="32" y="72.5"/>

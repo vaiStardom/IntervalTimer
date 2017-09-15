@@ -61,7 +61,7 @@ extension EditIntervalViewController {
             } else {
                 indicators[theIndicatorIndex].imageView.backgroundColor = indicators[theIndicatorIndex].inactiveFillColor
                 indicators[theIndicatorIndex].imageView.layer.borderColor = indicators[theIndicatorIndex].borderColor.cgColor
-                indicator = nil
+                indicator = Indicator.none
             }
         } else {
             aesthetics_unselectAllIndicators()
