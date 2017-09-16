@@ -46,7 +46,7 @@ class ITVCoreLocation: NSObject, CLLocationManagerDelegate {
         }
         set {
             cityId = newValue
-            UserDefaults.standard.set(newValue, forKey: "cityId")
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKey.ITVCoreLocation_cityId)
             UserDefaults.standard.synchronize()
             
             checkIfLocationDeterminationIsComplete()
@@ -56,7 +56,7 @@ class ITVCoreLocation: NSObject, CLLocationManagerDelegate {
         get { return cityName}
         set {
             cityName = newValue
-            UserDefaults.standard.set(newValue, forKey: "cityName")
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKey.ITVCoreLocation_cityName)
             UserDefaults.standard.synchronize()
         }
     }
@@ -64,7 +64,7 @@ class ITVCoreLocation: NSObject, CLLocationManagerDelegate {
         get { return countryCode}
         set {
             countryCode = newValue
-            UserDefaults.standard.set(newValue, forKey: "countryCode")
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKey.ITVCoreLocation_countryCode)
             UserDefaults.standard.synchronize()
         }
     }
@@ -73,7 +73,7 @@ class ITVCoreLocation: NSObject, CLLocationManagerDelegate {
         get { return didCompleteLocationDetermination }
         set {
             didCompleteLocationDetermination = newValue
-            UserDefaults.standard.set(newValue, forKey: "didCompleteLocationDetermination")
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKey.ITVCoreLocation_didCompleteLocationDetermination)
             UserDefaults.standard.synchronize()
             
             if newValue == true {
@@ -94,7 +94,7 @@ class ITVCoreLocation: NSObject, CLLocationManagerDelegate {
         get { return firstTimeLocationService }
         set {
             firstTimeLocationService = newValue
-            UserDefaults.standard.set(newValue, forKey: "firstTimeLocationService")
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKey.ITVCoreLocation_firstTimeLocationService)
             UserDefaults.standard.synchronize()
         }
     }
@@ -102,7 +102,7 @@ class ITVCoreLocation: NSObject, CLLocationManagerDelegate {
         get { return latitude}
         set {
             latitude = newValue
-            UserDefaults.standard.set(newValue, forKey: "latitude")
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKey.ITVCoreLocation_latitude)
             UserDefaults.standard.synchronize()
         }
     }
@@ -110,7 +110,7 @@ class ITVCoreLocation: NSObject, CLLocationManagerDelegate {
         get { return longitude}
         set {
             longitude = newValue
-            UserDefaults.standard.set(newValue, forKey: "longitude")
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKey.ITVCoreLocation_longitude)
             UserDefaults.standard.synchronize()
         }
     }
@@ -137,35 +137,35 @@ class ITVCoreLocation: NSObject, CLLocationManagerDelegate {
     
     //MARK: - NSCoding protocol methods
     func encode(with coder: NSCoder){
-        coder.encode(self.thisCityId, forKey: "cityId")
-        coder.encode(self.thisCityName, forKey: "cityName")
-        coder.encode(self.thisCountryCode, forKey: "countryCode")
-        coder.encode(self.thisDidCompleteLocationDetermination, forKey: "didCompleteLocationDetermination")
-        coder.encode(self.thisFirstTimeLocationService, forKey: "firstTimeLocationService")
-        coder.encode(self.thisLatitude, forKey: "latitude")
-        coder.encode(self.thisLongitude, forKey: "longitude")
+        coder.encode(self.thisCityId, forKey: UserDefaultsKey.ITVCoreLocation_cityId)
+        coder.encode(self.thisCityName, forKey: UserDefaultsKey.ITVCoreLocation_cityName)
+        coder.encode(self.thisCountryCode, forKey: UserDefaultsKey.ITVCoreLocation_countryCode)
+        coder.encode(self.thisDidCompleteLocationDetermination, forKey: UserDefaultsKey.ITVCoreLocation_didCompleteLocationDetermination)
+        coder.encode(self.thisFirstTimeLocationService, forKey: UserDefaultsKey.ITVCoreLocation_firstTimeLocationService)
+        coder.encode(self.thisLatitude, forKey: UserDefaultsKey.ITVCoreLocation_latitude)
+        coder.encode(self.thisLongitude, forKey: UserDefaultsKey.ITVCoreLocation_longitude)
         
     }
     required init(coder decoder: NSCoder) {
-        if let theCityName = decoder.decodeObject(forKey: "cityName") as! String? {
-            cityName = theCityName
-        }
-        if let theCountryCode = decoder.decodeObject(forKey: "countryCode") as! String? {
-            countryCode = theCountryCode
-        }
-        if let theCityId = decoder.decodeInteger(forKey: "cityId") as Int? {
+        if let theCityId = decoder.decodeInteger(forKey: UserDefaultsKey.ITVCoreLocation_cityId) as Int? {
             cityId = theCityId
         }
-        if let theDidCompleteLocationDetermination = decoder.decodeBool(forKey: "didCompleteLocationDetermination") as Bool? {
+        if let theCityName = decoder.decodeObject(forKey: UserDefaultsKey.ITVCoreLocation_cityName) as! String? {
+            cityName = theCityName
+        }
+        if let theCountryCode = decoder.decodeObject(forKey: UserDefaultsKey.ITVCoreLocation_countryCode) as! String? {
+            countryCode = theCountryCode
+        }
+        if let theDidCompleteLocationDetermination = decoder.decodeBool(forKey: UserDefaultsKey.ITVCoreLocation_didCompleteLocationDetermination) as Bool? {
             didCompleteLocationDetermination = theDidCompleteLocationDetermination
         }
-        if let theFirstTimeLocationService = decoder.decodeObject(forKey: "firstTimeLocationService") as! Date? {
+        if let theFirstTimeLocationService = decoder.decodeObject(forKey: UserDefaultsKey.ITVCoreLocation_firstTimeLocationService) as! Date? {
             firstTimeLocationService = theFirstTimeLocationService
         }
-        if let theLatitude = decoder.decodeDouble(forKey: "latitude") as Double? {
+        if let theLatitude = decoder.decodeDouble(forKey: UserDefaultsKey.ITVCoreLocation_latitude) as Double? {
             latitude = theLatitude
         }
-        if let theLongitude = decoder.decodeDouble(forKey: "longitude") as Double? {
+        if let theLongitude = decoder.decodeDouble(forKey: UserDefaultsKey.ITVCoreLocation_longitude) as Double? {
             longitude = theLongitude
         }
     }

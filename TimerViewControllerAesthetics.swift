@@ -32,6 +32,13 @@ extension TimerViewController {
         weatherImageView.isHidden = false
         weatherTemperatureLabel.isHidden = false
     }
+    func aesthetics_hideWeatherView(){
+        warningButton.isHidden = true
+        warningImageView.isHidden = true
+        weatherImageView.isHidden = true
+        weatherTemperatureLabel.isHidden = true
+    }
+
     func aesthetics_timerLabels(){
         if ellapsedSeconds >= 3600.0 {
             aesthetics_hours()

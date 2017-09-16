@@ -23,7 +23,7 @@ class ITVCurrentWeather: NSObject, NSCoding {
         }
         set {
             icon = ICON_DICTIONARY[newValue!]
-            UserDefaults.standard.set(icon, forKey: "icon")
+            UserDefaults.standard.set(icon, forKey: UserDefaultsKey.ITVCurrentWeather_icon)
             UserDefaults.standard.synchronize()
         }
     }
@@ -32,7 +32,7 @@ class ITVCurrentWeather: NSObject, NSCoding {
         set {
             kelvin = newValue
             if let theKelvin = newValue {
-                UserDefaults.standard.set(theKelvin, forKey: "kelvin")
+                UserDefaults.standard.set(theKelvin, forKey: UserDefaultsKey.ITVCurrentWeather_kelvin)
                 UserDefaults.standard.synchronize()
             }
         }
@@ -53,17 +53,17 @@ class ITVCurrentWeather: NSObject, NSCoding {
     }
     public init(json: [String: Any]) throws {
         
-        guard let theMain = json["main"] as? [String: Any] else {
-            throw ITVError.JSON_Missing("json key main")
+        guard let theMain = json[JsonKeys.ITVCurrentWeather_main] as? [String: Any] else {
+            throw ITVError.JSON_Missing("json key \(JsonKeys.ITVCurrentWeather_main)")
         }
-        guard let theKelvin = theMain["temp"] as? Double else {
-            throw ITVError.JSON_Missing("json key temp")
+        guard let theKelvin = theMain[JsonKeys.ITVCurrentWeather_temp] as? Double else {
+            throw ITVError.JSON_Missing("json key \(JsonKeys.ITVCurrentWeather_temp)")
         }
-        guard let theWeatherArray = json["weather"] as? [[String: AnyObject]] else {
-            throw ITVError.JSON_Missing("json key weather")
+        guard let theWeatherArray = json[JsonKeys.ITVCurrentWeather_weather] as? [[String: AnyObject]] else {
+            throw ITVError.JSON_Missing("json key \(JsonKeys.ITVCurrentWeather_weather)")
         }
-        guard let theIcon = theWeatherArray[0]["icon"] as? String else {
-            throw ITVError.JSON_Missing("json key icon")
+        guard let theIcon = theWeatherArray[0][JsonKeys.ITVCurrentWeather_icon] as? String else {
+            throw ITVError.JSON_Missing("json key \(JsonKeys.ITVCurrentWeather_icon)")
         }
         self.kelvin = theKelvin
         self.icon = ICON_DICTIONARY[theIcon]
@@ -71,14 +71,15 @@ class ITVCurrentWeather: NSObject, NSCoding {
     
     //MARK: - NSCoding protocol methods
     func encode(with coder: NSCoder){
-        coder.encode(self.thisKelvin, forKey: "kelvin")
-        coder.encode(self.thisIcon, forKey: "icon")
+        coder.encode(self.thisIcon, forKey: UserDefaultsKey.ITVCurrentWeather_icon)
+        coder.encode(self.thisKelvin, forKey: UserDefaultsKey.ITVCurrentWeather_kelvin)
+        
     }
     required init(coder decoder: NSCoder) {
-        if let theKelvin = decoder.decodeObject(forKey: "kelvin") as! Double? {
+        if let theKelvin = decoder.decodeObject(forKey: UserDefaultsKey.ITVCurrentWeather_kelvin) as! Double? {
             kelvin = theKelvin
         }
-        if let theIcon = decoder.decodeObject(forKey: "icon") as! String? {
+        if let theIcon = decoder.decodeObject(forKey: UserDefaultsKey.ITVCurrentWeather_icon) as! String? {
             icon = theIcon
         }
     }

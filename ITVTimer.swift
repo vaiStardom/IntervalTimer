@@ -8,63 +8,54 @@
 
 import Foundation
 
-////MOCKDATA:
-//let timers = [
-//    ITVTimer(name: "Peak 8", showWeather: false, temperatureUnit: nil, intervals: intervals)
-//    , ITVTimer(name: "Streches", showWeather: true, temperatureUnit: TemperatureUnit.Kelvin, intervals: intervalsHours)
-//    , ITVTimer(name: "Legs", showWeather: true, temperatureUnit: TemperatureUnit.Fahrenheit, intervals: intervalsSeconds)
-//    , ITVTimer(name: "Upperbody", showWeather: true, temperatureUnit: TemperatureUnit.Celcius, intervals: intervals)
-//    , ITVTimer(name: "Arms", showWeather: false, temperatureUnit: nil, intervals: intervalsHours)
-//    , ITVTimer(name: "Crossfit", showWeather: true, temperatureUnit: TemperatureUnit.Kelvin, intervals: intervalsSeconds)
-//    , ITVTimer(name: "Park run", showWeather: true, temperatureUnit: TemperatureUnit.Fahrenheit, intervals: intervals)
-//    , ITVTimer(name: "Beach run", showWeather: true, temperatureUnit: TemperatureUnit.Celcius, intervals: intervalsHours)
-//    , ITVTimer(name: "Mountain run", showWeather: false, temperatureUnit: nil, intervals: intervalsSeconds)
-//]
-
 class ITVTimer: NSObject, NSCoding {
 
     // MARK: - Properties
-    fileprivate var name: String?
-    fileprivate var showWeather: Bool = false
-    fileprivate var temperatureUnit: TemperatureUnit = TemperatureUnit.Celcius
+    var name: String?
+    var showWeather: Bool?
+    var temperatureUnit: TemperatureUnit? = TemperatureUnit.Celcius
     
     //this should be a dictionary of [Order:Interval] (the order/or rank of the interval will be managed in this class
     //the index of this array could also seve has the order as well...
-    private var itvIntervals: [ITVInterval]? = []
+    var intervals: [ITVInterval]? = []
     
     //MARK: - public get/set properties
     public var thisName: String? {
         get { return name}
         set {
             name = newValue
-            UserDefaults.standard.set(newValue, forKey: "name")
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKey.ITVTimer_name)
             UserDefaults.standard.synchronize()
         }
     }
+    
     public var thisShowWeather: Bool {
-        get { return showWeather}
+        get {
+            if showWeather == nil {
+                return false
+            } else {
+                return showWeather!
+            }
+        }
         set {
             showWeather = newValue
-            UserDefaults.standard.set(newValue, forKey: "showWeather")
-            UserDefaults.standard.synchronize()
         }
     }
+    
     public var thisTemperatureUnit: TemperatureUnit {
-        get { return temperatureUnit}
+        get { return temperatureUnit! }
         set {
             temperatureUnit = newValue
-            UserDefaults.standard.set(newValue.rawValue, forKey: "temperatureUnit")
-            UserDefaults.standard.synchronize()
         }
     }
     public var thisIntervals: [ITVInterval]? {
-        get { return itvIntervals}
+        get { return intervals}
         set {
-            itvIntervals = newValue
+            intervals = newValue
             if newValue != nil {
                 if let theIntervals = newValue {
-                    let theIntervalsData = NSKeyedArchiver.archivedData(withRootObject: theIntervals)
-                    UserDefaults.standard.set(theIntervalsData, forKey: "itvIntervals")
+                    let theIntervalsData: Data = NSKeyedArchiver.archivedData(withRootObject: theIntervals)
+                    UserDefaults.standard.set(theIntervalsData, forKey: UserDefaultsKey.ITVTimer_intervals)
                     UserDefaults.standard.synchronize()
                 }
             }
@@ -72,76 +63,43 @@ class ITVTimer: NSObject, NSCoding {
         }
     }
     
-    // MARK: - Initializers
-    override private init() {
-        if let theName = UserDefaults.standard.value(forKey: "name") as? String {
-            self.name = theName
-        }
-        
-        self.showWeather = UserDefaults.standard.bool(forKey: "showWeather")
-        
-        if let theTemperatureUnitRawValue = UserDefaults.standard.value(forKey: "temperatureUnit") as? Int {
-            if let theTemperatureUnit = TemperatureUnit(rawValue: theTemperatureUnitRawValue) {
-                self.temperatureUnit = theTemperatureUnit
-            }
-        }
-        
-        if let theIntervals = UserDefaults.standard.value(forKey: "itvIntervals") as? NSData {
-            self.itvIntervals = NSKeyedUnarchiver.unarchiveObject(with: theIntervals as Data) as? [ITVInterval]
-        }
-    }
-
-    public init(name: String?, showWeather: Bool?, temperatureUnit: TemperatureUnit?, intervals: [ITVInterval]?) {
-        super.init()
+    init(name: String?, showWeather: Bool?, temperatureUnit: TemperatureUnit?, intervals: [ITVInterval]?) {
         guard let theName = name else {
             //TODO: add these fatal errors to the initializers of all oher structs and classes
             fatalError("name must contain a value")
         }
+        
         guard let theShowWeather = showWeather else {
             fatalError("showWeather must contain a value")
         }
-
-        self.thisName = theName
-        self.thisShowWeather = theShowWeather
-        self.thisIntervals = intervals
-        
-        if let theTemperatureUnit = temperatureUnit {
-            self.thisTemperatureUnit = theTemperatureUnit
-        } else {
-            self.thisTemperatureUnit = TemperatureUnit.Celcius
+        guard let theTemperatureUnit = temperatureUnit else {
+            fatalError("temperatureUnit must contain a value")
         }
+        
+        self.name = theName
+        self.showWeather = theShowWeather
+        self.temperatureUnit = theTemperatureUnit
+        self.intervals = intervals
     }
     
     //MARK: - NSCoding protocol methods
-    func encode(with coder: NSCoder){
-        coder.encode(self.thisName, forKey: "name")
-        coder.encode(self.thisShowWeather, forKey: "showWeather")
+    required convenience init?(coder decoder: NSCoder) {
         
-        let theTemperatureUnitRawValue = thisTemperatureUnit.rawValue
-        coder.encode(theTemperatureUnitRawValue, forKey: "temperatureUnit")
+        let theName = decoder.decodeObject(forKey: UserDefaultsKey.ITVTimer_name) as? String ?? ""
+        print("------> ITVTimer DECODE init?(decoder:) thisName \(theName)")
         
-        coder.encode(self.thisIntervals, forKey: "itvIntervals")
+        let theShowWeather = decoder.decodeBool(forKey: UserDefaultsKey.ITVTimer_showWeather) as Bool?
+        let theTemperatureUnitRawValue = decoder.decodeInteger(forKey: UserDefaultsKey.ITVTimer_temperatureUnit) as Int?
+        let theTemperatureUnit = TemperatureUnit(rawValue: (theTemperatureUnitRawValue != nil ? theTemperatureUnitRawValue! : 2))
+        let theIntervals = decoder.decodeObject(forKey: UserDefaultsKey.ITVTimer_intervals) as! [ITVInterval]?
+        
+        self.init(name: theName, showWeather: theShowWeather, temperatureUnit: theTemperatureUnit, intervals: theIntervals)        
     }
     
-    required init(coder decoder: NSCoder) {
-
-        if let theName = decoder.decodeObject(forKey: "name") as? String {
-            name = theName
-        }
-
-        if let theShowWeather = decoder.decodeBool(forKey: "showWeather") as Bool? {
-            showWeather = theShowWeather
-        }
-        
-        if let theTemperatureUnitRawValue = UserDefaults.standard.value(forKey: "temperatureUnit") as? Int {
-            if let theTemperatureUnit = TemperatureUnit(rawValue: theTemperatureUnitRawValue) {
-                self.temperatureUnit = theTemperatureUnit
-            }
-        }
-        
-        if let theIntervals = UserDefaults.standard.value(forKey: "itvIntervals") as? NSData {
-            itvIntervals = NSKeyedUnarchiver.unarchiveObject(with: theIntervals as Data) as! [ITVInterval]?
-        }
+    func encode(with coder: NSCoder) {
+        coder.encode(thisName, forKey: UserDefaultsKey.ITVTimer_name)
+        coder.encode(thisShowWeather, forKey: UserDefaultsKey.ITVTimer_showWeather)
+        coder.encode(thisTemperatureUnit.rawValue, forKey: UserDefaultsKey.ITVTimer_temperatureUnit)
+        coder.encode(thisIntervals, forKey: UserDefaultsKey.ITVTimer_intervals)
     }
-
 }

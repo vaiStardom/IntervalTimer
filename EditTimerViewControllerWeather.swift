@@ -15,7 +15,6 @@ import UIKit
 extension EditTimerViewController{
     func showWeather(){
         if ITVCoreLocation.sharedInstance.isLocationServicesAndNetworkAvailable() {
-            self.registerNotifications() //will register at first weather use
             if ITVUser.sharedInstance.thisShouldUpdateWeather {
                 setWeatherFromNetwork()
             } else {
@@ -70,7 +69,7 @@ extension EditTimerViewController{
         }
     }
     func didAuthorizeLocationServices(_ notification: Notification){
-        //IntervalTimerCoreLocation.sharedInstance.firstTimeLocationUsage()
+        aesthetics_hideWarning()
         startSettingWeather()
     }
     func didGetCurrentWeather(_ notification: Notification){

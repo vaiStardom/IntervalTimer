@@ -36,29 +36,38 @@ extension EditIntervalViewController {
         if self.itvIntervalsProtocolDelegate != nil {
             if totalSeconds() > 0 {
                 let theIndicator = indicator
-                
+
+                //TODO: understand why the encoding is not called when updating the new values individualy and why we have to replace the timer with theNewTimer
+                let theNewInterval = ITVInterval(seconds: totalSeconds(), indicator: theIndicator)
+
                 if let theTimerIndex = itvTimerIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil {
                     if let theIntervalIndex = itvIntervalIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals?[theIntervalIndex] != nil { //user was editing an interval inside a saved timer
-                        ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals?[theIntervalIndex].thisSeconds = totalSeconds()
-                        ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals?[theIntervalIndex].thisIndicator = theIndicator
+                        
+//                        ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals?[theIntervalIndex].thisSeconds = totalSeconds()
+//                        ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals?[theIntervalIndex].thisIndicator = theIndicator
+                        ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals?[theIntervalIndex] = theNewInterval
                         self.itvIntervalsProtocolDelegate?.didEditASavedTimersInterval()
                     } else { //user is adding a new interval to a saved timer
-                        let newInterval = ITVInterval(seconds: totalSeconds(), indicator: indicator)
-                        ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals?.append(newInterval)
+//                        let newInterval = ITVInterval(seconds: totalSeconds(), indicator: indicator)
+                        if ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals == nil {
+                            ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals = []
+                        }
+                        ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals?.append(theNewInterval)
                         self.itvIntervalsProtocolDelegate?.didEditASavedTimersInterval()
                     }
                 } else { //this interval is for an unsaved timer
                     if let theIntervalIndex = itvIntervalIndex, itvUnsavedTimersIntervals?[theIntervalIndex] != nil {
                         //user is editing an interval of an unsaved timer
-                        itvUnsavedTimersIntervals?[theIntervalIndex].thisSeconds = totalSeconds()
-                        itvUnsavedTimersIntervals?[theIntervalIndex].thisIndicator = theIndicator
+                        itvUnsavedTimersIntervals?[theIntervalIndex] = theNewInterval
+//                        itvUnsavedTimersIntervals?[theIntervalIndex].thisSeconds = totalSeconds()
+//                        itvUnsavedTimersIntervals?[theIntervalIndex].thisIndicator = theIndicator
                         self.itvIntervalsProtocolDelegate?.didUpdateIntervals(itvUnsavedTimersIntervals)
                     } else {
                         if itvUnsavedTimersIntervals == nil {
                             itvUnsavedTimersIntervals = []
                         }
-                        let newInterval = ITVInterval(seconds: totalSeconds(), indicator: indicator)
-                        itvUnsavedTimersIntervals?.append(newInterval)
+//                        let newInterval = ITVInterval(seconds: totalSeconds(), indicator: indicator)
+                        itvUnsavedTimersIntervals?.append(theNewInterval)
                         self.itvIntervalsProtocolDelegate?.didUpdateIntervals(itvUnsavedTimersIntervals)
                     }
                 }

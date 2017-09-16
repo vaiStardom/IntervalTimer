@@ -14,7 +14,7 @@ extension ITVTimer{
 
         var timeLiteral = ""
         
-        if let theIntervals = thisIntervals {
+        if let theIntervals = thisIntervals, theIntervals.count > 0  {
             var time = (0, 0, 0)
             var totalseconds = 0.0
             var hours: String?
@@ -23,6 +23,10 @@ extension ITVTimer{
             
             for interval in theIntervals {
                 totalseconds += interval.thisSeconds!
+            }
+            
+            if totalseconds == 0 {
+                timeLiteral = "no intervals"
             }
             
             time = secondsToHoursMinutesSeconds(seconds : Int(totalseconds))

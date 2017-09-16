@@ -26,15 +26,14 @@ import UIKit
 //Once a usual radius(area) is determined and that a city id is retreived, we would not need to look in the csv file for the id anymore.
 //Also if there are NO identifialble city ids in this radius, then stop reverse geocoding and only get weather using coordinates
 //TODO: Protect this singletons from concurrency
-//TODO: Rename all interval timer classes and structs to ITV
-class ITVUser: NSObject, NSCoding {
+class ITVUser: NSObject, NSCoding  {
     
     //MARK: - Singleton
     static let sharedInstance = ITVUser()
 
     //MARK: - fileprivate properties
     fileprivate var currentWeather: ITVCurrentWeather?
-    fileprivate var lastWeatherUpdate: Date?
+    fileprivate var lastWeatherUpdate: Date? = nil
     fileprivate var timers: [ITVTimer]? = []
     
     //MARK: - public get/set properties
@@ -44,8 +43,8 @@ class ITVUser: NSObject, NSCoding {
             currentWeather = newValue
             if newValue != nil {
                 if let theWeather = newValue {
-                    let theWeatherData = NSKeyedArchiver.archivedData(withRootObject: theWeather)
-                    UserDefaults.standard.set(theWeatherData, forKey: "currentWeather")
+                    let theWeatherData: Data = NSKeyedArchiver.archivedData(withRootObject: theWeather)
+                    UserDefaults.standard.set(theWeatherData, forKey: UserDefaultsKey.ITVUser_currentWeather)
                     UserDefaults.standard.synchronize()
                     print("------> WROTE ITVUser currentWeather = \(String(describing: currentWeather))")
                 }
@@ -57,7 +56,7 @@ class ITVUser: NSObject, NSCoding {
         get { return lastWeatherUpdate}
         set {
             lastWeatherUpdate = newValue
-            UserDefaults.standard.set(newValue, forKey: "lastWeatherUpdate")
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKey.ITVUser_lastWeatherUpdate)
             UserDefaults.standard.synchronize()
         }
     }
@@ -65,7 +64,7 @@ class ITVUser: NSObject, NSCoding {
         get {
 //            return true
             if let theHours = hoursSince(from: thisLastWeatherUpdate, to: Date()){
-                print("------> ITVUser thisShouldUpdateWeather hours since : \(theHours) ")
+                print("------> ITVUser thisShouldUpdateWeather hours since : \(theHours)")
                 if theHours > 1 {
                     return true
                 } else {
@@ -82,41 +81,47 @@ class ITVUser: NSObject, NSCoding {
             timers = newValue
             if newValue != nil {
                 if let theTimers = newValue {
-                    let theTimersData = NSKeyedArchiver.archivedData(withRootObject: theTimers)
-                    UserDefaults.standard.set(theTimersData, forKey: "timers")
+                    let theTimersData: Data = NSKeyedArchiver.archivedData(withRootObject: theTimers)
+                    UserDefaults.standard.set(theTimersData, forKey: UserDefaultsKey.ITVUser_timers)
                     UserDefaults.standard.synchronize()
+                    print("------> ITVUser UserDefaults.standard.synchronize() thisTimers \(theTimers)")
+                    print("------> ITVUser UserDefaults.standard.synchronize() theTimersData \(theTimersData)")
+                    print("------> ITVUser UserDefaults.standard.synchronize() UserDefaultsKey.ITVUser_timers key \(UserDefaultsKey.ITVUser_timers)")
                 }
             }
         }
     }
     
     //MARK: - init()
-    override private init() {
-        self.lastWeatherUpdate = UserDefaults.standard.object(forKey: "lastWeatherUpdate") as? Date
-        if let theCurrentWeather = UserDefaults.standard.value(forKey: "currentWeather") as? NSData {
-            self.currentWeather = NSKeyedUnarchiver.unarchiveObject(with: theCurrentWeather as Data) as? ITVCurrentWeather
+    private override init() {
+        
+        self.lastWeatherUpdate = UserDefaults.standard.object(forKey: UserDefaultsKey.ITVUser_lastWeatherUpdate) as? Date
+        
+        if let theCurrentWeather = UserDefaults.standard.value(forKey: UserDefaultsKey.ITVUser_currentWeather) as! Data? {
+            self.currentWeather = NSKeyedUnarchiver.unarchiveObject(with: theCurrentWeather) as? ITVCurrentWeather
         }
-        if let theTimers = UserDefaults.standard.value(forKey: "timers") as? NSData {
-            self.timers = NSKeyedUnarchiver.unarchiveObject(with: theTimers as Data) as? [ITVTimer]
+        
+        if let theTimers = UserDefaults.standard.value(forKey: UserDefaultsKey.ITVUser_timers) as! Data?, !theTimers.isEmpty {
+            self.timers = NSKeyedUnarchiver.unarchiveObject(with: theTimers) as? [ITVTimer]
         }
     }
     
     //MARK: - NSCoding protocol methods
     func encode(with coder: NSCoder){
-        coder.encode(self.thisCurrentWeather, forKey: "currentWeather")
-        coder.encode(self.thisLastWeatherUpdate, forKey: "lastWeatherUpdate")
-        coder.encode(self.thisTimers, forKey: "timers")
+        coder.encode(self.thisCurrentWeather, forKey: UserDefaultsKey.ITVUser_currentWeather)
+        coder.encode(self.thisLastWeatherUpdate, forKey: UserDefaultsKey.ITVUser_lastWeatherUpdate)
+        coder.encode(self.thisTimers, forKey: UserDefaultsKey.ITVUser_timers)
     }
     
     required init(coder decoder: NSCoder) {
-        if let theCurrentWeather = UserDefaults.standard.value(forKey: "currentWeather") as? NSData {
-            currentWeather = NSKeyedUnarchiver.unarchiveObject(with: theCurrentWeather as Data) as! ITVCurrentWeather?
+        if let theCurrentWeather = decoder.decodeObject(forKey: UserDefaultsKey.ITVUser_currentWeather) as! ITVCurrentWeather? {
+            currentWeather = theCurrentWeather
         }
-        if let theLastWeatherUpdate = decoder.decodeObject(forKey: "lastWeatherUpdate") as! Date? {
+        if let theLastWeatherUpdate = decoder.decodeObject(forKey: UserDefaultsKey.ITVUser_lastWeatherUpdate) as! Date? {
             lastWeatherUpdate = theLastWeatherUpdate
         }
-        if let theTimers = UserDefaults.standard.value(forKey: "timers") as? NSData {
-            timers = NSKeyedUnarchiver.unarchiveObject(with: theTimers as Data) as! [ITVTimer]?
+        if let theTimers = decoder.decodeObject(forKey: UserDefaultsKey.ITVUser_timers) as! [ITVTimer]? {
+            timers = theTimers
         }
     }
 }

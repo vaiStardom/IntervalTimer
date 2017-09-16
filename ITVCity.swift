@@ -28,11 +28,11 @@ public struct ITVCity {
     }
     
     public init(json: [String: Any]) throws {
-        guard let theAddress = json["address"] as? [String: String] else {
-            throw ITVError.JSON_Missing("json key address")
+        guard let theAddress = json[JsonKeys.ITVCity_address] as? [String: String] else {
+            throw ITVError.JSON_Missing("json key \(JsonKeys.ITVCity_address)")
         }
-        guard let theCity = theAddress["city"] else {
-            throw ITVError.JSON_Missing("json key city")
+        guard let theCity = theAddress[JsonKeys.ITVCity_city] else {
+            throw ITVError.JSON_Missing("json key \(JsonKeys.ITVCity_city)")
         }
         self.name = theCity
     }

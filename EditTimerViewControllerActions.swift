@@ -13,6 +13,7 @@ import UIKit
 extension EditTimerViewController {
     @IBAction func showWeather(_ sender: Any) {
         if showWeatherSwitch.isOn {
+            registerNotifications() //will register at first weather use
             aesthetics_startLoadingWeather()
             showWeather()
         } else {
@@ -40,7 +41,7 @@ extension EditTimerViewController {
     }
     @IBAction func weatherMissing(_ sender: Any) {
         if ITVCoreLocation.sharedInstance.isLocationServicesAndNetworkAvailable() {
-            self.registerNotifications() //will register at first weather use
+            aesthetics_hideWarning()
             //IntervalTimerCoreLocation.sharedInstance.firstTimeLocationUsage()
             if ITVUser.sharedInstance.thisShouldUpdateWeather {
                 setWeatherFromNetwork()
@@ -71,12 +72,18 @@ extension EditTimerViewController {
         if let theTimerName = timerNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !theTimerName.isEmpty  {
             let theTemperatureUnit = getTemperatureUnit(from: temperatureSegmentedControl)
             let theShowWeather = showWeatherSwitch.isOn
-            
+
             if let theTimerIndex = itvTimerIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil {
-                    //this was a selected timer
-                    ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisName = theTimerName
-                    ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisShowWeather = theShowWeather
-                    ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisTemperatureUnit = theTemperatureUnit
+                //this was a selected timer
+
+                //TODO: understand why the encoding is not called when updating the new values individualy and why we have to replace the timer with theNewTimer
+                let thisTimersIntervals = ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals
+                let theNewTimer = ITVTimer(name: theTimerName, showWeather: theShowWeather, temperatureUnit: theTemperatureUnit, intervals: thisTimersIntervals)
+//                ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisName = theTimerName
+//                ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisShowWeather = theShowWeather
+//                ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisTemperatureUnit = theTemperatureUnit
+                ITVUser.sharedInstance.thisTimers?[theTimerIndex] = theNewTimer
+                
             } else {
                 //this is a new timer
                 if let theNewTimersIntervals = itvUnsavedTimersIntervals {
@@ -93,7 +100,7 @@ extension EditTimerViewController {
             }
             
             _ = navigationController?.popViewController(animated: true)
-
+            
         } else {
             //TODO: Alert user that he must name the timer.
             ITVWarningForUser.sharedInstance.thisUserWarning = UserWarning.MissingTimerName

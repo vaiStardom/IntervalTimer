@@ -28,6 +28,7 @@ extension EditTimerViewController {
             timerNameTextField.text = ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisName
             //Second, if this is a selected timer, do we show the weather
             if (ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisShowWeather)! {
+                showWeatherSwitch.isOn = true
                 if let theTemperatureUnit = ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisTemperatureUnit {
                     temperatureSegmentedControl.selectedSegmentIndex = theTemperatureUnit.rawValue
                 }

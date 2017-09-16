@@ -49,7 +49,7 @@ extension EditIntervalViewController {
     }
     func aesthetics_manageSelectedColorIndicator(indicatorIndex: Int?){
         
-        if let theIndicatorIndex = indicatorIndex {
+        if let theIndicatorIndex = indicatorIndex, theIndicatorIndex < 6 { //indicator is valid and is not "none"
             indicators[theIndicatorIndex].imageView.isSelected = !indicators[theIndicatorIndex].imageView.isSelected
             selectedIndicator = indicators[theIndicatorIndex].imageView.isSelected
             aesthetics_unselectAllIndicators()

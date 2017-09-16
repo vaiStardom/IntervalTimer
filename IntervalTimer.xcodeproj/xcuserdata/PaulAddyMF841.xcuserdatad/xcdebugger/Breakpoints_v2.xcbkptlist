@@ -9,14 +9,14 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "EditIntervalViewControllerHelpers.swift"
-            timestampString = "527071700.357593"
+            filePath = "ITVTimer.swift"
+            timestampString = "527241098.144074"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
-            landmarkName = "setViewValues(with:)"
-            landmarkType = "7">
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "thisShowWeather"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -25,13 +25,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "IntervalTimer/ITVEnums.swift"
-            timestampString = "527141732.114853"
+            filePath = "ITVTimer.swift"
+            timestampString = "527241098.144074"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
-            landmarkName = "uiColor()"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "thisShowWeather"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EditIntervalViewControllerActions.swift"
+            timestampString = "527242916.778832"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "save()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,109 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ITVInterval.swift"
-            timestampString = "527073543.509276"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "init()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "IntervalTimer.ITVInterval.init () -&gt; IntervalTimer.ITVInterval"
-                  moduleName = "IntervalTimer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/PaulAddyMF841/Library/Mobile%20Documents/com~apple~CloudDocs/Docs%20iCloud/_OceanScales/Dev/IntervalTimer/IntervalTimer/IntervalTimer/ITVInterval.swift"
-                  timestampString = "527074865.888006"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "95"
-                  endingLineNumber = "95"
-                  offsetFromSymbolStart = "820">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "IntervalTimer.ITVInterval.init () -&gt; IntervalTimer.ITVInterval"
-                  moduleName = "IntervalTimer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/PaulAddyMF841/Library/Mobile%20Documents/com~apple~CloudDocs/Docs%20iCloud/_OceanScales/Dev/IntervalTimer/IntervalTimer/IntervalTimer/ITVInterval.swift"
-                  timestampString = "527074865.891381"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "95"
-                  endingLineNumber = "95"
-                  offsetFromSymbolStart = "1444">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EditTimerViewControllerTableView.swift"
-            timestampString = "527074130.002225"
+            filePath = "EditTimerViewControllerItvIntervalsProtocol.swift"
+            timestampString = "527242947.70922"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "22"
             endingLineNumber = "22"
-            landmarkName = "tableView(_:numberOfRowsInSection:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "IntervalTimer.EditTimerViewController.tableView (__ObjC.UITableView, numberOfRowsInSection : Swift.Int) -&gt; Swift.Int"
-                  moduleName = "IntervalTimer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/PaulAddyMF841/Library/Mobile%20Documents/com~apple~CloudDocs/Docs%20iCloud/_OceanScales/Dev/IntervalTimer/IntervalTimer/IntervalTimer/EditTimerViewControllerTableView.swift"
-                  timestampString = "527074865.914847"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "22"
-                  endingLineNumber = "22"
-                  offsetFromSymbolStart = "36">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "IntervalTimer.EditTimerViewController.tableView (__ObjC.UITableView, numberOfRowsInSection : Swift.Int) -&gt; Swift.Int"
-                  moduleName = "IntervalTimer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/PaulAddyMF841/Library/Mobile%20Documents/com~apple~CloudDocs/Docs%20iCloud/_OceanScales/Dev/IntervalTimer/IntervalTimer/IntervalTimer/EditTimerViewControllerTableView.swift"
-                  timestampString = "527074865.917377"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "22"
-                  endingLineNumber = "22"
-                  offsetFromSymbolStart = "88">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EditTimerViewControllerTableView.swift"
-            timestampString = "527074131.931951"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkName = "didEditASavedTimersInterval()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -154,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EditIntervalViewControllerLifeCycle.swift"
-            timestampString = "527074220.902939"
+            timestampString = "527244550.782336"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "45"
@@ -170,7 +90,7 @@
                   moduleName = "IntervalTimer"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/PaulAddyMF841/Library/Mobile%20Documents/com~apple~CloudDocs/Docs%20iCloud/_OceanScales/Dev/IntervalTimer/IntervalTimer/IntervalTimer/EditIntervalViewControllerLifeCycle.swift"
-                  timestampString = "527074865.936387"
+                  timestampString = "527244877.991365"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "45"
@@ -185,7 +105,7 @@
                   moduleName = "IntervalTimer"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/PaulAddyMF841/Library/Mobile%20Documents/com~apple~CloudDocs/Docs%20iCloud/_OceanScales/Dev/IntervalTimer/IntervalTimer/IntervalTimer/EditIntervalViewControllerLifeCycle.swift"
-                  timestampString = "527074865.941655"
+                  timestampString = "527244877.995517"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "45"
@@ -201,13 +121,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "EditIntervalViewControllerLifeCycle.swift"
-            timestampString = "527074222.71142"
+            filePath = "EditTimerViewControllerSegue.swift"
+            timestampString = "527244685.447843"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -217,13 +137,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "EditIntervalViewControllerLifeCycle.swift"
-            timestampString = "527074297.534271"
+            filePath = "EditIntervalViewControllerHelpers.swift"
+            timestampString = "527244798.747401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "setViewValues(with:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -233,46 +153,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "EditIntervalViewControllerLifeCycle.swift"
-            timestampString = "527074300.224802"
+            filePath = "IntervalTimer/ITVFuncs.swift"
+            timestampString = "527244865.358063"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "IntervalTimer.EditIntervalViewController.viewDidLoad () -&gt; ()"
-                  moduleName = "IntervalTimer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/PaulAddyMF841/Library/Mobile%20Documents/com~apple~CloudDocs/Docs%20iCloud/_OceanScales/Dev/IntervalTimer/IntervalTimer/IntervalTimer/EditIntervalViewControllerLifeCycle.swift"
-                  timestampString = "527074865.955851"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "54"
-                  endingLineNumber = "54"
-                  offsetFromSymbolStart = "5292">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "IntervalTimer.EditIntervalViewController.viewDidLoad () -&gt; ()"
-                  moduleName = "IntervalTimer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/PaulAddyMF841/Library/Mobile%20Documents/com~apple~CloudDocs/Docs%20iCloud/_OceanScales/Dev/IntervalTimer/IntervalTimer/IntervalTimer/EditIntervalViewControllerLifeCycle.swift"
-                  timestampString = "527074865.9584"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "54"
-                  endingLineNumber = "54"
-                  offsetFromSymbolStart = "5340">
-               </Location>
-            </Locations>
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "hoursOf(seconds:)"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -281,221 +169,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "EditIntervalViewControllerLifeCycle.swift"
-            timestampString = "527074303.884514"
+            filePath = "EditIntervalViewControllerHelpers.swift"
+            timestampString = "527244900.927933"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "IntervalTimer.EditIntervalViewController.viewDidLoad () -&gt; ()"
-                  moduleName = "IntervalTimer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/PaulAddyMF841/Library/Mobile%20Documents/com~apple~CloudDocs/Docs%20iCloud/_OceanScales/Dev/IntervalTimer/IntervalTimer/IntervalTimer/EditIntervalViewControllerLifeCycle.swift"
-                  timestampString = "527074865.966515"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "46"
-                  endingLineNumber = "46"
-                  offsetFromSymbolStart = "4196">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "IntervalTimer.EditIntervalViewController.viewDidLoad () -&gt; ()"
-                  moduleName = "IntervalTimer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/PaulAddyMF841/Library/Mobile%20Documents/com~apple~CloudDocs/Docs%20iCloud/_OceanScales/Dev/IntervalTimer/IntervalTimer/IntervalTimer/EditIntervalViewControllerLifeCycle.swift"
-                  timestampString = "527074865.970447"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "46"
-                  endingLineNumber = "46"
-                  offsetFromSymbolStart = "4244">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EditIntervalViewControllerLifeCycle.swift"
-            timestampString = "527074407.247021"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EditIntervalViewControllerLifeCycle.swift"
-            timestampString = "527074408.262103"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EditIntervalViewControllerLifeCycle.swift"
-            timestampString = "527074409.837529"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EditIntervalViewControllerActions.swift"
-            timestampString = "527074454.172602"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "save()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EditIntervalViewControllerActions.swift"
-            timestampString = "527074455.189143"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "save()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "IntervalTimer.EditIntervalViewController.save () -&gt; ()"
-                  moduleName = "IntervalTimer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/PaulAddyMF841/Library/Mobile%20Documents/com~apple~CloudDocs/Docs%20iCloud/_OceanScales/Dev/IntervalTimer/IntervalTimer/IntervalTimer/EditIntervalViewControllerActions.swift"
-                  timestampString = "527074866.010214"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "51"
-                  endingLineNumber = "51"
-                  offsetFromSymbolStart = "4228">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "IntervalTimer.EditIntervalViewController.save () -&gt; ()"
-                  moduleName = "IntervalTimer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/PaulAddyMF841/Library/Mobile%20Documents/com~apple~CloudDocs/Docs%20iCloud/_OceanScales/Dev/IntervalTimer/IntervalTimer/IntervalTimer/EditIntervalViewControllerActions.swift"
-                  timestampString = "527074866.012636"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "51"
-                  endingLineNumber = "51"
-                  offsetFromSymbolStart = "4288">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EditIntervalViewControllerActions.swift"
-            timestampString = "527074865.640907"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "save()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EditIntervalViewControllerActions.swift"
-            timestampString = "527074582.064544"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "save()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EditTimerViewControllerActions.swift"
-            timestampString = "527074926.212749"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "save()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EditTimerViewControllerActions.swift"
-            timestampString = "527074927.23721"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "save()"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "setViewValues(with:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

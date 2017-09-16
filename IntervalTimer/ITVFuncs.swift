@@ -53,16 +53,18 @@ func getWeatherFromNetwork(){
 
 //MARK: - Date Functions
 func hoursSince(from: Date?, to: Date?) -> Int? {
-    guard let theFrom = from else {
-        fatalError("You must provide a non-nil from date")
-    }
+    
     guard let theTo = to else {
         fatalError("You must provide a non-nil to date")
     }
     
-    if let dateCompoenent = Calendar.current.dateComponents([.hour], from: theFrom, to: theTo) as DateComponents? {
-        if let hoursSince = dateCompoenent.hour {
-            return hoursSince
+    if let theStartDate = from {
+        if let dateCompoenent = Calendar.current.dateComponents([.hour], from: theStartDate, to: theTo) as DateComponents? {
+            if let hoursSince = dateCompoenent.hour {
+                return hoursSince
+            } else {
+                return nil
+            }
         } else {
             return nil
         }
@@ -109,7 +111,8 @@ func minutesOf(seconds: Double) -> String {
 
 }
 func secondsOf(seconds: Double) -> String {
-    let theSeconds = Int(seconds)
+    let secs = Int(seconds)
+    let theSeconds = secs % 60
     
     if theSeconds > 0 {
         return "\(String(format: "%02d", theSeconds))"

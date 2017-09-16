@@ -61,37 +61,6 @@ enum UserWarning: Int {
     case NoInternet
     case MissingTimerName
 }
-
-//MARK: - Others
-enum ReachabilityStatus {
-    case notReachable
-    case reachableViaWWAN
-    case reachableViaWiFi
-}
-enum TimeType: Int {
-    case Seconds
-    case Minutes
-    case Hours    
-    func toSeconds(from: Int?) -> Double {
-        if let theFrom = from {
-            let theTime = Double(theFrom)
-            if theTime <= 0 {
-                return 0.0
-            } else {
-                switch self {
-                case .Seconds:
-                    return theTime
-                case .Minutes:
-                    return theTime * 60.0
-                case .Hours:
-                    return theTime * 3600.0
-                }
-            }
-        } else {
-            return 0.0
-        }
-    }
-}
 //MARK: - Fonts
 enum SystemFont{
     static let Bold15: UIFont = UIFont.systemFont(ofSize: 15, weight: UIFontWeightBold)
@@ -146,7 +115,6 @@ enum NavigationBarImage{
     static let Add = "barButtonAdd"
     static let Back = "barButtonBack"
 }
-
 public enum Indicator: Int {
     case Red = 0 //this order has to stay this way...
     case Green
@@ -175,7 +143,80 @@ public enum Indicator: Int {
         }
     }
 }
-//MARK: - Litterals
+//MARK: - JSON Keys
+enum JsonKeys{
+    static let ITVCity_address = "address"
+    static let ITVCity_city = "city"
+    static let ITVCurrentWeather_icon = "icon"
+    static let ITVCurrentWeather_main = "main"
+    static let ITVCurrentWeather_temp = "temp"
+    static let ITVCurrentWeather_weather = "weather"
+}
+
+//MARK: - MapQuest
+enum MapQuestApi {
+    static let key = "iaGiN8vTI73I5Kpa0YPrVVblLvjPAfYF"
+    static let baseUrl = "http://open.mapquestapi.com/nominatim/v1/reverse.php?"
+}
+//MARK: - Reachability
+enum ReachabilityStatus {
+    case notReachable
+    case reachableViaWWAN
+    case reachableViaWiFi
+}
+//MARK: - Time types
+enum TimeType: Int {
+    case Seconds
+    case Minutes
+    case Hours    
+    func toSeconds(from: Int?) -> Double {
+        if let theFrom = from {
+            let theTime = Double(theFrom)
+            if theTime <= 0 {
+                return 0.0
+            } else {
+                switch self {
+                case .Seconds:
+                    return theTime
+                case .Minutes:
+                    return theTime * 60.0
+                case .Hours:
+                    return theTime * 3600.0
+                }
+            }
+        } else {
+            return 0.0
+        }
+    }
+}
+//MARK: - UserDefaultKeys
+enum UserDefaultsKey {
+    static let ITVCoreLocation_cityId = "cityId"
+    static let ITVCoreLocation_cityName = "cityName"
+    static let ITVCoreLocation_countryCode = "countryCode"
+    static let ITVCoreLocation_didCompleteLocationDetermination = "didCompleteLocationDetermination"
+    static let ITVCoreLocation_firstTimeLocationService = "firstTimeLocationService"
+    static let ITVCoreLocation_latitude = "latitude"
+    static let ITVCoreLocation_longitude = "longitude"
+    
+    static let ITVCurrentWeather_icon = "icon"
+    static let ITVCurrentWeather_kelvin = "kelvin"
+    
+    static let ITVInterval_indicator = "indicator"
+    static let ITVInterval_seconds = "seconds"
+    
+    static let ITVTimer_name = "name"
+    static let ITVTimer_showWeather = "showWeather"
+    static let ITVTimer_temperatureUnit = "temperatureUnit"
+    static let ITVTimer_intervals = "intervals"
+    
+    static let ITVUser_currentWeather = "currentWeather"
+    static let ITVUser_lastWeatherUpdate = "lastWeatherUpdate"
+    static let ITVUser_timers = "timers"
+    
+    
+}
+//MARK: - View Litterals
 enum Litterals{
     static let Back = "Back"
     static let BackToTimers = "Timers"
@@ -185,11 +226,6 @@ enum Litterals{
     static let NewInterval = "Interval"
     static let Save = "Save"
     static let TimerNamePlaceholder = "Enter name"
-}
-//MARK: - MapQuest
-enum MapQuestApi {
-    static let key = "iaGiN8vTI73I5Kpa0YPrVVblLvjPAfYF"
-    static let baseUrl = "http://open.mapquestapi.com/nominatim/v1/reverse.php?"
 }
 //MARK: - Weather
 enum OpenWeatherApi {
@@ -224,14 +260,4 @@ enum WeatherQueryPriority: Int {
     case byLocationName
     case byCoordinates
     case none
-}
-
-
-enum Views: String {
-    case WarningAllowLocationServicesView = "ITVWarningAllowLocationServicesView" //NIB Name
-    case view2 = "View2"
-    
-    func getView() -> UIView {
-        return Bundle.main.loadNibNamed(self.rawValue, owner: nil, options: nil)![0] as! UIView
-    }
 }

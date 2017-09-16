@@ -9,58 +9,6 @@
 import Foundation
 import UIKit
 
-////MOCKDATA:
-////MOCKDATA:
-//let intervals = [
-//    ITVInterval(seconds: 120, indicator: Indicator.Blue)
-//    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
-//    , ITVInterval(seconds: 90, indicator: Indicator.Green)
-//    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
-//    , ITVInterval(seconds: 90, indicator: Indicator.Green)
-//    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
-//    , ITVInterval(seconds: 90, indicator: Indicator.Green)
-//    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
-//    , ITVInterval(seconds: 90, indicator: Indicator.Green)
-//    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
-//    , ITVInterval(seconds: 90, indicator: Indicator.Green)
-//    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
-//    , ITVInterval(seconds: 90, indicator: Indicator.Green)
-//    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
-//    , ITVInterval(seconds: 90, indicator: Indicator.Green)
-//    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
-//    , ITVInterval(seconds: 90, indicator: Indicator.Green)
-//    , ITVInterval(seconds: 120, indicator: Indicator.Blue)
-//]
-//let intervalsHours = [
-//    ITVInterval(seconds: 120000, indicator: Indicator.Blue)
-//    , ITVInterval(seconds: 30000, indicator: Indicator.Yellow)
-//    , ITVInterval(seconds: 90000, indicator: Indicator.Green)
-//    , ITVInterval(seconds: 30000, indicator: Indicator.Yellow)
-//    , ITVInterval(seconds: 90000, indicator: Indicator.Green)
-//    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
-//    , ITVInterval(seconds: 90, indicator: Indicator.Green)
-//    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
-//    , ITVInterval(seconds: 90, indicator: Indicator.Green)
-//    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
-//    , ITVInterval(seconds: 90, indicator: Indicator.Green)
-//    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
-//    , ITVInterval(seconds: 90000, indicator: Indicator.Green)
-//    , ITVInterval(seconds: 30000, indicator: Indicator.Yellow)
-//    , ITVInterval(seconds: 90, indicator: Indicator.Green)
-//    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
-//    , ITVInterval(seconds: 90000, indicator: Indicator.Green)
-//    , ITVInterval(seconds: 120000, indicator: Indicator.Blue)
-//]
-//let intervalsSeconds = [
-//    ITVInterval(seconds: 3, indicator: Indicator.Yellow)
-//    , ITVInterval(seconds: 9, indicator: Indicator.Green)
-//    , ITVInterval(seconds: 3, indicator: Indicator.Yellow)
-//    , ITVInterval(seconds: 9, indicator: Indicator.Green)
-//    , ITVInterval(seconds: 3, indicator: Indicator.Yellow)
-//    , ITVInterval(seconds: 9, indicator: Indicator.Green)
-//    , ITVInterval(seconds: 3, indicator: Indicator.Yellow)
-//]
-
 //public struct ITVInterval: Hashable, Equatable {
 class ITVInterval: NSObject, NSCoding {
     
@@ -73,7 +21,7 @@ class ITVInterval: NSObject, NSCoding {
         get { return seconds}
         set {
             seconds = newValue
-            UserDefaults.standard.set(newValue, forKey: "seconds")
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKey.ITVInterval_seconds)
             UserDefaults.standard.synchronize()
         }
     }
@@ -81,21 +29,8 @@ class ITVInterval: NSObject, NSCoding {
         get { return indicator}
         set {
             indicator = newValue
-            UserDefaults.standard.set(newValue.rawValue, forKey: "indicator")
+            UserDefaults.standard.set(newValue.rawValue, forKey: UserDefaultsKey.ITVInterval_indicator)
             UserDefaults.standard.synchronize()
-        }
-    }
-    
-    // MARK: - Initializers
-    override private init() {
-        if let theSeconds = UserDefaults.standard.value(forKey: "seconds") as? Double {
-            seconds = theSeconds
-        }
-        
-        if let theIndicatorRawValue = UserDefaults.standard.value(forKey: "indicator") as? Int {
-            if let theIndicator = Indicator(rawValue: theIndicatorRawValue) {
-                indicator = theIndicator
-            }
         }
     }
 
@@ -111,22 +46,21 @@ class ITVInterval: NSObject, NSCoding {
     
     //MARK: - NSCoding protocol methods
     func encode(with coder: NSCoder){
-        coder.encode(thisSeconds, forKey: "seconds")
+        coder.encode(thisSeconds, forKey: UserDefaultsKey.ITVInterval_seconds)
         
         let theIndicatorRawValue = thisIndicator.rawValue
-        coder.encode(theIndicatorRawValue, forKey: "indicator")
+        coder.encode(theIndicatorRawValue, forKey: UserDefaultsKey.ITVInterval_indicator)
     }
     
     required init(coder decoder: NSCoder) {
         
-        if let theSeconds = decoder.decodeObject(forKey: "seconds") as? Double {
+        if let theSeconds = decoder.decodeObject(forKey: UserDefaultsKey.ITVInterval_seconds) as? Double {
             seconds = theSeconds
         }
         
-        if let theIndicatorRawValue = UserDefaults.standard.value(forKey: "indicator") as? Int {
-            if let theIndicator = Indicator(rawValue: theIndicatorRawValue) {
-                indicator = theIndicator
-            }
+        let theIndicatorRawValue = decoder.decodeInteger(forKey: UserDefaultsKey.ITVInterval_indicator)
+        if let theIndicator = Indicator(rawValue: theIndicatorRawValue) {
+            indicator = theIndicator
         }
     }
 }

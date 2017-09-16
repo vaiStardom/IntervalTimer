@@ -13,6 +13,8 @@ extension TimerViewController: ITVTimersProtocol {
         timerNameLabel.text = ITVUser.sharedInstance.thisTimers?[itvTimerIndex!].thisName
         if (ITVUser.sharedInstance.thisTimers?[itvTimerIndex!].thisShowWeather)! {
             updateWeatherInformation()
+        } else {
+            aesthetics_hideWeatherView()
         }
     }
 }

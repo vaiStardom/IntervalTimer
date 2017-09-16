@@ -69,6 +69,11 @@ extension EditTimerViewController {
 //        }
 //    }
 
+    func aesthetics_hideWarning(){
+        warningImageView.isHidden = true
+    }
+    
+
     func aesthetics_dontLoadWeather(){
         showWeatherSwitch.isOn = false
         weatherIconImageView.isHidden = true
@@ -82,6 +87,7 @@ extension EditTimerViewController {
     }
     func aesthetics_startLoadingWeather() {
         activityIndicatorStart()
+        aesthetics_hideWarning()
         
         temperatureSegmentedControl.isHidden = false
         weatherIconImageView.isHidden = false
@@ -89,7 +95,7 @@ extension EditTimerViewController {
         showWeatherSwitch.isOn = true
         weatherTemperatureLabel.isHidden = true
         showWeatherDescriptionLabel.isHidden = true
-        warningImageView.isHidden = true
+        
         
     }
     func aesthetics_showMissingWeatherWarning(){
