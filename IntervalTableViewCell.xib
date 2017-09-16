@@ -46,6 +46,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="qtb-W6-9Dv" secondAttribute="trailing" constant="7" id="9yf-t0-cTb"/>
                     <constraint firstItem="ERH-A6-KHl" firstAttribute="centerY" secondItem="KCA-le-xj6" secondAttribute="centerY" id="Csr-TN-RmQ"/>
@@ -57,6 +58,7 @@
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="tintColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="indicatorImageView" destination="qtb-W6-9Dv" id="mMY-yN-VI6"/>
                 <outlet property="intervalNumberLabel" destination="KCA-le-xj6" id="DXr-uG-x04"/>

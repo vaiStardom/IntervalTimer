@@ -41,8 +41,6 @@ extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
             cell.startTimerImageView.layer.borderColor = ITVColors.Orange.cgColor
             cell.startTimerImageView.layer.cornerRadius = cell.startTimerImageView.frame.size.height/2
 
-            print("------> TimerViewController timer = \(theTimer.thisName), showWeather = \(theTimer.thisShowWeather) tempUnit = \(theTimer.thisTemperatureUnit.rawValue)")
-            
             cell.startTimerButton.tag = index
             cell.startTimerButton.addTarget(self, action: #selector(TimersViewController.startTimer(_:)), for: .touchUpInside)
             

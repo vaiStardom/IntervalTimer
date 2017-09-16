@@ -64,6 +64,8 @@
                     <constraint firstAttribute="trailing" secondItem="eO4-Iv-Qhs" secondAttribute="trailing" constant="7" id="sAE-fx-snm"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="tintColor" red="0.25098039215686274" green="0.25098039215686274" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="startTimerButton" destination="NpZ-p7-q8y" id="RbI-eB-aIP"/>
                 <outlet property="startTimerImageView" destination="eO4-Iv-Qhs" id="irO-9C-zoP"/>
