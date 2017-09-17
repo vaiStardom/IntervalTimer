@@ -10,6 +10,19 @@ import Foundation
 
 //MARK: Timer functions
 extension TimerViewController{
+
+    func run(interval: ITVInterval){
+        
+        guard let theSeconds = interval.thisSeconds else {
+            return
+        }
+        
+        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(TimerViewController.updateTime), userInfo: nil, repeats: true)
+        startTime = Date.timeIntervalSinceReferenceDate + TimeInterval(theSeconds)
+        
+        aesthetics_managePulseIndicator(indicator: interval.thisIndicator)
+        aesthetics_Pulse(for: theSeconds)
+    }
     
     func runIntervalTimer(){
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(TimerViewController.updateTime), userInfo: nil, repeats: true)

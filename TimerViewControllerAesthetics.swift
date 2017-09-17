@@ -9,6 +9,11 @@
 import UIKit
 
 //MARK: Aesthetics
+//TODO: make the current indicator blink:
+//UIView.animateWithDuration(1.0, delay: 1.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+//    indicator.alpha = 0.0
+//}, completion: nil)
+
 extension TimerViewController {
     func aesthetics_showMissingWeatherWarning(){
         //TODO: program the alert to show when this button is pressed
@@ -51,12 +56,33 @@ extension TimerViewController {
     func aesthetics_initial(){
         activityIndicator.color = ITVColors.Orange
         cancelButton.isEnabled = false
+        backgroudPulseImageView.roundImageView()
+        foregroundPulsImageView.roundImageView()
         
         aesthetics_hideMissingWeatherWarning()
         aesthetics_setFonts()
         aesthetics_timerCancel()
         aesthetics_timerLabels()
         aesthetics_timerLabelsInitialText()
+    }
+    func aesthetics_managePulseIndicator(indicator: Indicator?){
+        if let theIndicator = indicator, theIndicator.rawValue < 6 { //indicator is valid and is not "none"
+            backgroudPulseImageView.backgroundColor = theIndicator.uiColor()
+            foregroundPulsImageView.layer.borderColor = theIndicator.uiColor().cgColor
+        } else {
+            backgroudPulseImageView.backgroundColor = ITVColors.OrangeAlpha50
+            foregroundPulsImageView.layer.borderColor = ITVColors.Orange.cgColor
+        }
+    }
+    func aesthetics_Pulse(for seconds: Double){
+        let pulseDown: CABasicAnimation = CABasicAnimation(keyPath: "transform.scale")
+        pulseDown.fromValue = 1.0
+        pulseDown.toValue = 0.0
+        pulseDown.autoreverses = false
+        pulseDown.duration = seconds
+        pulseDown.beginTime = 0.0
+        pulseDown.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn )
+        self.foregroundPulsImageView.layer.add(pulseDown, forKey: "animateOpacity")
     }
     func aesthetics_minutes(){
         

@@ -10,6 +10,12 @@ import UIKit
 
 //MARK: Actions
 extension TimerViewController{
+    @IBAction func cancel(_ sender: UIButton) {
+        startPauseResume = (true, false, false)
+        timer.invalidate()
+        aesthetics_timerCancel()
+    }
+    
     @IBAction func startPauseResumeTimer(_ sender: Any) {
         if startPauseResume == (true, false, false) { //start the timer
             runIntervalTimer()
@@ -25,12 +31,7 @@ extension TimerViewController{
             startPauseResume = (false, true, false)
         }
     }
-    @IBAction func cancel(_ sender: UIButton) {
-        startPauseResume = (true, false, false)
-        timer.invalidate()
-        aesthetics_timerCancel()
-    }
-    
+
     //TODO: Clicking here should also re-atempt to get the missing information by verifying first that the previous error no-longer exists, show the warning if it exists still, or re-attempt weather retreival.
     @IBAction func weatherMissing(_ sender: Any) {
         if ITVCoreLocation.sharedInstance.isLocationServicesAndNetworkAvailable() {

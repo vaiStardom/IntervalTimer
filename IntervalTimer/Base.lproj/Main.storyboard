@@ -343,34 +343,34 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="onz-dF-8ba">
-                                <rect key="frame" x="0.0" y="323" width="320" height="132"/>
+                                <rect key="frame" x="0.0" y="357" width="320" height="132"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="6iJ-qg-2te"/>
                                     <constraint firstAttribute="height" constant="132" id="uk6-XY-tvf"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cancel" translatesAutoresizingMaskIntoConstraints="NO" id="Hwb-Ik-GIB">
-                                <rect key="frame" x="15" y="323" width="132" height="132"/>
+                                <rect key="frame" x="15" y="357" width="132" height="132"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="132" id="IcF-Wi-Ej3"/>
                                     <constraint firstAttribute="width" constant="132" id="iMM-U1-QXG"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="start" translatesAutoresizingMaskIntoConstraints="NO" id="Cx7-MP-d6D">
-                                <rect key="frame" x="173" y="323" width="132" height="132"/>
+                                <rect key="frame" x="173" y="357" width="132" height="132"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="132" id="QMh-TT-r9h"/>
                                     <constraint firstAttribute="height" constant="132" id="dgV-di-m0t"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FQm-g8-Odx">
-                                <rect key="frame" x="15" y="323" width="132" height="132"/>
+                                <rect key="frame" x="15" y="357" width="132" height="132"/>
                                 <connections>
                                     <action selector="cancel:" destination="FOr-RH-OJ6" eventType="touchUpInside" id="4oa-Nc-1BK"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vsl-ki-DBC">
-                                <rect key="frame" x="173" y="323" width="132" height="132"/>
+                                <rect key="frame" x="173" y="357" width="132" height="132"/>
                                 <connections>
                                     <action selector="startPauseResumeTimer:" destination="FOr-RH-OJ6" eventType="touchUpInside" id="b7K-7d-XT9"/>
                                 </connections>
@@ -419,6 +419,45 @@
                                     <constraint firstAttribute="width" constant="20" id="I6o-il-dDM"/>
                                 </constraints>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FLI-rM-foW" customClass="ITVUIImageViewIndicator" customModule="IntervalTimer" customModuleProvider="target">
+                                <rect key="frame" x="110" y="203" width="99" height="99"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="99" id="ePF-kY-8vZ"/>
+                                    <constraint firstAttribute="height" constant="99" id="tlb-AI-blh"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="r4P-nN-LI7" customClass="ITVUIImageViewIndicator" customModule="IntervalTimer" customModuleProvider="target">
+                                <rect key="frame" x="110" y="203" width="99" height="99"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="99" id="YRL-fV-2vR"/>
+                                    <constraint firstAttribute="width" constant="99" id="zGB-2h-bpu"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kld-UV-fDa">
+                                <rect key="frame" x="111" y="203" width="99" height="99"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="startPauseResumeTimer:" destination="FOr-RH-OJ6" eventType="touchUpInside" id="zv7-Rb-U4e"/>
+                                </connections>
+                            </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wtJ-ON-hlm">
+                                <rect key="frame" x="0.0" y="314" width="320" height="28"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="xdb-Uz-c7A"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="clA-0e-O0m">
+                                    <size key="itemSize" width="28" height="28"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="FOr-RH-OJ6" id="fqo-hq-qZ6"/>
+                                    <outlet property="delegate" destination="FOr-RH-OJ6" id="Y8k-GA-WAD"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -429,6 +468,8 @@
                             <constraint firstItem="nv7-KQ-fE5" firstAttribute="centerX" secondItem="On6-vt-RSA" secondAttribute="centerX" id="6PM-7f-lAK"/>
                             <constraint firstItem="Cx7-MP-d6D" firstAttribute="trailing" secondItem="onz-dF-8ba" secondAttribute="trailing" constant="-15" id="8Ig-Wg-pjY"/>
                             <constraint firstItem="FQm-g8-Odx" firstAttribute="width" secondItem="Hwb-Ik-GIB" secondAttribute="width" id="Aeu-2C-Wlx"/>
+                            <constraint firstItem="FLI-rM-foW" firstAttribute="centerX" secondItem="On6-vt-RSA" secondAttribute="centerX" id="BR1-CY-CbM"/>
+                            <constraint firstItem="FLI-rM-foW" firstAttribute="top" secondItem="On6-vt-RSA" secondAttribute="bottom" constant="30" id="Buz-Y4-LyJ"/>
                             <constraint firstItem="UL6-1S-xfh" firstAttribute="centerY" secondItem="94b-Co-cGT" secondAttribute="centerY" constant="1.5" id="CQg-bK-P7Z"/>
                             <constraint firstItem="nv7-KQ-fE5" firstAttribute="centerY" secondItem="On6-vt-RSA" secondAttribute="centerY" id="DbR-Fg-6tP"/>
                             <constraint firstItem="JW0-is-Oqb" firstAttribute="leading" secondItem="PD0-Qt-9de" secondAttribute="trailing" id="HEc-zb-jA7"/>
@@ -445,26 +486,37 @@
                             <constraint firstItem="TAj-OZ-cu4" firstAttribute="leading" secondItem="eYs-Rk-chp" secondAttribute="leading" constant="245" id="Wo4-1V-nx0"/>
                             <constraint firstItem="Vsl-ki-DBC" firstAttribute="centerY" secondItem="Cx7-MP-d6D" secondAttribute="centerY" id="ZZS-OI-61n"/>
                             <constraint firstItem="JW0-is-Oqb" firstAttribute="top" secondItem="PD0-Qt-9de" secondAttribute="top" constant="77" id="Zci-Zy-MmW"/>
-                            <constraint firstItem="tGc-2f-gaI" firstAttribute="top" secondItem="onz-dF-8ba" secondAttribute="bottom" constant="49" id="Zs5-JJ-bb5"/>
+                            <constraint firstItem="tGc-2f-gaI" firstAttribute="top" secondItem="onz-dF-8ba" secondAttribute="bottom" constant="15" id="Zs5-JJ-bb5"/>
                             <constraint firstItem="Vsl-ki-DBC" firstAttribute="centerX" secondItem="Cx7-MP-d6D" secondAttribute="centerX" id="ZwR-ZO-dUo"/>
+                            <constraint firstItem="r4P-nN-LI7" firstAttribute="height" secondItem="FLI-rM-foW" secondAttribute="height" id="bQc-ot-6aN"/>
                             <constraint firstItem="Hwb-Ik-GIB" firstAttribute="leading" secondItem="onz-dF-8ba" secondAttribute="leading" constant="15" id="bbM-Zs-SMg"/>
                             <constraint firstItem="94b-Co-cGT" firstAttribute="top" secondItem="hMW-B7-w0w" secondAttribute="bottom" id="c8q-FV-RC0"/>
+                            <constraint firstItem="r4P-nN-LI7" firstAttribute="centerX" secondItem="FLI-rM-foW" secondAttribute="centerX" id="cyb-lL-DOc"/>
                             <constraint firstItem="onz-dF-8ba" firstAttribute="centerX" secondItem="fnu-e3-O6b" secondAttribute="centerX" id="esW-qu-BtY"/>
                             <constraint firstItem="TAj-OZ-cu4" firstAttribute="top" secondItem="eYs-Rk-chp" secondAttribute="bottom" constant="-52" id="fRn-lI-LuY"/>
                             <constraint firstItem="On6-vt-RSA" firstAttribute="centerX" secondItem="PD0-Qt-9de" secondAttribute="centerX" id="gBe-za-ksc"/>
+                            <constraint firstItem="r4P-nN-LI7" firstAttribute="width" secondItem="FLI-rM-foW" secondAttribute="width" id="i2A-L8-IQK"/>
                             <constraint firstItem="FQm-g8-Odx" firstAttribute="height" secondItem="Hwb-Ik-GIB" secondAttribute="height" id="l5K-Ca-7oZ"/>
+                            <constraint firstItem="onz-dF-8ba" firstAttribute="top" secondItem="wtJ-ON-hlm" secondAttribute="bottom" constant="15" id="nOf-d4-e2w"/>
                             <constraint firstItem="PD0-Qt-9de" firstAttribute="top" secondItem="94b-Co-cGT" secondAttribute="bottom" constant="8" id="ooU-xA-ssa"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ev8-d3-Dzu" secondAttribute="trailing" constant="11" id="q2g-He-K3j"/>
                             <constraint firstItem="sfs-bU-sq4" firstAttribute="centerY" secondItem="Ev8-d3-Dzu" secondAttribute="centerY" constant="0.5" id="rha-gk-Dn3"/>
                             <constraint firstItem="UL6-1S-xfh" firstAttribute="leading" secondItem="50V-60-GfP" secondAttribute="trailing" constant="-48" id="tnd-vR-NMy"/>
+                            <constraint firstItem="r4P-nN-LI7" firstAttribute="centerY" secondItem="FLI-rM-foW" secondAttribute="centerY" id="tuh-VC-scz"/>
+                            <constraint firstAttribute="trailing" secondItem="wtJ-ON-hlm" secondAttribute="trailing" id="utr-sF-Tua"/>
                             <constraint firstItem="94b-Co-cGT" firstAttribute="leading" secondItem="fnu-e3-O6b" secondAttribute="leadingMargin" constant="-1" id="vge-95-S66"/>
+                            <constraint firstItem="wtJ-ON-hlm" firstAttribute="leading" secondItem="fnu-e3-O6b" secondAttribute="leading" id="zEW-VJ-ZPt"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backgroudPulseImageView" destination="FLI-rM-foW" id="EDs-vD-B1e"/>
                         <outlet property="cancelButton" destination="FQm-g8-Odx" id="jdk-Uo-YsT"/>
                         <outlet property="cancelImageView" destination="Hwb-Ik-GIB" id="7wW-JD-zFw"/>
+                        <outlet property="collectionView" destination="wtJ-ON-hlm" id="RzF-lo-8Yc"/>
+                        <outlet property="foregroundPulsImageView" destination="r4P-nN-LI7" id="uAs-Iz-zXf"/>
                         <outlet property="startPauseResumeButton" destination="Vsl-ki-DBC" id="jgW-WD-5BO"/>
                         <outlet property="startPauseResumeImageView" destination="Cx7-MP-d6D" id="C06-h1-QUz"/>
+                        <outlet property="startPauseResumePulseButton" destination="Kld-UV-fDa" id="fuz-PU-Nzr"/>
                         <outlet property="timerHoursLabel" destination="nv7-KQ-fE5" id="cLZ-LY-u14"/>
                         <outlet property="timerMillisecondsForMinutesLabel" destination="TAj-OZ-cu4" id="8iu-a6-mdf"/>
                         <outlet property="timerMillisecondsForSecondsLabel" destination="JW0-is-Oqb" id="kpw-U1-rXs"/>

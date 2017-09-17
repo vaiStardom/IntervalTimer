@@ -24,11 +24,14 @@ class TimerViewController: UIViewController {
     @IBOutlet weak var cancelImageView: UIImageView!
     @IBOutlet weak var startPauseResumeImageView: UIImageView!
     @IBOutlet weak var warningImageView: UIImageView!
+    @IBOutlet weak var backgroudPulseImageView: ITVUIImageViewIndicator!
+    @IBOutlet weak var foregroundPulsImageView: ITVUIImageViewIndicator!
     
     //Buttons
     @IBOutlet weak var startPauseResumeButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var warningButton: UIButton!
+    @IBOutlet weak var startPauseResumePulseButton: UIButton!
     
     //Title labels
     @IBOutlet weak var weatherTemperatureLabel: UILabel!
@@ -45,6 +48,10 @@ class TimerViewController: UIViewController {
     @IBOutlet weak var timerSecondsLabel: UILabel!
     @IBOutlet weak var timerMillisecondsForSecondsLabel: UILabel!
 
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    var intervalsToRun: [ITVInterval]?
+    
     var itvTimerIndex: Int?
     var startIntervalTimer: Bool? = false
     
@@ -54,7 +61,7 @@ class TimerViewController: UIViewController {
     var hoursMinutesSeconds : (Bool, Bool, Bool) = (false, false, false)
     var startTime = TimeInterval()
     var timer = Timer()
-    var visualEffect: UIVisualEffect!
+    var visualEffect: UIVisualEffect! //TODO: Do you still need this?
     
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
 }
