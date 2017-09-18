@@ -23,7 +23,7 @@ class ITVUIBarButtonItem: UIBarButtonItem {
     }
     func leftTitle() -> UIBarButtonItem {
         
-        let label = ITVUILabel.createLabel(frame: NavigationBarCgRect.LeftLabel, font: NavigationBarFont.LeftRight, text: Litterals.BackToTimers, color: ITVColors.Orange)
+        let label = ITVUILabel.createLabel(frame: NavigationBarCgRect.LeftLabel, font: NavigationBarFont.LeftRight, text: Litterals.Timers, color: ITVColors.Orange)
         
         let view = UIView(frame: NavigationBarCgRect.Dummy)
         view.addSubview(label)
@@ -89,9 +89,30 @@ class ITVUIBarButtonItem: UIBarButtonItem {
         
         return UIBarButtonItem(customView: view)
     }
-    func negativeSpace() -> UIBarButtonItem {
+    func timersEditButton(target: UIViewController, selector: Selector) -> UIBarButtonItem {
+        
+        let button = ITVUIButton.createButton(frame: NavigationBarCgRect.CancelButton, target: target, selector: selector)
+        button.transform = CGAffineTransform(translationX: 0, y: 0)
+        
+        let label = ITVUILabel.createLabel(frame: NavigationBarCgRect.TimersEditLabel, font: NavigationBarFont.LeftRight, text: Litterals.Edit, color: ITVColors.Orange)
+        
+        let view = UIView(frame: NavigationBarCgRect.Dummy)
+        view.addSubview(button)
+        view.addSubview(label)
+
+        button.center = view.center
+
+        return UIBarButtonItem(customView: view)
+    }
+
+    func rightNegativeSpace() -> UIBarButtonItem {
         let negativeSpace:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
         negativeSpace.width = -20.0
+        return negativeSpace
+    }
+    func leftNegativeSpace() -> UIBarButtonItem {
+        let negativeSpace:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
+        negativeSpace.width = -5.0
         return negativeSpace
     }
 }

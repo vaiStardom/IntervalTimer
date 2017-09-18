@@ -13,30 +13,30 @@ extension TimerViewController: UICollectionViewDataSource, UICollectionViewDeleg
 
     func configureCollectionView(){
         
-        //Validate the timer
-        guard let theTimerIndex = itvTimerIndex , ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil else {
-            timerInvalid()
-            return
-        }
-        
-        guard let theIntervalTimer = ITVUser.sharedInstance.thisTimers?[theTimerIndex], !theIntervalTimer.totalTime().isEmpty else {
-            timerInvalid()
-            return
-        }
-        
-        guard let theIntervals = theIntervalTimer.thisIntervals, theIntervals.count > 0 else {
-            timerInvalid()
-            return
-        }
+//        //Validate the timer
+//        guard let theTimerIndex = itvTimerIndex , ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil else {
+//            timerInvalid()
+//            return
+//        }
+//        
+//        guard let theIntervalTimer = ITVUser.sharedInstance.thisTimers?[theTimerIndex], !theIntervalTimer.totalTime().isEmpty else {
+//            timerInvalid()
+//            return
+//        }
+//        
+//        guard let theIntervals = theIntervalTimer.thisIntervals, theIntervals.count > 0 else {
+//            timerInvalid()
+//            return
+//        }
 
         let nibName = UINib(nibName: "TimerIndicatorCollectionViewCell", bundle: nil)
         collectionView.register(nibName, forCellWithReuseIdentifier: "IndicatorCell")
         
-        intervalsToRun = theIntervals
+//        intervalsToRun = theIntervals
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return intervalsToRun!.count
+        return intervalsToRun.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "IndicatorCell", for: indexPath) as! TimerIndicatorCollectionViewCell
@@ -44,7 +44,7 @@ extension TimerViewController: UICollectionViewDataSource, UICollectionViewDeleg
         let index = indexPath.row
         
         cell.indicatorImageView.roundImageView()
-        cell.indicatorImageView.backgroundColor = intervalsToRun?[index].thisIndicator.uiColor()
+        cell.indicatorImageView.backgroundColor = intervalsToRun[index].thisIndicator.uiColor()
         
         return cell
     }

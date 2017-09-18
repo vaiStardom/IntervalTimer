@@ -25,8 +25,8 @@ extension EditTimerViewController {
         let label = ITVUILabel().navBarNewTimerTitle()
         self.navigationItem.titleView = label
         
-        let negativeSpace = ITVUIBarButtonItem().negativeSpace()
+        let rightNegativeSpace = ITVUIBarButtonItem().rightNegativeSpace()
         let cancelButton = ITVUIBarButtonItem().cancelButton(target: self, selector: #selector(EditTimerViewController.cancel))
-        self.navigationItem.rightBarButtonItems = [negativeSpace, cancelButton]
+        self.navigationItem.rightBarButtonItems = [rightNegativeSpace, cancelButton]
     }
 }

@@ -16,8 +16,8 @@ extension TimerViewController {
         let backButton = ITVUIBarButtonItem().backButton(target: self, selector: #selector(TimerViewController.back))
         self.navigationItem.leftBarButtonItems = [backButton]
         
-        let negativeSpace = ITVUIBarButtonItem().negativeSpace()
+        let rightNegativeSpace = ITVUIBarButtonItem().rightNegativeSpace()
         let editButton = ITVUIBarButtonItem().editButton(target: self, selector: #selector(TimerViewController.edit))
-        self.navigationItem.rightBarButtonItems = [negativeSpace, editButton]
+        self.navigationItem.rightBarButtonItems = [rightNegativeSpace, editButton]
     }
 }

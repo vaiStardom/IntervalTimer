@@ -36,20 +36,29 @@ extension TimerViewController{
         timerNameLabel.text = theIntervalTimer.thisName
         
         //Validate the intervals
-        guard let theIntervalCount = theIntervalTimer.thisIntervals?.count, theIntervalCount > 0 else {
+        guard let theIntervals = theIntervalTimer.thisIntervals, let theIntervalCount = theIntervalTimer.thisIntervals?.count, theIntervalCount > 0 else {
             timerInvalid()
             return
         }
         
+        intervalsToRun = theIntervals
+        indexOfIntervalToRun = 0
         configureCollectionView()
+
+        guard let theSeconds = intervalsToRun[indexOfIntervalToRun].thisSeconds else {
+            timerInvalid()
+            return
+        }
         
-        aesthetics_managePulseIndicator(indicator: intervalsToRun?[0].thisIndicator)
+        ellapsedSeconds = theSeconds
+        aesthetics_managePulseIndicator(indicator: intervalsToRun[indexOfIntervalToRun].thisIndicator)
         
         //TODO: QoS user interface thread
         //does user want to start it immedialy
         if let theStartIntervalTimer = startIntervalTimer, theStartIntervalTimer {
+            
             //yes
-            ellapsedSeconds = theIntervalTimer.thisIntervals![0].thisSeconds!
+
             runIntervalTimer()
             aesthetics_timerStart()
             startPauseResume = (false, true, false)

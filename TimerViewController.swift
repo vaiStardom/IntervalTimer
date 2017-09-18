@@ -50,16 +50,20 @@ class TimerViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var intervalsToRun: [ITVInterval]?
+    var intervalsToRun: [ITVInterval] = []
     
     var itvTimerIndex: Int?
     var startIntervalTimer: Bool? = false
-    
-    var totalSeconds = 3602 //seconds
+    var indexOfIntervalToRun = 0
+    var totalSeconds = 3602 //temp var, will be replaced by an intervals seconds
+    var startTime = TimeInterval()
     var ellapsedSeconds = 0.0
+    var wholeAnimation = 0.0
+    var toAnimation = 0.0
+    
     var startPauseResume : (Bool, Bool, Bool) = (false, false, false)
     var hoursMinutesSeconds : (Bool, Bool, Bool) = (false, false, false)
-    var startTime = TimeInterval()
+    
     var timer = Timer()
     var visualEffect: UIVisualEffect! //TODO: Do you still need this?
     

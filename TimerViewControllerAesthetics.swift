@@ -58,6 +58,7 @@ extension TimerViewController {
         cancelButton.isEnabled = false
         backgroudPulseImageView.roundImageView()
         foregroundPulsImageView.roundImageView()
+        backgroudPulseImageView.alpha = 0.5
         
         aesthetics_hideMissingWeatherWarning()
         aesthetics_setFonts()
@@ -68,22 +69,15 @@ extension TimerViewController {
     func aesthetics_managePulseIndicator(indicator: Indicator?){
         if let theIndicator = indicator, theIndicator.rawValue < 6 { //indicator is valid and is not "none"
             backgroudPulseImageView.backgroundColor = theIndicator.uiColor()
+            foregroundPulsImageView.backgroundColor = theIndicator.uiColor()
             foregroundPulsImageView.layer.borderColor = theIndicator.uiColor().cgColor
         } else {
-            backgroudPulseImageView.backgroundColor = ITVColors.OrangeAlpha50
+            backgroudPulseImageView.backgroundColor = ITVColors.Orange
+            foregroundPulsImageView.backgroundColor = ITVColors.Orange
             foregroundPulsImageView.layer.borderColor = ITVColors.Orange.cgColor
         }
     }
-    func aesthetics_Pulse(for seconds: Double){
-        let pulseDown: CABasicAnimation = CABasicAnimation(keyPath: "transform.scale")
-        pulseDown.fromValue = 1.0
-        pulseDown.toValue = 0.0
-        pulseDown.autoreverses = false
-        pulseDown.duration = seconds
-        pulseDown.beginTime = 0.0
-        pulseDown.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn )
-        self.foregroundPulsImageView.layer.add(pulseDown, forKey: "animateOpacity")
-    }
+    
     func aesthetics_minutes(){
         
         timerHoursLabel.isHidden = true

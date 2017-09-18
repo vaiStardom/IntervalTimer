@@ -11,20 +11,17 @@ import UIKit
 //MARK: - Navigation Bar Management
 extension TimersViewController {
     func configureNavBar(){
-        let leftTitle = leftTitleLabel()
-        self.navigationItem.leftBarButtonItems = [leftTitle]
         
-        let negativeSpace = negativeSpc()
-        let addButton = addBtn()
-        self.navigationItem.rightBarButtonItems = [negativeSpace, addButton]
-    }
-    func leftTitleLabel() -> UIBarButtonItem {
-        return ITVUIBarButtonItem().leftTitle()
-    }
-    func addBtn() -> UIBarButtonItem {
-        return ITVUIBarButtonItem().addButton(target: self, selector: #selector(TimersViewController.addTimer))
-    }
-    func negativeSpc() -> UIBarButtonItem{
-        return ITVUIBarButtonItem().negativeSpace()
+        let rightNegativeSpace = ITVUIBarButtonItem().rightNegativeSpace()
+        let leftNegativeSpace = ITVUIBarButtonItem().leftNegativeSpace()
+        
+        let leftTitleButton = ITVUIBarButtonItem().leftTitle()
+        self.navigationItem.leftBarButtonItems = [leftNegativeSpace, leftTitleButton]
+        
+        
+        let addButton = ITVUIBarButtonItem().addButton(target: self, selector: #selector(TimersViewController.addTimer))
+        let editButton = ITVUIBarButtonItem().timersEditButton(target: self, selector: #selector(TimersViewController.edit))
+
+        self.navigationItem.rightBarButtonItems = [rightNegativeSpace, addButton, editButton]
     }
 }

@@ -10,22 +10,30 @@ import Foundation
 
 //MARK: Timer functions
 extension TimerViewController{
-
-    func run(interval: ITVInterval){
-        
-        guard let theSeconds = interval.thisSeconds else {
-            return
-        }
-        
-        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(TimerViewController.updateTime), userInfo: nil, repeats: true)
-        startTime = Date.timeIntervalSinceReferenceDate + TimeInterval(theSeconds)
-        
-        aesthetics_managePulseIndicator(indicator: interval.thisIndicator)
-        aesthetics_Pulse(for: theSeconds)
-    }
+    
+//    func runTimer(){
+//        
+//        intervalsToRun
+//    }
+//
+//    func run(interval: ITVInterval){
+//        
+//        guard let theSeconds = interval.thisSeconds else {
+//            return
+//        }
+//        
+//        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(TimerViewController.updateTime), userInfo: nil, repeats: true)
+//        startTime = Date.timeIntervalSinceReferenceDate + TimeInterval(theSeconds)
+//        
+//        aesthetics_managePulseIndicator(indicator: interval.thisIndicator)
+//        aesthetics_Pulse(for: theSeconds)
+//    }
     
     func runIntervalTimer(){
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(TimerViewController.updateTime), userInfo: nil, repeats: true)
+        
+        ellapsedSeconds = 60.0
+        wholeAnimation = 60.0
         startTime = Date.timeIntervalSinceReferenceDate + TimeInterval(ellapsedSeconds)
     }
     
@@ -34,11 +42,34 @@ extension TimerViewController{
         var elapsedTime: TimeInterval = currentTime - startTime
         
         ellapsedSeconds = abs(elapsedTime)
+        toAnimation = Double(elapsedTime)
         
         if elapsedTime >= 0 {
-            timer.invalidate()
-            aesthetics_timerCancel()
-            //TODO: start next interval
+            
+            
+            indexOfIntervalToRun += 1
+            
+            guard let theSeconds = intervalsToRun[indexOfIntervalToRun].thisSeconds else {
+                //timer completed running all it intervals
+                timer.invalidate()
+                aesthetics_timerCancel() //this shouls happen at the end of the very last interval
+                return
+            }
+            
+            wholeAnimation = theSeconds
+            
+            ellapsedSeconds = theSeconds //set timer to the next interval
+            aesthetics_managePulseIndicator(indicator: intervalsToRun[indexOfIntervalToRun].thisIndicator)
+            configureCollectionView()
+            
+            //TODO: load next interval into pulse
+            
+            //delete the loaded interval from the collection view,
+            let firstIndexPath = IndexPath(row: 0, section: 0)
+            if self.collectionView.cellForItem(at: firstIndexPath) != nil {
+                intervalsToRun.remove(at: firstIndexPath.row)
+                self.collectionView.deleteItems(at: [firstIndexPath])
+            }
         }
         
         let hours = Int(elapsedTime / 3600.0) % 24
@@ -74,5 +105,7 @@ extension TimerViewController{
         //Seconds labels
         timerSecondsLabel.text = "\(strSeconds)"
         timerMillisecondsForSecondsLabel.text = ".\(strMilleseconds)"
+        
+        animation_addIndicatorShrink(whole: wholeAnimation, end: abs(toAnimation))
     }
 }
