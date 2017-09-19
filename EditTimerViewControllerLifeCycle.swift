@@ -14,6 +14,10 @@ extension EditTimerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if traitCollection.forceTouchCapability == .available {
+            registerForPreviewing(with: self, sourceView: view)
+        }
+
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "IntervalTableViewCell", bundle: nil), forCellReuseIdentifier: "IntervalCell")

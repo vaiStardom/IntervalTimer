@@ -90,7 +90,7 @@
                   moduleName = "IntervalTimer"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/PaulAddyMF841/Library/Mobile%20Documents/com~apple~CloudDocs/Docs%20iCloud/_OceanScales/Dev/IntervalTimer/IntervalTimer/IntervalTimer/EditIntervalViewControllerLifeCycle.swift"
-                  timestampString = "527244877.991365"
+                  timestampString = "527495680.873778"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "45"
@@ -105,7 +105,7 @@
                   moduleName = "IntervalTimer"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/PaulAddyMF841/Library/Mobile%20Documents/com~apple~CloudDocs/Docs%20iCloud/_OceanScales/Dev/IntervalTimer/IntervalTimer/IntervalTimer/EditIntervalViewControllerLifeCycle.swift"
-                  timestampString = "527244877.995517"
+                  timestampString = "527495680.875955"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "45"
@@ -177,6 +177,22 @@
             endingLineNumber = "94"
             landmarkName = "setViewValues(with:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimersTableViewCell.swift"
+            timestampString = "527501951.723189"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "TimersTableViewCell"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

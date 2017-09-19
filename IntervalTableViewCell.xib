@@ -45,12 +45,20 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v54-4V-qgB" customClass="ITVGradientView" customModule="IntervalTimer" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
+                    <constraint firstItem="v54-4V-qgB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="9MX-S6-w64"/>
+                    <constraint firstItem="v54-4V-qgB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="9i9-MN-0fr"/>
                     <constraint firstAttribute="trailingMargin" secondItem="qtb-W6-9Dv" secondAttribute="trailing" constant="7" id="9yf-t0-cTb"/>
+                    <constraint firstAttribute="bottom" secondItem="v54-4V-qgB" secondAttribute="bottom" constant="-0.5" id="CdI-0b-9it"/>
                     <constraint firstItem="ERH-A6-KHl" firstAttribute="centerY" secondItem="KCA-le-xj6" secondAttribute="centerY" id="Csr-TN-RmQ"/>
                     <constraint firstItem="ERH-A6-KHl" firstAttribute="leading" secondItem="KCA-le-xj6" secondAttribute="trailing" constant="1" id="Eav-lY-b5i"/>
+                    <constraint firstAttribute="trailing" secondItem="v54-4V-qgB" secondAttribute="trailing" id="bn3-ah-LGo"/>
                     <constraint firstItem="KCA-le-xj6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="dRW-8Y-YZF"/>
                     <constraint firstItem="KCA-le-xj6" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="i7O-Js-I6Z"/>
                     <constraint firstItem="qtb-W6-9Dv" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="mwe-hA-Olt"/>
@@ -63,8 +71,9 @@
                 <outlet property="indicatorImageView" destination="qtb-W6-9Dv" id="mMY-yN-VI6"/>
                 <outlet property="intervalNumberLabel" destination="KCA-le-xj6" id="DXr-uG-x04"/>
                 <outlet property="intervalTimeLabel" destination="ERH-A6-KHl" id="c13-uq-bPX"/>
+                <outlet property="itvGradientView" destination="v54-4V-qgB" id="nUw-kR-4NW"/>
             </connections>
-            <point key="canvasLocation" x="34" y="54.5"/>
+            <point key="canvasLocation" x="67" y="44.5"/>
         </tableViewCell>
     </objects>
     <resources>

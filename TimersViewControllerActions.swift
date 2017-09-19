@@ -20,5 +20,7 @@ extension TimersViewController{
         startSelectedIntervalTimer = true
         performSegue(withIdentifier: "TimersToTimer", sender: self)
     }
-    func edit(){}
+    func edit(){
+        tableView.isEditing = !tableView.isEditing
+    }
 }

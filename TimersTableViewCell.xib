@@ -49,24 +49,33 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qoa-rG-oyW" customClass="ITVGradientView" customModule="IntervalTimer" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="78"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="NpZ-p7-q8y" firstAttribute="centerX" secondItem="eO4-Iv-Qhs" secondAttribute="centerX" id="0O7-JX-sn4"/>
+                    <constraint firstItem="Qoa-rG-oyW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="2MH-c3-IcW"/>
                     <constraint firstItem="fBe-Fg-veo" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="-10.75" id="2Oe-ue-zfh"/>
                     <constraint firstItem="sAx-w7-yfN" firstAttribute="leading" secondItem="fBe-Fg-veo" secondAttribute="leading" id="3uy-q4-N9I"/>
+                    <constraint firstItem="Qoa-rG-oyW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="5K7-6E-5JU"/>
+                    <constraint firstAttribute="bottom" secondItem="Qoa-rG-oyW" secondAttribute="bottom" constant="0.5" id="6wT-Ht-pPR"/>
                     <constraint firstItem="sAx-w7-yfN" firstAttribute="top" secondItem="fBe-Fg-veo" secondAttribute="bottom" id="9EX-BG-wDF"/>
                     <constraint firstItem="NpZ-p7-q8y" firstAttribute="height" secondItem="eO4-Iv-Qhs" secondAttribute="height" id="CQ2-R4-GdI"/>
                     <constraint firstItem="eO4-Iv-Qhs" firstAttribute="centerY" secondItem="fBe-Fg-veo" secondAttribute="centerY" constant="11" id="blN-lz-Zbc"/>
                     <constraint firstItem="fBe-Fg-veo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="lzH-yn-baF"/>
                     <constraint firstItem="NpZ-p7-q8y" firstAttribute="width" secondItem="eO4-Iv-Qhs" secondAttribute="width" id="o2r-Mq-exi"/>
                     <constraint firstItem="NpZ-p7-q8y" firstAttribute="centerY" secondItem="eO4-Iv-Qhs" secondAttribute="centerY" id="p31-5v-Bl0"/>
+                    <constraint firstAttribute="trailing" secondItem="Qoa-rG-oyW" secondAttribute="trailing" id="rR1-wU-aWN"/>
                     <constraint firstAttribute="trailing" secondItem="eO4-Iv-Qhs" secondAttribute="trailing" constant="7" id="sAE-fx-snm"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <color key="tintColor" red="0.25098039215686274" green="0.25098039215686274" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
+                <outlet property="itvGradientView" destination="Qoa-rG-oyW" id="NaH-ZP-U7Z"/>
                 <outlet property="startTimerButton" destination="NpZ-p7-q8y" id="RbI-eB-aIP"/>
                 <outlet property="startTimerImageView" destination="eO4-Iv-Qhs" id="irO-9C-zoP"/>
                 <outlet property="timerLabel" destination="fBe-Fg-veo" id="sMz-kA-TU6"/>

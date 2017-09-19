@@ -56,6 +56,11 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
                     } else {
                         cell.intervalTimeLabel.text = "0"
                     }
+                    
+                    cell.itvGradientView.color1 = UIColor(white: 1.0, alpha: 0.2).cgColor as CGColor
+                    cell.itvGradientView.color2 = UIColor(white: 1.0, alpha: 0.1).cgColor as CGColor
+                    cell.itvGradientView.color3 = UIColor.clear.cgColor as CGColor
+                    cell.itvGradientView.color4 = UIColor(white: 0.0, alpha: 0.1).cgColor as CGColor
                 }
             }
         } else if let theUnsavedIntervals = itvUnsavedTimersIntervals {
