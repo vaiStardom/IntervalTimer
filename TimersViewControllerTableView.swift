@@ -33,6 +33,7 @@ extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
         let index = (indexPath as NSIndexPath).row
         
         if let theTimer = ITVUser.sharedInstance.thisTimers?[index] {
+//            cell.timerLabel?.text = "\(index)-\(theTimer.thisName!)"
             cell.timerLabel?.text = theTimer.thisName
             
             cell.totalTimeLabel.text = theTimer.totalTime()
@@ -45,6 +46,10 @@ extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
 
             cell.startTimerButton.tag = index
             cell.startTimerButton.addTarget(self, action: #selector(TimersViewController.startTimer(_:)), for: .touchUpInside)
+            
+            cell.swipeToDeleteDelegate = self
+//            cell.timerIndex = index
+            cell.timer = theTimer
             
             return cell
         } else {
@@ -64,18 +69,14 @@ extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
 
     }
 
-    //MARK: - Swipe to delete
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == UITableViewCellEditingStyle.delete) {
-            ITVUser.sharedInstance.thisTimers?.remove(at: indexPath.row)
-            tableView.reloadData()
-        }
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .none
     }
-
+    
 //    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
 
     //TODO: add a share button to share the your favorite timer with friends on social media
@@ -103,19 +104,4 @@ extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
 //        
 //        return [share, favorite, more]
 //        
-        
-        
-        
-        
-        //        var moreRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Add Interval", handler:{action, indexpath in
-//            print("MORE•ACTION");
-//        });
-//        moreRowAction.backgroundColor = UIColor(red: 0.298, green: 0.851, blue: 0.3922, alpha: 1.0);
-//        
-//        var deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Delete", handler:{action, indexpath in
-//            print("DELETE•ACTION");
-//        });
-//        
-//        return [deleteRowAction, moreRowAction];
-//    }
 }

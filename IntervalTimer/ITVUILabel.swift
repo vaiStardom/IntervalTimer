@@ -30,6 +30,14 @@ class ITVUILabel: UILabel {
         return label
     }
     
+    func swipeDeleteLabel() -> UILabel {
+        let label = UILabel(frame: CGRect.null)
+        label.textColor = UIColor.white
+        label.font = ViewFont.ContentLabel
+        label.backgroundColor = UIColor.red
+        return label
+    }
+    
     static func createLabel(frame: CGRect, font: UIFont, text: String, color: UIColor) -> UILabel {
         let label = UILabel(frame: frame)
         label.font = font

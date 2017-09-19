@@ -104,7 +104,21 @@ class ITVUIBarButtonItem: UIBarButtonItem {
 
         return UIBarButtonItem(customView: view)
     }
-
+    func timersSaveButton(target: UIViewController, selector: Selector) -> UIBarButtonItem {
+        
+        let button = ITVUIButton.createButton(frame: NavigationBarCgRect.CancelButton, target: target, selector: selector)
+        button.transform = CGAffineTransform(translationX: 0, y: 0)
+        
+        let label = ITVUILabel.createLabel(frame: NavigationBarCgRect.TimersSaveLabel, font: NavigationBarFont.LeftRight, text: Litterals.Save, color: ITVColors.Orange)
+        
+        let view = UIView(frame: NavigationBarCgRect.Dummy)
+        view.addSubview(button)
+        view.addSubview(label)
+        
+        button.center = view.center
+        
+        return UIBarButtonItem(customView: view)
+    }
     func rightNegativeSpace() -> UIBarButtonItem {
         let negativeSpace:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
         negativeSpace.width = -20.0

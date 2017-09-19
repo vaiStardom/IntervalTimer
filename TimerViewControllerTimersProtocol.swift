@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension TimerViewController: ITVTimersProtocol {
+extension TimerViewController: ITVUpdateTimersProtocol {
     func didUpdateTimers() {
         timerNameLabel.text = ITVUser.sharedInstance.thisTimers?[itvTimerIndex!].thisName
         if (ITVUser.sharedInstance.thisTimers?[itvTimerIndex!].thisShowWeather)! {

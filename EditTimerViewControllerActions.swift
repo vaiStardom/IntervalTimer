@@ -79,9 +79,6 @@ extension EditTimerViewController {
                 //TODO: understand why the encoding is not called when updating the new values individualy and why we have to replace the timer with theNewTimer
                 let thisTimersIntervals = ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals
                 let theNewTimer = ITVTimer(name: theTimerName, showWeather: theShowWeather, temperatureUnit: theTemperatureUnit, intervals: thisTimersIntervals)
-//                ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisName = theTimerName
-//                ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisShowWeather = theShowWeather
-//                ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisTemperatureUnit = theTemperatureUnit
                 ITVUser.sharedInstance.thisTimers?[theTimerIndex] = theNewTimer
                 
             } else {
@@ -95,8 +92,8 @@ extension EditTimerViewController {
                 }
             }
             
-            if self.itvTimersProtocolDelegate != nil {
-                self.itvTimersProtocolDelegate?.didUpdateTimers()
+            if self.updateTimersProtocolDelegate != nil {
+                self.updateTimersProtocolDelegate?.didUpdateTimers()
             }
             
             _ = navigationController?.popViewController(animated: true)

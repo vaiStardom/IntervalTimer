@@ -21,7 +21,7 @@ extension TimerViewController {
         weatherImageView.isHidden = true
         weatherTemperatureLabel.isHidden = true
 
-        warningButton.isHidden = false
+        warningButton.isEnabled = true
         warningImageView.alpha = 0.0
 
         warningButton.isHidden = false
@@ -33,12 +33,14 @@ extension TimerViewController {
     }
     func aesthetics_hideMissingWeatherWarning(){
         warningButton.isHidden = true
+        warningButton.isEnabled = false
         warningImageView.isHidden = true
         weatherImageView.isHidden = false
         weatherTemperatureLabel.isHidden = false
     }
     func aesthetics_hideWeatherView(){
         warningButton.isHidden = true
+        warningButton.isEnabled = false
         warningImageView.isHidden = true
         weatherImageView.isHidden = true
         weatherTemperatureLabel.isHidden = true

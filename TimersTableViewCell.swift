@@ -7,7 +7,6 @@
 //
 
 import UIKit
-//import QuartzCore
 
 class TimersTableViewCell: UITableViewCell {
 
@@ -16,8 +15,35 @@ class TimersTableViewCell: UITableViewCell {
     @IBOutlet weak var startTimerImageView: UIImageView!
     @IBOutlet weak var startTimerButton: UIButton!
     
+    var originalCenter = CGPoint()
+    var deleteOnSwipe = false
+    var timer: ITVTimer?
+    
+    var swipeToDeleteDelegate: ITVSwipeToDeleteTimerProtocol?
+    
+    var deleteLabel: UILabel!
+    
+    let kUICuesMargin: CGFloat = 10.0
+    var kUICuesWidth: CGFloat = 50.0
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        let recognizer = UIPanGestureRecognizer(target: self, action: #selector(TimersTableViewCell.swipe))
+        recognizer.delegate = self
+        addGestureRecognizer(recognizer)
+        
+        deleteLabel = ITVUILabel().swipeDeleteLabel()
+        deleteLabel.text = "Delete"
+        deleteLabel.textAlignment = .left
+
+        addSubview(deleteLabel)
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        deleteLabel.frame = CGRect(x: bounds.size.width + kUICuesMargin, y: 0, width: bounds.size.width, height: bounds.size.height)
+    }
+
 }

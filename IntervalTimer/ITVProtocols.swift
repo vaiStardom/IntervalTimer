@@ -16,10 +16,14 @@ protocol ITVUserWarningProtocol {
 }
 protocol ITVUtilitiesProtocol {
 }
-protocol ITVTimersProtocol{
+protocol ITVUpdateTimersProtocol{
     func didUpdateTimers()
 }
-protocol ITVIntervalsProtocol{
+protocol ITVUpdateIntervalsProtocol{
     func didUpdateIntervals(_ intervals:[ITVInterval]?) //if the is a value, then this is an array of intervals for an unsaved timer
     func didEditASavedTimersInterval()
+}
+protocol ITVSwipeToDeleteTimerProtocol{
+//    func deleteTimer(atIndex: Int?)
+    func delete(timer: ITVTimer?)
 }

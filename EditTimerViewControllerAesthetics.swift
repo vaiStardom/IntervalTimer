@@ -18,6 +18,7 @@ extension EditTimerViewController {
         temperatureSegmentedControl.isHidden = true
         temperatureSegmentedControl.selectedSegmentIndex = 2
         showWeatherDescriptionLabel.isHidden = false
+        warningButton.isEnabled = false
         
         aesthetics_ShowTableView()
     }
@@ -71,6 +72,7 @@ extension EditTimerViewController {
 
     func aesthetics_hideWarning(){
         warningImageView.isHidden = true
+        warningButton.isEnabled = false
     }
     
 
@@ -103,7 +105,7 @@ extension EditTimerViewController {
         activityIndicatorStop()
         aesthetics_hideWeatherViews()
        
-        warningButton.isHidden = false
+        warningButton.isEnabled = true
         warningImageView.alpha = 0.0
         
         warningButton.isHidden = false

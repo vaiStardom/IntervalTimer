@@ -1,5 +1,5 @@
 //
-//  TimersViewControllerHelpers.swift
+//  TimersViewControllerItvUpdateTimersProtocol.swift
 //  IntervalTimer
 //
 //  Created by Paul Addy on 2017-09-11.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-extension TimersViewController: ITVTimersProtocol {
+extension TimersViewController: ITVUpdateTimersProtocol {
     func didUpdateTimers() {
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
 }

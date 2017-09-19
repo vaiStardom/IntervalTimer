@@ -84,9 +84,6 @@ class ITVUser: NSObject, NSCoding  {
                     let theTimersData: Data = NSKeyedArchiver.archivedData(withRootObject: theTimers)
                     UserDefaults.standard.set(theTimersData, forKey: UserDefaultsKey.ITVUser_timers)
                     UserDefaults.standard.synchronize()
-                    print("------> ITVUser UserDefaults.standard.synchronize() thisTimers \(theTimers)")
-                    print("------> ITVUser UserDefaults.standard.synchronize() theTimersData \(theTimersData)")
-                    print("------> ITVUser UserDefaults.standard.synchronize() UserDefaultsKey.ITVUser_timers key \(UserDefaultsKey.ITVUser_timers)")
                 }
             }
         }

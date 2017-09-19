@@ -42,7 +42,7 @@ class EditIntervalViewController: UIViewController  {
     var indicator: Indicator = Indicator.none
     var isEditingAnInterval: Bool? = false
     var textFields: [UITextField] = []
-    var itvIntervalsProtocolDelegate: ITVIntervalsProtocol?
+    var updateIntervalsProtocolDelegate: ITVUpdateIntervalsProtocol?
     
     var itvTimerIndex: Int?
     var itvIntervalIndex: Int?

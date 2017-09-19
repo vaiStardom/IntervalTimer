@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension EditTimerViewController: ITVIntervalsProtocol {
+extension EditTimerViewController: ITVUpdateIntervalsProtocol {
     func didUpdateIntervals(_ intervals:[ITVInterval]?) {
         if let theNewIntervals = intervals {
             itvUnsavedTimersIntervals = theNewIntervals

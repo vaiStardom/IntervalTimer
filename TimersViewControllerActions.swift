@@ -20,7 +20,10 @@ extension TimersViewController{
         startSelectedIntervalTimer = true
         performSegue(withIdentifier: "TimersToTimer", sender: self)
     }
+    
+    //TODO: Change label to save when editing
     func edit(){
         tableView.isEditing = !tableView.isEditing
+        configureNavBar()
     }
 }
