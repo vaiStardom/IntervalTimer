@@ -46,11 +46,6 @@ extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
             cell.startTimerButton.tag = index
             cell.startTimerButton.addTarget(self, action: #selector(TimersViewController.startTimer(_:)), for: .touchUpInside)
             
-            cell.itvGradientView.color1 = UIColor(white: 1.0, alpha: 0.2).cgColor as CGColor
-            cell.itvGradientView.color2 = UIColor(white: 1.0, alpha: 0.1).cgColor as CGColor
-            cell.itvGradientView.color3 = UIColor.clear.cgColor as CGColor
-            cell.itvGradientView.color4 = UIColor(white: 0.0, alpha: 0.1).cgColor as CGColor
-            
             return cell
         } else {
             return cell

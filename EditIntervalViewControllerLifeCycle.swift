@@ -14,7 +14,7 @@ extension EditIntervalViewController {
         super.viewDidLoad()
         configureNavBar()
         
-        secondTextField1.becomeFirstResponder()
+//        secondTextField1.becomeFirstResponder()
         
         hourTextField2.delegate = self
         hourTextField1.delegate = self
@@ -61,6 +61,9 @@ extension EditIntervalViewController {
                 aesthetics_unselectAllIndicators()
             }
         }
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        secondTextField1.becomeFirstResponder()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
