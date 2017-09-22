@@ -12,27 +12,10 @@ import UIKit
 extension TimerViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 
     func configureCollectionView(){
-        
-//        //Validate the timer
-//        guard let theTimerIndex = itvTimerIndex , ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil else {
-//            timerInvalid()
-//            return
-//        }
-//        
-//        guard let theIntervalTimer = ITVUser.sharedInstance.thisTimers?[theTimerIndex], !theIntervalTimer.totalTime().isEmpty else {
-//            timerInvalid()
-//            return
-//        }
-//        
-//        guard let theIntervals = theIntervalTimer.thisIntervals, theIntervals.count > 0 else {
-//            timerInvalid()
-//            return
-//        }
+        //TODO: relaod collection view coming back from edit timer
 
         let nibName = UINib(nibName: "TimerIndicatorCollectionViewCell", bundle: nil)
         collectionView.register(nibName, forCellWithReuseIdentifier: "IndicatorCell")
-        
-//        intervalsToRun = theIntervals
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

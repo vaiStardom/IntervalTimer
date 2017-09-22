@@ -94,7 +94,7 @@ extension ITVCoreLocation{
             }
         }
     }
-    func didGetNewCityName(_ notification: Notification){
+    @objc func didGetNewCityName(_ notification: Notification){
         
         print("------> IntervalTimerCoreLocation didGetNewCityName(notification:) notification received")
         guard !thisCityName!.isEmpty, thisCityName != nil else {

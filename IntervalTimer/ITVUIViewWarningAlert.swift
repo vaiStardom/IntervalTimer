@@ -80,7 +80,7 @@ class ITVUIViewWarningAlert: UIView, ITVUserWarningProtocol {
             let rangeOfDisable = (message as NSString).range(of: "disable")
             
             attributedString = NSMutableAttributedString(string: message)
-            attributedString.addAttribute(NSFontAttributeName, value: ViewFont.WarningBold, range: rangeOfDisable)
+            attributedString.addAttribute(NSAttributedStringKey.font, value: ViewFont.WarningBold, range: rangeOfDisable)
 
             warningView.messageLabel.attributedText = attributedString
             
@@ -97,7 +97,7 @@ class ITVUIViewWarningAlert: UIView, ITVUserWarningProtocol {
             let rangeOfLocationDetermination = (message as NSString).range(of: "Location determination")
             
             attributedString = NSMutableAttributedString(string: message)
-            attributedString.addAttribute(NSFontAttributeName, value: ViewFont.WarningBold, range: rangeOfLocationDetermination)
+            attributedString.addAttribute(NSAttributedStringKey.font, value: ViewFont.WarningBold, range: rangeOfLocationDetermination)
             
             warningView.messageLabel.attributedText = attributedString
             
@@ -112,7 +112,7 @@ class ITVUIViewWarningAlert: UIView, ITVUserWarningProtocol {
             let rangeOfLocationServices = (message as NSString).range(of: "Location Services")
             
             attributedString = NSMutableAttributedString(string: message)
-            attributedString.addAttribute(NSFontAttributeName, value: ViewFont.WarningBold, range: rangeOfLocationServices)
+            attributedString.addAttribute(NSAttributedStringKey.font, value: ViewFont.WarningBold, range: rangeOfLocationServices)
             
             warningView.messageLabel.attributedText = attributedString
             
@@ -126,7 +126,7 @@ class ITVUIViewWarningAlert: UIView, ITVUserWarningProtocol {
             let rangeOfInternet = (message as NSString).range(of: "Internet")
             
             attributedString = NSMutableAttributedString(string: message)
-            attributedString.addAttribute(NSFontAttributeName, value: ViewFont.WarningBold, range: rangeOfInternet)
+            attributedString.addAttribute(NSAttributedStringKey.font, value: ViewFont.WarningBold, range: rangeOfInternet)
             
             warningView.messageLabel.attributedText = attributedString
 
@@ -140,14 +140,14 @@ class ITVUIViewWarningAlert: UIView, ITVUserWarningProtocol {
             let rangeOfName = (message as NSString).range(of: "name")
             
             attributedString = NSMutableAttributedString(string: message)
-            attributedString.addAttribute(NSFontAttributeName, value: ViewFont.WarningBold, range: rangeOfName)
+            attributedString.addAttribute(NSAttributedStringKey.font, value: ViewFont.WarningBold, range: rangeOfName)
             
             warningView.messageLabel.attributedText = attributedString
             
             return warningView
         }
     }
-    func didTappedOnBackgroundView(){
+    @objc func didTappedOnBackgroundView(){
         dismiss(animated: true)
     }
 }

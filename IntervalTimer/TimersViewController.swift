@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore
 
 class TimersViewController: UIViewController {
 
@@ -14,25 +15,8 @@ class TimersViewController: UIViewController {
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
 
-    var itvTimer: ITVTimer?
+    var itvTimerIndex: Int?
     var startSelectedIntervalTimer: Bool? = false
     
-//    private var selectedTimerIndex: Int?
-}
-//MARK: - Life-Cycle
-extension TimersViewController{
-    override func viewWillAppear(_ animated: Bool) {
-        animateTable()
-        print("UserDefaults Retreived Informations:")
-        print("Last weather update = \(String(describing: ITVUser.sharedInstance.thisLastWeatherUpdate))")
-        print("Kelvin = \(String(describing: ITVUser.sharedInstance.thisCurrentWeather?.thisKelvin!))")
-        print("Icon = \(String(describing: ITVUser.sharedInstance.thisCurrentWeather?.thisIcon!))")
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(UINib(nibName: "TimersTableViewCell", bundle: nil), forCellReuseIdentifier: "TimersCell")
-        configureNavBar()
-    }
+    let gradientLayer = CAGradientLayer()
 }

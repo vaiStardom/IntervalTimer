@@ -36,15 +36,15 @@ extension ITVCityService {
         
         var didGetCity = true
         var error: Error?
-        fromNetwork(with: theUrl) { (itvCityServiceHandler) in
+        fromNetwork(with: theUrl) { (city, err) in
             
-            guard itvCityServiceHandler.1 == nil else {
-                error = itvCityServiceHandler.1
+            guard err == nil else {
+                error = err
                 didGetCity = false
                 return
             }
 
-            guard let theCity = itvCityServiceHandler.0?.thisName!.replacingOccurrences(of: self.cityWord, with: "").trimmingCharacters(in: .whitespacesAndNewlines) else {
+            guard let theCity = city?.thisName!.replacingOccurrences(of: self.cityWord, with: "").trimmingCharacters(in: .whitespacesAndNewlines) else {
                 print("------> ERROR IntervalTimerCityService getCityNameWith(url:) -> theCity is nil")
                 error = ITVError.GetCityId_NoCityId(reason: "Could not get city name from URL \(theUrl) ")
                 didGetCity = false
@@ -70,15 +70,15 @@ extension ITVCityService {
             completion(nil, ITVError.JSON_Missing("The JSON is nil."))
             return
         }
-        theNetworkJson.downloadJSON({ (jsonHandler) in
+        theNetworkJson.downloadJSON({ (jsonDictionary, err)  in
             
-            guard jsonHandler.1 == nil else {
-                completion(nil, jsonHandler.1)
+            guard err == nil else {
+                completion(nil, err)
                 return
             }
             
             do {
-                let theCity = try ITVCity(json: jsonHandler.0!)
+                let theCity = try ITVCity(json: jsonDictionary!)
                 completion(theCity, nil)
             } catch let error {
                 

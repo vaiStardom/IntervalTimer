@@ -74,15 +74,15 @@ extension ITVWeatherService {
         
         var didGetCurrentWeather = true
         var error: Error?
-        fromNetwork(with: theUrl) { (itvWeatherServiceHandler) in
+        fromNetwork(with: theUrl) { (weather, err)  in
             
-            guard itvWeatherServiceHandler.1 == nil else {
-                error = itvWeatherServiceHandler.1
+            guard err == nil else {
+                error = err
                 didGetCurrentWeather = false
                 return
             }
             
-            guard let theCurrentWeather = itvWeatherServiceHandler.0 else {
+            guard let theCurrentWeather = weather else {
                 error = ITVError.GetWeather_DidNotGetWeather(reason: "Could not create the weather object.")
                 didGetCurrentWeather = false
                 return
@@ -122,15 +122,15 @@ extension ITVWeatherService {
             return
         }
         
-        theNetworkJson.downloadJSON({ (jsonHandler) in
+        theNetworkJson.downloadJSON({ (jsonDictionary, err)  in
             
-            guard jsonHandler.1 == nil else {
-                completion(nil, jsonHandler.1)
+            guard err == nil else {
+                completion(nil, err)
                 return
             }
             
             do {
-                let theWeather = try ITVCurrentWeather(json: jsonHandler.0!)
+                let theWeather = try ITVCurrentWeather(json: jsonDictionary!)
                 completion(theWeather, nil)
             } catch let error {
                 print("------> ERROR IntervalTimerWeatherService fromNetwork() -> \(error)")

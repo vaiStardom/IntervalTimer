@@ -37,7 +37,7 @@ extension TimerViewController{
         startTime = Date.timeIntervalSinceReferenceDate + TimeInterval(ellapsedSeconds)
     }
     
-    func updateTime(){
+    @objc func updateTime(){
         let currentTime = Date.timeIntervalSinceReferenceDate
         var elapsedTime: TimeInterval = currentTime - startTime
         
