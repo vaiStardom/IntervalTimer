@@ -81,38 +81,6 @@
             endingLineNumber = "45"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "IntervalTimer.EditIntervalViewController.viewDidLoad () -&gt; ()"
-                  moduleName = "IntervalTimer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/PaulAddyMF841/Library/Mobile%20Documents/com~apple~CloudDocs/Docs%20iCloud/_OceanScales/Dev/IntervalTimer/IntervalTimer/IntervalTimer/EditIntervalViewControllerLifeCycle.swift"
-                  timestampString = "527521415.979538"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
-                  offsetFromSymbolStart = "3656">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "IntervalTimer.EditIntervalViewController.viewDidLoad () -&gt; ()"
-                  moduleName = "IntervalTimer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/PaulAddyMF841/Library/Mobile%20Documents/com~apple~CloudDocs/Docs%20iCloud/_OceanScales/Dev/IntervalTimer/IntervalTimer/IntervalTimer/EditIntervalViewControllerLifeCycle.swift"
-                  timestampString = "527521415.981434"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
-                  offsetFromSymbolStart = "3700">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -154,12 +122,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IntervalTimer/ITVFuncs.swift"
-            timestampString = "527244865.358063"
+            timestampString = "527944306.73414"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
-            landmarkName = "hoursOf(seconds:)"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "timeOf_00(seconds:)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -186,12 +154,76 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimersViewControllerTableView.swift"
-            timestampString = "527525138.963027"
+            timestampString = "527860414.089227"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "tableView(_:moveRowAt:to:)"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "TimersViewController"
+            landmarkType = "21">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EditTimerViewControllerTextField.swift"
+            timestampString = "527860414.08929"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "textField(_:shouldChangeCharactersIn:replacementString:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimerViewControllerLifeCycle.swift"
+            timestampString = "528023710.024889"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimerViewControllerLifeCycle.swift"
+            timestampString = "528023710.026369"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimerViewControllerLifeCycle.swift"
+            timestampString = "528023710.027464"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

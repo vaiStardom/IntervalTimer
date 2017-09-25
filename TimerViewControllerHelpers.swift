@@ -21,7 +21,6 @@ extension TimerViewController{
     func timerInvalid(){
         //TODO: design a warning for the user to add intervals, since this timer is empty
         startPauseResume = (true, false, false)
-        startPauseResumeButton.isEnabled = false
-        startPauseResumePulseButton.isEnabled = false
+        aesthetics_ShowUserWarning()
     }
 }

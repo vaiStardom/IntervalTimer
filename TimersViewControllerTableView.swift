@@ -13,6 +13,10 @@ extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
     
     //MARK: - Row selection
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.contentView.backgroundColor = ITVColors.OrangeAlpha50
+        
         itvTimerIndex = indexPath.row
         startSelectedIntervalTimer = false
         performSegue(withIdentifier: "TimersToTimer", sender: nil)
@@ -33,7 +37,6 @@ extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
         let index = (indexPath as NSIndexPath).row
         
         if let theTimer = ITVUser.sharedInstance.thisTimers?[index] {
-//            cell.timerLabel?.text = "\(index)-\(theTimer.thisName!)"
             cell.timerLabel?.text = theTimer.thisName
             
             cell.totalTimeLabel.text = theTimer.totalTime()
@@ -48,9 +51,11 @@ extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
             cell.startTimerButton.addTarget(self, action: #selector(TimersViewController.startTimer(_:)), for: .touchUpInside)
             
             cell.swipeToDeleteDelegate = self
-//            cell.timerIndex = index
             cell.timer = theTimer
             
+//            cell.appearance().selectedBackgroundView = coloredView(color: ITVColors.OrangeAlpha50)
+//            cell.contentView.backgroundColor = ITVColors.OrangeAlpha50
+
             return cell
         } else {
             return cell

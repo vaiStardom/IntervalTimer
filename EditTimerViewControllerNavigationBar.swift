@@ -2,7 +2,7 @@
 //  EditTimerViewControllerNavigationBar.swift
 //  IntervalTimer
 //
-//  Created by Paul Addy on 2017-09-01.
+//  Created by Paul Addy on 2017-09-23.
 //  Copyright © 2017 Paul Addy. All rights reserved.
 //
 
@@ -11,7 +11,7 @@ import Foundation
 //MARK: - Navigation Bar Management
 extension EditTimerViewController {
     func configureNavBar(){
-
+        
         self.navigationItem.hidesBackButton = true
         
         if !isEditing {
@@ -21,7 +21,7 @@ extension EditTimerViewController {
             let saveButton = ITVUIBarButtonItem().saveButton(target: self, selector: #selector(EditTimerViewController.save))
             self.navigationItem.leftBarButtonItems = [saveButton]
         }
-
+        
         let label = ITVUILabel().navBarNewTimerTitle()
         self.navigationItem.titleView = label
         

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension EditTimerViewController {
+extension EditTimerViewController_old {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "EditTimerToEditInterval") {
             if let nextVC = segue.destination as? EditIntervalViewController {

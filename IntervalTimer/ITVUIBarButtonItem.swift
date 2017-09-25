@@ -13,6 +13,19 @@ class ITVUIBarButtonItem: UIBarButtonItem {
         let imageView = UIImageView(frame:NavigationBarCgRect.AddImage)
         imageView.image = UIImage(named: NavigationBarImage.Add)
         
+        let button = ITVUIButton.createButton(frame: NavigationBarCgRect.AddButton, target: target, selector: selector)
+        
+        let view = UIView(frame: NavigationBarCgRect.Dummy)
+        view.addSubview(imageView)
+        view.addSubview(button)
+        
+        return UIBarButtonItem(customView: view)
+    }
+    func iCloudSyncButton(target: UIViewController, selector: Selector) -> UIBarButtonItem {
+        
+        let imageView = UIImageView(frame:NavigationBarCgRect.iCloudImage)
+        imageView.image = UIImage(named: NavigationBarImage.iCloud)
+        
         let button = ITVUIButton.createButton(frame: NavigationBarCgRect.Buttons, target: target, selector: selector)
         
         let view = UIView(frame: NavigationBarCgRect.Dummy)
@@ -21,6 +34,7 @@ class ITVUIBarButtonItem: UIBarButtonItem {
         
         return UIBarButtonItem(customView: view)
     }
+
     func leftTitle() -> UIBarButtonItem {
         
         let label = ITVUILabel.createLabel(frame: NavigationBarCgRect.LeftLabel, font: NavigationBarFont.LeftRight, text: Litterals.Timers, color: ITVColors.Orange)
@@ -121,7 +135,8 @@ class ITVUIBarButtonItem: UIBarButtonItem {
     }
     func rightNegativeSpace() -> UIBarButtonItem {
         let negativeSpace:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
-        negativeSpace.width = -20.0
+//        negativeSpace.width = -20.0
+        negativeSpace.width = 0.0
         return negativeSpace
     }
     func leftNegativeSpace() -> UIBarButtonItem {

@@ -51,6 +51,12 @@ class ITVUIViewWarningAlert: UIView, ITVUserWarningProtocol {
         backgroundView.frame = frame
         backgroundView.center = center
         backgroundView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTappedOnBackgroundView)))
+        
+        let dismissWarningImageView = UIImageView(image: UIImage(named: "close"))
+        let dismissWarningImageViewPosition = CGPoint(x: 15, y: frame.height - 35)
+        dismissWarningImageView.frame = CGRect(origin: dismissWarningImageViewPosition, size: Sizes.closeWarningImageView)
+        backgroundView.addSubview(dismissWarningImageView)
+        
         addSubview(backgroundView)
         
         dialogView = warningView(with: warningType)
@@ -132,6 +138,20 @@ class ITVUIViewWarningAlert: UIView, ITVUserWarningProtocol {
 
             return warningView
         
+        case UserWarning.MissingIntervals:
+            let warningView: ITVWarningMissingIntervalsView = UIView.fromNib()
+            
+            message = "Please add intervals to your timer."
+            
+            let rangeOfIntervals = (message as NSString).range(of: "intervals")
+            
+            attributedString = NSMutableAttributedString(string: message)
+            attributedString.addAttribute(NSAttributedStringKey.font, value: ViewFont.WarningBold, range: rangeOfIntervals)
+            
+            warningView.messageLabel.attributedText = attributedString
+            
+            return warningView
+
         case UserWarning.MissingTimerName:
             let warningView: ITVWarningMissingTimerNameView = UIView.fromNib()
             

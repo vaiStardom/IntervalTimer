@@ -1,8 +1,8 @@
 //
-//  EditTimerViewController3dTouch.swift
+//  EditTimerViewControllerForceTouch.swift
 //  IntervalTimer
 //
-//  Created by Paul Addy on 2017-09-18.
+//  Created by Paul Addy on 2017-09-23.
 //  Copyright © 2017 Paul Addy. All rights reserved.
 //
 
@@ -29,13 +29,13 @@ extension EditTimerViewController: UIViewControllerPreviewingDelegate {
         guard let nextVC = storyboard?.instantiateViewController(withIdentifier: "EditIntervalViewController") as? EditIntervalViewController else {
             return nil
         }
-                
+        
         nextVC.itvIntervalIndex = itvIntervalIndex
         nextVC.itvTimerIndex = itvTimerIndex
         if itvTimerIndex == nil {
             nextVC.itvUnsavedTimersIntervals = itvUnsavedTimersIntervals
         }
-        nextVC.updateIntervalsProtocolDelegate = self
+        nextVC.updateIntervalsProtocolDelegate = self as? ITVUpdateIntervalsProtocol
         
         let navigationController = UINavigationController(rootViewController: nextVC)
         return navigationController

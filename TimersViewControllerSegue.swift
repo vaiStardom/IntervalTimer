@@ -20,9 +20,13 @@ extension TimersViewController {
         }
         if(segue.identifier == "TimersToEditTimer") {
             if let nextVC = segue.destination as? EditTimerViewController {
-                nextVC.itvTimerIndex = itvTimerIndex
-                nextVC.updateTimersProtocolDelegate = self
+//                nextVC.itvTimerIndex = itvTimerIndex
+//                nextVC.updateTimersProtocolDelegate = self
             }
+//            if let nextVC = segue.destination as? EditTimerViewController_old {
+//                nextVC.itvTimerIndex = itvTimerIndex
+//                nextVC.updateTimersProtocolDelegate = self
+//            }
         }
 
     }

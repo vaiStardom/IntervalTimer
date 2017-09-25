@@ -46,7 +46,6 @@ extension TimerViewController{
         
         if elapsedTime >= 0 {
             
-            
             indexOfIntervalToRun += 1
             
             guard let theSeconds = intervalsToRun[indexOfIntervalToRun].thisSeconds else {

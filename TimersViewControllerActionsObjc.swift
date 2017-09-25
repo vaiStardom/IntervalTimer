@@ -1,29 +1,32 @@
 //
-//  TimersViewControllerActions.swift
+//  TimersViewControllerActionsObjc.swift
 //  IntervalTimer
 //
-//  Created by Paul Addy on 2017-08-29.
+//  Created by Paul Addy on 2017-09-23.
 //  Copyright © 2017 Paul Addy. All rights reserved.
 //
 
+import Foundation
 import UIKit
-
-//MARK: - Actions
-extension TimersViewController{
+//MARK: - Actions Objc
+@objc extension TimersViewController{
     func addTimer(){
         itvTimerIndex = nil
         performSegue(withIdentifier: "TimersToEditTimer", sender: nil)
         //performSegue(withIdentifier: "TimersToTimer", sender: nil)
     }
-    func startTimer(_ sender: UIButton) {        
+    func startTimer(_ sender: UIButton) {
         itvTimerIndex = sender.tag
         startSelectedIntervalTimer = true
         performSegue(withIdentifier: "TimersToTimer", sender: self)
     }
-    
     //TODO: Change label to save when editing
     func edit(){
         tableView.isEditing = !tableView.isEditing
         configureNavBar()
+    }
+    func iCloudSync(){
+        print("icloud sync...")
+        
     }
 }

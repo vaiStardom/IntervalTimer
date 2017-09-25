@@ -2,7 +2,7 @@
 //  EditTimerViewControllerTextField.swift
 //  IntervalTimer
 //
-//  Created by Paul Addy on 2017-09-10.
+//  Created by Paul Addy on 2017-09-23.
 //  Copyright © 2017 Paul Addy. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 //MARK: - TextField and TextView Management
-extension EditTimerViewController: UITextFieldDelegate, UITextViewDelegate {
+extension EditTimerViewController : UITextFieldDelegate, UITextViewDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         didUserModifyATimer()
@@ -42,9 +42,9 @@ extension EditTimerViewController: UITextFieldDelegate, UITextViewDelegate {
             }
         }
     }
-
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        timerNameTextField.resignFirstResponder()
+        topCell().timerNameTextField.resignFirstResponder()
         return true
     }
 }

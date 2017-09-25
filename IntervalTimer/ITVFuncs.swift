@@ -9,6 +9,26 @@
 import Foundation
 import UIKit
 
+//MARK: - iPhoneModels and dimensions
+func iPhone() -> Model {
+    switch(screenHeight()) {
+    case 568:   //iPhonePortraitInches -> 4 -> Models: 5, 5s, and SE
+        return Model.five
+        
+    case 667:   //iPhonePortraitInches -> 4.7 -> Models: 6, 6s, 7, and 8
+        return Model.six
+        
+    case 736:   //iPhonePortraitInches -> 5.5 -> Models: 6+, 6s+, 7+, and 8+
+        return Model.sixPlus
+        
+    default:    //iPhonePortraitInches -> 4 -> Models: 5, 5s, and SE
+        return Model.five
+    }
+}
+func screenHeight() -> CGFloat {
+    return UIScreen.main.bounds.height
+}
+
 //MARK: - Messaging Functions
 func showMessage(title: String, message: String) {
     let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
@@ -74,7 +94,22 @@ func hoursSince(from: Date?, to: Date?) -> Int? {
 }
 
 //MARK: - Time Functions
-func timeOf(seconds: Double) -> String {
+func timeOf_hms(seconds: Double) -> String {
+    
+    let theSeconds = Int(seconds)
+    let sec: Int = theSeconds % 60
+    let minutes: Int = (theSeconds / 60) % 60
+    let hours: Int = theSeconds / 3600
+    
+    if hours > 0 {
+        return "\(String(format: "%02d h %02d m %02d s", hours, minutes, sec))"
+    } else if minutes > 0 {
+        return "\(String(format: "%02d m %02d s", minutes, sec))"
+    } else {
+        return "\(String(format: "%02d s", sec))"
+    }
+}
+func timeOf_00(seconds: Double) -> String {
     
     let theSeconds = Int(seconds)
     let sec: Int = theSeconds % 60

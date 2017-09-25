@@ -14,7 +14,6 @@ extension TimersViewController: ITVSwipeToDeleteTimerProtocol {
         guard let theTimer = timer else {
             return
         }
-
         guard let theTimersNsArray = ITVUser.sharedInstance.thisTimers as NSArray? else {
             return
         }

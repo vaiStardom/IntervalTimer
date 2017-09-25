@@ -11,19 +11,25 @@ import UIKit
 
 //MARK: - CGRects
 enum NavigationBarCgRect{
-    static let AddImage = CGRect(x: 20, y: 13, width: 17.5, height: 17.5)
+    //static let AddImage = CGRect(x: 20, y: 13, width: 17.5, height: 17.5)
+    static let AddButton = CGRect(x: 20, y: 0, width: 95, height: 44)
+    static let AddImage = CGRect(x: 45, y: 13, width: 17.5, height: 17.5)
     static let BackImage = CGRect(x: 0, y: 13, width: 12, height: 21)
     static let BackLabel = CGRect(x: 18, y: 14, width: 55, height: 19)
     static let Buttons = CGRect(x: 0, y: 0, width: 65, height: 44)
-    static let CancelButton = CGRect(x: 0, y: 0, width: 55, height: 44)
-    static let CancelLabel = CGRect(x: 0, y: 14, width: 55, height: 19)
+    static let CancelButton = CGRect(x: 10, y: 0, width: 95, height: 44)
+    static let CancelLabel = CGRect(x: 25, y: 14, width: 55, height: 19)
     static let Dummy = CGRect(x: 0, y: 0, width: 65, height: 44)
     static let EditLabel = CGRect(x: 0, y: 14, width: 30, height: 19)
+    static let iCloudImage = CGRect(x: 0, y: 13, width: 26.0, height: 16.0)
     static let LeftLabel = CGRect(x: 0, y: 14, width: 65, height: 19)
     static let NewTimerTitle = CGRect(x: 0, y: 20, width: 86, height: 45)
     static let TimersEditLabel = CGRect(x: 40, y: 13, width: 30, height: 19)
     static let TimersSaveLabel = CGRect(x: 40, y: 13, width: 40, height: 19)
     static let TimersLeftLabel = CGRect(x: 0, y: 14, width: 65, height: 19)
+}
+enum Sizes{
+    static let closeWarningImageView = CGSize(width: 20, height: 20)
 }
 //MARK: - CSV
 enum CsvControls{
@@ -62,6 +68,7 @@ enum UserWarning: Int {
     case LocationManagerDidFail
     case LocationServicesDisabled
     case NoInternet
+    case MissingIntervals
     case MissingTimerName
 }
 //MARK: - Fonts
@@ -117,6 +124,7 @@ enum NotificationFont{
 enum NavigationBarImage{
     static let Add = "barButtonAdd"
     static let Back = "barButtonBack"
+    static let iCloud = "barButtoniCloud"
 }
 public enum Indicator: Int {
     case Red = 0 //this order has to stay this way...
@@ -145,6 +153,10 @@ public enum Indicator: Int {
             return UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 1.0)
         }
     }
+}
+//MARK: - iPhone Model
+enum Model: Int {
+    case five = 0, six, sixPlus
 }
 //MARK: - JSON Keys
 enum JsonKeys{

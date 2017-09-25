@@ -26,12 +26,14 @@ class TimerViewController: UIViewController {
     @IBOutlet weak var warningImageView: UIImageView!
     @IBOutlet weak var backgroudPulseImageView: ITVUIImageViewIndicator!
     @IBOutlet weak var foregroundPulsImageView: ITVUIImageViewIndicator!
+    @IBOutlet weak var userWarningImageView: ITVUIImageViewIndicator!
     
     //Buttons
     @IBOutlet weak var startPauseResumeButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var warningButton: UIButton!
     @IBOutlet weak var startPauseResumePulseButton: UIButton!
+    @IBOutlet weak var userWarningButton: UIButton!
     
     //Title labels
     @IBOutlet weak var weatherTemperatureLabel: UILabel!

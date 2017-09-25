@@ -16,6 +16,10 @@ extension TimerViewController{
         aesthetics_timerCancel()
     }
     
+    @IBAction func userWarning(_ sender: UIButton) {
+        showUserWarning(type: ITVWarningForUser.sharedInstance.thisUserWarning)
+    }
+
     @IBAction func startPauseResumeTimer(_ sender: Any) {
         if startPauseResume == (true, false, false) { //start the timer
             runIntervalTimer()

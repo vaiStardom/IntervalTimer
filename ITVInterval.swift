@@ -9,6 +9,53 @@
 import Foundation
 import UIKit
 
+//MOCKDATA:
+let mock_intervals = [
+    ITVInterval(seconds: 120, indicator: Indicator.Blue)
+    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 90, indicator: Indicator.Green)
+    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 90, indicator: Indicator.Green)
+    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 90, indicator: Indicator.Green)
+    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 90, indicator: Indicator.Green)
+    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 90, indicator: Indicator.Green)
+    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 90, indicator: Indicator.Green)
+    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 90, indicator: Indicator.Green)
+    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 90, indicator: Indicator.Green)
+    , ITVInterval(seconds: 120, indicator: Indicator.Blue)
+    , ITVInterval(seconds: 120000, indicator: Indicator.Blue)
+    , ITVInterval(seconds: 30000, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 90000, indicator: Indicator.Green)
+    , ITVInterval(seconds: 30000, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 90000, indicator: Indicator.Green)
+    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 90, indicator: Indicator.Green)
+    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 90, indicator: Indicator.Green)
+    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 90, indicator: Indicator.Green)
+    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 90000, indicator: Indicator.Green)
+    , ITVInterval(seconds: 30000, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 90, indicator: Indicator.Green)
+    , ITVInterval(seconds: 30, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 90000, indicator: Indicator.Green)
+    , ITVInterval(seconds: 120000, indicator: Indicator.Blue)
+    , ITVInterval(seconds: 3, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 9, indicator: Indicator.Green)
+    , ITVInterval(seconds: 3, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 9, indicator: Indicator.Green)
+    , ITVInterval(seconds: 3, indicator: Indicator.Yellow)
+    , ITVInterval(seconds: 9, indicator: Indicator.Green)
+    , ITVInterval(seconds: 3, indicator: Indicator.Yellow)
+]
+
 //public struct ITVInterval: Hashable, Equatable {
 class ITVInterval: NSObject, NSCoding {
     

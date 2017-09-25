@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ITVWarningMissingIntervalsView" customModule="IntervalTimer" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="238" height="262"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TAKE ME THERE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TgH-oh-i4t">
+                    <rect key="frame" x="91.5" y="142" width="54" height="63"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="63" id="CT0-Ir-JPJ"/>
+                        <constraint firstAttribute="width" constant="54" id="VtF-xS-IWW"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hch-bj-gYe">
+                    <rect key="frame" x="53.5" y="107" width="131" height="132"/>
+                    <connections>
+                        <action selector="addIntervals:" destination="iN0-l3-epB" eventType="touchUpInside" id="cJ2-uH-NDD"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" alpha="0.34000000357627869" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="takeMeThere" translatesAutoresizingMaskIntoConstraints="NO" id="I2N-Di-oDM">
+                    <rect key="frame" x="52.5" y="107" width="132" height="132"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="132" id="MjT-fM-ub3"/>
+                        <constraint firstAttribute="height" constant="132" id="vPu-GJ-JO4"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please add intervals to your timer." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jzT-iD-LKx">
+                    <rect key="frame" x="21.5" y="30" width="195" height="47"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="47" id="UOW-3C-5gm"/>
+                        <constraint firstAttribute="width" constant="195" id="fdj-00-2vS"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="jzT-iD-LKx" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="Bvn-gZ-Hv5"/>
+                <constraint firstItem="Hch-bj-gYe" firstAttribute="centerY" secondItem="I2N-Di-oDM" secondAttribute="centerY" id="Tfr-Mk-Umd"/>
+                <constraint firstItem="I2N-Di-oDM" firstAttribute="centerX" secondItem="jzT-iD-LKx" secondAttribute="centerX" id="VCY-ua-2oI"/>
+                <constraint firstItem="TgH-oh-i4t" firstAttribute="centerY" secondItem="I2N-Di-oDM" secondAttribute="centerY" id="Vgd-a9-Akq"/>
+                <constraint firstItem="Hch-bj-gYe" firstAttribute="height" secondItem="I2N-Di-oDM" secondAttribute="height" id="dKt-PU-co0"/>
+                <constraint firstItem="TgH-oh-i4t" firstAttribute="centerX" secondItem="I2N-Di-oDM" secondAttribute="centerX" id="i8M-FQ-3zd"/>
+                <constraint firstItem="Hch-bj-gYe" firstAttribute="width" secondItem="I2N-Di-oDM" secondAttribute="width" constant="-1" id="sxg-t5-GAL"/>
+                <constraint firstItem="Hch-bj-gYe" firstAttribute="centerX" secondItem="I2N-Di-oDM" secondAttribute="centerX" id="tcy-KX-nZP"/>
+                <constraint firstItem="jzT-iD-LKx" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="30" id="vCu-Hf-eQa"/>
+                <constraint firstItem="I2N-Di-oDM" firstAttribute="top" secondItem="jzT-iD-LKx" secondAttribute="bottom" constant="30" id="vrF-Xt-BAr"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="addIntervalsButton" destination="Hch-bj-gYe" id="y1G-ri-CbF"/>
+                <outlet property="messageLabel" destination="jzT-iD-LKx" id="lPT-Es-GxN"/>
+            </connections>
+            <point key="canvasLocation" x="21.5" y="5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="takeMeThere" width="132" height="132"/>
+    </resources>
+</document>

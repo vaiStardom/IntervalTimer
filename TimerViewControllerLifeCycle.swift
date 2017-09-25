@@ -28,15 +28,17 @@ extension TimerViewController{
             return
         }
         
-        guard let theIntervalTimer = ITVUser.sharedInstance.thisTimers?[theTimerIndex], !theIntervalTimer.totalTime().isEmpty else {
+        guard let theTimer = ITVUser.sharedInstance.thisTimers?[theTimerIndex], !theTimer.totalTime().isEmpty else {
             timerInvalid()
             return
         }
         
-        timerNameLabel.text = theIntervalTimer.thisName
+        timerNameLabel.text = theTimer.thisName
         
         //Validate the intervals
-        guard let theIntervals = theIntervalTimer.thisIntervals, let theIntervalCount = theIntervalTimer.thisIntervals?.count, theIntervalCount > 0 else {
+        guard let theIntervals = theTimer.thisIntervals, let theIntervalCount = theTimer.thisIntervals?.count, theIntervalCount > 0 else {
+            //TODO: version two ...maybe propose a stop watch when no intervals were added....?
+            ITVWarningForUser.sharedInstance.thisUserWarning = UserWarning.MissingIntervals
             timerInvalid()
             return
         }
@@ -98,7 +100,7 @@ extension TimerViewController{
         
         //Second, if this is a selected timer, do we show the weather
         //TODO: cache the weather, update it only every 3 hours or if user has moved more than 5 kilometers
-        if theIntervalTimer.thisShowWeather {
+        if theTimer.thisShowWeather {
             
             if ITVCoreLocation.sharedInstance.isLocationServicesAndNetworkAvailable() {
                 self.registerNotifications() //will register at first weather use
