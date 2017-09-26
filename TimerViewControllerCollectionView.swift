@@ -17,7 +17,6 @@ extension TimerViewController: UICollectionViewDataSource, UICollectionViewDeleg
         let nibName = UINib(nibName: "TimerIndicatorCollectionViewCell", bundle: nil)
         collectionView.register(nibName, forCellWithReuseIdentifier: "IndicatorCell")
     }
-
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return intervalsToRun.count
     }
@@ -31,5 +30,4 @@ extension TimerViewController: UICollectionViewDataSource, UICollectionViewDeleg
         
         return cell
     }
-
 }

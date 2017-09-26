@@ -138,25 +138,25 @@ extension ITVCoreLocation {
             errorMessage = "Location is currently unknown. Code: \(theError.code). Message: localizedDescription: \(theError.localizedDescription), localizedFailureReason: \(theError.localizedFailureReason), localizedRecoveryOptions: \(theError.localizedRecoveryOptions), localizedRecoverySuggestion: \(theError.localizedRecoverySuggestion)."
             
             print("------> ERROR \(errorMessage)")
-            showUserWarning(type: UserWarning.LocationManagerDidFail, with: errorMessage)
+            SHOW_USER_WARNING(type: UserWarning.LocationManagerDidFail, with: errorMessage)
         case 1:
             
             errorMessage = "Access to location has been denied by the user. Code: \(theError.code). Message: \(theError)."
             
             print("------> ERROR \(errorMessage)")
-            showUserWarning(type: UserWarning.LocationServicesDisabled)
+            SHOW_USER_WARNING(type: UserWarning.LocationServicesDisabled)
         case 2:
             errorMessage = "Network-related error. Code: \(theError.code). Message: \(theError)."
             
             print("------> ERROR \(errorMessage)")
-            showUserWarning(type: UserWarning.NoInternet)
+            SHOW_USER_WARNING(type: UserWarning.NoInternet)
             
         default:
             
             errorMessage = "Failed location default error. Code: \(theError.code). Message: \(theError)."
             
             print("------> ERROR \(errorMessage)")
-            showUserWarning(type: UserWarning.LocationManagerDidFail, with: errorMessage)
+            SHOW_USER_WARNING(type: UserWarning.LocationManagerDidFail, with: errorMessage)
         }
     }
 }

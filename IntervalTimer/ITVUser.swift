@@ -63,7 +63,7 @@ class ITVUser: NSObject, NSCoding  {
     var thisShouldUpdateWeather: Bool {
         get {
 //            return true
-            if let theHours = hoursSince(from: thisLastWeatherUpdate, to: Date()){
+            if let theHours = HOURS_SINCE(from: thisLastWeatherUpdate, to: Date()){
                 print("------> ITVUser thisShouldUpdateWeather hours since : \(theHours)")
                 if theHours > 1 {
                     return true

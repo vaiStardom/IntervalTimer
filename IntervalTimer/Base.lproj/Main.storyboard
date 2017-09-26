@@ -124,6 +124,7 @@
                         <outlet property="deleteImageView" destination="eeO-9S-EWs" id="g0h-d4-7cv"/>
                         <outlet property="deleteLabel" destination="yQ3-kH-6dC" id="StC-5O-QEy"/>
                         <outlet property="tableView" destination="NEJ-to-mpV" id="ysx-hw-Wif"/>
+                        <segue destination="lHH-oS-twA" kind="show" identifier="EditTimerToEditInterval" id="3ii-O5-eNt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kan-iy-i3I" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -625,6 +626,7 @@
                         <outlet property="weatherImageView" destination="UL6-1S-xfh" id="rVk-tK-7qj"/>
                         <outlet property="weatherTemperatureLabel" destination="50V-60-GfP" id="c7x-8M-jRJ"/>
                         <segue destination="r6Y-jF-Bbl" kind="show" identifier="TimerToEditTimer" id="ybk-R2-Iws"/>
+                        <segue destination="lHH-oS-twA" kind="show" identifier="TimerToEditInterval" id="qwd-Re-GIv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fj6-a4-b0F" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -640,11 +642,11 @@
                         <viewControllerLayoutGuide type="bottom" id="ZDX-O0-LcX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="vWL-1L-3uE">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LZZ-fO-Yoh">
-                                <rect key="frame" x="5" y="28" width="47" height="21"/>
+                                <rect key="frame" x="5" y="8" width="47" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="5UK-4k-lqf"/>
                                     <constraint firstAttribute="width" constant="47" id="eOP-uH-hIs"/>
@@ -654,14 +656,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y4D-Wn-Mbi">
-                                <rect key="frame" x="5" y="57" width="97" height="75"/>
+                                <rect key="frame" x="5" y="37" width="97" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="rI9-FQ-inc"/>
                                     <constraint firstAttribute="width" constant="97" id="zgH-uo-QpG"/>
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Joj-t6-671">
-                                <rect key="frame" x="5" y="57" width="47" height="75"/>
+                                <rect key="frame" x="5" y="37" width="47" height="75"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="Nud-1E-BQx"/>
@@ -678,7 +680,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EpP-GQ-y65">
-                                <rect key="frame" x="55" y="57" width="47" height="75"/>
+                                <rect key="frame" x="55" y="37" width="47" height="75"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="Mu5-l6-iLj"/>
@@ -695,7 +697,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="83J-Jn-bQR">
-                                <rect key="frame" x="112" y="57" width="97" height="75"/>
+                                <rect key="frame" x="112" y="37" width="97" height="75"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="V83-7l-WTV"/>
@@ -703,7 +705,7 @@
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FRr-D4-ZQQ">
-                                <rect key="frame" x="112" y="57" width="47" height="75"/>
+                                <rect key="frame" x="112" y="37" width="47" height="75"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="47" id="1Jv-b6-NQs"/>
@@ -720,7 +722,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hnG-TJ-RWj">
-                                <rect key="frame" x="162" y="57" width="47" height="75"/>
+                                <rect key="frame" x="162" y="37" width="47" height="75"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="47" id="TUk-OW-hDv"/>
@@ -737,14 +739,14 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gKT-Zu-qhL">
-                                <rect key="frame" x="218" y="57" width="97" height="75"/>
+                                <rect key="frame" x="218" y="37" width="97" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="SwI-op-zTw"/>
                                     <constraint firstAttribute="width" constant="97" id="T6e-eF-adg"/>
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8sG-yc-kw7">
-                                <rect key="frame" x="218" y="57" width="47" height="75"/>
+                                <rect key="frame" x="218" y="37" width="47" height="75"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="Ad4-FJ-GpY"/>
@@ -761,7 +763,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KBH-PH-Tdb">
-                                <rect key="frame" x="268" y="57" width="47" height="75"/>
+                                <rect key="frame" x="268" y="37" width="47" height="75"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="47" id="ZPH-Ws-N0D"/>
@@ -778,7 +780,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minutes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sIh-76-YLu">
-                                <rect key="frame" x="112" y="28" width="61" height="21"/>
+                                <rect key="frame" x="112" y="8" width="61" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="61" id="BbT-1O-UJM"/>
                                     <constraint firstAttribute="height" constant="21" id="J1h-XY-tRs"/>
@@ -788,7 +790,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seconds" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lNs-Bv-oHj">
-                                <rect key="frame" x="218" y="28" width="69" height="21"/>
+                                <rect key="frame" x="218" y="8" width="69" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="NjA-um-6AW"/>
                                     <constraint firstAttribute="width" constant="69" id="fES-ob-v3b"/>
@@ -798,49 +800,49 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qK7-jh-SAQ" customClass="ITVUIImageViewIndicator" customModule="IntervalTimer" customModuleProvider="target">
-                                <rect key="frame" x="31" y="162" width="44" height="44"/>
+                                <rect key="frame" x="31" y="142" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="6ag-xZ-lpS"/>
                                     <constraint firstAttribute="height" constant="44" id="ZBd-hh-Eni"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dLa-8p-dbv" customClass="ITVUIImageViewIndicator" customModule="IntervalTimer" customModuleProvider="target">
-                                <rect key="frame" x="31" y="221" width="44" height="44"/>
+                                <rect key="frame" x="31" y="201" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="K7i-Aa-ESs"/>
                                     <constraint firstAttribute="width" constant="44" id="VCD-yw-3lJ"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Nl-7n-RSI" customClass="ITVUIImageViewIndicator" customModule="IntervalTimer" customModuleProvider="target">
-                                <rect key="frame" x="138" y="162" width="44" height="44"/>
+                                <rect key="frame" x="138" y="142" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Cmu-8M-SVB"/>
                                     <constraint firstAttribute="width" constant="44" id="fsu-Ng-VhG"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jfg-jB-EcK" customClass="ITVUIImageViewIndicator" customModule="IntervalTimer" customModuleProvider="target">
-                                <rect key="frame" x="138" y="221" width="44" height="44"/>
+                                <rect key="frame" x="138" y="201" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="RkP-XC-6BR"/>
                                     <constraint firstAttribute="width" constant="44" id="xS2-sJ-tBY"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Add-zR-AyJ" customClass="ITVUIImageViewIndicator" customModule="IntervalTimer" customModuleProvider="target">
-                                <rect key="frame" x="244" y="162" width="44" height="44"/>
+                                <rect key="frame" x="244" y="142" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="gOt-7e-Jxq"/>
                                     <constraint firstAttribute="height" constant="44" id="hCW-nb-VEd"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Yq6-gb-cdT" customClass="ITVUIImageViewIndicator" customModule="IntervalTimer" customModuleProvider="target">
-                                <rect key="frame" x="244" y="221" width="44" height="44"/>
+                                <rect key="frame" x="244" y="201" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="qI4-hG-Ilq"/>
                                     <constraint firstAttribute="width" constant="44" id="xcj-F9-B6w"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hmx-fe-eJk">
-                                <rect key="frame" x="30" y="161" width="46" height="46"/>
+                                <rect key="frame" x="30" y="141" width="46" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="46" id="1RU-Y2-hvy"/>
                                     <constraint firstAttribute="height" constant="46" id="pkh-by-Fjv"/>
@@ -850,7 +852,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PFg-PI-HgW">
-                                <rect key="frame" x="30" y="220" width="46" height="46"/>
+                                <rect key="frame" x="30" y="200" width="46" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="46" id="HML-lu-Wlq"/>
                                     <constraint firstAttribute="height" constant="46" id="tGT-dY-6Nl"/>
@@ -860,7 +862,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wbU-uX-rKv">
-                                <rect key="frame" x="137" y="161" width="46" height="46"/>
+                                <rect key="frame" x="137" y="141" width="46" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="rSO-WW-h0A"/>
                                     <constraint firstAttribute="width" constant="46" id="uEi-2A-rhy"/>
@@ -870,7 +872,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ynz-3h-A44">
-                                <rect key="frame" x="137" y="220" width="46" height="46"/>
+                                <rect key="frame" x="137" y="200" width="46" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="HOh-dg-CD9"/>
                                     <constraint firstAttribute="width" constant="46" id="psW-kL-13h"/>
@@ -880,7 +882,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUp-Hj-Qt3">
-                                <rect key="frame" x="243" y="161" width="46" height="46"/>
+                                <rect key="frame" x="243" y="141" width="46" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="Msp-TW-8Ic"/>
                                     <constraint firstAttribute="width" constant="46" id="vHA-dM-fSi"/>
@@ -890,7 +892,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B6z-el-SXt">
-                                <rect key="frame" x="243" y="220" width="46" height="46"/>
+                                <rect key="frame" x="243" y="200" width="46" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="46" id="vSI-Kf-dh1"/>
                                     <constraint firstAttribute="height" constant="46" id="wv8-11-x0S"/>
@@ -975,7 +977,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hNc-Cr-GkD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3706.875" y="137.32394366197184"/>
+            <point key="canvasLocation" x="3645" y="539"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yZq-CX-7ky">
@@ -1006,6 +1008,7 @@
         <image name="warning" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="3ii-O5-eNt"/>
         <segue reference="ybk-R2-Iws"/>
     </inferredMetricsTieBreakers>
 </document>

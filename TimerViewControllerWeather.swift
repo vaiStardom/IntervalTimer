@@ -10,25 +10,9 @@ import UIKit
 
 //MARK: - Weather Management
 extension TimerViewController{
-    func canAttemptWeatherUpdate(_ notification: Notification){
-        print("------> TimerViewController canAttemptWeatherUpdate notification received")
-        do {
-            try ITVCurrentWeather.getWeatherByPriority()
-        } catch let error {
-            activityIndicatorStop()
-            showUserWarning(type: UserWarning.LocationManagerDidFail, with: "\(error)")
-        }
-    }
-    func didGetCurrentWeather(_ notification: Notification){
-        print("------> TimerViewController didGetCurrentWeather notification received")
-        updateWeatherInformation()
-    }
-    func errorGettingWeather(_ notification: Notification){
-        aesthetics_showMissingWeatherWarning()
-    }
     func setWeatherFromNetwork(){
         activityIndicatorStart()
-        getWeatherFromNetwork()
+        GET_WEATHER_FROM_NETWORK()
     }
     func updateWeatherInformation(){
         activityIndicatorStop()

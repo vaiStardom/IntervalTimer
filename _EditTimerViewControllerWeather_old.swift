@@ -49,7 +49,7 @@ extension EditTimerViewController_old {
             try ITVCurrentWeather.getWeatherByPriority()
         } catch let error {
             activityIndicatorStop()
-            showUserWarning(type: UserWarning.LocationManagerDidFail, with: "\(error)")
+            SHOW_USER_WARNING(type: UserWarning.LocationManagerDidFail, with: "\(error)")
         }
     }
     
@@ -80,7 +80,7 @@ extension EditTimerViewController_old {
     }
     func setWeatherFromNetwork(){
         activityIndicatorStart()
-        getWeatherFromNetwork()
+        GET_WEATHER_FROM_NETWORK()
     }
     func updateWeatherInformation(){
         activityIndicatorStop()

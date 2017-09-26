@@ -17,10 +17,13 @@ extension TimerViewController {
                 nextVC.itvTimerIndex = itvTimerIndex
                 nextVC.updateTimersProtocolDelegate = self
             }
-//            if let nextVC = segue.destination as? EditTimerViewController_old {
-//                nextVC.itvTimerIndex = itvTimerIndex
-//                nextVC.updateTimersProtocolDelegate = self
-//            }
+        }
+        if(segue.identifier == "TimerToEditInterval") {
+            if let nextVC = segue.destination as? EditIntervalViewController {
+                nextVC.itvIntervalIndex = nil
+                nextVC.itvTimerIndex = itvTimerIndex
+                nextVC.updateIntervalsProtocolDelegate = self
+            }
         }
     }
 }

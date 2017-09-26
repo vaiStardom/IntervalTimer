@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 //MARK: - iPhoneModels and dimensions
-func iPhone() -> Model {
-    switch(screenHeight()) {
+func IPHONE() -> Model {
+    switch(SCREEN_HEIGHT()) {
     case 568:   //iPhonePortraitInches -> 4 -> Models: 5, 5s, and SE
         return Model.five
         
@@ -25,12 +25,12 @@ func iPhone() -> Model {
         return Model.five
     }
 }
-func screenHeight() -> CGFloat {
+func SCREEN_HEIGHT() -> CGFloat {
     return UIScreen.main.bounds.height
 }
 
 //MARK: - Messaging Functions
-func showMessage(title: String, message: String) {
+func SHOW_MESSAGE(title: String, message: String) {
     let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
     DispatchQueue.main.async() { () -> Void in
@@ -38,7 +38,7 @@ func showMessage(title: String, message: String) {
     }
 }
 
-func showUserWarning(type: UserWarning?, with message: String? = nil){
+func SHOW_USER_WARNING(type: UserWarning?, with message: String? = nil){
     
     var errorMessage: String?
     
@@ -58,7 +58,7 @@ func showUserWarning(type: UserWarning?, with message: String? = nil){
 }
 
 //MARK: - Weather Functions
-func getWeatherFromNetwork(){
+func GET_WEATHER_FROM_NETWORK(){
     //TODO: call this when user starts a timer
     print("------> TimerViewController viewDidLoad() requesting Location")
     ITVCoreLocation.sharedInstance.requestLocation()
@@ -67,12 +67,12 @@ func getWeatherFromNetwork(){
     do {
         try ITVCurrentWeather.getWeatherByPriority()
     } catch let error {
-        showUserWarning(type: UserWarning.LocationManagerDidFail, with: "\(error)")
+        SHOW_USER_WARNING(type: UserWarning.LocationManagerDidFail, with: "\(error)")
     }
 }
 
 //MARK: - Date Functions
-func hoursSince(from: Date?, to: Date?) -> Int? {
+func HOURS_SINCE(from: Date?, to: Date?) -> Int? {
     
     guard let theTo = to else {
         fatalError("You must provide a non-nil to date")
@@ -94,7 +94,7 @@ func hoursSince(from: Date?, to: Date?) -> Int? {
 }
 
 //MARK: - Time Functions
-func timeOf_hms(seconds: Double) -> String {
+func TIME_OF_HMS(seconds: Double) -> String {
     
     let theSeconds = Int(seconds)
     let sec: Int = theSeconds % 60
@@ -109,7 +109,7 @@ func timeOf_hms(seconds: Double) -> String {
         return "\(String(format: "%02d s", sec))"
     }
 }
-func timeOf_00(seconds: Double) -> String {
+func TIME_OF_00(seconds: Double) -> String {
     
     let theSeconds = Int(seconds)
     let sec: Int = theSeconds % 60
@@ -124,7 +124,7 @@ func timeOf_00(seconds: Double) -> String {
         return "\(String(format: "%02d", sec))s"
     }
 }
-func hoursOf(seconds: Double) -> String {
+func HOURS_OF(seconds: Double) -> String {
     let theSeconds = Int(seconds)
     let hours: Int = theSeconds / 3600
     
@@ -134,7 +134,7 @@ func hoursOf(seconds: Double) -> String {
         return ""
     }
 }
-func minutesOf(seconds: Double) -> String {
+func MINUTES_OF(seconds: Double) -> String {
     let theSeconds = Int(seconds)
     let minutes: Int = (theSeconds / 60) % 60
     
@@ -145,7 +145,7 @@ func minutesOf(seconds: Double) -> String {
     }
 
 }
-func secondsOf(seconds: Double) -> String {
+func SECONDS_OF(seconds: Double) -> String {
     let secs = Int(seconds)
     let theSeconds = secs % 60
     

@@ -8,7 +8,9 @@
 
 import Foundation
 
-extension TimersViewController: ITVSwipeToDeleteTimerProtocol {
+extension TimersViewController: ITVSwipeToDeleteTimerProtocol, ITVUpdateTimersProtocol {
+    
+    //MARK: - ITVSwipeToDeleteTimerProtocol
     func delete(timer: ITVTimer?) {
 
         guard let theTimer = timer else {
@@ -27,5 +29,10 @@ extension TimersViewController: ITVSwipeToDeleteTimerProtocol {
         print("------> TimersViewController deleteTimer(atIndex:) indexPathForRow = \(indexPathForRow), count = \(indexPathForRow.count)")
         tableView.deleteRows(at: [indexPathForRow], with: .left)
         tableView.endUpdates()
+    }
+
+    //MARK: - ITVUpdateTimersProtocol
+    func didUpdateTimers() {
+        tableView.reloadData()
     }
 }

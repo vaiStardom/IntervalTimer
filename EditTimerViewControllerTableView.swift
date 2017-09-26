@@ -81,7 +81,6 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
         
         if index == 0 { //Top row
             let cell = tableView.dequeueReusableCell(withIdentifier: "EditTimerTopCell") as! EditTimerTopTableViewCell
-//            cell.timerNameTextField.text = "Peak 8"
 
             //Cell configuration
             cell.timerNameTextField.delegate = self
@@ -111,7 +110,8 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
             cell.visualEffectView.layer.masksToBounds = false
             cell.visualEffectView.layer.cornerRadius = cell.visualEffectView.frame.size.height/2
             cell.visualEffectView.clipsToBounds = true
-
+            cell.editButton.isEnabled = true
+            
             //if the are intervals, then show the collection view and fill the collection view with a filter of indicators
             if dataSourceCount > 0 {
                 let nibName = UINib(nibName: "EditTimerIntervalPresetsCollectionViewCell", bundle: nil)
@@ -125,16 +125,19 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.addIntervalImageView.isHidden = true
                 cell.addPresetIntervalImageView.isHidden = false
                 cell.visualEffectView.isHidden = false
-                
+
                 cell.editButton.addTarget(self, action: #selector(EditTimerViewController.editIntervals), for: .touchUpInside)
+                cell.addIntervalButton.addTarget(self, action: #selector(EditTimerViewController.addInterval), for: .touchUpInside)
+
             } else {
                 cell.editLabel.isHidden = true
                 cell.addIntervalsLabel.isHidden = false
                 cell.addIntervalImageView.isHidden = false
+                cell.addIntervalButton.isEnabled = false
                 cell.addPresetIntervalImageView.isHidden = true
                 cell.visualEffectView.isHidden = true
                 
-                cell.addIntervalButton.addTarget(self, action: #selector(EditTimerViewController.addInterval), for: .touchUpInside)
+                cell.editButton.addTarget(self, action: #selector(EditTimerViewController.addInterval), for: .touchUpInside)
             }
             
             cell.selectionStyle = .none
@@ -147,8 +150,8 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
             if let theInterval = intervals?[intervalIndex] {
                 cell.intervalNumberLabel.text = "\(intervalIndex)"
                 if let theSeconds = theInterval.thisSeconds {
-                    cell.intervalTimeLabel.text = timeOf_00(seconds: theSeconds)
-                    print("------> EditTimerViewController cellForRowAt timer = \(timeOf_00(seconds: theSeconds)), indicator = \(theInterval.thisIndicator.rawValue), color = \(theInterval.thisIndicator.uiColor())")
+                    cell.intervalTimeLabel.text = TIME_OF_00(seconds: theSeconds)
+                    print("------> EditTimerViewController cellForRowAt timer = \(TIME_OF_00(seconds: theSeconds)), indicator = \(theInterval.thisIndicator.rawValue), color = \(theInterval.thisIndicator.uiColor())")
                     
                 } else {
                     cell.intervalTimeLabel.text = "0"

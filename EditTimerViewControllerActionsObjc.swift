@@ -53,7 +53,7 @@ import UIKit
         } else {
             //TODO: Alert user that he must name the timer.
             ITVWarningForUser.sharedInstance.thisUserWarning = UserWarning.MissingTimerName
-            showUserWarning(type: ITVWarningForUser.sharedInstance.thisUserWarning)
+            SHOW_USER_WARNING(type: ITVWarningForUser.sharedInstance.thisUserWarning)
         }
     }
     func deleteTimer(){
@@ -111,7 +111,8 @@ import UIKit
     }
     
     func addInterval(){
-        print("------> Add interval")
+        itvIntervalIndex = nil
+        performSegue(withIdentifier: "EditTimerToEditInterval", sender: nil)
     }
     
     func switched(_ theSwitch: UISwitch){

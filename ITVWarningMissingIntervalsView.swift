@@ -12,7 +12,5 @@ class ITVWarningMissingIntervalsView: UIView {
 
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var addIntervalsButton: UIButton!
-
-    @IBAction func addIntervals(_ sender: UIButton) {
-    }
+    
 }

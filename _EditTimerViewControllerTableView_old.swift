@@ -45,8 +45,8 @@ extension EditTimerViewController_old : UITableViewDelegate, UITableViewDataSour
                     cell.indicatorImageView.roundImageView()
                     cell.intervalNumberLabel.text = "\(index + 1)"
                     if let theSeconds = theInterval.thisSeconds {
-                        cell.intervalTimeLabel.text = timeOf_00(seconds: theSeconds)
-                        print("------> EditTimerViewController cellForRowAt timer = \(timeOf_00(seconds: theSeconds)), indicator = \(theInterval.thisIndicator.rawValue), color = \(theInterval.thisIndicator.uiColor())")
+                        cell.intervalTimeLabel.text = TIME_OF_00(seconds: theSeconds)
+                        print("------> EditTimerViewController cellForRowAt timer = \(TIME_OF_00(seconds: theSeconds)), indicator = \(theInterval.thisIndicator.rawValue), color = \(theInterval.thisIndicator.uiColor())")
 
                     } else {
                         cell.intervalTimeLabel.text = "0"
@@ -60,7 +60,7 @@ extension EditTimerViewController_old : UITableViewDelegate, UITableViewDataSour
             cell.indicatorImageView.roundImageView()
             cell.intervalNumberLabel.text = "\(index + 1)"
             if let theSeconds = theUnsavedInterval.thisSeconds {
-                cell.intervalTimeLabel.text = timeOf_00(seconds: theSeconds)
+                cell.intervalTimeLabel.text = TIME_OF_00(seconds: theSeconds)
             } else {
                 cell.intervalTimeLabel.text = "0"
             }

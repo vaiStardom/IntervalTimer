@@ -54,22 +54,22 @@ class ITVDownloadJSON: NSObject {
                                 let jsonDictionary = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
                                 
                                 guard JSONSerialization.isValidJSONObject(jsonDictionary) else {
-                                    showMessage(title: "Error processing JSON data", message: "JSONSerialization.isValidJSONObject(jsonDictionary) = false")
+                                    SHOW_MESSAGE(title: "Error processing JSON data", message: "JSONSerialization.isValidJSONObject(jsonDictionary) = false")
                                     return
                                 }
                                 
                                 completion(jsonDictionary as? [String:Any], nil)
                             } catch let error {
                                 print("------> ERROR IntervalTimerNetworkJSON downloadJSON(), desc.: \(error)")
-                                showMessage(title: "JSON Error", message: "IntervalTimerNetworkJSON downloadJSON(), desc.: \(error)")
+                                SHOW_MESSAGE(title: "JSON Error", message: "IntervalTimerNetworkJSON downloadJSON(), desc.: \(error)")
                             }
                         }
                     default:
-                        showMessage(title: "HTTP Error", message: "IntervalTimerNetworkJSON downloadJSON(), HTTP Response Code: \(httpResponse.statusCode)")
+                        SHOW_MESSAGE(title: "HTTP Error", message: "IntervalTimerNetworkJSON downloadJSON(), HTTP Response Code: \(httpResponse.statusCode)")
                     }
                 }
             } else {
-                showMessage(title: "URL Error", message: "IntervalTimerNetworkJSON downloadJSON(), desc.: \(String(describing: error))")
+                SHOW_MESSAGE(title: "URL Error", message: "IntervalTimerNetworkJSON downloadJSON(), desc.: \(String(describing: error))")
             }
         }
         dataTask.resume()

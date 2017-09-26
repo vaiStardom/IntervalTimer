@@ -13,7 +13,7 @@ class ITVUIViewWarningAlert: UIView, ITVUserWarningProtocol {
     var dialogView = UIView()
     var visualEffectsView = UIVisualEffectView()
     var errorMessage: String?
-    
+    weak var missingIntervalDelegate: ITVMissingIntervalProtocol?
     
     convenience init(type: UserWarning?, with message: String? = nil) {
         self.init(frame: UIScreen.main.bounds)
@@ -50,7 +50,7 @@ class ITVUIViewWarningAlert: UIView, ITVUserWarningProtocol {
         backgroundView.addSubview(visualEffectsView)
         backgroundView.frame = frame
         backgroundView.center = center
-        backgroundView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTappedOnBackgroundView)))
+        backgroundView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapOnBackgroundView)))
         
         let dismissWarningImageView = UIImageView(image: UIImage(named: "close"))
         let dismissWarningImageViewPosition = CGPoint(x: 15, y: frame.height - 35)
@@ -68,10 +68,11 @@ class ITVUIViewWarningAlert: UIView, ITVUserWarningProtocol {
         
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[view]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["view":dialogView]))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[view]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["view":dialogView]))
-
     }
     func warningView(with warningType: UserWarning) -> UIView {
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "errorGettingWeather"), object: nil)
+        
+        //TODO: why do i post this for every view show??
+//        NotificationCenter.default.post(name: Notification.Name(rawValue: "errorGettingWeather"), object: nil)
         
         var message = ""
         var attributedString = NSMutableAttributedString()
@@ -149,7 +150,8 @@ class ITVUIViewWarningAlert: UIView, ITVUserWarningProtocol {
             attributedString.addAttribute(NSAttributedStringKey.font, value: ViewFont.WarningBold, range: rangeOfIntervals)
             
             warningView.messageLabel.attributedText = attributedString
-            
+            warningView.addIntervalsButton.addTarget(self, action: #selector(didTapOnAddInterval), for: .touchUpInside)
+
             return warningView
 
         case UserWarning.MissingTimerName:
@@ -167,7 +169,14 @@ class ITVUIViewWarningAlert: UIView, ITVUserWarningProtocol {
             return warningView
         }
     }
-    @objc func didTappedOnBackgroundView(){
+    @objc func didTapOnBackgroundView(){
+        dismiss(animated: true)
+    }
+    @objc func didTapOnAddInterval(){
+        //send notification to segue
+        print("------> NOTIFICATION didTapOnAddInterval() posted")
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "segueToEditInterval"), object: nil)
+        print("------> NOTIFICATION didTapOnAddInterval() will dismiss view")
         dismiss(animated: true)
     }
 }

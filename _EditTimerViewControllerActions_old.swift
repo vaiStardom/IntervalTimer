@@ -45,9 +45,9 @@ extension EditTimerViewController_old {
         } else {
             aesthetics_showMissingWeatherWarning()
             if ITVWarningForUser.sharedInstance.thisMessage != nil, !(ITVWarningForUser.sharedInstance.thisMessage?.isEmpty)! {
-                showUserWarning(type: ITVWarningForUser.sharedInstance.thisUserWarning, with: ITVWarningForUser.sharedInstance.thisMessage)
+                SHOW_USER_WARNING(type: ITVWarningForUser.sharedInstance.thisUserWarning, with: ITVWarningForUser.sharedInstance.thisMessage)
             } else {
-                showUserWarning(type: ITVWarningForUser.sharedInstance.thisUserWarning)
+                SHOW_USER_WARNING(type: ITVWarningForUser.sharedInstance.thisUserWarning)
             }
         }
     }
@@ -98,7 +98,7 @@ extension EditTimerViewController_old {
         } else {
             //TODO: Alert user that he must name the timer.
             ITVWarningForUser.sharedInstance.thisUserWarning = UserWarning.MissingTimerName
-            showUserWarning(type: ITVWarningForUser.sharedInstance.thisUserWarning)
+            SHOW_USER_WARNING(type: ITVWarningForUser.sharedInstance.thisUserWarning)
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

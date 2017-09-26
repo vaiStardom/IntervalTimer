@@ -16,10 +16,6 @@ extension TimerViewController{
         aesthetics_timerCancel()
     }
     
-    @IBAction func userWarning(_ sender: UIButton) {
-        showUserWarning(type: ITVWarningForUser.sharedInstance.thisUserWarning)
-    }
-
     @IBAction func startPauseResumeTimer(_ sender: Any) {
         if startPauseResume == (true, false, false) { //start the timer
             runIntervalTimer()
@@ -53,16 +49,10 @@ extension TimerViewController{
         } else {
             aesthetics_showMissingWeatherWarning()
             if ITVWarningForUser.sharedInstance.thisMessage != nil, !(ITVWarningForUser.sharedInstance.thisMessage?.isEmpty)! {
-                showUserWarning(type: ITVWarningForUser.sharedInstance.thisUserWarning, with: ITVWarningForUser.sharedInstance.thisMessage)
+                SHOW_USER_WARNING(type: ITVWarningForUser.sharedInstance.thisUserWarning, with: ITVWarningForUser.sharedInstance.thisMessage)
             } else {
-                showUserWarning(type: ITVWarningForUser.sharedInstance.thisUserWarning)
+                SHOW_USER_WARNING(type: ITVWarningForUser.sharedInstance.thisUserWarning)
             }
         }
-    }
-    func back(){
-        _ = navigationController?.popViewController(animated: true)
-    }
-    func edit(){
-        performSegue(withIdentifier: "TimerToEditTimer", sender: nil)
     }
 }

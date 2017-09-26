@@ -28,9 +28,6 @@
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hch-bj-gYe">
                     <rect key="frame" x="53.5" y="107" width="131" height="132"/>
-                    <connections>
-                        <action selector="addIntervals:" destination="iN0-l3-epB" eventType="touchUpInside" id="cJ2-uH-NDD"/>
-                    </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" alpha="0.34000000357627869" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="takeMeThere" translatesAutoresizingMaskIntoConstraints="NO" id="I2N-Di-oDM">
                     <rect key="frame" x="52.5" y="107" width="132" height="132"/>

@@ -87,9 +87,9 @@ extension EditIntervalViewController {
         }
     }
     func setViewValues(with interval: ITVInterval){
-        let hours = hoursOf(seconds: interval.thisSeconds!)
-        let minutes = minutesOf(seconds: interval.thisSeconds!)
-        let seconds = secondsOf(seconds: interval.thisSeconds!)
+        let hours = HOURS_OF(seconds: interval.thisSeconds!)
+        let minutes = MINUTES_OF(seconds: interval.thisSeconds!)
+        let seconds = SECONDS_OF(seconds: interval.thisSeconds!)
         
         hourTextField2.text = hours.isEmpty ? "" : String(describing: hours.characters.first!)
         hourTextField1.text = hours.isEmpty ? "" : String(describing: hours.characters.last!)

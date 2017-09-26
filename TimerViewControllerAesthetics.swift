@@ -55,7 +55,7 @@ extension TimerViewController {
             aesthetics_seconds()
         }
     }
-    func aesthetics_ShowUserWarning(){
+    func aesthetics_ShowIntervalMissingWarning(){
         userWarningButton.isEnabled = true
         userWarningImageView.isHidden = false
         userWarningImageView.layer.borderColor = ITVColors.Orange.cgColor
@@ -76,7 +76,7 @@ extension TimerViewController {
         startPauseResumeButton.isEnabled = false
         startPauseResumePulseButton.isEnabled = false
     }
-    func aesthetics_HideUserWarning(){
+    func aesthetics_HideIntervalMissingWarning(){
         userWarningButton.isEnabled = false
         userWarningImageView.isHidden = true
         
@@ -86,9 +86,9 @@ extension TimerViewController {
         backgroudPulseImageView.isHidden = false
         foregroundPulsImageView.isHidden = false
         
-        cancelButton.isEnabled = false
-        startPauseResumeButton.isEnabled = false
-        startPauseResumePulseButton.isEnabled = false
+        cancelButton.isEnabled = true
+        startPauseResumeButton.isEnabled = true
+        startPauseResumePulseButton.isEnabled = true
     }
     func aesthetics_initial(){
         activityIndicator.color = ITVColors.Orange
@@ -99,8 +99,12 @@ extension TimerViewController {
         
         backgroudPulseImageView.alpha = 0.5
         
+        startPauseResumeButton.isEnabled = true
+        startPauseResumePulseButton.isEnabled = true
+        cancelButton.isEnabled = true
+        
         aesthetics_hideMissingWeatherWarning()
-        aesthetics_HideUserWarning()
+        aesthetics_HideIntervalMissingWarning()
         aesthetics_setFonts()
         aesthetics_timerCancel()
         aesthetics_timerLabels()

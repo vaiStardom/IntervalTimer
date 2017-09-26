@@ -70,4 +70,9 @@ class TimerViewController: UIViewController {
     var visualEffect: UIVisualEffect! //TODO: Do you still need this?
     
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    
+    @IBAction func userWarning(_ sender: UIButton) {
+        SHOW_USER_WARNING(type: ITVWarningForUser.sharedInstance.thisUserWarning)
+    }
+
 }

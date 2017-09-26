@@ -15,7 +15,7 @@ import UIKit
             try ITVCurrentWeather.getWeatherByPriority()
         } catch let error {
             activityIndicatorStop()
-            showUserWarning(type: UserWarning.LocationManagerDidFail, with: "\(error)")
+            SHOW_USER_WARNING(type: UserWarning.LocationManagerDidFail, with: "\(error)")
         }
     }
     

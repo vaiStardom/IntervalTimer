@@ -23,7 +23,7 @@ extension EditTimerViewController: UICollectionViewDelegate, UICollectionViewDat
         cell.indicatorImageView.roundImageView()
         
         if let theSeconds = uniqueTimers[index].0.thisSeconds {
-            cell.secondsLabel.text = timeOf_hms(seconds: theSeconds)
+            cell.secondsLabel.text = TIME_OF_HMS(seconds: theSeconds)
         } else {
             cell.secondsLabel.text = "empty"
         }

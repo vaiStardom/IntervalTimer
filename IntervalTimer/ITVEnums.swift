@@ -20,7 +20,9 @@ enum NavigationBarCgRect{
     static let CancelButton = CGRect(x: 10, y: 0, width: 95, height: 44)
     static let CancelLabel = CGRect(x: 25, y: 14, width: 55, height: 19)
     static let Dummy = CGRect(x: 0, y: 0, width: 65, height: 44)
-    static let EditLabel = CGRect(x: 0, y: 14, width: 30, height: 19)
+//    static let EditLabel = CGRect(x: 0, y: 14, width: 30, height: 19)
+    static let EditLabel = CGRect(x: 30, y: 14, width: 30, height: 19)
+    
     static let iCloudImage = CGRect(x: 0, y: 13, width: 26.0, height: 16.0)
     static let LeftLabel = CGRect(x: 0, y: 14, width: 65, height: 19)
     static let NewTimerTitle = CGRect(x: 0, y: 20, width: 86, height: 45)

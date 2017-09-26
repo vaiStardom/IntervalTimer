@@ -50,7 +50,7 @@ extension EditTimerViewController{
     }
     func setWeatherFromNetwork(){
         activityIndicatorStart()
-        getWeatherFromNetwork()
+        GET_WEATHER_FROM_NETWORK()
     }
     func updateWeatherInformation(){
         activityIndicatorStop()
