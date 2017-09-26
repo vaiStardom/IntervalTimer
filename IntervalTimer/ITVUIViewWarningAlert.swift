@@ -13,7 +13,6 @@ class ITVUIViewWarningAlert: UIView, ITVUserWarningProtocol {
     var dialogView = UIView()
     var visualEffectsView = UIVisualEffectView()
     var errorMessage: String?
-//    weak var missingIntervalDelegate: ITVMissingIntervalProtocol?
     
     convenience init(type: UserWarning?, with message: String? = nil) {
         self.init(frame: UIScreen.main.bounds)

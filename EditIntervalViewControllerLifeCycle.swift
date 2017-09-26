@@ -14,8 +14,6 @@ extension EditIntervalViewController {
         super.viewDidLoad()
         configureNavBar()
         
-//        secondTextField1.becomeFirstResponder()
-        
         hourTextField2.delegate = self
         hourTextField1.delegate = self
         minuteTextField2.delegate = self
