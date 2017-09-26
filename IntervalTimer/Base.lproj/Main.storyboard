@@ -74,11 +74,6 @@
                                     <outlet property="delegate" destination="r6Y-jF-Bbl" id="NWs-G7-VxX"/>
                                 </connections>
                             </tableView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eeO-9S-EWs">
-                                <rect key="frame" x="0.0" y="430" width="320" height="74"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cancel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yQ3-kH-6dC">
                                 <rect key="frame" x="0.0" y="467" width="320" height="21"/>
                                 <constraints>
@@ -102,7 +97,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="NEJ-to-mpV" firstAttribute="top" secondItem="pze-du-5Fk" secondAttribute="bottom" id="4bb-gO-n80"/>
                             <constraint firstItem="9Jj-Cs-Lys" firstAttribute="top" secondItem="NEJ-to-mpV" secondAttribute="bottom" id="Cq9-tv-1V7"/>
@@ -121,7 +116,6 @@
                     </view>
                     <connections>
                         <outlet property="deleteButton" destination="ODI-6e-uCd" id="bSD-Fd-AKC"/>
-                        <outlet property="deleteImageView" destination="eeO-9S-EWs" id="g0h-d4-7cv"/>
                         <outlet property="deleteLabel" destination="yQ3-kH-6dC" id="StC-5O-QEy"/>
                         <outlet property="tableView" destination="NEJ-to-mpV" id="ysx-hw-Wif"/>
                         <segue destination="lHH-oS-twA" kind="show" identifier="EditTimerToEditInterval" id="3ii-O5-eNt"/>

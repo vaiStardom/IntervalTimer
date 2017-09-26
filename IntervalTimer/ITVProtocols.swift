@@ -27,8 +27,8 @@ protocol ITVSwipeToDeleteTimerProtocol{
 //    func deleteTimer(atIndex: Int?)
     func delete(timer: ITVTimer?)
 }
-protocol ITVMissingIntervalProtocol: class {
-    //    func deleteTimer(atIndex: Int?)
-    func addInterval()
-}
-
+//protocol ITVMissingIntervalProtocol: class {
+//    //    func deleteTimer(atIndex: Int?)
+//    func addInterval()
+//}
+//

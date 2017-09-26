@@ -13,7 +13,7 @@ class EditTimerViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var deleteLabel: UILabel!
     @IBOutlet weak var deleteButton: UIButton!
-    @IBOutlet weak var deleteImageView: UIImageView!
+//    @IBOutlet weak var deleteImageView: UIImageView!
     
     var intervals: [ITVInterval]? //will hold a copy of the timer's intervals for the table view's interval cells
     var uniqueTimers: [(ITVInterval, Int)] = []
