@@ -18,55 +18,6 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
             return numberOfTableCellSections
         }
     }
-
-//    //Should I instead put a button over the table view, then hide it when the table view content is bigger than the screen, in which case we would show the quick add and delete cells
-//    func emptyCellsOffSet(dataSourceCount: Int) -> Int {
-//
-//        //if intervals?.count = 0, then return 2 for iphone 5, 2 iphone 6, and 4 for iphone 6+
-//        //if intervals?.count = 1, then return 1 for iphone 5, 1 iphone 6, and 3 for iphone 6+
-//        //if intervals?.count = 2, then return 0 for iphone 5, 0 iphone 6, and 2 for iphone 6+
-//        //if intervals?.count = 3, then return 0 for iphone 5, 0 iphone 6, and 1 for iphone 6+
-//        //if intervals?.count >= 3, then return 0 for iphone 5, 0 iphone 6, and 0 for iphone 6+
-//
-//        switch iPhone(){
-//        case .five:
-//            if dataSourceCount == 0 {
-//                return 2
-//            } else if dataSourceCount == 1 {
-//                return 1
-//            } else if dataSourceCount == 2 {
-//                return 0
-//            } else if dataSourceCount == 3 {
-//                return 0
-//            } else if dataSourceCount >= 4 {
-//                return 0
-//            }
-//        case .six:
-//            if dataSourceCount == 0 {
-//                return 2
-//            } else if dataSourceCount == 1 {
-//                return 1
-//            } else if dataSourceCount == 2 {
-//                return 0
-//            } else if dataSourceCount == 3 {
-//                return 0
-//            } else if dataSourceCount >= 4 {
-//                return 0
-//            }
-//        case .sixPlus:
-//            if dataSourceCount == 0 {
-//                return 4
-//            } else if dataSourceCount == 1 {
-//                return 3
-//            } else if dataSourceCount == 2 {
-//                return 2
-//            } else if dataSourceCount == 3 {
-//                return 1
-//            } else if dataSourceCount >= 4 {
-//                return 0
-//            }
-//        }
-//    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -92,7 +43,7 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
             cell.timerNameTextField.attributedPlaceholder = NSAttributedString(string: Litterals.TimerNamePlaceholder, attributes: [NSAttributedStringKey.foregroundColor : ITVColors.OrangeAlpha50])
             cell.showWeatherDescriptionLabel.isHidden = false
             cell.warningButton.isEnabled = false
-            cell.showWeatherSwitch.isOn = false
+//            cell.showWeatherSwitch.isOn = false
             cell.temperatureSegmentedControl.isHidden = true
             cell.weatherActivityIndicator.isHidden = true
             cell.timerNameTextField.tintColor = ITVColors.Orange
@@ -122,6 +73,7 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
                 
                 cell.editLabel.isHidden = false
                 cell.addIntervalsLabel.isHidden = true
+                cell.addIntervalButton.isEnabled = true
                 cell.addIntervalImageView.isHidden = true
                 cell.addPresetIntervalImageView.isHidden = false
                 cell.visualEffectView.isHidden = false
@@ -173,25 +125,43 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "AddIntervalCell") as! EditTimerAddIntervalsTableViewCell
-                cell.intervalsLabel.isHidden = true
-                
-                //if the are intervals, then show the collection view and fill the collection view with a filter of indicators
-                if dataSourceCount > 0 {
-                    let nibName = UINib(nibName: "IndicatorCollectionViewCell", bundle: nil)
-                    cell.intervalsCollectionView.register(nibName, forCellWithReuseIdentifier: "IndicatorCell")
-                    cell.intervalsCollectionView.delegate = self
-                    cell.intervalsCollectionView.dataSource = self
-                    cell.intervalsCollectionView.showsHorizontalScrollIndicator = false
-                }
-                
-                cell.addIntervalButton.addTarget(self, action: #selector(EditTimerViewController.addInterval), for: .touchUpInside)
-                cell.editButton.addTarget(self, action: #selector(EditTimerViewController.editIntervals), for: .touchUpInside)
                 
                 //Initial cell aesthetics
                 cell.intervalsLabel.isHidden = true
                 cell.visualEffectView.layer.masksToBounds = false
                 cell.visualEffectView.layer.cornerRadius = cell.visualEffectView.frame.size.height/2
                 cell.visualEffectView.clipsToBounds = true
+                cell.editButton.isEnabled = true
+                
+                //if the are intervals, then show the collection view and fill the collection view with a filter of indicators
+                if dataSourceCount > 0 {
+                    let nibName = UINib(nibName: "EditTimerIntervalPresetsCollectionViewCell", bundle: nil)
+                    cell.intervalsCollectionView.register(nibName, forCellWithReuseIdentifier: "PresetCell")
+                    cell.intervalsCollectionView.delegate = self
+                    cell.intervalsCollectionView.dataSource = self
+                    cell.intervalsCollectionView.showsHorizontalScrollIndicator = false
+                    
+                    cell.editLabel.isHidden = false
+                    cell.addIntervalsLabel.isHidden = true
+                    cell.addIntervalImageView.isHidden = true
+                    cell.addPresetIntervalImageView.isHidden = false
+                    cell.visualEffectView.isHidden = false
+                    
+                    cell.editButton.addTarget(self, action: #selector(EditTimerViewController.editIntervals), for: .touchUpInside)
+                    cell.addIntervalButton.addTarget(self, action: #selector(EditTimerViewController.addInterval), for: .touchUpInside)
+                    
+                } else {
+                    cell.editLabel.isHidden = true
+                    cell.addIntervalsLabel.isHidden = false
+                    cell.addIntervalImageView.isHidden = false
+                    cell.addIntervalButton.isEnabled = false
+                    cell.addPresetIntervalImageView.isHidden = true
+                    cell.visualEffectView.isHidden = true
+                    
+                    cell.editButton.addTarget(self, action: #selector(EditTimerViewController.addInterval), for: .touchUpInside)
+                }
+                
+                cell.selectionStyle = .none
                 
                 return cell
             }
@@ -215,6 +185,9 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
             cell.deleteTimerButton.isEnabled = false
             cell.deleteTimerLabel.isHidden = true
             
+            cell.imageView?.contentMode = UIViewContentMode.scaleAspectFill
+
+            
             //Initial cell aesthetics
             cell.selectionStyle = .none
 
@@ -222,8 +195,8 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     func configureTableView(){
-        tableView.dataSource = self //as? UITableViewDataSource
-        tableView.delegate = self //as? UITableViewDelegate
+        tableView.dataSource = self
+        tableView.delegate = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 504
         
@@ -232,19 +205,7 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.register(UINib(nibName: "EditTimerEmptyTableViewCell", bundle: nil), forCellReuseIdentifier: "EmptyCell")
         tableView.register(UINib(nibName: "EditTimerIntervalTableViewCell", bundle: nil), forCellReuseIdentifier: "IntervalCell")
         tableView.register(UINib(nibName: "EditTimerTopTableViewCell", bundle: nil), forCellReuseIdentifier: "EditTimerTopCell")
-    }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //Aesthetics of the selected cell
-        let index = indexPath.row
-        if index >= tableViewIntervalIndexOffset && index < ((intervals?.count)! + tableViewIntervalIndexOffset) { //Interval
-            let cell = tableView.cellForRow(at: indexPath)
-            cell?.contentView.backgroundColor = ITVColors.OrangeAlpha50
-        }
-
-        //        itvIntervalIndex = indexPath.row
-        //        performSegue(withIdentifier: "EditTimerToEditInterval", sender: nil)
-    }
-    
+    }    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }

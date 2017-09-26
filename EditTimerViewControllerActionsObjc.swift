@@ -81,31 +81,7 @@ import UIKit
         
         print("------> Add this interval: \(String(describing: uniqueTimers[theButton.tag].0.thisSeconds))")
     }
-    
-    func scrollToBottom(){
         
-        let bottomRow = tableView.numberOfRows(inSection: 0) - 1
-        let bottomMessageIndex = IndexPath(row: bottomRow, section: 0)
-        
-        guard (intervals?.count)! > 0 else {
-            return
-        }
-        
-        CATransaction.begin()
-        CATransaction.setCompletionBlock({ () -> Void in
-            // Now we can scroll to the last row!
-            self.tableView.scrollToRow(at: bottomMessageIndex, at: .bottom, animated: true)
-        })
-        
-        // scroll down by 1 point: this causes the newly added cell to be dequeued and rendered.
-        let contentOffset = self.tableView.contentOffset.y
-        
-        let newContentOffset = CGPoint(x: 0, y: contentOffset + 1)
-        self.tableView.setContentOffset(newContentOffset, animated: true)
-        
-        CATransaction.commit()
-    }
-    
     func editIntervals(){
         print("------> Edit intervals")
     }

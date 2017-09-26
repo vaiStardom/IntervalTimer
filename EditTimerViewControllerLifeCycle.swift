@@ -81,32 +81,56 @@ extension EditTimerViewController {
                 intervals = theIntervals
                 uniqueArrays(intervals: theIntervals)
             }
-            
+
             //Second, if this is a selected timer, do we show the weather
-            if (ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisShowWeather)! {
-                topCell().showWeatherSwitch.isOn = true
-                if let theTemperatureUnit = ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisTemperatureUnit {
-                    topCell().temperatureSegmentedControl.selectedSegmentIndex = theTemperatureUnit.rawValue
+            if let theShowWeather = ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisShowWeather {
+                topCell().showWeatherSwitch.isOn = theShowWeather
+                if theShowWeather {
+                    if let theTemperatureUnit = ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisTemperatureUnit {
+                        topCell().temperatureSegmentedControl.selectedSegmentIndex = theTemperatureUnit.rawValue
+                    }
+                    aesthetics_startLoadingWeather()
+                    showWeather()
+                } else {
+                    aesthetics_dontLoadWeather()
                 }
-                aesthetics_startLoadingWeather()
-                showWeather()
             } else {
+                topCell().showWeatherSwitch.isOn = false
                 aesthetics_dontLoadWeather()
             }
         } else {
-            intervals = []
+            if let theUnsavedIntervals = itvUnsavedTimersIntervals {
+                intervals = theUnsavedIntervals
+            } else {
+                intervals = []
+            }
         }
         
+        //for each iphone type, calculate if the visible cells
         var heightOfTableView: CGFloat = 0.0
         let cells = self.tableView.visibleCells
         for cell in cells {
             heightOfTableView += cell.frame.height
         }
-        bottomCell().deleteTimerButton.isEnabled = false
-        bottomCell().deleteTimerLabel.isHidden = true
-        bottomCell().selectionStyle = .none
-        
-        tableView.isScrollEnabled = false
+
+//        if heightOfTableView > (self.view.frame.height - 74) {
+        if heightOfTableView > self.view.frame.height {
+            bottomCell().deleteTimerButton.isEnabled = true
+            bottomCell().deleteTimerLabel.isHidden = false
+            tableView.isScrollEnabled = true
+            deleteLabel.isHidden = true
+            deleteButton.isHidden = true
+            deleteButton.isEnabled = false
+        } else {
+            bottomCell().deleteTimerButton.isEnabled = false
+            bottomCell().deleteTimerLabel.isHidden = true
+            bottomCell().selectionStyle = .none
+            tableView.isScrollEnabled = false
+            deleteLabel.isHidden = false
+            deleteButton.isHidden = false
+            deleteButton.isEnabled = true
+
+        }
         
         //        bottomCell().isHidden = true
         print("------> EditTimerViewController cell count = \(cells.count), heightOfTableView = \(heightOfTableView)")

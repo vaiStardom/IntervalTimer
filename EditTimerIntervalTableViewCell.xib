@@ -30,7 +30,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ITVUIImageViewIndicator" translatesAutoresizingMaskIntoConstraints="NO" id="MrF-9H-nzd" customClass="ITVUIImageViewIndicator" customModule="IntervalTimer" customModuleProvider="target">
-                        <rect key="frame" x="277" y="25" width="28" height="28"/>
+                        <rect key="frame" x="272" y="25" width="28" height="28"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="28" id="0Oi-Ax-Hft"/>
                             <constraint firstAttribute="height" constant="28" id="D1x-lz-aBG"/>
@@ -52,7 +52,7 @@
                     <constraint firstItem="Bif-pT-i2k" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="rsO-b1-Hf0"/>
                     <constraint firstAttribute="bottomMargin" secondItem="Bif-pT-i2k" secondAttribute="bottom" constant="3.5" id="tWq-do-1qw"/>
                     <constraint firstItem="OLE-5S-hQL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="21" id="yJf-Jc-W0z"/>
-                    <constraint firstAttribute="trailing" secondItem="MrF-9H-nzd" secondAttribute="trailing" constant="15" id="yQu-Sq-7Dp"/>
+                    <constraint firstAttribute="trailing" secondItem="MrF-9H-nzd" secondAttribute="trailing" constant="20" id="yQu-Sq-7Dp"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

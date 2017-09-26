@@ -15,7 +15,6 @@ extension EditTimerViewController: UIViewControllerPreviewingDelegate {
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
         
         self.navigationController!.show((viewControllerToCommit as! UINavigationController).viewControllers[0], sender: self)
-        
     }
     
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {

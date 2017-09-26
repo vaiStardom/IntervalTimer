@@ -14,4 +14,14 @@ extension EditTimerViewController {
         cancel()
 //        deleteTimer()
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //Aesthetics of the selected cell
+        let index = indexPath.row
+        if index >= tableViewIntervalIndexOffset && index < ((intervals?.count)! + tableViewIntervalIndexOffset) { //Interval
+            let cell = tableView.cellForRow(at: indexPath)
+            cell?.contentView.backgroundColor = ITVColors.OrangeAlpha50
+        }
+        itvIntervalIndex = indexPath.row - tableViewIntervalIndexOffset
+        performSegue(withIdentifier: "EditTimerToEditInterval", sender: nil)
+    }
 }

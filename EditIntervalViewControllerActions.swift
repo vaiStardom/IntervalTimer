@@ -50,6 +50,8 @@ extension EditIntervalViewController {
                             ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals = []
                         }
                         ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals?.append(theNewInterval)
+//                        let theUpdatedTimer = ITVUser.sharedInstance.thisTimers?[theTimerIndex]
+//                        ITVUser.sharedInstance.thisTimers?[theTimerIndex] = theUpdatedTimer!
                         self.updateIntervalsProtocolDelegate?.didEditASavedTimersInterval()
                     }
                 } else { //this interval is for an unsaved timer
