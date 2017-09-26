@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "EditTimerViewControllerSegue.swift"
-            timestampString = "528131263.841255"
+            filePath = "EditIntervalViewControllerHelpers.swift"
+            timestampString = "528131718.575455"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "15"
-            endingLineNumber = "15"
-            landmarkName = "prepare(for:sender:)"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "setViewValues(with:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "EditIntervalViewControllerLifeCycle.swift"
-            timestampString = "528131528.100998"
+            filePath = "EditIntervalViewControllerHelpers.swift"
+            timestampString = "528131746.106724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "setViewValues(with:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

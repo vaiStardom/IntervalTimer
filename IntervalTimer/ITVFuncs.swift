@@ -146,13 +146,9 @@ func MINUTES_OF(seconds: Double) -> String {
 
 }
 func SECONDS_OF(seconds: Double) -> String {
+
     let secs = Int(seconds)
     let theSeconds = secs % 60
     
-    if theSeconds > 0 {
-        return "\(String(format: "%02d", theSeconds))"
-    } else {
-        return ""
-    }
-
+    return "\(String(format: "%02d", theSeconds))"
 }
