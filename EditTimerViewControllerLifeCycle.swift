@@ -65,10 +65,11 @@ extension EditTimerViewController {
                 intervals = []
             }
         }
-        aesthetics_manageBottomSectionOfView()
-
+//        aesthetics_manageBottomSectionOfView()
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        aesthetics_manageBottomSectionOfView()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

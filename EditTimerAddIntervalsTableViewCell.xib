@@ -36,7 +36,7 @@
                         </constraints>
                     </imageView>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="1Mf-tj-Lte">
-                        <rect key="frame" x="0.0" y="30" width="320" height="48"/>
+                        <rect key="frame" x="0.0" y="30" width="269" height="48"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eBl-VI-B1a">
                             <size key="itemSize" width="74" height="47"/>
@@ -104,7 +104,7 @@
                     <constraint firstItem="Fzm-b8-WMX" firstAttribute="centerY" secondItem="n2g-F3-rQN" secondAttribute="centerY" id="Ctj-Xv-DRQ"/>
                     <constraint firstItem="n2g-F3-rQN" firstAttribute="top" secondItem="Tvb-p7-d8D" secondAttribute="bottom" constant="7" id="DDZ-yH-RqO"/>
                     <constraint firstAttribute="trailing" secondItem="41u-6a-HFD" secondAttribute="trailing" id="FY6-0c-P8C"/>
-                    <constraint firstAttribute="trailing" secondItem="1Mf-tj-Lte" secondAttribute="trailing" id="K0n-uY-1MI"/>
+                    <constraint firstAttribute="trailing" secondItem="1Mf-tj-Lte" secondAttribute="trailing" constant="51" id="K0n-uY-1MI"/>
                     <constraint firstItem="41u-6a-HFD" firstAttribute="top" secondItem="Tvb-p7-d8D" secondAttribute="bottom" id="KoH-RT-MBL"/>
                     <constraint firstAttribute="bottomMargin" secondItem="n2g-F3-rQN" secondAttribute="bottom" constant="15.5" id="PD1-a9-2B4"/>
                     <constraint firstAttribute="trailing" secondItem="Tvb-p7-d8D" secondAttribute="trailing" id="RdX-Gq-fEd"/>

@@ -50,7 +50,7 @@ extension EditTimerViewController {
     }
     func aesthetics_manageBottomSectionOfView(){
         
-        if let deleteTimerCell = bottomCell() {
+        if let deleteTimerCell = deleteCell() {
             
             //personal hotspot bar + nav bar + topcell + quick add + intervals
             let heightOfTableView = 88.0 + 171.0 + heightQuickAddSections() + heightIntervalsSection()

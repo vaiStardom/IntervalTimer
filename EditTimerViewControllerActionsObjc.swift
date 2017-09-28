@@ -11,6 +11,14 @@ import UIKit
 
 @objc extension EditTimerViewController {
     
+    func selectedTemperatureUnit() {
+        if let theTopCell = topCell() {
+            let temperature = getTemperatureUnit(from: theTopCell.temperatureSegmentedControl).temperature(kelvins: ITVUser.sharedInstance.thisCurrentWeather?.thisKelvin)
+            theTopCell.weatherTemperatureLabel.text = temperature
+            didUserModifyATimer()
+        }
+    }
+
     func back(){
 //        print("------> EditTimerViewController back()")
         _ = navigationController?.popViewController(animated: true)

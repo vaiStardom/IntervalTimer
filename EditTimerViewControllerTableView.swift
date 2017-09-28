@@ -64,6 +64,8 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
             cell.timerNameTextField.tintColor = ITVColors.Orange
             cell.weatherActivityIndicator.color = ITVColors.Orange
             
+            cell.temperatureSegmentedControl.addTarget(self, action: #selector(EditTimerViewController.selectedTemperatureUnit), for: .valueChanged)
+            
             cell.selectionStyle = .none
 
             return cell
@@ -85,6 +87,7 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.intervalsCollectionView.delegate = self
                 cell.intervalsCollectionView.dataSource = self
                 cell.intervalsCollectionView.showsHorizontalScrollIndicator = false
+                cell.intervalsCollectionView.transform = CGAffineTransform(scaleX: -1, y: 1)
                 
                 cell.editLabel.isHidden = false
                 cell.addIntervalsLabel.isHidden = true
@@ -95,6 +98,8 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
 
                 cell.editButton.addTarget(self, action: #selector(EditTimerViewController.editIntervals), for: .touchUpInside)
                 cell.addIntervalButton.addTarget(self, action: #selector(EditTimerViewController.addInterval), for: .touchUpInside)
+                
+                
 
             } else {
                 cell.editLabel.isHidden = true
@@ -156,6 +161,7 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
                     cell.intervalsCollectionView.delegate = self
                     cell.intervalsCollectionView.dataSource = self
                     cell.intervalsCollectionView.showsHorizontalScrollIndicator = false
+                    cell.intervalsCollectionView.transform = CGAffineTransform(scaleX: -1, y: 1)
                     
                     cell.editLabel.isHidden = false
                     cell.addIntervalsLabel.isHidden = true
@@ -208,6 +214,7 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
 
             return cell
         }
+        
     }
     func configureTableView(){
         tableView.dataSource = self
@@ -234,11 +241,12 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func bottomCell() -> EditTimerDeleteTimerTableViewCell? {
-        let bottomCellIndex = self.tableView.visibleCells.count - 1
-        let bottomCellIndexPath = IndexPath(row: bottomCellIndex, section: 0)
-        if let bottomCell = tableView.cellForRow(at: bottomCellIndexPath) as? EditTimerDeleteTimerTableViewCell {
-            return bottomCell
+    func deleteCell() -> EditTimerDeleteTimerTableViewCell? {
+//        let deleteCellIndex = self.tableView.visibleCells.count - 1
+        let deleteCellIndex = dataSourceCount() + tableViewIntervalIndexOffset
+        let deleteCellIndexPath = IndexPath(row: deleteCellIndex, section: 0)
+        if let deleteCell = tableView.cellForRow(at: deleteCellIndexPath) as? EditTimerDeleteTimerTableViewCell {
+            return deleteCell
         } else {
             return nil
         }

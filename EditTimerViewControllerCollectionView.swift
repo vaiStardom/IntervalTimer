@@ -31,8 +31,11 @@ extension EditTimerViewController: UICollectionViewDelegate, UICollectionViewDat
         cell.addIntervalPresetButton.addTarget(self, action: #selector(EditTimerViewController.addThisInterval(_:)), for: .touchUpInside)
         cell.addIntervalPresetButton.tag = index
         
+        cell.transform = CGAffineTransform(scaleX: -1, y: 1)
+        
         return cell
     }
+    
     func reloadQuickAddCollection() {
         let firstQuickAddCellIndexPath = IndexPath(row: 1, section: 0)
         if let firstQuickAddCell = tableView.cellForRow(at: firstQuickAddCellIndexPath) as? EditTimerAddIntervalsTableViewCell {
