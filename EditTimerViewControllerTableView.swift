@@ -22,13 +22,6 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let index = (indexPath as NSIndexPath).row
-//        var dataSourceCount = 0
-//
-//        if let theDataSourceCount = intervals?.count {
-//            dataSourceCount = theDataSourceCount
-//        } else{
-//            dataSourceCount = 0
-//        }
         
         if index == 0 { //Top row
             let cell = tableView.dequeueReusableCell(withIdentifier: "EditTimerTopCell") as! EditTimerTopTableViewCell
@@ -98,8 +91,6 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
 
                 cell.editButton.addTarget(self, action: #selector(EditTimerViewController.editIntervals), for: .touchUpInside)
                 cell.addIntervalButton.addTarget(self, action: #selector(EditTimerViewController.addInterval), for: .touchUpInside)
-                
-                
 
             } else {
                 cell.editLabel.isHidden = true
@@ -200,6 +191,28 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.deleteTimerLabel.text = "Delete Timer"
             }
             
+            //personal hotspot bar + nav bar + topcell + quick add + intervals
+            let heightOfTableView = 88.0 + 171.0 + heightQuickAddSections() + heightIntervalsSection()
+            let screenSize = UIScreen.main.bounds
+            let deleteButtonYPosition = Double(screenSize.height) - 47.0
+            
+            if heightOfTableView >= deleteButtonYPosition {
+                cell.deleteTimerButton.isEnabled = true
+                cell.deleteTimerLabel.isHidden = false
+//                tableView.isScrollEnabled = true
+                deleteLabel.isHidden = true
+                deleteButton.isHidden = true
+                deleteButton.isEnabled = false
+            } else {
+                cell.deleteTimerButton.isEnabled = false
+                cell.deleteTimerLabel.isHidden = true
+                cell.selectionStyle = .none
+//                tableView.isScrollEnabled = false
+                deleteLabel.isHidden = false
+                deleteButton.isHidden = false
+                deleteButton.isEnabled = true
+            }
+
             return cell
         } else { //Default row
             
@@ -214,7 +227,6 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
 
             return cell
         }
-        
     }
     func configureTableView(){
         tableView.dataSource = self
@@ -243,7 +255,7 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
     
     func deleteCell() -> EditTimerDeleteTimerTableViewCell? {
 //        let deleteCellIndex = self.tableView.visibleCells.count - 1
-        let deleteCellIndex = dataSourceCount() + tableViewIntervalIndexOffset
+        let deleteCellIndex = dataSourceCount() + tableViewIntervalIndexOffset + 1
         let deleteCellIndexPath = IndexPath(row: deleteCellIndex, section: 0)
         if let deleteCell = tableView.cellForRow(at: deleteCellIndexPath) as? EditTimerDeleteTimerTableViewCell {
             return deleteCell

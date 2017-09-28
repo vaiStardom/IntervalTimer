@@ -20,7 +20,7 @@ import Foundation
 import UIKit
 
 extension EditTimerViewController {
-
+    
     func aesthetics_timerNamePlaceHolder(){
         if let theTopCell = topCell(){
             theTopCell.timerNameTextField.attributedPlaceholder = NSAttributedString(string: Litterals.TimerNamePlaceholder, attributes: [NSAttributedStringKey.foregroundColor : ITVColors.OrangeAlpha50])
@@ -32,7 +32,7 @@ extension EditTimerViewController {
             theTopCell.warningButton.isEnabled = false
         }
     }
-
+    
     func aesthetics_dontLoadWeather(){
         if let theTopCell = topCell(){
             theTopCell.showWeatherSwitch.isOn = false
@@ -50,36 +50,47 @@ extension EditTimerViewController {
     }
     func aesthetics_manageBottomSectionOfView(){
         
-        if let deleteTimerCell = deleteCell() {
-            
-            //personal hotspot bar + nav bar + topcell + quick add + intervals
-            let heightOfTableView = 88.0 + 171.0 + heightQuickAddSections() + heightIntervalsSection()
-            let screenSize = UIScreen.main.bounds
-            let deleteButtonYPosition = Double(screenSize.height) - 47.0
-
-            if heightOfTableView >= deleteButtonYPosition {
-                deleteTimerCell.deleteTimerButton.isEnabled = true
-                deleteTimerCell.deleteTimerLabel.isHidden = false
-                tableView.isScrollEnabled = true
-                deleteLabel.isHidden = true
-                deleteButton.isHidden = true
-                deleteButton.isEnabled = false
-            } else {
-                deleteTimerCell.deleteTimerButton.isEnabled = false
-                deleteTimerCell.deleteTimerLabel.isHidden = true
-                deleteTimerCell.selectionStyle = .none
-                tableView.isScrollEnabled = false
-                deleteLabel.isHidden = false
-                deleteButton.isHidden = false
-                deleteButton.isEnabled = true
-            }
+        //personal hotspot bar + nav bar + topcell + quick add + intervals
+        let heightOfTableView = 88.0 + 171.0 + heightQuickAddSections() + heightIntervalsSection()
+        let screenSize = UIScreen.main.bounds
+        let deleteButtonYPosition = Double(screenSize.height) - 47.0
+        
+        if heightOfTableView >= deleteButtonYPosition {
+            tableView.isScrollEnabled = true
+        } else {
+            tableView.isScrollEnabled = false
         }
+        
+        //        if let deleteTimerCell = deleteCell() {
+        //
+        //            //personal hotspot bar + nav bar + topcell + quick add + intervals
+        //            let heightOfTableView = 88.0 + 171.0 + heightQuickAddSections() + heightIntervalsSection()
+        //            let screenSize = UIScreen.main.bounds
+        //            let deleteButtonYPosition = Double(screenSize.height) - 47.0
+        //
+        //            if heightOfTableView >= deleteButtonYPosition {
+        //                deleteTimerCell.deleteTimerButton.isEnabled = true
+        //                deleteTimerCell.deleteTimerLabel.isHidden = false
+        //                tableView.isScrollEnabled = true
+        //                deleteLabel.isHidden = true
+        //                deleteButton.isHidden = true
+        //                deleteButton.isEnabled = false
+        //            } else {
+        //                deleteTimerCell.deleteTimerButton.isEnabled = false
+        //                deleteTimerCell.deleteTimerLabel.isHidden = true
+        //                deleteTimerCell.selectionStyle = .none
+        //                tableView.isScrollEnabled = false
+        //                deleteLabel.isHidden = false
+        //                deleteButton.isHidden = false
+        //                deleteButton.isEnabled = true
+        //            }
+        //        }
     }
-
+    
     func aesthetics_startLoadingWeather() {
         activityIndicatorStart()
         aesthetics_hideWarning()
-
+        
         if let theTopCell = topCell() {
             theTopCell.temperatureSegmentedControl.isHidden = false
             theTopCell.weatherIconImageView.isHidden = false
@@ -93,7 +104,7 @@ extension EditTimerViewController {
         //TODO: program the alert to show when this button is pressed
         activityIndicatorStop()
         aesthetics_hideWeatherViews()
-
+        
         if let theTopCell = topCell() {
             theTopCell.warningButton.isEnabled = true
             theTopCell.warningImageView.alpha = 0.0

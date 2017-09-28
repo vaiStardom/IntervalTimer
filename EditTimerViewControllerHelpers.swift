@@ -130,7 +130,7 @@ extension EditTimerViewController {
         let newContentOffset = CGPoint(x: 0, y: contentOffset + 1)
         self.tableView.setContentOffset(newContentOffset, animated: true)
         
-        aesthetics_manageBottomSectionOfView()
+//        aesthetics_manageBottomSectionOfView()
         
         CATransaction.commit()
     }
