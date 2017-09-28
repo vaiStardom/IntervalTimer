@@ -84,10 +84,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ODI-6e-uCd">
-                                <rect key="frame" x="0.0" y="430" width="320" height="74"/>
+                                <rect key="frame" x="86" y="457" width="148" height="47"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="74" id="9gR-NS-zNd"/>
+                                    <constraint firstAttribute="height" constant="47" id="9gR-NS-zNd"/>
                                 </constraints>
                                 <state key="normal">
                                     <color key="titleColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -101,12 +101,12 @@
                         <constraints>
                             <constraint firstItem="NEJ-to-mpV" firstAttribute="top" secondItem="pze-du-5Fk" secondAttribute="bottom" id="4bb-gO-n80"/>
                             <constraint firstItem="9Jj-Cs-Lys" firstAttribute="top" secondItem="NEJ-to-mpV" secondAttribute="bottom" id="Cq9-tv-1V7"/>
-                            <constraint firstItem="ODI-6e-uCd" firstAttribute="width" secondItem="cTC-SW-6zp" secondAttribute="width" id="DTw-LT-LCv"/>
+                            <constraint firstItem="ODI-6e-uCd" firstAttribute="width" secondItem="cTC-SW-6zp" secondAttribute="width" constant="-172" id="DTw-LT-LCv"/>
                             <constraint firstAttribute="trailing" secondItem="NEJ-to-mpV" secondAttribute="trailing" id="M26-JD-ck9"/>
-                            <constraint firstItem="ODI-6e-uCd" firstAttribute="leading" secondItem="cTC-SW-6zp" secondAttribute="leading" id="MhF-kJ-Ecz"/>
+                            <constraint firstItem="ODI-6e-uCd" firstAttribute="leading" secondItem="cTC-SW-6zp" secondAttribute="leading" constant="86" id="MhF-kJ-Ecz"/>
                             <constraint firstItem="yQ3-kH-6dC" firstAttribute="width" secondItem="cTC-SW-6zp" secondAttribute="width" id="OaL-rK-StF"/>
                             <constraint firstItem="9Jj-Cs-Lys" firstAttribute="top" secondItem="yQ3-kH-6dC" secondAttribute="bottom" constant="16" id="QUB-0n-KVt"/>
-                            <constraint firstAttribute="trailing" secondItem="ODI-6e-uCd" secondAttribute="trailing" id="U6W-p4-MlR"/>
+                            <constraint firstAttribute="trailing" secondItem="ODI-6e-uCd" secondAttribute="trailing" constant="86" id="U6W-p4-MlR"/>
                             <constraint firstItem="9Jj-Cs-Lys" firstAttribute="top" secondItem="ODI-6e-uCd" secondAttribute="bottom" id="UX8-Bs-1aO"/>
                             <constraint firstItem="ODI-6e-uCd" firstAttribute="centerX" secondItem="cTC-SW-6zp" secondAttribute="centerX" id="ajc-46-VhB"/>
                             <constraint firstItem="NEJ-to-mpV" firstAttribute="leading" secondItem="cTC-SW-6zp" secondAttribute="leading" id="flY-Dv-erg"/>
@@ -123,7 +123,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kan-iy-i3I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2747" y="137"/>
+            <point key="canvasLocation" x="2746.875" y="136.26760563380282"/>
         </scene>
         <!--Edit Timer View Controller old-->
         <scene sceneID="Bxj-5W-xbM">

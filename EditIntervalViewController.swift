@@ -11,6 +11,7 @@ import UIKit
 //TODO: User can enter any values he wants in the fields, when he saves, we convert it to the proper hour, min, and seconds values
 //TODO: a fade in fade out view telling him about the conversion
 //TODO: add alert to user so that they are not allowed to enter any interval higher than 99:59:59
+//TODO: Design a delete button
 class EditIntervalViewController: UIViewController  {
 
     @IBOutlet weak var hourTextField2: UITextField!
@@ -42,11 +43,12 @@ class EditIntervalViewController: UIViewController  {
     var indicator: Indicator = Indicator.none
     var isEditingAnInterval: Bool? = false
     var textFields: [UITextField] = []
-    var updateIntervalsProtocolDelegate: ITVUpdateIntervalsProtocol?
+    var editIntervalProtocolDelegate: ITVEditIntervalProtocol?
     
-    var itvTimerIndex: Int?
-    var itvIntervalIndex: Int?
+//    var itvTimerIndex: Int?
+//    var itvIntervalIndex: Int?
     var itvUnsavedTimersIntervals: [ITVInterval]?
+    var itvIntervalToEdit: ITVInterval?
     
     //[TextField.Tag:TextField.Text]
     var dictTextFieldValues: [Int:String] = [0:"", 1:"", 2:"", 3:"", 4:"", 5:""]

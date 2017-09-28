@@ -19,24 +19,35 @@ extension EditTimerViewController: UIViewControllerPreviewingDelegate {
     
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         
-        guard let indexPath = tableView.indexPathForRow(at: tableView.convert(location, from: view)), let tableViewCell = tableView.cellForRow(at: indexPath) else {
+        //make sure the is actually a table cell where the user force touched
+        guard let theTableViewIndexPath = tableView.indexPathForRow(at: tableView.convert(location, from: view))
+        , let theTableViewCell = tableView.cellForRow(at: theTableViewIndexPath) else {
             return nil
         }
         
-        itvIntervalIndex = indexPath.row
+        //make sure the user force touched an interval
+        if theTableViewIndexPath.row >= tableViewIntervalIndexOffset
+            && theTableViewIndexPath.row < (dataSourceCount() + tableViewIntervalIndexOffset) {
         
-        guard let nextVC = storyboard?.instantiateViewController(withIdentifier: "EditIntervalViewController") as? EditIntervalViewController else {
+            //get the interval's index from the tableViewCell's tag
+            itvSelectedIntervalIndex = theTableViewCell.tag
+            
+            guard let theForceTouchedInterval = intervals?[theTableViewCell.tag] else {
+                return nil
+            }
+            
+            guard let nextVC = storyboard?.instantiateViewController(withIdentifier: "EditIntervalViewController") as? EditIntervalViewController else {
+                return nil
+            }
+            
+            nextVC.itvIntervalToEdit = theForceTouchedInterval
+            nextVC.editIntervalProtocolDelegate = self
+            
+            let navigationController = UINavigationController(rootViewController: nextVC)
+            return navigationController
+
+        } else {
             return nil
         }
-        
-        nextVC.itvIntervalIndex = itvIntervalIndex
-        nextVC.itvTimerIndex = itvTimerIndex
-        if itvTimerIndex == nil {
-            nextVC.itvUnsavedTimersIntervals = itvUnsavedTimersIntervals
-        }
-        nextVC.updateIntervalsProtocolDelegate = self as? ITVUpdateIntervalsProtocol
-        
-        let navigationController = UINavigationController(rootViewController: nextVC)
-        return navigationController
     }
 }

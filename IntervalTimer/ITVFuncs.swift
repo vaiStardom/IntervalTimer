@@ -43,7 +43,7 @@ func SHOW_USER_WARNING(type: UserWarning?, with message: String? = nil){
     var errorMessage: String?
     
     guard let theUserWarning = type else {
-        fatalError("A UserWarning type must be provided.")
+        fatalError("------> ERROR ITVFuncs A UserWarning type must be provided.")
     }
     
     if message != nil, !(message?.isEmpty)! {
@@ -75,7 +75,7 @@ func GET_WEATHER_FROM_NETWORK(){
 func HOURS_SINCE(from: Date?, to: Date?) -> Int? {
     
     guard let theTo = to else {
-        fatalError("You must provide a non-nil to date")
+        fatalError("------> ERROR ITVFuncs You must provide a non-nil to date")
     }
     
     if let theStartDate = from {

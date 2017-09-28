@@ -20,42 +20,83 @@ import UIKit
     }
     func save(){
         print("------> EditTimerViewController save()")
+        //scroll to top, then save
+        scrollToTop()
         
-        if let theTimerName = topCell().timerNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !theTimerName.isEmpty  {
-            let theTemperatureUnit = getTemperatureUnit(from: topCell().temperatureSegmentedControl)
-            let theShowWeather = topCell().showWeatherSwitch.isOn
-
-            if let theTimerIndex = itvTimerIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil {
-                //this was a selected timer
-
-                //TODO: understand why the encoding is not called when updating the new values individualy and why we have to replace the timer with theNewTimer
-                let thisTimersIntervals = ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals
-                let theNewTimer = ITVTimer(name: theTimerName, showWeather: theShowWeather, temperatureUnit: theTemperatureUnit, intervals: thisTimersIntervals)
-                ITVUser.sharedInstance.thisTimers?[theTimerIndex] = theNewTimer
-
-            } else {
-                //this is a new timer
-                if let theNewTimersIntervals = itvUnsavedTimersIntervals {
-                    let theNewTimer = ITVTimer(name: theTimerName, showWeather: theShowWeather, temperatureUnit: theTemperatureUnit, intervals: theNewTimersIntervals)
-                    ITVUser.sharedInstance.thisTimers?.append(theNewTimer)
-                } else {
-                    let theNewTimer = ITVTimer(name: theTimerName, showWeather: theShowWeather, temperatureUnit: theTemperatureUnit, intervals: nil)
-                    ITVUser.sharedInstance.thisTimers?.append(theNewTimer)
-                }
-            }
-
-            if self.updateTimersProtocolDelegate != nil {
-                self.updateTimersProtocolDelegate?.didUpdateTimers()
-            }
-
-            _ = navigationController?.popViewController(animated: true)
-
-        } else {
-            //TODO: Alert user that he must name the timer.
+        guard let theTopCell = topCell() else {
+            fatalError("------> EditTimerViewController save() There is no top cell.")
+            return
+        }
+        
+        guard let theTimerName = theTopCell.timerNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !theTimerName.isEmpty else {
             ITVWarningForUser.sharedInstance.thisUserWarning = UserWarning.MissingTimerName
             SHOW_USER_WARNING(type: ITVWarningForUser.sharedInstance.thisUserWarning)
+            return
         }
+
+        let theTemperatureUnit = getTemperatureUnit(from: theTopCell.temperatureSegmentedControl)
+        let theShowWeather = theTopCell.showWeatherSwitch.isOn
+
+        if let theTimerIndex = itvTimerIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil { //this was a selected timer
+
+            //TODO: understand why the encoding is not called when updating the new values individualy and why we have to replace the timer with theNewTimer
+            let theNewTimer = ITVTimer(name: theTimerName, showWeather: theShowWeather, temperatureUnit: theTemperatureUnit, intervals: intervals)
+            ITVUser.sharedInstance.thisTimers?[theTimerIndex] = theNewTimer
+            
+        } else {
+            //this is a new timer
+            let theNewTimer = ITVTimer(name: theTimerName, showWeather: theShowWeather, temperatureUnit: theTemperatureUnit, intervals: intervals)
+            ITVUser.sharedInstance.thisTimers?.append(theNewTimer)
+        }
+        
+        if self.updateTimersProtocolDelegate != nil {
+            self.updateTimersProtocolDelegate?.didUpdateTimers()
+        }
+
+        _ = navigationController?.popViewController(animated: true)
     }
+//    func save(){
+//        print("------> EditTimerViewController save()")
+//        //scroll to top, then save
+//        scrollToTop()
+//
+//        if let theTopCell = topCell() {
+//            if let theTimerName = theTopCell.timerNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !theTimerName.isEmpty  {
+//                let theTemperatureUnit = getTemperatureUnit(from: theTopCell.temperatureSegmentedControl)
+//                let theShowWeather = theTopCell.showWeatherSwitch.isOn
+//
+//                if let theTimerIndex = itvTimerIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil {
+//                    //this was a selected timer
+//
+//                    //TODO: understand why the encoding is not called when updating the new values individualy and why we have to replace the timer with theNewTimer
+//                    let thisTimersIntervals = ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals
+//                    let theNewTimer = ITVTimer(name: theTimerName, showWeather: theShowWeather, temperatureUnit: theTemperatureUnit, intervals: thisTimersIntervals)
+//                    ITVUser.sharedInstance.thisTimers?[theTimerIndex] = theNewTimer
+//
+//                } else {
+//                    //this is a new timer
+//                    if let theNewTimersIntervals = itvUnsavedTimersIntervals {
+//                        let theNewTimer = ITVTimer(name: theTimerName, showWeather: theShowWeather, temperatureUnit: theTemperatureUnit, intervals: theNewTimersIntervals)
+//                        ITVUser.sharedInstance.thisTimers?.append(theNewTimer)
+//                    } else {
+//                        let theNewTimer = ITVTimer(name: theTimerName, showWeather: theShowWeather, temperatureUnit: theTemperatureUnit, intervals: nil)
+//                        ITVUser.sharedInstance.thisTimers?.append(theNewTimer)
+//                    }
+//                }
+//
+//                if self.updateTimersProtocolDelegate != nil {
+//                    self.updateTimersProtocolDelegate?.didUpdateTimers()
+//                }
+//
+//                _ = navigationController?.popViewController(animated: true)
+//
+//            } else {
+//                //TODO: Alert user that he must name the timer.
+//                ITVWarningForUser.sharedInstance.thisUserWarning = UserWarning.MissingTimerName
+//                SHOW_USER_WARNING(type: ITVWarningForUser.sharedInstance.thisUserWarning)
+//            }
+//        }
+//    }
     func deleteTimer(){
         print("------> Delete Timer")
     }
@@ -63,8 +104,15 @@ import UIKit
         
         intervals?.append(uniqueTimers[theButton.tag].0)
         
-        let rowNumber = (intervals?.count)! + 2
-        let indexPathForRow = IndexPath(row: rowNumber, section: 0)
+        if itvUnsavedTimersIntervals == nil {
+            itvUnsavedTimersIntervals = []
+        }
+        itvUnsavedTimersIntervals = intervals
+        
+        let newRowNumber = (intervals?.count)! + 1
+        let indexPathNewForRow = IndexPath(row: newRowNumber, section: 0)
+    
+        print("------> EditTimerViewController addThisInterval(theButton:) intervals.count = \(intervals?.count), newRowNumber = \(newRowNumber), tableView.rows.count = \(getAllRowCount())")
         
         CATransaction.begin()
         CATransaction.setCompletionBlock({ () -> Void in
@@ -74,10 +122,15 @@ import UIKit
         })
         
         tableView.beginUpdates()
-        tableView.insertRows(at: [indexPathForRow], with: .automatic)
+        tableView.insertRows(at: [indexPathNewForRow], with: .automatic)
         tableView.endUpdates()
         
+        aesthetics_manageBottomSectionOfView()
+        
         CATransaction.commit()
+        
+        isEditing = true
+        configureNavBar()
         
         print("------> Add this interval: \(String(describing: uniqueTimers[theButton.tag].0.thisSeconds))")
     }
@@ -87,7 +140,7 @@ import UIKit
     }
     
     func addInterval(){
-        itvIntervalIndex = nil
+        itvSelectedIntervalIndex = nil
         performSegue(withIdentifier: "EditTimerToEditInterval", sender: nil)
     }
     

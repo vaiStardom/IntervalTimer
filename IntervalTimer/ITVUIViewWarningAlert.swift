@@ -18,7 +18,7 @@ class ITVUIViewWarningAlert: UIView, ITVUserWarningProtocol {
         self.init(frame: UIScreen.main.bounds)
 
         guard let theUserWarning = type else {
-            fatalError("Please provide a UserWarning type.")
+            fatalError("------> ERROR ITVUIViewWarningAlert Please provide a UserWarning type.")
         }
         
         ITVWarningForUser.sharedInstance.thisUserWarning = theUserWarning
@@ -38,7 +38,7 @@ class ITVUIViewWarningAlert: UIView, ITVUserWarningProtocol {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError("------> ERROR ITVUIViewWarningAlert init(coder:) has not been implemented")
     }
     
     func initialize(with warningType: UserWarning){

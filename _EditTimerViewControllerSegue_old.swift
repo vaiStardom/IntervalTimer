@@ -13,12 +13,12 @@ extension EditTimerViewController_old {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "EditTimerToEditInterval") {
             if let nextVC = segue.destination as? EditIntervalViewController {
-                nextVC.itvIntervalIndex = itvIntervalIndex
-                nextVC.itvTimerIndex = itvTimerIndex
+//                nextVC.itvIntervalIndex = itvIntervalIndex
+//                nextVC.itvTimerIndex = itvTimerIndex
                 if itvTimerIndex == nil {
                     nextVC.itvUnsavedTimersIntervals = itvUnsavedTimersIntervals
                 }
-                nextVC.updateIntervalsProtocolDelegate = self
+//                nextVC.updateIntervalsProtocolDelegate = self
             }
         }
     }

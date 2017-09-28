@@ -12,16 +12,15 @@ import UIKit
 extension EditTimerViewController {
     @IBAction func deleteButton(_ sender: UIButton) {
         cancel()
-//        deleteTimer()
+        //        deleteTimer()
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //Aesthetics of the selected cell
         let index = indexPath.row
-        if index >= tableViewIntervalIndexOffset && index < ((intervals?.count)! + tableViewIntervalIndexOffset) { //Interval
+        if index >= tableViewIntervalIndexOffset && index < (dataSourceCount() + tableViewIntervalIndexOffset) { //Interval rows
             let cell = tableView.cellForRow(at: indexPath)
             cell?.contentView.backgroundColor = ITVColors.OrangeAlpha50
-        }
-        itvIntervalIndex = indexPath.row - tableViewIntervalIndexOffset
-        performSegue(withIdentifier: "EditTimerToEditInterval", sender: nil)
+            itvSelectedIntervalIndex = indexPath.row - tableViewIntervalIndexOffset
+            performSegue(withIdentifier: "EditTimerToEditInterval", sender: nil)
+        } 
     }
 }

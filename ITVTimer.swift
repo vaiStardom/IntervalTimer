@@ -66,14 +66,14 @@ class ITVTimer: NSObject, NSCoding {
     init(name: String?, showWeather: Bool?, temperatureUnit: TemperatureUnit?, intervals: [ITVInterval]?) {
         guard let theName = name else {
             //TODO: add these fatal errors to the initializers of all oher structs and classes
-            fatalError("name must contain a value")
+            fatalError("------> ERROR ITVTimer name must contain a value")
         }
         
         guard let theShowWeather = showWeather else {
-            fatalError("showWeather must contain a value")
+            fatalError("------> ERROR ITVTimer showWeather must contain a value")
         }
         guard let theTemperatureUnit = temperatureUnit else {
-            fatalError("temperatureUnit must contain a value")
+            fatalError("------> ERROR ITVTimer temperatureUnit must contain a value")
         }
         
         self.name = theName

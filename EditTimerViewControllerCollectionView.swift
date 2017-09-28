@@ -33,5 +33,18 @@ extension EditTimerViewController: UICollectionViewDelegate, UICollectionViewDat
         
         return cell
     }
+    func reloadQuickAddCollection() {
+        let firstQuickAddCellIndexPath = IndexPath(row: 1, section: 0)
+        if let firstQuickAddCell = tableView.cellForRow(at: firstQuickAddCellIndexPath) as? EditTimerAddIntervalsTableViewCell {
+            firstQuickAddCell.intervalsCollectionView.reloadData()
+        }
+        
+        let secondQuickAddRow = dataSourceCount() + tableViewIntervalIndexOffset
+        let secondQuickAddCellIndexPath = IndexPath(row: secondQuickAddRow, section: 0)
+        if let secondQuickAddCell = tableView.cellForRow(at: secondQuickAddCellIndexPath) as? EditTimerAddIntervalsTableViewCell {
+            secondQuickAddCell.intervalsCollectionView.reloadData()
+        }
+    }
+
 }
 

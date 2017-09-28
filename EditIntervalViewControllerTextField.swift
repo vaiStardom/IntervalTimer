@@ -68,7 +68,7 @@ extension EditIntervalViewController: UITextFieldDelegate {
                     return true
                 } else {
                     manageTextFields2(string: string)
-                    compareFieldsWithSavedInterval()
+                    compareFieldsWithPassedInterval()
                     return false
                 }
             } else { //user wants to delete (backtrack)
@@ -82,7 +82,7 @@ extension EditIntervalViewController: UITextFieldDelegate {
                 
                 textField.text = string
                 nextResponder?.becomeFirstResponder()
-                compareFieldsWithSavedInterval()
+                compareFieldsWithPassedInterval()
                 return false
                 
             } else if ((currentText?.characters.count)! >= 1
@@ -94,7 +94,7 @@ extension EditIntervalViewController: UITextFieldDelegate {
                 
                 textField.text = zeroWidthSpace
                 previousResponder?.becomeFirstResponder()
-                compareFieldsWithSavedInterval()
+                compareFieldsWithPassedInterval()
                 return false
                 
             } else if ((currentText?.characters.count)! == 0
@@ -106,11 +106,11 @@ extension EditIntervalViewController: UITextFieldDelegate {
                     previousTextField.text = zeroWidthSpace
                 }
                 previousResponder!.becomeFirstResponder()
-                compareFieldsWithSavedInterval()
+                compareFieldsWithPassedInterval()
                 return false
             } else {
                 textField.text = zeroWidthSpace
-                compareFieldsWithSavedInterval()
+                compareFieldsWithPassedInterval()
                 return false
             }
         }

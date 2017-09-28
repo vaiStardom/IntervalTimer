@@ -9,29 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "EditIntervalViewControllerHelpers.swift"
-            timestampString = "528131718.575455"
+            filePath = "EditTimerViewControllerAesthetics.swift"
+            timestampString = "528294289.198155"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "setViewValues(with:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EditIntervalViewControllerHelpers.swift"
-            timestampString = "528131746.106724"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "setViewValues(with:)"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "aesthetics_manageBottomSectionOfView()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

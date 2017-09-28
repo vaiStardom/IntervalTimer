@@ -85,7 +85,7 @@ class ITVInterval: NSObject, NSCoding {
     public init(seconds: Double?, indicator: Indicator) {
         super.init()
         guard let theSeconds = seconds, theSeconds > 0 else {
-            fatalError("seconds has to be greater than zero")
+            fatalError("------> ERROR ITVInterval init() seconds has to be greater than zero")
         }
         thisSeconds = theSeconds
         thisIndicator = indicator

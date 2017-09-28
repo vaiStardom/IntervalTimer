@@ -19,11 +19,12 @@ class EditTimerViewController: UIViewController {
     
     var itvTimerIndex: Int?
     var itvUnsavedTimersIntervals: [ITVInterval]? //for when the user creates a new timer with new intervals
-    var itvIntervalIndex: Int?
+    var itvSelectedIntervalIndex: Int?
     var updateTimersProtocolDelegate: ITVUpdateTimersProtocol?
+    var didEditAnInterval = false
     
     //tableView control varaibles
     let numberOfTableCellSections = 4 //except the interval sections
     let tableViewIntervalIndexOffset  = 2
-    
+    var heightOfTableView: CGFloat = 0.0
 }

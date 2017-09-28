@@ -8,28 +8,32 @@
 
 import Foundation
 
-extension EditTimerViewController: ITVUpdateIntervalsProtocol {
-    func didUpdateIntervals(_ updatedIntervals:[ITVInterval]?) {
-        if let theNewIntervals = updatedIntervals {
-            itvUnsavedTimersIntervals = theNewIntervals
-            intervals = theNewIntervals
-            uniqueArrays(intervals: theNewIntervals)
-            isEditing = true
-            configureNavBar()
-        }
-        tableView.reloadData()
-        
-        aesthetics_ShowTableView()
-    }
-    func didEditASavedTimersInterval(){
-        if let theTimerIndex = itvTimerIndex {
-            if let theIntervals = ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals {
-                intervals = theIntervals
-                uniqueArrays(intervals: theIntervals)
-            }
+extension EditTimerViewController: ITVEditIntervalProtocol {
+    func didEdit(_ interval: ITVInterval) {
+        if let theIntervalIndex = itvSelectedIntervalIndex { //user edited an existing interval
+            intervals?[theIntervalIndex] = interval
+        } else { //user added a new interval
+            intervals?.append(interval)
         }
         isEditing = true
+        didEditAnInterval = true
         configureNavBar()
+        uniqueArrays(intervals: intervals!)
         tableView.reloadData()
+        reloadQuickAddCollection()
     }
+//    func didUpdateNew(_ intervals: [ITVInterval]?) {
+//        if let theNewIntervals = intervals {
+//            itvUnsavedTimersIntervals = theNewIntervals
+//            self.intervals = theNewIntervals
+//            uniqueArrays(intervals: theNewIntervals)
+//            isEditing = true
+//            configureNavBar()
+//        }
+//        tableView.reloadData()
+//        
+//        aesthetics_ShowTableView()
+//    }
+    
+
 }

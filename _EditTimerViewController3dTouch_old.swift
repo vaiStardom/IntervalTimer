@@ -30,12 +30,12 @@ extension EditTimerViewController_old: UIViewControllerPreviewingDelegate {
             return nil
         }
                 
-        nextVC.itvIntervalIndex = itvIntervalIndex
-        nextVC.itvTimerIndex = itvTimerIndex
+//        nextVC.itvIntervalIndex = itvIntervalIndex
+//        nextVC.itvTimerIndex = itvTimerIndex
         if itvTimerIndex == nil {
             nextVC.itvUnsavedTimersIntervals = itvUnsavedTimersIntervals
         }
-        nextVC.updateIntervalsProtocolDelegate = self
+//        nextVC.updateIntervalsProtocolDelegate = self
         
         let navigationController = UINavigationController(rootViewController: nextVC)
         return navigationController

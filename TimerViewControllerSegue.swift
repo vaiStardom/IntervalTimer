@@ -20,9 +20,8 @@ extension TimerViewController {
         }
         if(segue.identifier == "TimerToEditInterval") {
             if let nextVC = segue.destination as? EditIntervalViewController {
-                nextVC.itvIntervalIndex = nil
-                nextVC.itvTimerIndex = itvTimerIndex
-                nextVC.updateIntervalsProtocolDelegate = self
+                nextVC.itvIntervalToEdit = nil
+                nextVC.editIntervalProtocolDelegate = self
             }
         }
     }

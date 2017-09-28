@@ -25,13 +25,17 @@ extension EditTimerViewController{
             aesthetics_showMissingWeatherWarning()
         }
     }
-    func activityIndicatorStart(){        
-        topCell().weatherActivityIndicator.isHidden = false
-        topCell().weatherActivityIndicator.startAnimating()
+    func activityIndicatorStart(){
+        if let theTopCell = topCell(){
+            theTopCell.weatherActivityIndicator.isHidden = false
+            theTopCell.weatherActivityIndicator.startAnimating()
+        }
     }
     func activityIndicatorStop(){
-        topCell().weatherActivityIndicator.stopAnimating()
-        topCell().weatherActivityIndicator.isHidden = true
+        if let theTopCell = topCell(){
+            theTopCell.weatherActivityIndicator.stopAnimating()
+            theTopCell.weatherActivityIndicator.isHidden = true
+        }
     }
     func startSettingWeather(){
         if ITVUser.sharedInstance.thisShouldUpdateWeather {
@@ -53,31 +57,34 @@ extension EditTimerViewController{
         GET_WEATHER_FROM_NETWORK()
     }
     func updateWeatherInformation(){
-        activityIndicatorStop()
-        
-        guard let theTemperature = getTemperatureUnit(from: topCell().temperatureSegmentedControl!).temperature(kelvins: ITVUser.sharedInstance.thisCurrentWeather?.thisKelvin)  else {
-            aesthetics_showMissingWeatherWarning()
-            fatalError("------> ERROR - EditTimerViewController updateWeatherInformation invalid temperature \(String(describing: ITVUser.sharedInstance.thisCurrentWeather?.thisKelvin))")
+        if let theTopCell = topCell(){
+            activityIndicatorStop()
+            
+            guard let theTemperature = getTemperatureUnit(from: theTopCell.temperatureSegmentedControl!).temperature(kelvins: ITVUser.sharedInstance.thisCurrentWeather?.thisKelvin)  else {
+                aesthetics_showMissingWeatherWarning()
+                fatalError("------> ERROR - EditTimerViewController updateWeatherInformation invalid temperature \(String(describing: ITVUser.sharedInstance.thisCurrentWeather?.thisKelvin))")
+            }
+            
+            guard let theIcon = ITVUser.sharedInstance.thisCurrentWeather?.thisIcon! else {
+                aesthetics_showMissingWeatherWarning()
+                fatalError("------> ERROR EditTimerViewController updateWeatherInformation invalid icon \(String(describing: ITVUser.sharedInstance.thisCurrentWeather?.thisIcon!))")
+            }
+            
+            guard let theImage = UIImage(named: theIcon) else {
+                aesthetics_showMissingWeatherWarning()
+                fatalError("------> ERROR EditTimerViewController updateWeatherInformation invalid image for icon name \(theIcon)")
+            }
+            
+            
+            print("------> EditTimerViewController updateWeatherInformation theTemperature = \(theTemperature), theImage = \(theIcon)")
+            
+            aesthetics_hideMissingWeatherWarning()
+            
+            theTopCell.weatherTemperatureLabel.text = theTemperature
+            theTopCell.weatherIconImageView.image = theImage
+            
+            aesthetics_showWeatherViews()
+
         }
-        
-        guard let theIcon = ITVUser.sharedInstance.thisCurrentWeather?.thisIcon! else {
-            aesthetics_showMissingWeatherWarning()
-            fatalError("------> ERROR EditTimerViewController updateWeatherInformation invalid icon \(String(describing: ITVUser.sharedInstance.thisCurrentWeather?.thisIcon!))")
-        }
-        
-        guard let theImage = UIImage(named: theIcon) else {
-            aesthetics_showMissingWeatherWarning()
-            fatalError("------> ERROR EditTimerViewController updateWeatherInformation invalid image for icon name \(theIcon)")
-        }
-        
-        
-        print("------> EditTimerViewController updateWeatherInformation theTemperature = \(theTemperature), theImage = \(theIcon)")
-        
-        aesthetics_hideMissingWeatherWarning()
-        
-        topCell().weatherTemperatureLabel.text = theTemperature
-        topCell().weatherIconImageView.image = theImage
-        
-        aesthetics_showWeatherViews()
     }
 }

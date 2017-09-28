@@ -8,8 +8,8 @@
 
 import Foundation
 
-extension EditTimerViewController_old: ITVUpdateIntervalsProtocol {
-    func didUpdateIntervals(_ intervals:[ITVInterval]?) {
+extension EditTimerViewController_old: ITVEditIntervalProtocol {
+    func didUpdateNew(_ intervals: [ITVInterval]?) {
         if let theNewIntervals = intervals {
             itvUnsavedTimersIntervals = theNewIntervals
             isEditing = true
@@ -17,10 +17,13 @@ extension EditTimerViewController_old: ITVUpdateIntervalsProtocol {
         }
         tableView.reloadData()
         aesthetics_ShowTableView()
+
     }
-    func didEditASavedTimersInterval(){
+    
+    func didEdit(_ interval: ITVInterval) {
         isEditing = true
         configureNavBar()
         tableView.reloadData()
+
     }
 }

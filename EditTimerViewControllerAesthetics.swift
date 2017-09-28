@@ -21,108 +21,118 @@ import UIKit
 
 extension EditTimerViewController {
 
-//    func aesthetics_initial(){
-//        topCell().weatherActivityIndicator.color = ITVColors.Orange
-//        topCell().weatherActivityIndicator.isHidden = true
-//        topCell().showWeatherSwitch.isOn = false
-//        topCell().timerNameTextField.tintColor = ITVColors.Orange
-//        topCell().temperatureSegmentedControl.isHidden = true
-//        topCell().temperatureSegmentedControl.selectedSegmentIndex = 2
-//        topCell().showWeatherDescriptionLabel.isHidden = false
-//        topCell().warningButton.isEnabled = false
-//        
-//        aesthetics_ShowTableView()
-//    }
     func aesthetics_timerNamePlaceHolder(){
-        topCell().timerNameTextField.attributedPlaceholder = NSAttributedString(string: Litterals.TimerNamePlaceholder, attributes: [NSAttributedStringKey.foregroundColor : ITVColors.OrangeAlpha50])
+        if let theTopCell = topCell(){
+            theTopCell.timerNameTextField.attributedPlaceholder = NSAttributedString(string: Litterals.TimerNamePlaceholder, attributes: [NSAttributedStringKey.foregroundColor : ITVColors.OrangeAlpha50])
+        }
     }
-    func aesthetics_ShowTableView(){
-//        if let theTimerIndex = itvTimerIndex {
-//            if let theTimersIntervals = ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals {
-//                if theTimersIntervals.count > 0 {
-//                    tableView.isHidden = false
-//                    addIntervalsToTimerLabel.isHidden = true
-//                } else {
-//                    tableView.isHidden = true
-//                    addIntervalsToTimerLabel.isHidden = false
-//                }
-//            }
-//        } else {
-//            if itvUnsavedTimersIntervals != nil {
-//                tableView.isHidden = false
-//                addIntervalsToTimerLabel.isHidden = true
-//            } else {
-//                tableView.isHidden = true
-//                addIntervalsToTimerLabel.isHidden = false
-//            }
-//        }
-    }
-    
     func aesthetics_hideWarning(){
-        topCell().warningImageView.isHidden = true
-        topCell().warningButton.isEnabled = false
+        if let theTopCell = topCell(){
+            theTopCell.warningImageView.isHidden = true
+            theTopCell.warningButton.isEnabled = false
+        }
     }
 
     func aesthetics_dontLoadWeather(){
-        topCell().showWeatherSwitch.isOn = false
-        topCell().weatherIconImageView.isHidden = true
-        topCell().weatherTemperatureLabel.isHidden = true
-        topCell().temperatureSegmentedControl.isHidden = true
-        topCell().showWeatherDescriptionLabel.isHidden = false
+        if let theTopCell = topCell(){
+            theTopCell.showWeatherSwitch.isOn = false
+            theTopCell.weatherIconImageView.isHidden = true
+            theTopCell.weatherTemperatureLabel.isHidden = true
+            theTopCell.temperatureSegmentedControl.isHidden = true
+            theTopCell.showWeatherDescriptionLabel.isHidden = false
+        }
     }
     func aesthetics_showWeatherDescription(){
-        topCell().showWeatherDescriptionLabel.alpha = 1.0
-        topCell().showWeatherDescriptionLabel.isHidden = false
+        if let theTopCell = topCell() {
+            theTopCell.showWeatherDescriptionLabel.alpha = 1.0
+            theTopCell.showWeatherDescriptionLabel.isHidden = false
+        }
     }
+    func aesthetics_manageBottomSectionOfView(){
+        
+        if let deleteTimerCell = bottomCell() {
+            
+            //personal hotspot bar + nav bar + topcell + quick add + intervals
+            let heightOfTableView = 88.0 + 171.0 + heightQuickAddSections() + heightIntervalsSection()
+            let screenSize = UIScreen.main.bounds
+            let deleteButtonYPosition = Double(screenSize.height) - 47.0
+
+            if heightOfTableView >= deleteButtonYPosition {
+                deleteTimerCell.deleteTimerButton.isEnabled = true
+                deleteTimerCell.deleteTimerLabel.isHidden = false
+                tableView.isScrollEnabled = true
+                deleteLabel.isHidden = true
+                deleteButton.isHidden = true
+                deleteButton.isEnabled = false
+            } else {
+                deleteTimerCell.deleteTimerButton.isEnabled = false
+                deleteTimerCell.deleteTimerLabel.isHidden = true
+                deleteTimerCell.selectionStyle = .none
+                tableView.isScrollEnabled = false
+                deleteLabel.isHidden = false
+                deleteButton.isHidden = false
+                deleteButton.isEnabled = true
+            }
+        }
+    }
+
     func aesthetics_startLoadingWeather() {
         activityIndicatorStart()
         aesthetics_hideWarning()
 
-        topCell().temperatureSegmentedControl.isHidden = false
-        topCell().weatherIconImageView.isHidden = false
-        
-        topCell().showWeatherSwitch.isOn = true
-        topCell().weatherTemperatureLabel.isHidden = true
-        topCell().showWeatherDescriptionLabel.isHidden = true
-
+        if let theTopCell = topCell() {
+            theTopCell.temperatureSegmentedControl.isHidden = false
+            theTopCell.weatherIconImageView.isHidden = false
+            
+            theTopCell.showWeatherSwitch.isOn = true
+            theTopCell.weatherTemperatureLabel.isHidden = true
+            theTopCell.showWeatherDescriptionLabel.isHidden = true
+        }
     }
     func aesthetics_showMissingWeatherWarning(){
         //TODO: program the alert to show when this button is pressed
         activityIndicatorStop()
         aesthetics_hideWeatherViews()
 
-        topCell().warningButton.isEnabled = true
-        topCell().warningImageView.alpha = 0.0
-
-        topCell().warningButton.isHidden = false
-        topCell().warningImageView.isHidden = false
-
-        topCell().warningImageView.alpha = 1.0
+        if let theTopCell = topCell() {
+            theTopCell.warningButton.isEnabled = true
+            theTopCell.warningImageView.alpha = 0.0
+            
+            theTopCell.warningButton.isHidden = false
+            theTopCell.warningImageView.isHidden = false
+            
+            theTopCell.warningImageView.alpha = 1.0
+        }
     }
     func aesthetics_hideMissingWeatherWarning(){
         aesthetics_showWeatherViews()
     }
     func aesthetics_hideWeatherViews(){
         
-        topCell().weatherIconImageView.isHidden = true
-        topCell().weatherTemperatureLabel.isHidden = true
-        topCell().temperatureSegmentedControl.isHidden = true
-
-        topCell().weatherIconImageView.image = nil
-        topCell().weatherTemperatureLabel.text = nil
+        if let theTopCell = topCell() {
+            theTopCell.weatherIconImageView.isHidden = true
+            theTopCell.weatherTemperatureLabel.isHidden = true
+            theTopCell.temperatureSegmentedControl.isHidden = true
+            
+            theTopCell.weatherIconImageView.image = nil
+            theTopCell.weatherTemperatureLabel.text = nil
+        }
     }
     func aesthetics_showWeatherViews(){
-        topCell().weatherIconImageView.alpha = 0.0
-        topCell().weatherTemperatureLabel.alpha = 0.0
-        topCell().temperatureSegmentedControl.alpha = 0.0
-
-        topCell().weatherIconImageView.isHidden = false
-        topCell().weatherTemperatureLabel.isHidden = false
-        topCell().temperatureSegmentedControl.isHidden = false
-
-        topCell().weatherIconImageView.alpha = 1.0
-        topCell().weatherTemperatureLabel.alpha = 1.0
-        topCell().temperatureSegmentedControl.alpha = 1.0
+        if let theTopCell = topCell() {
+            theTopCell.weatherIconImageView.alpha = 0.0
+            theTopCell.weatherTemperatureLabel.alpha = 0.0
+            theTopCell.temperatureSegmentedControl.alpha = 0.0
+            
+            theTopCell.weatherIconImageView.isHidden = false
+            theTopCell.weatherTemperatureLabel.isHidden = false
+            theTopCell.temperatureSegmentedControl.isHidden = false
+            
+            theTopCell.showWeatherDescriptionLabel.isHidden = true
+            
+            theTopCell.weatherIconImageView.alpha = 1.0
+            theTopCell.weatherTemperatureLabel.alpha = 1.0
+            theTopCell.temperatureSegmentedControl.alpha = 1.0
+        }
     }
-
 }

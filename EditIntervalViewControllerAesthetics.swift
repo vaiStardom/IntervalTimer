@@ -66,7 +66,7 @@ extension EditIntervalViewController {
         } else {
             aesthetics_unselectAllIndicators()
         }
-        compareFieldsWithSavedInterval()
+        compareFieldsWithPassedInterval()
     }
     func aesthetics_unselectAllIndicators(){
         for indicator in indicators {

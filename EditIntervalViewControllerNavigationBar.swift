@@ -13,21 +13,24 @@ extension EditIntervalViewController {
     func configureNavBar(){
         
         self.navigationItem.hidesBackButton = true
-        
-        if !isEditingAnInterval! {
-            let backButton = ITVUIBarButtonItem().backButton(target: self, selector: #selector(EditIntervalViewController.back))
-            self.navigationItem.leftBarButtonItems = [backButton]
-        } else {
-            let saveButton = ITVUIBarButtonItem().saveButton(target: self, selector: #selector(EditIntervalViewController.save))
-            self.navigationItem.leftBarButtonItems = [saveButton]
-        }
-        
+
+        //left
+        let cancelButton = ITVUIBarButtonItem().cancelButton(target: self, selector: #selector(EditIntervalViewController.cancel))
+        self.navigationItem.leftBarButtonItems = [cancelButton]
+
+        //middle
         let label = ITVUILabel().navBarNewTimerTitle()
         self.navigationItem.titleView = label
-        
+
+        //right
         let rightNegativeSpace = ITVUIBarButtonItem().rightNegativeSpace()
-        let cancelButton = ITVUIBarButtonItem().cancelButton(target: self, selector: #selector(EditIntervalViewController.cancel))
-        self.navigationItem.rightBarButtonItems = [rightNegativeSpace, cancelButton]
+        if !isEditingAnInterval! {
+            let backButton = ITVUIBarButtonItem().backButton(target: self, selector: #selector(EditIntervalViewController.cancel))
+            self.navigationItem.rightBarButtonItems = [rightNegativeSpace, backButton]
+        } else {
+            let saveButton = ITVUIBarButtonItem().saveButton(target: self, selector: #selector(EditIntervalViewController.save))
+            self.navigationItem.rightBarButtonItems = [rightNegativeSpace, saveButton]
+        }
         
     }
 }

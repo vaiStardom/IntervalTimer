@@ -21,8 +21,10 @@ import UIKit
     
     func didGetCurrentWeather(_ notification: Notification){
         print("------> EditTimerViewController didGetCurrentWeather notification received")
-        if topCell().showWeatherSwitch.isOn {
-            updateWeatherInformation()
+        if let theTopCell = topCell(){
+            if theTopCell.showWeatherSwitch.isOn {
+                updateWeatherInformation()
+            }
         }
     }
     func didAuthorizeLocationServices(_ notification: Notification){

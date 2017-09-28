@@ -10,29 +10,39 @@ import Foundation
 import UIKit
 
 extension EditIntervalViewController {
-    func compareFieldsWithSavedInterval(){
+    func compareFieldsWithPassedInterval(){
         
-        if let theTimerIndex = itvTimerIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil {
-            if let theIntervalIndex = itvIntervalIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals?[theIntervalIndex] != nil { //user is editing an interval inside a saved timer
-                if let theInterval = ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals?[theIntervalIndex] {
-                    setIfIsEdetingInterval(theInterval)
-                }
-            } else { //user is adding an interval to a saved timer
-                isEditingAnInterval = isTotalSecondsDifferent(nil)
-            }
-        } else { //this interval is for an unsaved timer
-            if let theIntervalIndex = itvIntervalIndex, itvUnsavedTimersIntervals?[theIntervalIndex] != nil {
-                if let theInterval = itvUnsavedTimersIntervals?[theIntervalIndex] { //user is editing an interval of an unsaved timer
-                    setIfIsEdetingInterval(theInterval)
-                } else {
-                    isEditingAnInterval = isTotalSecondsDifferent(nil)
-                }
-            } else { //user is adding an interval to an unsaved timer
-                isEditingAnInterval = isTotalSecondsDifferent(nil)
-            }
+        if let thePassedInterval = itvIntervalToEdit {
+            setIfIsEdetingInterval(thePassedInterval)
+        } else {
+            isEditingAnInterval = isTotalSecondsDifferent(nil)
         }
         configureNavBar()
     }
+
+//    func compareFieldsWithSavedInterval(){
+//
+//        if let theTimerIndex = itvTimerIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil {
+//            if let theIntervalIndex = itvIntervalIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals?[theIntervalIndex] != nil { //user is editing an interval inside a saved timer
+//                if let theInterval = ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals?[theIntervalIndex] {
+//                    setIfIsEdetingInterval(theInterval)
+//                }
+//            } else { //user is adding an interval to a saved timer
+//                isEditingAnInterval = isTotalSecondsDifferent(nil)
+//            }
+//        } else { //this interval is for an unsaved timer
+//            if let theIntervalIndex = itvIntervalIndex, itvUnsavedTimersIntervals?[theIntervalIndex] != nil {
+//                if let theInterval = itvUnsavedTimersIntervals?[theIntervalIndex] { //user is editing an interval of an unsaved timer
+//                    setIfIsEdetingInterval(theInterval)
+//                } else {
+//                    isEditingAnInterval = isTotalSecondsDifferent(nil)
+//                }
+//            } else { //user is adding an interval to an unsaved timer
+//                isEditingAnInterval = isTotalSecondsDifferent(nil)
+//            }
+//        }
+//        configureNavBar()
+//    }
     
     func setIfIsEdetingInterval(_ interval: ITVInterval){
         if isTotalSecondsDifferent(interval) || interval.thisIndicator != indicator {

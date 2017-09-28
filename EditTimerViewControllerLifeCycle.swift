@@ -20,74 +20,34 @@ extension EditTimerViewController {
         
         configureNavBar()
         configureTableView()
-        
-        //put in view did layout subviews
-        //        //First, is this a selected timer?
-        //        if let theTimerIndex = itvTimerIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil {
-        //            topCell().timerNameTextField.text = ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisName
-        //
-        //            //Find and show the grouped unique intervals for quick additions
-        //            if let theIntervals = ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals {
-        //                intervals = theIntervals
-        //                uniqueArrays(intervals: theIntervals)
-        //            }
-        //
-        //            //Second, if this is a selected timer, do we show the weather
-        //            if (ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisShowWeather)! {
-        //                topCell().showWeatherSwitch.isOn = true
-        //                if let theTemperatureUnit = ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisTemperatureUnit {
-        //                    topCell().temperatureSegmentedControl.selectedSegmentIndex = theTemperatureUnit.rawValue
-        //                }
-        //                aesthetics_startLoadingWeather()
-        //                showWeather()
-        //            } else {
-        //                aesthetics_dontLoadWeather()
-        //            }
-        //        } else {
-        //            intervals = []
-        //        }
-        
-        
-        
-        
-        
-        //        intervals = mock_intervals
-        //        for interval in mock_intervals {
-        //
-        //            let hasThisIntervalBeenFiltered = uniqueTimers.filter({ $0.0.thisSeconds == interval.thisSeconds && $0.0.thisIndicator == interval.thisIndicator })
-        //
-        //            if hasThisIntervalBeenFiltered.count == 0 {
-        //                let theFilteredArray = mock_intervals.filter({ $0.thisSeconds == interval.thisSeconds && $0.thisIndicator == interval.thisIndicator })
-        //                if theFilteredArray.count > 0 {
-        //                    uniqueTimers.append((interval, theFilteredArray.count))
-        //                    print("Added interval seconds \(interval.thisSeconds) type \(interval.thisIndicator) appearing \(theFilteredArray.count) times")
-        //                }
-        //            }
-        //        }
-        
-        //        if uniqueTimers.count > 0 {
-        //            uniqueTimers = uniqueTimers.sorted(by: {$0.1 < $1.1})
-        //        }
     }
     
     override func viewDidLayoutSubviews() {
         
+        guard didEditAnInterval == false else {
+            return
+        }
+        
+        guard let theTopCell = topCell() else {
+            return
+        }
+                
         //First, is this a selected timer?
         if let theTimerIndex = itvTimerIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil {
-            topCell().timerNameTextField.text = ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisName
+            theTopCell.timerNameTextField.text = ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisName
             
             //Find and show the grouped unique intervals for quick additions
             if let theIntervals = ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals {
                 intervals = theIntervals
                 uniqueArrays(intervals: theIntervals)
             }
-
+            
             //Second, if this is a selected timer, do we show the weather
             if let theShowWeather = ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisShowWeather {
-                topCell().showWeatherSwitch.isOn = theShowWeather
+                theTopCell.showWeatherSwitch.isOn = theShowWeather
                 if theShowWeather {
                     if let theTemperatureUnit = ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisTemperatureUnit {
-                        topCell().temperatureSegmentedControl.selectedSegmentIndex = theTemperatureUnit.rawValue
+                        theTopCell.temperatureSegmentedControl.selectedSegmentIndex = theTemperatureUnit.rawValue
                     }
                     aesthetics_startLoadingWeather()
                     showWeather()
@@ -95,7 +55,7 @@ extension EditTimerViewController {
                     aesthetics_dontLoadWeather()
                 }
             } else {
-                topCell().showWeatherSwitch.isOn = false
+                theTopCell.showWeatherSwitch.isOn = false
                 aesthetics_dontLoadWeather()
             }
         } else {
@@ -105,40 +65,8 @@ extension EditTimerViewController {
                 intervals = []
             }
         }
-        
-        //for each iphone type, calculate if the visible cells
-        var heightOfTableView: CGFloat = 0.0
-        let cells = self.tableView.visibleCells
-        for cell in cells {
-            heightOfTableView += cell.frame.height
-        }
+        aesthetics_manageBottomSectionOfView()
 
-//        if heightOfTableView > (self.view.frame.height - 74) {
-        if heightOfTableView > self.view.frame.height {
-            bottomCell().deleteTimerButton.isEnabled = true
-            bottomCell().deleteTimerLabel.isHidden = false
-            tableView.isScrollEnabled = true
-            deleteLabel.isHidden = true
-            deleteButton.isHidden = true
-            deleteButton.isEnabled = false
-        } else {
-            bottomCell().deleteTimerButton.isEnabled = false
-            bottomCell().deleteTimerLabel.isHidden = true
-            bottomCell().selectionStyle = .none
-            tableView.isScrollEnabled = false
-            deleteLabel.isHidden = false
-            deleteButton.isHidden = false
-            deleteButton.isEnabled = true
-
-        }
-        
-        //        bottomCell().isHidden = true
-        print("------> EditTimerViewController cell count = \(cells.count), heightOfTableView = \(heightOfTableView)")
-        
-        //        let lastRowIndex = cells.count - 1
-        //        let indexPathForRow = IndexPath(row: lastRowIndex, section: 0)
-        //        tableView.deleteRows(at: [indexPathForRow], with: .left)
-        
     }
     
     override func didReceiveMemoryWarning() {
