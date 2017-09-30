@@ -18,9 +18,9 @@ extension EditTimerViewController {
         let index = indexPath.row
         if index >= tableViewIntervalIndexOffset && index < (dataSourceCount() + tableViewIntervalIndexOffset) { //Interval rows
             let cell = tableView.cellForRow(at: indexPath)
-            cell?.contentView.backgroundColor = ITVColors.OrangeAlpha50
+            cell?.contentView.backgroundColor = ITVColors.GrayForTableCellSelection
             itvSelectedIntervalIndex = indexPath.row - tableViewIntervalIndexOffset
             performSegue(withIdentifier: "EditTimerToEditInterval", sender: nil)
-        } 
+        }
     }
 }

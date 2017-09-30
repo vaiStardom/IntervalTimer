@@ -26,5 +26,9 @@ class EditTimerViewController: UIViewController {
     //tableView control varaibles
     let numberOfTableCellSections = 4 //except the interval sections
     let tableViewIntervalIndexOffset  = 2
-    var heightOfTableView: CGFloat = 0.0
+//    var heightOfTableView: CGFloat = 0.0
+    
+    var timerName: String?
+    var isShowWeather: Bool?
+    var temperatureUnit: TemperatureUnit?
 }

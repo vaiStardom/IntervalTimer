@@ -58,10 +58,12 @@ extension EditTimerViewController_old {
     }
     func back(){
         print("------> EditTimerViewController back()")
-        _ = navigationController?.popViewController(animated: true)
+//        _ = navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     func cancel(){
-        _ = navigationController?.popViewController(animated: true)
+//        _ = navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     func save(){
         print("------> EditTimerViewController save()")
@@ -93,7 +95,8 @@ extension EditTimerViewController_old {
                 self.updateTimersProtocolDelegate?.didUpdateTimers()
             }
             
-            _ = navigationController?.popViewController(animated: true)
+//            _ = navigationController?.popViewController(animated: true)
+            dismiss(animated: true, completion: nil)
             
         } else {
             //TODO: Alert user that he must name the timer.

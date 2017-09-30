@@ -173,9 +173,7 @@ class ITVUIViewWarningAlert: UIView, ITVUserWarningProtocol {
     }
     @objc func didTapOnAddInterval(){
         //send notification to segue
-        print("------> NOTIFICATION didTapOnAddInterval() posted")
         NotificationCenter.default.post(name: Notification.Name(rawValue: "segueToEditInterval"), object: nil)
-        print("------> NOTIFICATION didTapOnAddInterval() will dismiss view")
         dismiss(animated: true)
     }
 }

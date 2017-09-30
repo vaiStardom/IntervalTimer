@@ -15,56 +15,60 @@ import UIKit
         if let theTopCell = topCell() {
             let temperature = getTemperatureUnit(from: theTopCell.temperatureSegmentedControl).temperature(kelvins: ITVUser.sharedInstance.thisCurrentWeather?.thisKelvin)
             theTopCell.weatherTemperatureLabel.text = temperature
-            didUserModifyATimer()
+            didUserModifyTimerTopCell()
         }
     }
-
-    func back(){
-//        print("------> EditTimerViewController back()")
-        _ = navigationController?.popViewController(animated: true)
-    }
+    
     func cancel(){
-        _ = navigationController?.popViewController(animated: true)
+//        _ = navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     func save(){
         print("------> EditTimerViewController save()")
-        //scroll to top, then save
-        scrollToTop()
-        
-        guard let theTopCell = topCell() else {
-            fatalError("------> EditTimerViewController save() There is no top cell.")
-            return
+
+        if let theTopCell = topCell() {
+            timerName = theTopCell.timerNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+            isShowWeather = theTopCell.showWeatherSwitch.isOn
+            temperatureUnit = getTemperatureUnit(from: theTopCell.temperatureSegmentedControl)
         }
         
-        guard let theTimerName = theTopCell.timerNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !theTimerName.isEmpty else {
+        guard let theTimerName = timerName?.trimmingCharacters(in: .whitespacesAndNewlines), !theTimerName.isEmpty else {
             ITVWarningForUser.sharedInstance.thisUserWarning = UserWarning.MissingTimerName
             SHOW_USER_WARNING(type: ITVWarningForUser.sharedInstance.thisUserWarning)
             return
         }
-
-        let theTemperatureUnit = getTemperatureUnit(from: theTopCell.temperatureSegmentedControl)
-        let theShowWeather = theTopCell.showWeatherSwitch.isOn
-
+        
         if let theTimerIndex = itvTimerIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil { //this was a selected timer
-
+            
             //TODO: understand why the encoding is not called when updating the new values individualy and why we have to replace the timer with theNewTimer
-            let theNewTimer = ITVTimer(name: theTimerName, showWeather: theShowWeather, temperatureUnit: theTemperatureUnit, intervals: intervals)
+            let theNewTimer = ITVTimer(name: theTimerName, showWeather: isShowWeather, temperatureUnit: temperatureUnit, intervals: intervals)
             ITVUser.sharedInstance.thisTimers?[theTimerIndex] = theNewTimer
             
         } else {
             //this is a new timer
-            let theNewTimer = ITVTimer(name: theTimerName, showWeather: theShowWeather, temperatureUnit: theTemperatureUnit, intervals: intervals)
+            let theNewTimer = ITVTimer(name: theTimerName, showWeather: isShowWeather, temperatureUnit: temperatureUnit, intervals: intervals)
             ITVUser.sharedInstance.thisTimers?.append(theNewTimer)
         }
         
         if self.updateTimersProtocolDelegate != nil {
             self.updateTimersProtocolDelegate?.didUpdateTimers()
         }
-
-        _ = navigationController?.popViewController(animated: true)
+        
+//        _ = navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     func deleteTimer(){
         print("------> Delete Timer")
+        //TODO: warning to ask for confirmation for deleting the timer
+        
+        guard let theTimerIndex = itvTimerIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil else {
+            return
+        }
+
+        ITVUser.sharedInstance.thisTimers?.remove(at: theTimerIndex)
+        
+//        _ = navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     func addThisInterval(_ theButton: UIButton){
         
@@ -77,7 +81,7 @@ import UIKit
         
         let newRowNumber = (intervals?.count)! + 1
         let indexPathNewForRow = IndexPath(row: newRowNumber, section: 0)
-    
+        
         print("------> EditTimerViewController addThisInterval(theButton:) intervals.count = \(intervals?.count), newRowNumber = \(newRowNumber), tableView.rows.count = \(getAllRowCount())")
         
         CATransaction.begin()
@@ -91,7 +95,7 @@ import UIKit
         tableView.insertRows(at: [indexPathNewForRow], with: .automatic)
         tableView.endUpdates()
         
-        aesthetics_manageBottomSectionOfView()
+        isScrollEnabled()
         
         CATransaction.commit()
         
@@ -99,10 +103,8 @@ import UIKit
         configureNavBar()
         
         print("------> Add this interval: \(String(describing: uniqueTimers[theButton.tag].0.thisSeconds))")
-        
-//        aesthetics_manageBottomSectionOfView()
     }
-        
+    
     func editIntervals(){
         print("------> Edit intervals")
     }
@@ -114,7 +116,6 @@ import UIKit
     
     func switched(_ theSwitch: UISwitch){
         if theSwitch.isOn {
-            registerNotifications() //will register at first weather use
             aesthetics_startLoadingWeather()
             showWeather()
         } else {
@@ -123,8 +124,8 @@ import UIKit
             aesthetics_hideWeatherViews()
             aesthetics_showWeatherDescription()
         }
-        didUserModifyATimer()
-
+        didUserModifyTimerTopCell()
+        
         if theSwitch.isOn {
             print("------> Switched on")
         } else {

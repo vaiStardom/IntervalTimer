@@ -48,44 +48,6 @@ extension EditTimerViewController {
             theTopCell.showWeatherDescriptionLabel.isHidden = false
         }
     }
-    func aesthetics_manageBottomSectionOfView(){
-        
-        //personal hotspot bar + nav bar + topcell + quick add + intervals
-        let heightOfTableView = 88.0 + 171.0 + heightQuickAddSections() + heightIntervalsSection()
-        let screenSize = UIScreen.main.bounds
-        let deleteButtonYPosition = Double(screenSize.height) - 47.0
-        
-        if heightOfTableView >= deleteButtonYPosition {
-            tableView.isScrollEnabled = true
-        } else {
-            tableView.isScrollEnabled = false
-        }
-        
-        //        if let deleteTimerCell = deleteCell() {
-        //
-        //            //personal hotspot bar + nav bar + topcell + quick add + intervals
-        //            let heightOfTableView = 88.0 + 171.0 + heightQuickAddSections() + heightIntervalsSection()
-        //            let screenSize = UIScreen.main.bounds
-        //            let deleteButtonYPosition = Double(screenSize.height) - 47.0
-        //
-        //            if heightOfTableView >= deleteButtonYPosition {
-        //                deleteTimerCell.deleteTimerButton.isEnabled = true
-        //                deleteTimerCell.deleteTimerLabel.isHidden = false
-        //                tableView.isScrollEnabled = true
-        //                deleteLabel.isHidden = true
-        //                deleteButton.isHidden = true
-        //                deleteButton.isEnabled = false
-        //            } else {
-        //                deleteTimerCell.deleteTimerButton.isEnabled = false
-        //                deleteTimerCell.deleteTimerLabel.isHidden = true
-        //                deleteTimerCell.selectionStyle = .none
-        //                tableView.isScrollEnabled = false
-        //                deleteLabel.isHidden = false
-        //                deleteButton.isHidden = false
-        //                deleteButton.isEnabled = true
-        //            }
-        //        }
-    }
     
     func aesthetics_startLoadingWeather() {
         activityIndicatorStart()

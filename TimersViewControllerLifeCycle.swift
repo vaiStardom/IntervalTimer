@@ -15,7 +15,8 @@ extension TimersViewController{
         tableView.isEditing = false
         configureNavBar()
 
-        aesthetics_animateTableLoad()
+        
+//        aesthetics_animateTableLoad()
         print("UserDefaults Retreived Informations:")
         print("Last weather update = \(String(describing: ITVUser.sharedInstance.thisLastWeatherUpdate))")
         print("Kelvin = \(String(describing: ITVUser.sharedInstance.thisCurrentWeather?.thisKelvin!))")
@@ -33,5 +34,6 @@ extension TimersViewController{
         tableView.delegate = self
         tableView.register(UINib(nibName: "TimersTableViewCell", bundle: nil), forCellReuseIdentifier: "TimersCell")
         configureNavBar()
+        aesthetics_animateTableLoad()
     }
 }

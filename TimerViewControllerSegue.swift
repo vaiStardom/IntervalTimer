@@ -13,16 +13,28 @@ import UIKit
 extension TimerViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "TimerToEditTimer") {
-            if let nextVC = segue.destination as? EditTimerViewController {
-                nextVC.itvTimerIndex = itvTimerIndex
-                nextVC.updateTimersProtocolDelegate = self
+            if let navVC = segue.destination as? UINavigationController {
+                if let nextVC = navVC.viewControllers.first as? EditTimerViewController {
+                    nextVC.itvTimerIndex = itvTimerIndex
+                    nextVC.updateTimersProtocolDelegate = self
+                }
             }
+            //            if let nextVC = segue.destination as? EditTimerViewController {
+            //                nextVC.itvTimerIndex = itvTimerIndex
+            //                nextVC.updateTimersProtocolDelegate = self
+            //            }
         }
         if(segue.identifier == "TimerToEditInterval") {
-            if let nextVC = segue.destination as? EditIntervalViewController {
-                nextVC.itvIntervalToEdit = nil
-                nextVC.editIntervalProtocolDelegate = self
+            if let navVC = segue.destination as? UINavigationController {
+                if let nextVC = navVC.viewControllers.first as? EditIntervalViewController {
+                    nextVC.itvIntervalToEdit = nil
+                    nextVC.editIntervalProtocolDelegate = self
+                }
             }
+            //            if let nextVC = segue.destination as? EditIntervalViewController {
+            //                nextVC.itvIntervalToEdit = nil
+            //                nextVC.editIntervalProtocolDelegate = self
+            //            }
         }
     }
 }

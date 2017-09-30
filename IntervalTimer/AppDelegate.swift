@@ -41,6 +41,8 @@ extension AppDelegate {
 extension AppDelegate {
     fileprivate func configureNavigationTabBar(){
         UINavigationBar.appearance().backgroundColor = ITVColors.Black
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
     }
 }
 //// MARK: - TableView Configurations

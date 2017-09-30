@@ -57,6 +57,12 @@ func SHOW_USER_WARNING(type: UserWarning?, with message: String? = nil){
 
 }
 
+func COLORED_VIEW(_ color: UIColor) -> UIView {
+    let coloredView = UIView()
+    coloredView.backgroundColor = ITVColors.OrangeAlpha50
+    return coloredView
+}
+
 //MARK: - Weather Functions
 func GET_WEATHER_FROM_NETWORK(){
     //TODO: call this when user starts a timer

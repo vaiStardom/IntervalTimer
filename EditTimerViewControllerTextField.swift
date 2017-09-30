@@ -13,7 +13,7 @@ import UIKit
 extension EditTimerViewController : UITextFieldDelegate, UITextViewDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        didUserModifyATimer()
+        didUserModifyTimerTopCell()
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -23,8 +23,10 @@ extension EditTimerViewController : UITextFieldDelegate, UITextViewDelegate {
                 configureNavBar()
                 aesthetics_timerNamePlaceHolder()
                 return true
-            } else {
-                didUserModifyATimer()
+            } else { //user is deleting a character
+                didUserModifyTimerTopCell()  
+                isEditing = true
+                configureNavBar()
                 return true
             }
         } else {
@@ -37,13 +39,16 @@ extension EditTimerViewController : UITextFieldDelegate, UITextViewDelegate {
                 configureNavBar()
                 return true
             } else {
-                didUserModifyATimer()
+                didUserModifyTimerTopCell()
                 return true
             }
         }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        timerName = textField.text
+        print("------> EditTimerViewController textFieldShouldReturn(textField:) timerName = \(timerName)")
+
         if let theTopCell = topCell() {
             theTopCell.timerNameTextField.resignFirstResponder()
         }

@@ -9,6 +9,7 @@
 import UIKit
 
 @objc extension EditTimerViewController {
+    
     func canAttemptWeatherUpdate(_ notification: Notification){
         print("------> EditTimerViewController canAttemptWeatherUpdate notification received")
         do {

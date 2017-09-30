@@ -46,15 +46,11 @@ class ITVUIBarButtonItem: UIBarButtonItem {
     }
     func backButton(target: UIViewController, selector: Selector) -> UIBarButtonItem {
         
-        let imageView = UIImageView(frame: NavigationBarCgRect.BackImage)
-        imageView.image = UIImage(named: NavigationBarImage.Back)
-        
         let button = ITVUIButton.createButton(frame: NavigationBarCgRect.Buttons, target: target, selector: selector)
 
         let label = ITVUILabel.createLabel(frame: NavigationBarCgRect.BackLabel, font: NavigationBarFont.LeftRight, text: Litterals.Back, color: ITVColors.Orange)
         
         let view = UIView(frame: NavigationBarCgRect.Dummy)
-        view.addSubview(imageView)
         view.addSubview(button)
         view.addSubview(label)
         
@@ -62,15 +58,15 @@ class ITVUIBarButtonItem: UIBarButtonItem {
     }
     func saveButton(target: UIViewController, selector: Selector) -> UIBarButtonItem {
         
-        let imageView = UIImageView(frame: NavigationBarCgRect.BackImage)
-        imageView.image = UIImage(named: NavigationBarImage.Back)
+//        let imageView = UIImageView(frame: NavigationBarCgRect.BackImage)
+//        imageView.image = UIImage(named: NavigationBarImage.Back)
         
         let button = ITVUIButton.createButton(frame: NavigationBarCgRect.Buttons, target: target, selector: selector)
         
         let label = ITVUILabel.createLabel(frame: NavigationBarCgRect.BackLabel, font: NavigationBarFont.LeftRight, text: Litterals.Save, color: ITVColors.Orange)
         
         let view = UIView(frame: NavigationBarCgRect.Dummy)
-        view.addSubview(imageView)
+//        view.addSubview(imageView)
         view.addSubview(button)
         view.addSubview(label)
         

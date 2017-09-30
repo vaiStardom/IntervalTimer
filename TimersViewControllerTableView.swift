@@ -13,9 +13,9 @@ extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
     
     //MARK: - Row selection
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+
         let cell = tableView.cellForRow(at: indexPath)
-        cell?.contentView.backgroundColor = ITVColors.OrangeAlpha50
+        cell?.contentView.backgroundColor = ITVColors.GrayForTableCellSelection
         
         itvTimerIndex = indexPath.row
         startSelectedIntervalTimer = false
@@ -53,9 +53,6 @@ extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
             cell.swipeToDeleteDelegate = self
             cell.timer = theTimer
             
-//            cell.appearance().selectedBackgroundView = coloredView(color: ITVColors.OrangeAlpha50)
-//            cell.contentView.backgroundColor = ITVColors.OrangeAlpha50
-
             return cell
         } else {
             return cell

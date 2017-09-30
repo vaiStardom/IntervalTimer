@@ -30,7 +30,6 @@ extension EditIntervalViewController {
         } else {
             let saveButton = ITVUIBarButtonItem().saveButton(target: self, selector: #selector(EditIntervalViewController.save))
             self.navigationItem.rightBarButtonItems = [rightNegativeSpace, saveButton]
-        }
-        
+        }        
     }
 }

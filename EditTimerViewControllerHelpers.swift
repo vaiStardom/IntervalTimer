@@ -11,31 +11,28 @@ import CoreLocation
 import UIKit
 
 extension EditTimerViewController {
-    func didUserModifyATimer(){
+    func didUserModifyTimerTopCell(){
         
         if let theTopCell = topCell() {
-            let theTimerName = theTopCell.timerNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-            let theTemperatureUnit = getTemperatureUnit(from: theTopCell.temperatureSegmentedControl)
-            let theShowWeather = theTopCell.showWeatherSwitch.isOn
+            timerName = theTopCell.timerNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+            temperatureUnit = getTemperatureUnit(from: theTopCell.temperatureSegmentedControl)
+            isShowWeather = theTopCell.showWeatherSwitch.isOn
             
-            //        let theTimerName = timerNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-            //        let theTemperatureUnit = getTemperatureUnit(from: temperatureSegmentedControl)
-            //        let theShowWeather = showWeatherSwitch.isOn
-            print("------> EditTimerViewController didUserModifyATimer() theTimerName = \(theTimerName)")
+            print("------> EditTimerViewController didUserModifyATimer() theTimerName = \(timerName)")
             
             //First, is this a selected timer?
             if let theTimerIndex = itvTimerIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil {
                 if let theItvTimer = ITVUser.sharedInstance.thisTimers?[theTimerIndex] {
-                    if theTimerName! != theItvTimer.thisName!
-                        || theTemperatureUnit != theItvTimer.thisTemperatureUnit
-                        || theShowWeather != theItvTimer.thisShowWeather {
+                    if timerName! != theItvTimer.thisName!
+                        || temperatureUnit != theItvTimer.thisTemperatureUnit
+                        || isShowWeather != theItvTimer.thisShowWeather {
                         isEditing = true
                     } else {
                         isEditing = false
                     }
                 }
             } else {
-                if (!theTimerName!.isEmpty){
+                if (!timerName!.isEmpty){
                     isEditing = true
                 } else {
                     isEditing = false
@@ -130,29 +127,47 @@ extension EditTimerViewController {
         let newContentOffset = CGPoint(x: 0, y: contentOffset + 1)
         self.tableView.setContentOffset(newContentOffset, animated: true)
         
-//        aesthetics_manageBottomSectionOfView()
-        
         CATransaction.commit()
     }
     func scrollToTop(){
-        
+
         let topRow = 0
         let topIndex = IndexPath(row: topRow, section: 0)
-        
+
         CATransaction.begin()
         CATransaction.setCompletionBlock({ () -> Void in
             // Now we can scroll to the last row!
+            print("------> EditTimerViewController animation scroll to top start")
             self.tableView.scrollToRow(at: topIndex, at: .top, animated: true)
         })
-        
-//        // scroll down by 1 point: this causes the newly added cell to be dequeued and rendered.
-//        let contentOffset = self.tableView.contentOffset.y
-//
-//        let newContentOffset = CGPoint(x: 0, y: contentOffset + 1)
-//        self.tableView.setContentOffset(newContentOffset, animated: true)
-//
-//        aesthetics_manageBottomSectionOfView()
-        
+        print("------> EditTimerViewController animation scroll to top end")
+
         CATransaction.commit()
+    }
+    func isTableViewTallerThanDeleteButton() -> Bool {
+        //personal hotspot bar + nav bar + topcell + quick add + intervals
+        let heightOfTableView = 88.0 + 171.0 + heightQuickAddSections() + heightIntervalsSection()
+        let screenSize = UIScreen.main.bounds
+        let deleteButtonYPosition = Double(screenSize.height) - 47.0
+        
+        if heightOfTableView >= deleteButtonYPosition {
+            return true
+        } else {
+            return false
+        }
+    }
+    func isScrollEnabled(){
+        
+        if isTableViewTallerThanDeleteButton() {
+            tableView.isScrollEnabled = true
+            deleteLabel.isHidden = true
+            deleteButton.isHidden = true
+            deleteButton.isEnabled = false
+        } else {
+            tableView.isScrollEnabled = false
+            deleteLabel.isHidden = false
+            deleteButton.isHidden = false
+            deleteButton.isEnabled = true
+        }
     }
 }

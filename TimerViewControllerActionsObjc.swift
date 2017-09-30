@@ -10,7 +10,8 @@ import Foundation
 
 @objc extension TimerViewController {
     func back(){
-        _ = navigationController?.popViewController(animated: true)
+//        _ = navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     func edit(){
         performSegue(withIdentifier: "TimerToEditTimer", sender: nil)
