@@ -36,6 +36,7 @@ extension EditTimerViewController {
         //First, is this a selected timer?
         if let theTimerIndex = itvTimerIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil {
             theTopCell.timerNameTextField.text = ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisName
+
             
             //Find and show the grouped unique intervals for quick additions
             if let theIntervals = ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals {
@@ -59,6 +60,11 @@ extension EditTimerViewController {
                 theTopCell.showWeatherSwitch.isOn = false
                 aesthetics_dontLoadWeather()
             }
+            
+            timerName = ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisName
+            isShowWeather = theTopCell.showWeatherSwitch.isOn
+            temperatureUnit = getTemperatureUnit(from: theTopCell.temperatureSegmentedControl)
+
         } else {
             if let theUnsavedIntervals = itvUnsavedTimersIntervals {
                 intervals = theUnsavedIntervals
@@ -66,10 +72,7 @@ extension EditTimerViewController {
                 intervals = []
             }
         }
+        
         isScrollEnabled()
-        
-        
-        
-        
     }
 }

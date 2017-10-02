@@ -16,19 +16,25 @@ class EditTimerViewController: UIViewController {
     
     var intervals: [ITVInterval]? //will hold a copy of the timer's intervals for the table view's interval cells
     var uniqueTimers: [(ITVInterval, Int)] = []
+
     
     var itvTimerIndex: Int?
     var itvUnsavedTimersIntervals: [ITVInterval]? //for when the user creates a new timer with new intervals
     var itvSelectedIntervalIndex: Int?
     var updateTimersProtocolDelegate: ITVUpdateTimersProtocol?
     var didEditAnInterval = false
-    
-    //tableView control varaibles
-    let numberOfTableCellSections = 4 //except the interval sections
-    let tableViewIntervalIndexOffset  = 2
-//    var heightOfTableView: CGFloat = 0.0
-    
+    var deleteIntervalOnSwipe = false
+  
+    //To save timer info
     var timerName: String?
     var isShowWeather: Bool?
     var temperatureUnit: TemperatureUnit?
+
+    //TableView controls
+    let numberOfTableCellSections = 4 //except the interval sections
+    let tableViewIntervalIndexOffset  = 2
+    
+    //Collection view controls
+    var isInitialCollectionViewLoad = true
+    
 }

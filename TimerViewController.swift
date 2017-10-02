@@ -63,6 +63,9 @@ class TimerViewController: UIViewController {
     var wholeAnimation = 0.0
     var toAnimation = 0.0
     
+    var isTimerEdited = false
+    var updateTimersProtocolDelegate: ITVUpdateTimersProtocol?
+    
     var startPauseResume : (Bool, Bool, Bool) = (false, false, false)
     var hoursMinutesSeconds : (Bool, Bool, Bool) = (false, false, false)
     
@@ -70,6 +73,8 @@ class TimerViewController: UIViewController {
     var visualEffect: UIVisualEffect! //TODO: Do you still need this?
     
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    
+    
     
     @IBAction func userWarning(_ sender: UIButton) {
         SHOW_USER_WARNING(type: ITVWarningForUser.sharedInstance.thisUserWarning)

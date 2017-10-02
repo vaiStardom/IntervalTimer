@@ -19,13 +19,27 @@ extension TimersViewController {
                     nextVC.startIntervalTimer = startSelectedIntervalTimer
                 }
             }
+
+//            if let nextVC = segue.destination as? TimerViewController {
+//                nextVC.itvTimerIndex = itvTimerIndex
+//                nextVC.startIntervalTimer = startSelectedIntervalTimer
+//            }
         }
         if(segue.identifier == "TimersToEditTimer") {
             if let navVC = segue.destination as? UINavigationController {
                 if let nextVC = navVC.viewControllers.first as? EditTimerViewController {
+                    nextVC.itvTimerIndex = itvTimerIndex
                     nextVC.updateTimersProtocolDelegate = self
                 }
             }
+//            if let nextVC = segue.destination as? EditTimerViewController {
+////                nextVC.itvTimerIndex = itvTimerIndex
+////                nextVC.updateTimersProtocolDelegate = self
+//            }
+//            if let nextVC = segue.destination as? EditTimerViewController_old {
+//                nextVC.itvTimerIndex = itvTimerIndex
+//                nextVC.updateTimersProtocolDelegate = self
+//            }
         }
 
     }

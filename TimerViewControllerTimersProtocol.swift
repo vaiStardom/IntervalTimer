@@ -34,6 +34,7 @@ extension TimerViewController: ITVUpdateTimersProtocol, ITVEditIntervalProtocol{
         loadTimer()
         loadWeather()
         collectionView.reloadData()
+        isTimerEdited = true
 //        timerNameLabel.text = ITVUser.sharedInstance.thisTimers?[itvTimerIndex!].thisName
 //        if (ITVUser.sharedInstance.thisTimers?[itvTimerIndex!].thisShowWeather)! {
 //            updateWeatherInformation()

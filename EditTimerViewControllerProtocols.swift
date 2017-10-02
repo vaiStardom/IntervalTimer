@@ -7,8 +7,8 @@
 //
 
 import Foundation
-
-extension EditTimerViewController: ITVEditIntervalProtocol {
+//TODO: Swipe to delete on top cell deletes entire timer
+extension EditTimerViewController: ITVEditIntervalProtocol, ITVSwipeToDeleteIntervalProtocol {
     func didEdit(_ interval: ITVInterval) {
         if let theIntervalIndex = itvSelectedIntervalIndex { //user edited an existing interval
             intervals?[theIntervalIndex] = interval
@@ -22,18 +22,25 @@ extension EditTimerViewController: ITVEditIntervalProtocol {
         tableView.reloadData()
         reloadQuickAddCollection()
     }
-//    func didUpdateNew(_ intervals: [ITVInterval]?) {
-//        if let theNewIntervals = intervals {
-//            itvUnsavedTimersIntervals = theNewIntervals
-//            self.intervals = theNewIntervals
-//            uniqueArrays(intervals: theNewIntervals)
-//            isEditing = true
-//            configureNavBar()
-//        }
-//        tableView.reloadData()
-//        
-//        aesthetics_ShowTableView()
-//    }
-    
+    //MARK: - ITVSwipeToDeleteIntervalProtocol
+    func delete(index: Int?) {
+        
+        guard let theIntervalIndex = index else {
+            return
+        }
+        
+        intervals?.remove(at: theIntervalIndex)
+        
+        tableView.beginUpdates()
+        let rowIndex = theIntervalIndex + tableViewIntervalIndexOffset
+        let indexPathForRow = IndexPath(row: rowIndex, section: 0)
+        print("------> TimersViewController deleteTimer(atIndex:) indexPathForRow = \(indexPathForRow), count = \(indexPathForRow.count)")
+        tableView.deleteRows(at: [indexPathForRow], with: .left)
+        tableView.endUpdates()
+        
+        isEditing = true
+//        didEditAnInterval = true
+        configureNavBar()
 
+    }
 }

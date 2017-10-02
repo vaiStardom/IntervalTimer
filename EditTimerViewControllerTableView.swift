@@ -112,10 +112,10 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
             
             if let theInterval = intervals?[intervalIndex] {
                 cell.tag = intervalIndex //save the interval index for force touch
-                cell.intervalNumberLabel.text = "\(intervalIndex)"
+                cell.intervalNumberLabel.text = "\(intervalIndex + 1)"
                 if let theSeconds = theInterval.thisSeconds {
                     cell.intervalTimeLabel.text = TIME_OF_00(seconds: theSeconds)
-                    print("------> EditTimerViewController cellForRowAt timer = \(TIME_OF_00(seconds: theSeconds)), indicator = \(theInterval.thisIndicator.rawValue), color = \(theInterval.thisIndicator.uiColor())")
+//                    print("------> EditTimerViewController cellForRowAt timer = \(TIME_OF_00(seconds: theSeconds)), indicator = \(theInterval.thisIndicator.rawValue), color = \(theInterval.thisIndicator.uiColor())")
                     
                 } else {
                     cell.intervalTimeLabel.text = "0"
@@ -123,6 +123,9 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.indicatorImageView.roundImageView()
                 cell.indicatorImageView.backgroundColor = theInterval.thisIndicator.uiColor()
                 cell.indicatorImageView.layer.borderColor = theInterval.thisIndicator.uiColor().cgColor
+                
+                cell.swipeToDeleteDelegate = self
+                cell.intervalIndex = intervalIndex
             }
             
             return cell

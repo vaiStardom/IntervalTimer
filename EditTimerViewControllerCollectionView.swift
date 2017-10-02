@@ -27,12 +27,17 @@ extension EditTimerViewController: UICollectionViewDelegate, UICollectionViewDat
         } else {
             cell.secondsLabel.text = "empty"
         }
+        cell.secondsLabel.transform = CGAffineTransform(scaleX: -1, y: 1)
         
         cell.addIntervalPresetButton.addTarget(self, action: #selector(EditTimerViewController.addThisInterval(_:)), for: .touchUpInside)
         cell.addIntervalPresetButton.tag = index
         
-        cell.transform = CGAffineTransform(scaleX: -1, y: 1)
         
+        
+//        if isInitialCollectionViewLoad {
+//            cell.transform = CGAffineTransform(scaleX: -1, y: 1)
+//            isInitialCollectionViewLoad = false
+//        }
         return cell
     }
     

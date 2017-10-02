@@ -22,7 +22,8 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="awL-Ot-HrP" customClass="ITVUIImageViewIndicator" customModule="IntervalTimer" customModuleProvider="target">
                         <rect key="frame" x="23" y="1" width="28" height="29"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="28" id="0wq-S1-iTW"/>
+                            <constraint firstAttribute="height" constant="29" id="0xV-UL-KHZ"/>
+                            <constraint firstAttribute="width" constant="28" id="h7o-cU-rnL"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3AX-65-EWL">
@@ -40,16 +41,21 @@
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="3AX-65-EWL" secondAttribute="bottom" id="0sB-bq-8JV"/>
                 <constraint firstItem="Z6e-lv-TQA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="1QZ-wg-m6Q"/>
-                <constraint firstItem="3AX-65-EWL" firstAttribute="top" secondItem="awL-Ot-HrP" secondAttribute="bottom" constant="7" id="1a4-3h-cyI"/>
                 <constraint firstItem="3AX-65-EWL" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="2ZM-Sq-9Rp"/>
-                <constraint firstItem="awL-Ot-HrP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="23" id="Elf-Oc-Y9N"/>
+                <constraint firstAttribute="trailing" secondItem="3AX-65-EWL" secondAttribute="trailing" id="9If-Zj-znn"/>
+                <constraint firstItem="3AX-65-EWL" firstAttribute="top" secondItem="awL-Ot-HrP" secondAttribute="bottom" constant="7" id="A05-Pa-V3x"/>
+                <constraint firstAttribute="bottom" secondItem="Z6e-lv-TQA" secondAttribute="bottom" id="Bqs-g6-z1M"/>
                 <constraint firstAttribute="bottom" secondItem="Z6e-lv-TQA" secondAttribute="bottom" id="Hos-IH-FdE"/>
-                <constraint firstItem="awL-Ot-HrP" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="1" id="NoA-vb-SIW"/>
+                <constraint firstAttribute="trailing" secondItem="Z6e-lv-TQA" secondAttribute="trailing" id="QZT-5v-yCW"/>
+                <constraint firstItem="Z6e-lv-TQA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="VOm-h8-8je"/>
+                <constraint firstItem="3AX-65-EWL" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Z3j-Lf-ZeM"/>
+                <constraint firstItem="awL-Ot-HrP" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="bBf-v0-s4k"/>
+                <constraint firstItem="awL-Ot-HrP" firstAttribute="top" secondItem="ZTg-uK-7eu" secondAttribute="top" constant="1" id="kBa-IZ-wdB"/>
+                <constraint firstItem="Z6e-lv-TQA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="kdH-Ah-Za6"/>
                 <constraint firstAttribute="trailing" secondItem="3AX-65-EWL" secondAttribute="trailing" id="m1T-Gj-upZ"/>
-                <constraint firstAttribute="trailing" secondItem="awL-Ot-HrP" secondAttribute="trailing" constant="23" id="pzN-uU-Lz6"/>
-                <constraint firstItem="3AX-65-EWL" firstAttribute="top" secondItem="awL-Ot-HrP" secondAttribute="bottom" constant="7" id="rG0-1l-YeO"/>
                 <constraint firstAttribute="trailing" secondItem="Z6e-lv-TQA" secondAttribute="trailing" id="vfz-8u-OCG"/>
                 <constraint firstItem="Z6e-lv-TQA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="xLN-WO-Alp"/>
+                <constraint firstItem="3AX-65-EWL" firstAttribute="centerX" secondItem="awL-Ot-HrP" secondAttribute="centerX" id="z6m-ss-yEV"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <connections>

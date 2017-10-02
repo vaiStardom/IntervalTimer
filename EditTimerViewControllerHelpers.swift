@@ -69,7 +69,7 @@ extension EditTimerViewController {
             }
         }
         if uniqueTimers.count > 0 {
-            uniqueTimers = uniqueTimers.sorted(by: {$0.1 < $1.1})
+            uniqueTimers = uniqueTimers.sorted(by: {$1.1 < $0.1})
         }
     }
     func dataSourceCount() -> Int {

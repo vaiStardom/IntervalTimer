@@ -10,7 +10,11 @@ import Foundation
 
 @objc extension TimerViewController {
     func back(){
-//        _ = navigationController?.popViewController(animated: true)
+        if isTimerEdited {
+            if self.updateTimersProtocolDelegate != nil {
+                self.updateTimersProtocolDelegate?.didUpdateTimers()
+            }
+        }
         dismiss(animated: true, completion: nil)
     }
     func edit(){

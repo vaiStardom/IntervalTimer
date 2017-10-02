@@ -42,8 +42,6 @@ class TimersTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-
         deleteLabel.frame = CGRect(x: bounds.size.width + kUICuesMargin, y: 0, width: bounds.size.width, height: bounds.size.height)
     }
-
 }
