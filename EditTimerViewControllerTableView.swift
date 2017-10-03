@@ -11,6 +11,20 @@ import UIKit
 
 extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
 
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        let height = self.heightAtIndexPath.object(forKey: indexPath)
+        if ((height) != nil) {
+            return CGFloat(height as! CGFloat)
+        } else {
+            return UITableViewAutomaticDimension
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let height = cell.frame.size.height
+        self.heightAtIndexPath.setObject(height, forKey: indexPath as NSCopying)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let theCount = intervals?.count, theCount > 0 {
             return theCount + numberOfTableCellSections
@@ -19,14 +33,6 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row+1 == dataSourceCount() {
-            isAtBottomOfTableView = true
-        } else {
-            isAtBottomOfTableView = false
-        }
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let index = (indexPath as NSIndexPath).row

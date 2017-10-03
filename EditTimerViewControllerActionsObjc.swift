@@ -9,6 +9,17 @@
 import Foundation
 import UIKit
 
+//no bug
+extension UITableView {
+
+    func scrollToBottom() {
+        let rows = self.numberOfRows(inSection: 0)
+
+        let indexPath = IndexPath(row: rows - 1, section: 0)
+        self.scrollToRow(at: indexPath, at: .top, animated: true)
+    }
+}
+
 @objc extension EditTimerViewController {
     
     func selectedTemperatureUnit() {
@@ -70,6 +81,17 @@ import UIKit
 //        _ = navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
     }
+    
+//no bug
+//    func getTableViewData(){
+//        // Get your data here any way you usually do..
+//
+//        // call to reload
+//        tableView.reloadData()
+//        // call the scroll function
+//        tableView.scrollToBottom()
+//    }
+    
     func addThisInterval(_ theButton: UIButton){
 
         print("------> EditTimerViewController addThisInterval(theButton:) intervals.count BEFORE = \(intervals?.count)")
@@ -82,70 +104,74 @@ import UIKit
         intervals = []
         intervals = theNewIntervals
 
-//        intervals?.append(uniqueTimers[theButton.tag].0)
+        //no bug
+//        getTableViewData()
+        
         print("------> EditTimerViewController addThisInterval(theButton:) intervals.count AFTER = \(intervals?.count)")
         if itvUnsavedTimersIntervals == nil {
             itvUnsavedTimersIntervals = []
         }
         itvUnsavedTimersIntervals = intervals
-        
+
         let newRowIndex = (intervals?.count)! + 1
         let indexPathNewForRow = IndexPath(row: newRowIndex, section: 0)
-        
+
         print("------> EditTimerViewController addThisInterval(theButton:) newRowIndex = \(newRowIndex)")
-        
+
         //First, do scroll to bottom, then add the table view row, and then animate the scrolling down a second time
         //This is so that the user actuallu sees the addition of the first added row
-        CATransaction.begin()
-        CATransaction.setCompletionBlock({ () -> Void in
-
+        
             CATransaction.begin()
             CATransaction.setCompletionBlock({ () -> Void in
                 // This block runs after the animations between CATransaction.begin
                 // and CATransaction.commit are finished.
-                self.scrollToBottom()
+                //self.scrollToBottom()
+                self.tableView.scrollToBottom()
             })
-
-            self.tableView.beginUpdates()
-            self.tableView.insertRows(at: [indexPathNewForRow], with: .automatic)
-            self.tableView.endUpdates()
-
+            
+//            self.tableView.beginUpdates()
+//            self.tableView.insertRows(at: [indexPathNewForRow], with: .bottom)
+//            self.tableView.endUpdates()
+            tableView.reloadData()
+        
             print("------> EditTimerViewController addThisInterval(theButton:) tableView.rows.count AFTER = \(self.getAllRowCount())")
-
+            
             self.isScrollEnabled()
-
+            
             CATransaction.commit()
-
+            
             self.isEditing = true
             self.configureNavBar()
 
-        })
-
-        self.scrollToBottom()
-        CATransaction.commit()
-
-        
+//        //First, do scroll to bottom, then add the table view row, and then animate the scrolling down a second time
+//        //This is so that the user actuallu sees the addition of the first added row
 //        CATransaction.begin()
 //        CATransaction.setCompletionBlock({ () -> Void in
-//            // This block runs after the animations between CATransaction.begin
-//            // and CATransaction.commit are finished.
-//            self.scrollToBottom()
+//
+//            CATransaction.begin()
+//            CATransaction.setCompletionBlock({ () -> Void in
+//                // This block runs after the animations between CATransaction.begin
+//                // and CATransaction.commit are finished.
+//                self.scrollToBottom()
+//            })
+//
+//            self.tableView.beginUpdates()
+//            self.tableView.insertRows(at: [indexPathNewForRow], with: .bottom)
+//            self.tableView.endUpdates()
+//
+//            print("------> EditTimerViewController addThisInterval(theButton:) tableView.rows.count AFTER = \(self.getAllRowCount())")
+//
+//            self.isScrollEnabled()
+//
+//            CATransaction.commit()
+//
+//            self.isEditing = true
+//            self.configureNavBar()
+//
 //        })
 //
-//        tableView.beginUpdates()
-//        tableView.insertRows(at: [indexPathNewForRow], with: .automatic)
-//        tableView.endUpdates()
-//
-//        print("------> EditTimerViewController addThisInterval(theButton:) tableView.rows.count AFTER = \(getAllRowCount())")
-//
-//        isScrollEnabled()
-//
+//        self.scrollToBottom()
 //        CATransaction.commit()
-//
-//        isEditing = true
-//        configureNavBar()
-//
-//        print("------> Add this interval: \(String(describing: uniqueTimers[theButton.tag].0.thisSeconds))")
     }
     
     func editIntervals(){

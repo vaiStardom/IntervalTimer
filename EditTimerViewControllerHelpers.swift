@@ -115,34 +115,37 @@ extension EditTimerViewController {
             return
         }
         
+        print("------> EditTimerViewController scrollToBottom(), bottomRowIndexPath = \(bottomRowIndexPath)")
+        
         CATransaction.begin()
         CATransaction.setCompletionBlock({ () -> Void in
             // Now we can scroll to the last row!
-            self.tableView.scrollToRow(at: bottomRowIndexPath, at: .bottom, animated: true)
+//            self.tableView.scrollToRow(at: bottomRowIndexPath, at: .top, animated: true)
+            self.tableView.scrollToBottom()
         })
-        
+
         // scroll down by 1 point: this causes the newly added cell to be dequeued and rendered.
-        let contentOffset = self.tableView.contentOffset.y        
+        let contentOffset = self.tableView.contentOffset.y
         let newContentOffset = CGPoint(x: 0, y: contentOffset + 1)
         self.tableView.setContentOffset(newContentOffset, animated: true)
-        
-        CATransaction.commit()
-    }
-    func scrollToTop(){
-
-        let topRow = 0
-        let topIndex = IndexPath(row: topRow, section: 0)
-
-        CATransaction.begin()
-        CATransaction.setCompletionBlock({ () -> Void in
-            // Now we can scroll to the last row!
-            print("------> EditTimerViewController animation scroll to top start")
-            self.tableView.scrollToRow(at: topIndex, at: .top, animated: true)
-        })
-        print("------> EditTimerViewController animation scroll to top end")
 
         CATransaction.commit()
     }
+//    func scrollToTop(){
+//
+//        let topRow = 0
+//        let topIndex = IndexPath(row: topRow, section: 0)
+//
+//        CATransaction.begin()
+//        CATransaction.setCompletionBlock({ () -> Void in
+//            // Now we can scroll to the last row!
+//            print("------> EditTimerViewController animation scroll to top start")
+//            self.tableView.scrollToRow(at: topIndex, at: .top, animated: true)
+//        })
+//        print("------> EditTimerViewController animation scroll to top end")
+//
+//        CATransaction.commit()
+//    }
     func isTableViewTallerThanDeleteButton() -> Bool {
         //personal hotspot bar + nav bar + topcell + quick add + intervals
         let heightOfTableView = 88.0 + 171.0 + heightQuickAddSections() + heightIntervalsSection()

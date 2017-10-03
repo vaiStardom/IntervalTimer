@@ -60,10 +60,11 @@ enum ITVError: Error {
     case GetWeather_DidNotGetWeather(reason: String)
     case GetWeather_UrlIsNil(reason: String)
     case Http_UnsucessfulHttpResponse(code: String) //For a an http response code enum, look here: //https://gist.github.com/brennanMKE/482452bb9ac5f578907f413902753eec
-    case JSON_UnsucessfulProcessing
+    case JSON_Download(String)
     case JSON_Missing(String)
     case JSON_MissingTemperature
     case JSON_MissingIcon
+    case JSON_UnsucessfulProcessing
     case URL_UnsucessfulUrl(reason: String)
     case Reachability_notReachable(reason: String)
 }
