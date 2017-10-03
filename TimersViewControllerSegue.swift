@@ -17,6 +17,7 @@ extension TimersViewController {
                 if let nextVC = navVC.viewControllers.first as? TimerViewController {
                     nextVC.itvTimerIndex = itvTimerIndex
                     nextVC.startIntervalTimer = startSelectedIntervalTimer
+                    nextVC.updateTimersProtocolDelegate = self
                 }
             }
 

@@ -33,6 +33,7 @@ class EditTimerViewController: UIViewController {
     //TableView controls
     let numberOfTableCellSections = 4 //except the interval sections
     let tableViewIntervalIndexOffset  = 2
+    var isAtBottomOfTableView = false
     
     //Collection view controls
     var isInitialCollectionViewLoad = true

@@ -11,17 +11,6 @@ import UIKit
 //MARK: - Table View Management
 extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
     
-    //MARK: - Row selection
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        let cell = tableView.cellForRow(at: indexPath)
-        cell?.contentView.backgroundColor = ITVColors.GrayForTableCellSelection
-        
-        itvTimerIndex = indexPath.row
-        startSelectedIntervalTimer = false
-        performSegue(withIdentifier: "TimersToTimer", sender: nil)
-    }
-
     //MARK: - Data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let theCount = ITVUser.sharedInstance.thisTimers?.count {

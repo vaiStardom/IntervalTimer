@@ -94,34 +94,57 @@ import UIKit
         
         print("------> EditTimerViewController addThisInterval(theButton:) newRowIndex = \(newRowIndex)")
         
+        //First, do scroll to bottom, then add the table view row, and then animate the scrolling down a second time
+        //This is so that the user actuallu sees the addition of the first added row
         CATransaction.begin()
         CATransaction.setCompletionBlock({ () -> Void in
-            // This block runs after the animations between CATransaction.begin
-            // and CATransaction.commit are finished.
-            
-            
+
+            CATransaction.begin()
+            CATransaction.setCompletionBlock({ () -> Void in
+                // This block runs after the animations between CATransaction.begin
+                // and CATransaction.commit are finished.
+                self.scrollToBottom()
+            })
+
             self.tableView.beginUpdates()
             self.tableView.insertRows(at: [indexPathNewForRow], with: .automatic)
             self.tableView.endUpdates()
 
-//            self.scrollToBottom()
+            print("------> EditTimerViewController addThisInterval(theButton:) tableView.rows.count AFTER = \(self.getAllRowCount())")
+
+            self.isScrollEnabled()
+
+            CATransaction.commit()
+
+            self.isEditing = true
+            self.configureNavBar()
+
         })
+
+        self.scrollToBottom()
+        CATransaction.commit()
+
         
+//        CATransaction.begin()
+//        CATransaction.setCompletionBlock({ () -> Void in
+//            // This block runs after the animations between CATransaction.begin
+//            // and CATransaction.commit are finished.
+//            self.scrollToBottom()
+//        })
+//
 //        tableView.beginUpdates()
 //        tableView.insertRows(at: [indexPathNewForRow], with: .automatic)
 //        tableView.endUpdates()
-
-        self.scrollToBottom()
-        
-        print("------> EditTimerViewController addThisInterval(theButton:) tableView.rows.count AFTER = \(getAllRowCount())")
-        
-        isScrollEnabled()
-        
-        CATransaction.commit()
-        
-        isEditing = true
-        configureNavBar()
-        
+//
+//        print("------> EditTimerViewController addThisInterval(theButton:) tableView.rows.count AFTER = \(getAllRowCount())")
+//
+//        isScrollEnabled()
+//
+//        CATransaction.commit()
+//
+//        isEditing = true
+//        configureNavBar()
+//
 //        print("------> Add this interval: \(String(describing: uniqueTimers[theButton.tag].0.thisSeconds))")
     }
     

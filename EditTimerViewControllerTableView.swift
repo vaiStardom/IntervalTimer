@@ -19,6 +19,14 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row+1 == dataSourceCount() {
+            isAtBottomOfTableView = true
+        } else {
+            isAtBottomOfTableView = false
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let index = (indexPath as NSIndexPath).row
@@ -50,8 +58,6 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.showWeatherDescriptionLabel.isHidden = false
                 cell.temperatureSegmentedControl.isHidden = true
             }
-            //            cell.showWeatherDescriptionLabel.isHidden = false
-            //            cell.temperatureSegmentedControl.isHidden = true
             cell.warningButton.isEnabled = false
             cell.weatherActivityIndicator.isHidden = true
             cell.timerNameTextField.tintColor = ITVColors.Orange
