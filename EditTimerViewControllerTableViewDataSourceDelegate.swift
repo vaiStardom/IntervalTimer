@@ -1,8 +1,8 @@
 //
-//  EditTimerViewControllerTableView.swift
+//  EditTimerViewControllerTableViewDataSourceDelegate.swift
 //  IntervalTimer
 //
-//  Created by Paul Addy on 2017-09-23.
+//  Created by Paul Addy on 2017-10-04.
 //  Copyright © 2017 Paul Addy. All rights reserved.
 //
 
@@ -10,56 +10,6 @@ import Foundation
 import UIKit
 
 extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    //MARK: - Row rearranging and editing
-    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        let index = (indexPath as NSIndexPath).row
-        if index >= tableViewIntervalIndexOffset && index < (dataSourceCount() + tableViewIntervalIndexOffset) { //Interval rows
-            return true
-        } else {
-            return false
-        }
-        
-    }
-
-    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-
-        let sourceIntervalIndex = sourceIndexPath.row - 2
-        let destinationIntervalIndex = destinationIndexPath.row - 2
-        
-        let intervalToMove = intervals?[sourceIntervalIndex]
-        intervals?.remove(at: sourceIntervalIndex)
-        intervals?.insert(intervalToMove!, at: destinationIntervalIndex)        
-    }
-    
-    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-    
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-        return .none
-    }
-
-    
-    //MARK: - Cell height methods
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        let height = self.heightAtIndexPath.object(forKey: indexPath)
-        if ((height) != nil) {
-            return CGFloat(height as! CGFloat)
-        } else {
-            return UITableViewAutomaticDimension
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let height = cell.frame.size.height
-        self.heightAtIndexPath.setObject(height, forKey: indexPath as NSCopying)
-    }
-    
     
     //MARK: - Datasource and delegate methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -69,20 +19,20 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
             return numberOfTableCellSections
         }
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let index = (indexPath as NSIndexPath).row
         
         if index == 0 { //Top row
             let cell = tableView.dequeueReusableCell(withIdentifier: "EditTimerTopCell") as! EditTimerTopTableViewCell
-
+            
             //Cell configuration
             cell.timerNameTextField.delegate = self
             cell.warningButton.addTarget(self, action: #selector(EditTimerViewController.showWarning), for: .touchUpInside)
             cell.showWeatherSwitch.addTarget(self, action: #selector(EditTimerViewController.switched(_:)), for: .valueChanged)
             cell.temperatureSegmentedControl.selectedSegmentIndex = 2
-
+            
             //Initial cell aesthetics
             cell.timerNameTextField.attributedPlaceholder = NSAttributedString(string: Litterals.TimerNamePlaceholder, attributes: [NSAttributedStringKey.foregroundColor : ITVColors.OrangeAlpha50])
             
@@ -109,7 +59,7 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
             cell.temperatureSegmentedControl.addTarget(self, action: #selector(EditTimerViewController.selectedTemperatureUnit), for: .valueChanged)
             
             cell.selectionStyle = .none
-
+            
             return cell
         } else if index == 1 { //Top quick interval adds row
             
@@ -137,10 +87,10 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.addIntervalImageView.isHidden = true
                 cell.addPresetIntervalImageView.isHidden = false
                 cell.visualEffectView.isHidden = false
-
+                
                 cell.editButton.addTarget(self, action: #selector(EditTimerViewController.editIntervals), for: .touchUpInside)
                 cell.addIntervalButton.addTarget(self, action: #selector(EditTimerViewController.addInterval), for: .touchUpInside)
-
+                
             } else {
                 cell.editLabel.isHidden = true
                 cell.addIntervalsLabel.isHidden = false
@@ -164,7 +114,7 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.intervalNumberLabel.text = "\(intervalIndex + 1)"
                 if let theSeconds = theInterval.thisSeconds {
                     cell.intervalTimeLabel.text = TIME_OF_00(seconds: theSeconds)
-//                    print("------> EditTimerViewController cellForRowAt timer = \(TIME_OF_00(seconds: theSeconds)), indicator = \(theInterval.thisIndicator.rawValue), color = \(theInterval.thisIndicator.uiColor())")
+                    //                    print("------> EditTimerViewController cellForRowAt timer = \(TIME_OF_00(seconds: theSeconds)), indicator = \(theInterval.thisIndicator.rawValue), color = \(theInterval.thisIndicator.uiColor())")
                     
                 } else {
                     cell.intervalTimeLabel.text = "0"
@@ -182,7 +132,7 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
             
             if dataSourceCount() == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyCell") as! EditTimerEmptyTableViewCell
-
+                
                 //Initial cell aesthetics
                 cell.selectionStyle = .none
                 
@@ -230,7 +180,7 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
                 
                 return cell
             }
-
+            
         } else if index == (dataSourceCount() + tableViewIntervalIndexOffset + 1) { //Delete timer row
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "DeleteTimerCell") as! EditTimerDeleteTimerTableViewCell
@@ -271,41 +221,8 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
             
             //Initial cell aesthetics
             cell.selectionStyle = .none
-
+            
             return cell
-        }
-    }
-    
-    //MRK: - Helpers
-    func configureTableView(){
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 504
-        
-        tableView.register(UINib(nibName: "EditTimerAddIntervalsTableViewCell", bundle: nil), forCellReuseIdentifier: "AddIntervalCell")
-        tableView.register(UINib(nibName: "EditTimerDeleteTimerTableViewCell", bundle: nil), forCellReuseIdentifier: "DeleteTimerCell")
-        tableView.register(UINib(nibName: "EditTimerEmptyTableViewCell", bundle: nil), forCellReuseIdentifier: "EmptyCell")
-        tableView.register(UINib(nibName: "EditTimerIntervalTableViewCell", bundle: nil), forCellReuseIdentifier: "IntervalCell")
-        tableView.register(UINib(nibName: "EditTimerTopTableViewCell", bundle: nil), forCellReuseIdentifier: "EditTimerTopCell")
-    }    
-    
-    func topCell() -> EditTimerTopTableViewCell? {
-        let topCellIndexPath = IndexPath(row: 0, section: 0)
-        if let topCell = tableView.cellForRow(at: topCellIndexPath) as? EditTimerTopTableViewCell {
-            return topCell
-        } else {
-            return nil
-        }
-    }
-    
-    func deleteCell() -> EditTimerDeleteTimerTableViewCell? {
-        let deleteCellIndex = dataSourceCount() + tableViewIntervalIndexOffset + 1
-        let deleteCellIndexPath = IndexPath(row: deleteCellIndex, section: 0)
-        if let deleteCell = tableView.cellForRow(at: deleteCellIndexPath) as? EditTimerDeleteTimerTableViewCell {
-            return deleteCell
-        } else {
-            return nil
         }
     }
 }
