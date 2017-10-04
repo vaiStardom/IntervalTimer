@@ -55,6 +55,7 @@ class TimerViewController: UIViewController {
     var intervalsToRun: [ITVInterval] = []
     
     var itvTimerIndex: Int?
+    var itvIntervalIndex: Int?
     var startIntervalTimer: Bool? = false
     var indexOfIntervalToRun = 0
     var totalSeconds = 3602 //temp var, will be replaced by an intervals seconds
@@ -73,11 +74,4 @@ class TimerViewController: UIViewController {
     var visualEffect: UIVisualEffect! //TODO: Do you still need this?
     
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-    
-    
-    
-    @IBAction func userWarning(_ sender: UIButton) {
-        SHOW_USER_WARNING(type: ITVWarningForUser.sharedInstance.thisUserWarning)
-    }
-
 }

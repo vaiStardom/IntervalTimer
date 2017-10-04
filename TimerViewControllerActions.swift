@@ -10,6 +10,10 @@ import UIKit
 
 //MARK: Actions
 extension TimerViewController{
+    @IBAction func userWarning(_ sender: UIButton) {
+        SHOW_USER_WARNING(type: ITVWarningForUser.sharedInstance.thisUserWarning)
+    }
+
     @IBAction func cancel(_ sender: UIButton) {
         startPauseResume = (true, false, false)
         timer.invalidate()

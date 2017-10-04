@@ -15,10 +15,17 @@ extension TimerViewController: ITVUpdateTimersProtocol, ITVEditIntervalProtocol{
     
     func didEdit(_ interval: ITVInterval) {
         //TODO: understand why the encoding is not called when updating the new values individualy and why we have to replace the timer with theNewTimer
-        
+
         if let theTimerIndex = itvTimerIndex {
-            if let theNewTimer = ITVUser.sharedInstance.thisTimers?[theTimerIndex] {
-                ITVUser.sharedInstance.thisTimers?[theTimerIndex] = theNewTimer
+            if let theTimer = ITVUser.sharedInstance.thisTimers?[theTimerIndex] {
+                if let theIntervalIndex = itvIntervalIndex { //incomplete functionality, implement later
+                    //modify this inerval for this timer
+                } else { //the timer had no intervals, fill its intervals with thie interval
+                    let intervals: [ITVInterval] = [interval]
+                    theTimer.intervals = intervals
+                    ITVUser.sharedInstance.thisTimers?[theTimerIndex] = theTimer
+                    isTimerEdited = true
+                }
             } else {
                 fatalError("------> ERROR TimerViewController didEdit(interval:) A timer is missing at the provided index \(theTimerIndex).")
             }
