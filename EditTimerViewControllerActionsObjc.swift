@@ -175,7 +175,10 @@ extension UITableView {
     }
     
     func editIntervals(){
-        print("------> Edit intervals")
+        //change the label of the edit button and the back button to 'save'
+        tableView.isEditing = !tableView.isEditing
+        isEditing = !isEditing
+        configureNavBar()
     }
     
     func addInterval(){

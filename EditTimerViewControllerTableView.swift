@@ -10,7 +10,42 @@ import Foundation
 import UIKit
 
 extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    //MARK: - Row rearranging and editing
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        let index = (indexPath as NSIndexPath).row
+        if index >= tableViewIntervalIndexOffset && index < (dataSourceCount() + tableViewIntervalIndexOffset) { //Interval rows
+            return true
+        } else {
+            return false
+        }
+        
+    }
 
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+
+        let sourceIntervalIndex = sourceIndexPath.row - 2
+        let destinationIntervalIndex = destinationIndexPath.row - 2
+        
+        let intervalToMove = intervals?[sourceIntervalIndex]
+        intervals?.remove(at: sourceIntervalIndex)
+        intervals?.insert(intervalToMove!, at: destinationIntervalIndex)        
+    }
+    
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .none
+    }
+
+    
+    //MARK: - Cell height methods
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let height = self.heightAtIndexPath.object(forKey: indexPath)
         if ((height) != nil) {
@@ -25,6 +60,8 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
         self.heightAtIndexPath.setObject(height, forKey: indexPath as NSCopying)
     }
     
+    
+    //MARK: - Datasource and delegate methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let theCount = intervals?.count, theCount > 0 {
             return theCount + numberOfTableCellSections
@@ -238,6 +275,8 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
     }
+    
+    //MRK: - Helpers
     func configureTableView(){
         tableView.dataSource = self
         tableView.delegate = self
@@ -250,9 +289,6 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.register(UINib(nibName: "EditTimerIntervalTableViewCell", bundle: nil), forCellReuseIdentifier: "IntervalCell")
         tableView.register(UINib(nibName: "EditTimerTopTableViewCell", bundle: nil), forCellReuseIdentifier: "EditTimerTopCell")
     }    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
     
     func topCell() -> EditTimerTopTableViewCell? {
         let topCellIndexPath = IndexPath(row: 0, section: 0)

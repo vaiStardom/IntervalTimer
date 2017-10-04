@@ -9,9 +9,11 @@
 import UIKit
 
 //MARK: - Table View Management
+//TODO: add a share button to share the your favorite timer with friends on social media
+//TODO: may add favorite timers and put them at the top of the list
 extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
     
-    //MARK: - Data source
+    //MARK: - Data source and delegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let theCount = ITVUser.sharedInstance.thisTimers?.count {
             return theCount
@@ -54,9 +56,9 @@ extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let itemToMove = ITVUser.sharedInstance.thisTimers?[sourceIndexPath.row]
+        let timerToMove = ITVUser.sharedInstance.thisTimers?[sourceIndexPath.row]
         ITVUser.sharedInstance.thisTimers?.remove(at: sourceIndexPath.row)
-        ITVUser.sharedInstance.thisTimers?.insert(itemToMove!, at: destinationIndexPath.row)
+        ITVUser.sharedInstance.thisTimers?.insert(timerToMove!, at: destinationIndexPath.row)
 
     }
 
@@ -67,32 +69,4 @@ extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         return .none
     }
-    
-//    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-
-    //TODO: add a share button to share the your favorite timer with friends on social media
-
-//        //TODO: add an "add interval button", interval would be added at bottom of timers intervals list
-//        let more = UITableViewRowAction(style: .normal, title: "More") { action, index in
-//            //self.isEditing = false
-//            print("more button tapped")
-//        }
-//        more.backgroundColor = UIColor.lightGray
-//        
-//        
-//        //TODO: this can be used to bt the timer at the top of the list or to simply mark it as a fav timer (draw heart)
-//        let favorite = UITableViewRowAction(style: .normal, title: "Favorite") { action, index in
-//            //self.isEditing = false
-//            print("favorite button tapped")
-//        }
-//        favorite.backgroundColor = UIColor.orange
-//        
-//        let share = UITableViewRowAction(style: .normal, title: "Share") { action, index in
-//            //self.isEditing = false
-//            print("share button tapped")
-//        }
-//        share.backgroundColor = UIColor.blue
-//        
-//        return [share, favorite, more]
-//        
 }

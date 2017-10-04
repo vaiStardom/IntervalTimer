@@ -30,7 +30,7 @@ enum NavigationBarCgRect{
     static let LeftLabel = CGRect(x: 0, y: 14, width: 65, height: 19)
     static let NewTimerTitle = CGRect(x: 0, y: 20, width: 86, height: 45)
     static let TimersEditLabel = CGRect(x: 40, y: 13, width: 30, height: 19)
-    static let TimersSaveLabel = CGRect(x: 40, y: 13, width: 40, height: 19)
+    static let TimersSaveLabel = CGRect(x: 30, y: 13, width: 40, height: 19)
     static let TimersLeftLabel = CGRect(x: 0, y: 14, width: 65, height: 19)
 }
 enum Sizes{
