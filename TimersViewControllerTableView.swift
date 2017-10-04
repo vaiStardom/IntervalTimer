@@ -15,11 +15,7 @@ extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
     
     //MARK: - Data source and delegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let theCount = ITVUser.sharedInstance.thisTimers?.count {
-            return theCount
-        } else {
-            return 0
-        }
+        return dataSourceCount()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

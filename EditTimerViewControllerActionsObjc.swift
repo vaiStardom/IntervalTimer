@@ -6,19 +6,7 @@
 //  Copyright © 2017 Paul Addy. All rights reserved.
 //
 
-import Foundation
 import UIKit
-
-//no bug
-extension UITableView {
-
-    func scrollToBottom() {
-        let rows = self.numberOfRows(inSection: 0)
-
-        let indexPath = IndexPath(row: rows - 1, section: 0)
-        self.scrollToRow(at: indexPath, at: .top, animated: true)
-    }
-}
 
 @objc extension EditTimerViewController {
     
@@ -31,7 +19,6 @@ extension UITableView {
     }
     
     func cancel(){
-//        _ = navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
     }
     func save(){
@@ -65,7 +52,6 @@ extension UITableView {
             self.updateTimersProtocolDelegate?.didUpdateTimers()
         }
         
-//        _ = navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
     }
     func deleteTimer(){
@@ -78,19 +64,8 @@ extension UITableView {
 
         ITVUser.sharedInstance.thisTimers?.remove(at: theTimerIndex)
         
-//        _ = navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
     }
-    
-//no bug
-//    func getTableViewData(){
-//        // Get your data here any way you usually do..
-//
-//        // call to reload
-//        tableView.reloadData()
-//        // call the scroll function
-//        tableView.scrollToBottom()
-//    }
     
     func addThisInterval(_ theButton: UIButton){
 
@@ -103,35 +78,26 @@ extension UITableView {
         theNewIntervals.append(uniqueTimers[theButton.tag].0)
         intervals = []
         intervals = theNewIntervals
-
-        //no bug
-//        getTableViewData()
         
         print("------> EditTimerViewController addThisInterval(theButton:) intervals.count AFTER = \(intervals?.count)")
-        if itvUnsavedTimersIntervals == nil {
-            itvUnsavedTimersIntervals = []
-        }
-        itvUnsavedTimersIntervals = intervals
+//        if itvUnsavedTimersIntervals == nil {
+//            itvUnsavedTimersIntervals = []
+//        }
+//        itvUnsavedTimersIntervals = intervals
 
         let newRowIndex = (intervals?.count)! + 1
         let indexPathNewForRow = IndexPath(row: newRowIndex, section: 0)
 
         print("------> EditTimerViewController addThisInterval(theButton:) newRowIndex = \(newRowIndex)")
 
-        //First, do scroll to bottom, then add the table view row, and then animate the scrolling down a second time
-        //This is so that the user actuallu sees the addition of the first added row
-        
             CATransaction.begin()
             CATransaction.setCompletionBlock({ () -> Void in
                 // This block runs after the animations between CATransaction.begin
                 // and CATransaction.commit are finished.
-                //self.scrollToBottom()
+
                 self.tableView.scrollToBottom()
             })
             
-//            self.tableView.beginUpdates()
-//            self.tableView.insertRows(at: [indexPathNewForRow], with: .bottom)
-//            self.tableView.endUpdates()
             tableView.reloadData()
         
             print("------> EditTimerViewController addThisInterval(theButton:) tableView.rows.count AFTER = \(self.getAllRowCount())")
@@ -142,51 +108,44 @@ extension UITableView {
             
             self.isEditing = true
             self.configureNavBar()
-
-//        //First, do scroll to bottom, then add the table view row, and then animate the scrolling down a second time
-//        //This is so that the user actuallu sees the addition of the first added row
-//        CATransaction.begin()
-//        CATransaction.setCompletionBlock({ () -> Void in
-//
-//            CATransaction.begin()
-//            CATransaction.setCompletionBlock({ () -> Void in
-//                // This block runs after the animations between CATransaction.begin
-//                // and CATransaction.commit are finished.
-//                self.scrollToBottom()
-//            })
-//
-//            self.tableView.beginUpdates()
-//            self.tableView.insertRows(at: [indexPathNewForRow], with: .bottom)
-//            self.tableView.endUpdates()
-//
-//            print("------> EditTimerViewController addThisInterval(theButton:) tableView.rows.count AFTER = \(self.getAllRowCount())")
-//
-//            self.isScrollEnabled()
-//
-//            CATransaction.commit()
-//
-//            self.isEditing = true
-//            self.configureNavBar()
-//
-//        })
-//
-//        self.scrollToBottom()
-//        CATransaction.commit()
     }
     
     func editIntervals(){
         //change the label of the edit button and the back button to 'save'
+        if let theFirstAddIntervalsCell = firstAddIntervalsCell() {
+            theFirstAddIntervalsCell.editLabel.text = "Save"
+        }
+
+        if let theSecondAddIntervalsCell = secondAddIntervalsCell() {
+            theSecondAddIntervalsCell.editLabel.text = "Save"
+        }
+        
         tableView.isEditing = !tableView.isEditing
         isEditing = !isEditing
         configureNavBar()
     }
     
+    func saveIntervals(){
+        //change the label of the edit button and the back button to 'save'
+        if let theFirstAddIntervalsCell = firstAddIntervalsCell() {
+            theFirstAddIntervalsCell.editLabel.text = "Edit"
+        }
+        
+        if let theSecondAddIntervalsCell = secondAddIntervalsCell() {
+            theSecondAddIntervalsCell.editLabel.text = "Edit"
+        }
+        
+        tableView.isEditing = !tableView.isEditing
+        isEditing = !isEditing
+        configureNavBar()
+    }
+
     func addInterval(){
         itvSelectedIntervalIndex = nil
         performSegue(withIdentifier: "EditTimerToEditInterval", sender: nil)
     }
     
-    func switched(_ theSwitch: UISwitch){
+    func showWeatherSwitched(_ theSwitch: UISwitch){
         if theSwitch.isOn {
             aesthetics_startLoadingWeather()
             showWeather()

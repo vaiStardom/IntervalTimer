@@ -15,16 +15,11 @@ extension TimersViewController{
         tableView.isEditing = false
         configureNavBar()
 
-        
-//        aesthetics_animateTableLoad()
         print("UserDefaults Retreived Informations:")
         print("Last weather update = \(String(describing: ITVUser.sharedInstance.thisLastWeatherUpdate))")
         print("Kelvin = \(String(describing: ITVUser.sharedInstance.thisCurrentWeather?.thisKelvin!))")
         print("Icon = \(String(describing: ITVUser.sharedInstance.thisCurrentWeather?.thisIcon!))")
         print("Timers = \(String(describing: ITVUser.sharedInstance.thisTimers?.count))")
-    }
-    override func viewDidAppear(_ animated: Bool) {
-//        tableView.reloadData()
     }
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -16,12 +16,17 @@ extension TimersViewController {
         self.navigationItem.leftBarButtonItems = [leftTitleButton]
         
         let addButton = ITVUIBarButtonItem().addButton(target: self, selector: #selector(TimersViewController.addTimer))
-        if !tableView.isEditing {
-            let editButton = ITVUIBarButtonItem().editButton(target: self, selector: #selector(TimersViewController.edit))
-            self.navigationItem.rightBarButtonItems = [addButton, editButton]
+        
+        if dataSourceCount() > 0 {
+            if !tableView.isEditing {
+                let editButton = ITVUIBarButtonItem().editButton(target: self, selector: #selector(TimersViewController.edit))
+                self.navigationItem.rightBarButtonItems = [addButton, editButton]
+            } else {
+                let saveButton = ITVUIBarButtonItem().timersSaveButton(target: self, selector: #selector(TimersViewController.edit))
+                self.navigationItem.rightBarButtonItems = [addButton, saveButton]
+            }
         } else {
-            let saveButton = ITVUIBarButtonItem().timersSaveButton(target: self, selector: #selector(TimersViewController.edit))
-            self.navigationItem.rightBarButtonItems = [addButton, saveButton]
+            self.navigationItem.rightBarButtonItems = [addButton]
         }
     }
 }

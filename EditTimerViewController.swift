@@ -34,6 +34,12 @@ class EditTimerViewController: UIViewController {
     let tableViewIntervalIndexOffset  = 2
     var heightAtIndexPath = NSMutableDictionary()
     
+    //VC sections heights and tableView cell heights
+//    var addIntervalsCellHeight = 79.0
+    var personalHotspotBarNavBar = 88.0
+    var topCellHeight = 171.0
+    var addIntervalsCellHeight = 98.0
+    
     //Collection view controls
     var isInitialCollectionViewLoad = true
     
