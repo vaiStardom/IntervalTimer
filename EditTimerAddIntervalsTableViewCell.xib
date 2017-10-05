@@ -73,7 +73,6 @@
                         <rect key="frame" x="0.0" y="50" width="269" height="48"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="269" id="7hx-JD-zXX"/>
                             <constraint firstAttribute="height" constant="48" id="8qE-AY-oWd"/>
                         </constraints>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="te3-fS-R24">
@@ -129,6 +128,7 @@
                     <constraint firstItem="Tvb-p7-d8D" firstAttribute="top" secondItem="b8O-5V-QEh" secondAttribute="top" id="WAR-mZ-GJS"/>
                     <constraint firstItem="Fzm-b8-WMX" firstAttribute="leading" secondItem="41u-6a-HFD" secondAttribute="leading" constant="1" id="aWk-HK-YvG"/>
                     <constraint firstItem="udL-Bi-kMA" firstAttribute="leading" secondItem="b8O-5V-QEh" secondAttribute="leading" constant="15" id="c77-L2-y2t"/>
+                    <constraint firstItem="41u-6a-HFD" firstAttribute="leading" secondItem="1Mf-tj-Lte" secondAttribute="trailing" constant="5" id="o63-4J-mjl"/>
                     <constraint firstItem="ckH-F6-RFs" firstAttribute="top" secondItem="udL-Bi-kMA" secondAttribute="bottom" constant="9" id="oZN-qH-S0a"/>
                     <constraint firstItem="Fzm-b8-WMX" firstAttribute="top" secondItem="41u-6a-HFD" secondAttribute="top" constant="2" id="qA1-ob-euP"/>
                     <constraint firstItem="b8O-5V-QEh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="quE-97-otE"/>
