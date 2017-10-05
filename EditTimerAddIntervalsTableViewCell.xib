@@ -83,13 +83,6 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                     </collectionView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="41u-6a-HFD">
-                        <rect key="frame" x="274" y="49" width="46" height="49"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="46" id="Xcc-6n-bdb"/>
-                            <constraint firstAttribute="height" constant="49" id="vra-8n-sDX"/>
-                        </constraints>
-                    </button>
                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fzm-b8-WMX">
                         <rect key="frame" x="275" y="51" width="36" height="36"/>
                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="MAF-fY-bmr">
@@ -109,6 +102,13 @@
                             <constraint firstAttribute="width" constant="17.5" id="eOm-yl-46K"/>
                         </constraints>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="41u-6a-HFD">
+                        <rect key="frame" x="274" y="49" width="46" height="49"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="46" id="Xcc-6n-bdb"/>
+                            <constraint firstAttribute="height" constant="49" id="vra-8n-sDX"/>
+                        </constraints>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>

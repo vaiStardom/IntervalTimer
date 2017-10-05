@@ -23,7 +23,7 @@ import UIKit
     }
     func save(){
         print("------> EditTimerViewController save()")
-
+        
         if let theTopCell = topCell() {
             timerName = theTopCell.timerNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
             isShowWeather = theTopCell.showWeatherSwitch.isOn
@@ -61,14 +61,14 @@ import UIKit
         guard let theTimerIndex = itvTimerIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil else {
             return
         }
-
+        
         ITVUser.sharedInstance.thisTimers?.remove(at: theTimerIndex)
         
         dismiss(animated: true, completion: nil)
     }
     
     func addThisInterval(_ theButton: UIButton){
-
+        
         print("------> EditTimerViewController addThisInterval(theButton:) intervals.count BEFORE = \(intervals?.count)")
         print("------> EditTimerViewController addThisInterval(theButton:) tableView.rows.count BEFORE = \(getAllRowCount())")
         guard var theNewIntervals = intervals  else {
@@ -80,86 +80,80 @@ import UIKit
         intervals = theNewIntervals
         
         print("------> EditTimerViewController addThisInterval(theButton:) intervals.count AFTER = \(intervals?.count)")
-//        if itvUnsavedTimersIntervals == nil {
-//            itvUnsavedTimersIntervals = []
-//        }
-//        itvUnsavedTimersIntervals = intervals
-
+        //        if itvUnsavedTimersIntervals == nil {
+        //            itvUnsavedTimersIntervals = []
+        //        }
+        //        itvUnsavedTimersIntervals = intervals
+        
         let newRowIndex = (intervals?.count)! + 1
         let indexPathNewForRow = IndexPath(row: newRowIndex, section: 0)
-
-        print("------> EditTimerViewController addThisInterval(theButton:) newRowIndex = \(newRowIndex)")
-
-            CATransaction.begin()
-            CATransaction.setCompletionBlock({ () -> Void in
-                // This block runs after the animations between CATransaction.begin
-                // and CATransaction.commit are finished.
-
-                self.tableView.scrollToBottom()
-            })
-            
-            tableView.reloadData()
         
-            print("------> EditTimerViewController addThisInterval(theButton:) tableView.rows.count AFTER = \(self.getAllRowCount())")
+        print("------> EditTimerViewController addThisInterval(theButton:) newRowIndex = \(newRowIndex)")
+        
+        CATransaction.begin()
+        CATransaction.setCompletionBlock({ () -> Void in
+            // This block runs after the animations between CATransaction.begin
+            // and CATransaction.commit are finished.
             
-            self.isScrollEnabled()
-            
-            CATransaction.commit()
-            
-            self.isEditing = true
-            self.configureNavBar()
+            self.tableView.scrollToBottom()
+        })
+        
+        tableView.reloadData()
+        
+        print("------> EditTimerViewController addThisInterval(theButton:) tableView.rows.count AFTER = \(self.getAllRowCount())")
+        
+        self.isScrollEnabled()
+        
+        CATransaction.commit()
+        
+        self.isEditing = true
+        self.configureNavBar()
     }
     
-    
-//    if isEditing {
-//    cell.editLabel.text = "Save"
-//    cell.editButton.addTarget(self, action: #selector(EditTimerViewController.saveIntervals), for: .touchUpInside)
-//    } else {
-//    cell.editLabel.text = "Edit"
-//    cell.editButton.addTarget(self, action: #selector(EditTimerViewController.editIntervals), for: .touchUpInside)
-//    }
-
     func editIntervals(){
         
-        if self.isEditing {
+        self.isEditing = !self.isEditing
+        
+        if self.isEditing { //user wants to edit
             if let theFirstAddIntervalsCell = firstAddIntervalsCell() {
                 theFirstAddIntervalsCell.editLabel.text = "Save"
             }
             if let theSecondAddIntervalsCell = secondAddIntervalsCell() {
                 theSecondAddIntervalsCell.editLabel.text = "Save"
             }
-        } else {
+            tableView.isEditing = self.isEditing
+        } else { //user wants to save his edits
             if let theFirstAddIntervalsCell = firstAddIntervalsCell() {
                 theFirstAddIntervalsCell.editLabel.text = "Edit"
             }
             if let theSecondAddIntervalsCell = secondAddIntervalsCell() {
                 theSecondAddIntervalsCell.editLabel.text = "Edit"
             }
+            tableView.isEditing = self.isEditing
+            
+            //scroll to top and reload table
+            CATransaction.begin()
+            CATransaction.setCompletionBlock({ () -> Void in
+                // This block runs after the animations between CATransaction.begin
+                // and CATransaction.commit are finished.
+                
+                self.tableView.scrollToTop()
+            })
+            
+            tableView.reloadData()
+            
+            print("------> EditTimerViewController addThisInterval(theButton:) tableView.rows.count AFTER = \(self.getAllRowCount())")
+            
+            self.isScrollEnabled()
+            
+            CATransaction.commit()
+
         }
         
-        self.isEditing = !self.isEditing
-        tableView.isEditing = self.isEditing
         
         configureNavBar()
     }
     
-//    func saveIntervals(){
-//        //change the label of the edit button and the back button to 'save'
-//        if let theFirstAddIntervalsCell = firstAddIntervalsCell() {
-//            theFirstAddIntervalsCell.editLabel.text = "Edit"
-//            theFirstAddIntervalsCell.editButton.addTarget(self, action: #selector(EditTimerViewController.editIntervals), for: .touchUpInside)
-//        }
-//
-//        if let theSecondAddIntervalsCell = secondAddIntervalsCell() {
-//            theSecondAddIntervalsCell.editLabel.text = "Edit"
-//            theSecondAddIntervalsCell.editButton.addTarget(self, action: #selector(EditTimerViewController.editIntervals), for: .touchUpInside)
-//        }
-//
-//        self.isEditing = !self.isEditing
-//        tableView.isEditing = self.isEditing
-//        configureNavBar()
-//    }
-
     func addInterval(){
         itvSelectedIntervalIndex = nil
         performSegue(withIdentifier: "EditTimerToEditInterval", sender: nil)

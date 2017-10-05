@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EditTimerViewControllerActionsObjc.swift"
-            timestampString = "528866781.831045"
+            timestampString = "528867872.33159"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
             landmarkName = "editIntervals()"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,13 +26,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EditTimerViewControllerActionsObjc.swift"
-            timestampString = "528866781.831138"
+            timestampString = "528867872.331655"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
-            landmarkName = "EditTimerViewController"
-            landmarkType = "21">
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "editIntervals()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
