@@ -55,6 +55,8 @@
                     <constraint firstAttribute="trailing" secondItem="MrF-9H-nzd" secondAttribute="trailing" constant="20" id="yQu-Sq-7Dp"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="tintColor" red="0.25098039215686274" green="0.25098039215686274" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="indicatorImageView" destination="MrF-9H-nzd" id="IFw-c4-GVp"/>
