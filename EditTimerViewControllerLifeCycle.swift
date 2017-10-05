@@ -11,6 +11,10 @@ import UIKit
 
 // MARK: - Life-cycle
 extension EditTimerViewController {
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.isEditing = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

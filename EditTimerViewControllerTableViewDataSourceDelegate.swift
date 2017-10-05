@@ -87,12 +87,15 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.intervalsCollectionView.transform = CGAffineTransform(scaleX: -1, y: 1)
                 
                 cell.editLabel.isHidden = false
+                cell.editButton.removeTarget(nil, action: nil, for: .allEvents)
+                cell.editButton.addTarget(self, action: #selector(EditTimerViewController.editIntervals), for: .touchUpInside)
+
                 if isEditing {
                     cell.editLabel.text = "Save"
-                    cell.editButton.addTarget(self, action: #selector(EditTimerViewController.saveIntervals), for: .touchUpInside)
+//                    cell.editButton.addTarget(self, action: #selector(EditTimerViewController.saveIntervals), for: .touchUpInside)
                 } else {
                     cell.editLabel.text = "Edit"
-                    cell.editButton.addTarget(self, action: #selector(EditTimerViewController.editIntervals), for: .touchUpInside)
+//                    cell.editButton.addTarget(self, action: #selector(EditTimerViewController.editIntervals), for: .touchUpInside)
                 }
                 
                 cell.addIntervalsLabel.isHidden = true
@@ -174,12 +177,14 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
                     cell.intervalsCollectionView.transform = CGAffineTransform(scaleX: -1, y: 1)
                     
                     cell.editLabel.isHidden = false
+                    cell.editButton.removeTarget(nil, action: nil, for: .allEvents)
+                    cell.editButton.addTarget(self, action: #selector(EditTimerViewController.editIntervals), for: .touchUpInside)
                     if isEditing {
                         cell.editLabel.text = "Save"
-                        cell.editButton.addTarget(self, action: #selector(EditTimerViewController.saveIntervals), for: .touchUpInside)
+//                        cell.editButton.addTarget(self, action: #selector(EditTimerViewController.saveIntervals), for: .touchUpInside)
                     } else {
                         cell.editLabel.text = "Edit"
-                        cell.editButton.addTarget(self, action: #selector(EditTimerViewController.editIntervals), for: .touchUpInside)
+//                        cell.editButton.addTarget(self, action: #selector(EditTimerViewController.editIntervals), for: .touchUpInside)
                     }
 
                     cell.addIntervalsLabel.isHidden = true
@@ -197,6 +202,7 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
                     cell.addPresetIntervalImageView.isHidden = true
                     cell.visualEffectView.isHidden = true
                     
+                    cell.editButton.removeTarget(nil, action: nil, for: .allEvents)
                     cell.editButton.addTarget(self, action: #selector(EditTimerViewController.addInterval), for: .touchUpInside)
                 }
                 

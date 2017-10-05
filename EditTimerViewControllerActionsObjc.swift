@@ -110,35 +110,55 @@ import UIKit
             self.configureNavBar()
     }
     
-    func editIntervals(){
-        //change the label of the edit button and the back button to 'save'
-        if let theFirstAddIntervalsCell = firstAddIntervalsCell() {
-            theFirstAddIntervalsCell.editLabel.text = "Save"
-        }
+    
+//    if isEditing {
+//    cell.editLabel.text = "Save"
+//    cell.editButton.addTarget(self, action: #selector(EditTimerViewController.saveIntervals), for: .touchUpInside)
+//    } else {
+//    cell.editLabel.text = "Edit"
+//    cell.editButton.addTarget(self, action: #selector(EditTimerViewController.editIntervals), for: .touchUpInside)
+//    }
 
-        if let theSecondAddIntervalsCell = secondAddIntervalsCell() {
-            theSecondAddIntervalsCell.editLabel.text = "Save"
+    func editIntervals(){
+        
+        if self.isEditing {
+            if let theFirstAddIntervalsCell = firstAddIntervalsCell() {
+                theFirstAddIntervalsCell.editLabel.text = "Save"
+            }
+            if let theSecondAddIntervalsCell = secondAddIntervalsCell() {
+                theSecondAddIntervalsCell.editLabel.text = "Save"
+            }
+        } else {
+            if let theFirstAddIntervalsCell = firstAddIntervalsCell() {
+                theFirstAddIntervalsCell.editLabel.text = "Edit"
+            }
+            if let theSecondAddIntervalsCell = secondAddIntervalsCell() {
+                theSecondAddIntervalsCell.editLabel.text = "Edit"
+            }
         }
         
-        tableView.isEditing = !tableView.isEditing
-        isEditing = !isEditing
+        self.isEditing = !self.isEditing
+        tableView.isEditing = self.isEditing
+        
         configureNavBar()
     }
     
-    func saveIntervals(){
-        //change the label of the edit button and the back button to 'save'
-        if let theFirstAddIntervalsCell = firstAddIntervalsCell() {
-            theFirstAddIntervalsCell.editLabel.text = "Edit"
-        }
-        
-        if let theSecondAddIntervalsCell = secondAddIntervalsCell() {
-            theSecondAddIntervalsCell.editLabel.text = "Edit"
-        }
-        
-        tableView.isEditing = !tableView.isEditing
-        isEditing = !isEditing
-        configureNavBar()
-    }
+//    func saveIntervals(){
+//        //change the label of the edit button and the back button to 'save'
+//        if let theFirstAddIntervalsCell = firstAddIntervalsCell() {
+//            theFirstAddIntervalsCell.editLabel.text = "Edit"
+//            theFirstAddIntervalsCell.editButton.addTarget(self, action: #selector(EditTimerViewController.editIntervals), for: .touchUpInside)
+//        }
+//
+//        if let theSecondAddIntervalsCell = secondAddIntervalsCell() {
+//            theSecondAddIntervalsCell.editLabel.text = "Edit"
+//            theSecondAddIntervalsCell.editButton.addTarget(self, action: #selector(EditTimerViewController.editIntervals), for: .touchUpInside)
+//        }
+//
+//        self.isEditing = !self.isEditing
+//        tableView.isEditing = self.isEditing
+//        configureNavBar()
+//    }
 
     func addInterval(){
         itvSelectedIntervalIndex = nil
