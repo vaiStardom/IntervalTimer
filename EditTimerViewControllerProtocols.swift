@@ -35,9 +35,11 @@ extension EditTimerViewController: ITVEditIntervalProtocol, ITVSwipeToDeleteInte
         tableView.beginUpdates()
         let rowIndex = theIntervalIndex + tableViewIntervalIndexOffset
         let indexPathForRow = IndexPath(row: rowIndex, section: 0)
-        print("------> TimersViewController deleteTimer(atIndex:) indexPathForRow = \(indexPathForRow), count = \(indexPathForRow.count)")
+//        print("------> EditTimerViewController deleteTimer(atIndex:) indexPathForRow = \(indexPathForRow), count = \(indexPathForRow.count)")
         tableView.deleteRows(at: [indexPathForRow], with: .left)
         tableView.endUpdates()
+        
+        tableView.reloadData() //this regenerates te indexes for the rows and intervals to delete
         
         isEditing = true
 //        didEditAnInterval = true

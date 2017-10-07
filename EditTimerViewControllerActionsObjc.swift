@@ -58,13 +58,17 @@ import UIKit
         print("------> Delete Timer")
         //TODO: warning to ask for confirmation for deleting the timer
         
-        guard let theTimerIndex = itvTimerIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil else {
-            return
+        if self.deleteTimerFromTimerViewProtocol != nil {
+            guard let theTimerIndex = itvTimerIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil else {
+                return
+            }
+            
+            ITVUser.sharedInstance.thisTimers?.remove(at: theTimerIndex)
+            
+            self.deleteTimerFromTimerViewProtocol?.didDelete()
+            
+            dismiss(animated: true, completion: nil)
         }
-        
-        ITVUser.sharedInstance.thisTimers?.remove(at: theTimerIndex)
-        
-        dismiss(animated: true, completion: nil)
     }
     
     func addThisInterval(_ theButton: UIButton){

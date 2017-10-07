@@ -20,10 +20,15 @@ class EditTimerViewController: UIViewController {
     var itvTimerIndex: Int?
     var itvUnsavedTimersIntervals: [ITVInterval]? //for when the user creates a new timer with new intervals
     var itvSelectedIntervalIndex: Int?
-    var updateTimersProtocolDelegate: ITVUpdateTimersProtocol?
+    
     var didEditAnInterval = false
     var deleteIntervalOnSwipe = false
   
+    //Protocols
+    var deleteTimerFromTimerViewProtocol: ITVDeleteTimerFromTimerViewProtocol?
+    var updateTimersProtocolDelegate: ITVUpdateTimersProtocol?
+    
+    
     //To save timer info
     var timerName: String?
     var isShowWeather: Bool?

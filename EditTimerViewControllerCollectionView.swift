@@ -31,9 +31,7 @@ extension EditTimerViewController: UICollectionViewDelegate, UICollectionViewDat
         
         cell.addIntervalPresetButton.addTarget(self, action: #selector(EditTimerViewController.addThisInterval(_:)), for: .touchUpInside)
         cell.addIntervalPresetButton.tag = index
-        
-        
-        
+
 //        if isInitialCollectionViewLoad {
 //            cell.transform = CGAffineTransform(scaleX: -1, y: 1)
 //            isInitialCollectionViewLoad = false

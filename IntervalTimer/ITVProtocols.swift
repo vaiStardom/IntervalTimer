@@ -28,3 +28,6 @@ protocol ITVSwipeToDeleteTimerProtocol{
 protocol ITVSwipeToDeleteIntervalProtocol{
     func delete(index: Int?)
 }
+protocol ITVDeleteTimerFromTimerViewProtocol{
+    func didDelete()
+}

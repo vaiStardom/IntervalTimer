@@ -74,4 +74,8 @@ class TimerViewController: UIViewController {
     var visualEffect: UIVisualEffect! //TODO: Do you still need this?
     
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    
+
+    
+
 }

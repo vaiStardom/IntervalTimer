@@ -17,12 +17,9 @@ extension TimerViewController {
                 if let nextVC = navVC.viewControllers.first as? EditTimerViewController {
                     nextVC.itvTimerIndex = itvTimerIndex
                     nextVC.updateTimersProtocolDelegate = self
+                    nextVC.deleteTimerFromTimerViewProtocol = self
                 }
             }
-            //            if let nextVC = segue.destination as? EditTimerViewController {
-            //                nextVC.itvTimerIndex = itvTimerIndex
-            //                nextVC.updateTimersProtocolDelegate = self
-            //            }
         }
         if(segue.identifier == "TimerToEditInterval") {
             if let navVC = segue.destination as? UINavigationController {

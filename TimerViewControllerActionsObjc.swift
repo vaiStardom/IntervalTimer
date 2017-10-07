@@ -10,11 +10,17 @@ import Foundation
 
 @objc extension TimerViewController {
     func back(){
-        if isTimerEdited {
+
             if self.updateTimersProtocolDelegate != nil {
                 self.updateTimersProtocolDelegate?.didUpdateTimers()
             }
-        }
+
+
+//        if isTimerEdited {
+//            if self.updateTimersProtocolDelegate != nil {
+//                self.updateTimersProtocolDelegate?.didUpdateTimers()
+//            }
+//        }
         dismiss(animated: true, completion: nil)
     }
     func edit(){
