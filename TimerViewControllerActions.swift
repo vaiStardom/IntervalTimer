@@ -9,7 +9,7 @@
 import UIKit
 
 //MARK: Actions
-extension TimerViewController{
+extension TimerViewController {
     @IBAction func userWarning(_ sender: UIButton) {
         SHOW_USER_WARNING(type: ITVWarningForUser.sharedInstance.thisUserWarning)
     }
