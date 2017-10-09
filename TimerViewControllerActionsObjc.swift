@@ -10,12 +10,14 @@ import Foundation
 
 @objc extension TimerViewController {
     func back(){
-            if self.updateTimersProtocolDelegate != nil {
-                self.updateTimersProtocolDelegate?.didUpdateTimers()
-            }
+        stopTimer()
+        if self.updateTimersProtocolDelegate != nil {
+            self.updateTimersProtocolDelegate?.didUpdateTimers()
+        }
         dismiss(animated: true, completion: nil)
     }
     func edit(){
+        stopTimer()
         performSegue(withIdentifier: Segues.TimerToEditTimer, sender: nil)
     }
 }

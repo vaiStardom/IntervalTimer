@@ -35,6 +35,7 @@ class ITVDownloadJSON: NSObject {
         self.url = theUrl
     }
     
+    //TODO: test this with the many wifi simulated connexion options in ios11 dev options
     func downloadJSON(_ completion: @escaping JSONDictionaryHandler){
         
         var downloadJSONError: Error?

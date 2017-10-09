@@ -17,8 +17,6 @@ import UIKit
 //TODO: Show warning that airplane mode is on by simply putting that icon where the weather is (no alert)
 class TimerViewController: UIViewController {
     
-//    @IBOutlet weak var visualEffectView: UIVisualEffectView!
-    
     //ImageViews
     @IBOutlet weak var weatherImageView: UIImageView!
     @IBOutlet weak var cancelImageView: UIImageView!
@@ -34,7 +32,6 @@ class TimerViewController: UIViewController {
     @IBOutlet weak var startPauseResumeButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var warningButton: UIButton!
-    @IBOutlet weak var startPauseResumePulseButton: UIButton!
     @IBOutlet weak var userWarningButton: UIButton!
     
     //Title labels
@@ -58,6 +55,16 @@ class TimerViewController: UIViewController {
     
     var intervalsToRun: [ITVInterval] = []
     
+    //Progress view layers
+    var intervalBorderLayer : CAShapeLayer = CAShapeLayer()
+    let intervalProgressLayer : CAShapeLayer = CAShapeLayer()
+    
+    var timerBorderLayer : CAShapeLayer = CAShapeLayer()
+    let timerProgressLayer : CAShapeLayer = CAShapeLayer()
+    
+    var timerProgressViewWidth: CGFloat?
+    var intervalProgressViewWidth: CGFloat?
+    
     var itvTimerIndex: Int?
     var itvIntervalIndex: Int?
     var startIntervalTimer: Bool? = false
@@ -65,7 +72,7 @@ class TimerViewController: UIViewController {
     var totalSeconds = 3602 //temp var, will be replaced by an intervals seconds
     var startTime = TimeInterval()
     var ellapsedSeconds = 0.0
-    var wholeAnimation = 0.0
+//    var wholeAnimation = 0.0
     var toAnimation = 0.0
     
     var isTimerEdited = false
@@ -78,4 +85,7 @@ class TimerViewController: UIViewController {
     var visualEffect: UIVisualEffect! //TODO: Do you still need this?
     
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    
+    var intervalProgressColor: UIColor?
+    
 }

@@ -27,8 +27,8 @@ extension EditIntervalViewController: UITextFieldDelegate {
             hourTextField1.text = dictTextFieldValues[5]
             hourTextField2.text = dictTextFieldValues[6]
             
-            isEditingAnInterval = true
-            configureNavBar()
+//            isEditingAnInterval = true
+//            configureNavBar()
         } else {
             dictTextFieldValues[1] = secondTextField2.text
             dictTextFieldValues[2] = minuteTextField1.text
@@ -44,6 +44,9 @@ extension EditIntervalViewController: UITextFieldDelegate {
             hourTextField1.text = dictTextFieldValues[5]
             hourTextField2.text = dictTextFieldValues[6]
         }
+        isEditingAnInterval = true
+        configureNavBar()
+
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

@@ -7,14 +7,15 @@
 //
 
 import Foundation
+import UIKit
 
 //MARK: Timer functions
 extension TimerViewController{
     func runIntervalTimer(){
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(TimerViewController.updateTime), userInfo: nil, repeats: true)
         
-        ellapsedSeconds = 60.0
-        wholeAnimation = 60.0
+//        ellapsedSeconds = 60.0
+//        wholeAnimation = 60.0
         startTime = Date.timeIntervalSinceReferenceDate + TimeInterval(ellapsedSeconds)
     }
     
@@ -26,20 +27,23 @@ extension TimerViewController{
         toAnimation = Double(elapsedTime)
         
         if elapsedTime >= 0 {
-            
+
             indexOfIntervalToRun += 1
             
             guard let theSeconds = intervalsToRun[indexOfIntervalToRun].thisSeconds else {
-                //timer completed running all it intervals
+                //timer completed running all its intervals
                 timer.invalidate()
                 aesthetics_timerCancel() //this shouls happen at the end of the very last interval
                 return
             }
             
-            wholeAnimation = theSeconds
+//            wholeAnimation = theSeconds
             
             ellapsedSeconds = theSeconds //set timer to the next interval
-//            aesthetics_managePulseIndicator(indicator: intervalsToRun[indexOfIntervalToRun].thisIndicator)
+            startTime = Date.timeIntervalSinceReferenceDate + TimeInterval(ellapsedSeconds)
+            aesthetics_manageIntervalProgress(indicator: intervalsToRun[indexOfIntervalToRun].thisIndicator)
+            intervalProgress(incremented : 0.0)
+            
             configureCollectionView()
             
             //TODO: load next interval into pulse
@@ -80,12 +84,22 @@ extension TimerViewController{
         
         //Minutes labels
         timerMinutesLabel.text = "\(strMinutes):\(strSeconds)"
-        timerMillisecondsForMinutesLabel.text = "\(strMilleseconds)"
+        timerMillisecondsForMinutesLabel.text = ".\(strMilleseconds)"
         
         //Seconds labels
         timerSecondsLabel.text = "\(strSeconds)"
         timerMillisecondsForSecondsLabel.text = ".\(strMilleseconds)"
         
-//        animation_addIndicatorShrink(whole: wholeAnimation, end: abs(toAnimation))
+        let intervalPercentComplete = CGFloat(100.0 - ((abs(toAnimation) * 100.0) / 60.0))
+        let intervalProgressWidthIncrement = intervalProgressViewWidth! * (intervalPercentComplete / 100)
+        intervalProgress(incremented: intervalProgressWidthIncrement)
+        intervalProgressLabel.text = "\(Int(intervalPercentComplete))%"
+
+        print("indexOfIntervalToRun = \(indexOfIntervalToRun), ellapsedSeconds = \(ellapsedSeconds), elapsedTime = \(elapsedTime), abs(toAnimation) = \(abs(toAnimation)) Int(intervalPercentComplete) = \(Int(intervalPercentComplete))")
+    }
+    func stopTimer(){
+        startPauseResume = (true, false, false)
+        timer.invalidate()
+        aesthetics_timerCancel()
     }
 }

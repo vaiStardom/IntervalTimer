@@ -280,6 +280,7 @@ enum Litterals{
     static let TimerNamePlaceholder = "Enter name"
     static let Timers = "Timers:"
     static let Zero = "0"
+    static let ZeroPercent = "0%"
     static let ZeroWidthSpace = "\u{200B}" //ZWSP, a non-printing character
 }
 enum Nibs {
