@@ -12,7 +12,7 @@ import UIKit
 // MARK: Segue management
 extension TimersViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "TimersToTimer") {
+        if(segue.identifier == Segues.TimersToTimer) {
             if let navVC = segue.destination as? UINavigationController {
                 if let nextVC = navVC.viewControllers.first as? TimerViewController {
                     nextVC.itvTimerIndex = itvTimerIndex
@@ -20,27 +20,14 @@ extension TimersViewController {
                     nextVC.updateTimersProtocolDelegate = self
                 }
             }
-
-//            if let nextVC = segue.destination as? TimerViewController {
-//                nextVC.itvTimerIndex = itvTimerIndex
-//                nextVC.startIntervalTimer = startSelectedIntervalTimer
-//            }
         }
-        if(segue.identifier == "TimersToEditTimer") {
+        if(segue.identifier == Segues.TimersToEditTimer) {
             if let navVC = segue.destination as? UINavigationController {
                 if let nextVC = navVC.viewControllers.first as? EditTimerViewController {
                     nextVC.itvTimerIndex = itvTimerIndex
                     nextVC.updateTimersProtocolDelegate = self
                 }
             }
-//            if let nextVC = segue.destination as? EditTimerViewController {
-////                nextVC.itvTimerIndex = itvTimerIndex
-////                nextVC.updateTimersProtocolDelegate = self
-//            }
-//            if let nextVC = segue.destination as? EditTimerViewController_old {
-//                nextVC.itvTimerIndex = itvTimerIndex
-//                nextVC.updateTimersProtocolDelegate = self
-//            }
         }
 
     }

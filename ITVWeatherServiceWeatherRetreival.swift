@@ -106,7 +106,7 @@ extension ITVWeatherService {
             DispatchQueue.main.async(execute: {
                 print("------> IntervalTimerWeatherService getWeatherWith(url:) = \(String(describing: theCurrentWeather.thisKelvin))")
                 ITVUser.sharedInstance.thisCurrentWeather = theCurrentWeather
-                NotificationCenter.default.post(name: Notification.Name(rawValue: "didGetCurrentWeather"), object: nil)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: Notifications.didGetCurrentWeather), object: nil)
             })
         }
         

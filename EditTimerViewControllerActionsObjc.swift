@@ -84,10 +84,6 @@ import UIKit
         intervals = theNewIntervals
         
         print("------> EditTimerViewController addThisInterval(theButton:) intervals.count AFTER = \(intervals?.count)")
-        //        if itvUnsavedTimersIntervals == nil {
-        //            itvUnsavedTimersIntervals = []
-        //        }
-        //        itvUnsavedTimersIntervals = intervals
         
         let newRowIndex = (intervals?.count)! + 1
         let indexPathNewForRow = IndexPath(row: newRowIndex, section: 0)
@@ -120,18 +116,18 @@ import UIKit
         
         if self.isEditing { //user wants to edit
             if let theFirstAddIntervalsCell = firstAddIntervalsCell() {
-                theFirstAddIntervalsCell.editLabel.text = "Save"
+                theFirstAddIntervalsCell.editLabel.text = Litterals.Save
             }
             if let theSecondAddIntervalsCell = secondAddIntervalsCell() {
-                theSecondAddIntervalsCell.editLabel.text = "Save"
+                theSecondAddIntervalsCell.editLabel.text = Litterals.Save
             }
             tableView.isEditing = self.isEditing
         } else { //user wants to save his edits
             if let theFirstAddIntervalsCell = firstAddIntervalsCell() {
-                theFirstAddIntervalsCell.editLabel.text = "Edit"
+                theFirstAddIntervalsCell.editLabel.text = Litterals.Edit
             }
             if let theSecondAddIntervalsCell = secondAddIntervalsCell() {
-                theSecondAddIntervalsCell.editLabel.text = "Edit"
+                theSecondAddIntervalsCell.editLabel.text = Litterals.Edit
             }
             tableView.isEditing = self.isEditing
             
@@ -160,7 +156,7 @@ import UIKit
     
     func addInterval(){
         itvSelectedIntervalIndex = nil
-        performSegue(withIdentifier: "EditTimerToEditInterval", sender: nil)
+        performSegue(withIdentifier: Segues.EditTimerToEditInterval, sender: nil)
     }
     
     func showWeatherSwitched(_ theSwitch: UISwitch){
@@ -174,12 +170,6 @@ import UIKit
             aesthetics_showWeatherDescription()
         }
         didUserModifyTimerTopCell()
-        
-        if theSwitch.isOn {
-            print("------> Switched on")
-        } else {
-            print("------> Switched off")
-        }
     }
     
     func showWarning(){

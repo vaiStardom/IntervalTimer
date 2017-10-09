@@ -17,6 +17,7 @@ struct ITVColors{
     static let Orange = UIColor(red: 1, green: 149.0/255.0, blue: 0, alpha: 1.0)
     static let OrangeAlpha50 = UIColor(red: 1, green: 149.0/255.0, blue: 0, alpha: 0.5)
     static let OrangeProgress = UIColor(red: 250.0/255.0, green: 170.0/255.0, blue: 75.0/255.0, alpha: 1.0)
+    static let TimerProgressViewBackground = UIColor(red: 250.0/255.0, green: 170.0/255.0, blue: 75.0/255.0, alpha: 0.15)
     static let PurpleProgress = UIColor(red: 213.0/255.0, green: 143.0/255.0, blue: 231.0/255.0, alpha: 1.0)
     static let RedProgress = UIColor(red: 247.0/255.0, green: 95.0/255.0, blue: 91.0/255.0, alpha: 1.0)
     static let YellowProgress = UIColor(red: 252.0/255.0, green: 213.0/255.0, blue: 83.0/255.0, alpha: 1.0)

@@ -18,24 +18,20 @@ extension EditTimerViewController: UICollectionViewDelegate, UICollectionViewDat
         
         let index = indexPath.row
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PresetCell", for: indexPath) as! EditTimerIntervalPresetsCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.PresetCell, for: indexPath) as! EditTimerIntervalPresetsCollectionViewCell
         cell.indicatorImageView.backgroundColor = uniqueTimers[index].0.thisIndicator.uiColor()
         cell.indicatorImageView.roundImageView()
         
         if let theSeconds = uniqueTimers[index].0.thisSeconds {
             cell.secondsLabel.text = TIME_OF_HMS(seconds: theSeconds)
         } else {
-            cell.secondsLabel.text = "empty"
+            cell.secondsLabel.text = Litterals.Empty
         }
         cell.secondsLabel.transform = CGAffineTransform(scaleX: -1, y: 1)
         
         cell.addIntervalPresetButton.addTarget(self, action: #selector(EditTimerViewController.addThisInterval(_:)), for: .touchUpInside)
         cell.addIntervalPresetButton.tag = index
 
-//        if isInitialCollectionViewLoad {
-//            cell.transform = CGAffineTransform(scaleX: -1, y: 1)
-//            isInitialCollectionViewLoad = false
-//        }
         return cell
     }
     

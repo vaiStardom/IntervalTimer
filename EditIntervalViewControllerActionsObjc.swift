@@ -12,7 +12,6 @@ import UIKit
 //MARK: - Actions
 @objc extension EditIntervalViewController {
     func cancel(){
-//        _ = navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
     }
     func save(){
@@ -25,7 +24,6 @@ import UIKit
                 //TODO: Warn user the he must enter numbers to create a valid interval
             }
         }
-//        _ = navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
     }
 }

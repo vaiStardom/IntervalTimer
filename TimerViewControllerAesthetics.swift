@@ -63,8 +63,8 @@ extension TimerViewController {
         
         cancelImageView.isHidden = true
         startPauseResumeImageView.isHidden = true
-        backgroudPulseImageView.isHidden = true
-        foregroundPulsImageView.isHidden = true
+//        backgroudPulseImageView.isHidden = true
+//        foregroundPulsImageView.isHidden = true
         timerHoursLabel.isHidden = true
         timerMinutesLabel.isHidden = true
         timerSecondsLabel.isHidden = true
@@ -83,8 +83,8 @@ extension TimerViewController {
         
         cancelImageView.isHidden = false
         startPauseResumeImageView.isHidden = false
-        backgroudPulseImageView.isHidden = false
-        foregroundPulsImageView.isHidden = false
+//        backgroudPulseImageView.isHidden = false
+//        foregroundPulsImageView.isHidden = false
         
         cancelButton.isEnabled = true
         startPauseResumeButton.isEnabled = true
@@ -93,11 +93,13 @@ extension TimerViewController {
     func aesthetics_initial(){
         activityIndicator.color = ITVColors.Orange
         cancelButton.isEnabled = false
-        backgroudPulseImageView.roundImageView()
-        foregroundPulsImageView.roundImageView()
+//        backgroudPulseImageView.roundImageView()
+//        foregroundPulsImageView.roundImageView()
         userWarningImageView.roundImageView()
         
-        backgroudPulseImageView.alpha = 0.5
+//        backgroudPulseImageView.alpha = 0.5
+        
+        timerProgressView.backgroundColor = ITVColors.TimerProgressViewBackground
         
         startPauseResumeButton.isEnabled = true
         startPauseResumePulseButton.isEnabled = true
@@ -110,17 +112,17 @@ extension TimerViewController {
         aesthetics_timerLabels()
         aesthetics_timerLabelsInitialText()
     }
-    func aesthetics_managePulseIndicator(indicator: Indicator?){
-        if let theIndicator = indicator, theIndicator.rawValue < 6 { //indicator is valid and is not "none"
-            backgroudPulseImageView.backgroundColor = theIndicator.uiColor()
-            foregroundPulsImageView.backgroundColor = theIndicator.uiColor()
-            foregroundPulsImageView.layer.borderColor = theIndicator.uiColor().cgColor
-        } else {
-            backgroudPulseImageView.backgroundColor = ITVColors.Orange
-            foregroundPulsImageView.backgroundColor = ITVColors.Orange
-            foregroundPulsImageView.layer.borderColor = ITVColors.Orange.cgColor
-        }
-    }
+//    func aesthetics_managePulseIndicator(indicator: Indicator?){
+//        if let theIndicator = indicator, theIndicator.rawValue < 6 { //indicator is valid and is not "none"
+//            backgroudPulseImageView.backgroundColor = theIndicator.uiColor()
+//            foregroundPulsImageView.backgroundColor = theIndicator.uiColor()
+//            foregroundPulsImageView.layer.borderColor = theIndicator.uiColor().cgColor
+//        } else {
+//            backgroudPulseImageView.backgroundColor = ITVColors.Orange
+//            foregroundPulsImageView.backgroundColor = ITVColors.Orange
+//            foregroundPulsImageView.layer.borderColor = ITVColors.Orange.cgColor
+//        }
+//    }
     
     func aesthetics_minutes(){
         
@@ -161,40 +163,40 @@ extension TimerViewController {
     }
     func aesthetics_timerStart(){
         cancelButton.isEnabled = true
-        startPauseResumeImageView.image = UIImage(named: "pause")
-        cancelImageView.image = UIImage(named: "cancel")
+        startPauseResumeImageView.image = UIImage(named: Images.TimerViewControlPause)
+        cancelImageView.image = UIImage(named: Images.TimerViewControlCancel)
         cancelImageView.isOpaque = false
     }
     func aesthetics_timerPause(){
         cancelButton.isEnabled = true
-        startPauseResumeImageView.image = UIImage(named: "resume")
-        cancelImageView.image = UIImage(named: "cancel")
+        startPauseResumeImageView.image = UIImage(named: Images.TimerViewControlResume)
+        cancelImageView.image = UIImage(named: Images.TimerViewControlCancel)
         cancelImageView.isOpaque = false
     }
     func aesthetics_timerResume(){
         cancelButton.isEnabled = true
-        startPauseResumeImageView.image = UIImage(named: "pause")
-        cancelImageView.image = UIImage(named: "cancel")
+        startPauseResumeImageView.image = UIImage(named: Images.TimerViewControlPause)
+        cancelImageView.image = UIImage(named: Images.TimerViewControlCancel)
     }
     func aesthetics_timerCancel(){
         cancelButton.isEnabled = false
-        startPauseResumeImageView.image = UIImage(named: "start")
-        cancelImageView.image = UIImage(named: "cancel-opaque")
+        startPauseResumeImageView.image = UIImage(named: Images.TimerViewControlStart)
+        cancelImageView.image = UIImage(named: Images.TimerViewControlCancelOpaque)
         cancelImageView.isOpaque = true
         aesthetics_timerLabelsInitialText()
     }
 
     func aesthetics_timerLabelsInitialText(){
         
-        timerHoursLabel.text = "00:00:00"
+        timerHoursLabel.text = Litterals.TimerHoursLabel
         
         //Minutes labels
-        timerMinutesLabel.text = "00:00"
-        timerMillisecondsForMinutesLabel.text = ".00"
+        timerMinutesLabel.text = Litterals.TimerMinutesLabel
+        timerMillisecondsForMinutesLabel.text = Litterals.TimerMillisecondsLabel
         
         //Seconds labels
-        timerSecondsLabel.text = "00"
-        timerMillisecondsForSecondsLabel.text = ".00"
+        timerSecondsLabel.text = Litterals.TimerSecondsLabel
+        timerMillisecondsForSecondsLabel.text = Litterals.TimerMillisecondsLabel
         
     }
     func aesthetics_setFonts(){

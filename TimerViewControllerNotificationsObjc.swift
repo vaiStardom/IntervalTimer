@@ -27,6 +27,6 @@ import Foundation
     }
     func segueToEditInterval(_ notification: Notification){
         print("------> NOTIFICATION didTapOnAddInterval() received")
-        performSegue(withIdentifier: "TimerToEditInterval", sender: nil)
+        performSegue(withIdentifier: Segues.TimerToEditInterval, sender: nil)
     }
 }

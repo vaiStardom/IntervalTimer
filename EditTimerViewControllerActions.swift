@@ -20,7 +20,7 @@ extension EditTimerViewController {
             let cell = tableView.cellForRow(at: indexPath)
             cell?.contentView.backgroundColor = ITVColors.GrayForTableCellSelection
             itvSelectedIntervalIndex = indexPath.row - tableViewIntervalIndexOffset
-            performSegue(withIdentifier: "EditTimerToEditInterval", sender: nil)
+            performSegue(withIdentifier: Segues.EditTimerToEditInterval, sender: nil)
         }
     }
 }

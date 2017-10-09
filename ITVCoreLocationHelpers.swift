@@ -66,7 +66,7 @@ extension ITVCoreLocation{
     func getNewCityName(){
         let group = DispatchGroup()
         print("------> 1 - IntervalTimerCoreLocation getNewCityName() entering group")
-        NotificationCenter.default.addObserver(self, selector: #selector(self.didGetNewCityName(_:)), name:NSNotification.Name(rawValue: "didGetNewCityName"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.didGetNewCityName(_:)), name:NSNotification.Name(rawValue: Notifications.didGetNewCityName), object: nil)
         group.enter()
         DispatchQueue.main.async {
             print("------> 2 - IntervalTimerCoreLocation getNewCityName() starting work")

@@ -59,7 +59,7 @@ extension TimerViewController{
         }
         
         ellapsedSeconds = theSeconds
-        aesthetics_managePulseIndicator(indicator: intervalsToRun[indexOfIntervalToRun].thisIndicator)
+//        aesthetics_managePulseIndicator(indicator: intervalsToRun[indexOfIntervalToRun].thisIndicator)
         
         //TODO: If an interval is zero, but timer total seconds is not, color interval nil
         

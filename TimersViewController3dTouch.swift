@@ -27,7 +27,7 @@ extension TimersViewController: UIViewControllerPreviewingDelegate {
         itvTimerIndex = indexPath.row
         startSelectedIntervalTimer = false
 
-        guard let nextVC = storyboard?.instantiateViewController(withIdentifier: "TimerViewController") as? TimerViewController else {
+        guard let nextVC = storyboard?.instantiateViewController(withIdentifier: Identifiers.TimerViewController) as? TimerViewController else {
             return nil
         }
         

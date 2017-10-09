@@ -11,19 +11,13 @@ import UIKit
 
 //MARK: - CGRects
 enum NavigationBarCgRect{
-    //static let AddImage = CGRect(x: 20, y: 13, width: 17.5, height: 17.5)
     static let AddButton = CGRect(x: 20, y: 0, width: 95, height: 44)
     static let AddImage = CGRect(x: 45, y: 13, width: 17.5, height: 17.5)
-//    static let BackImage = CGRect(x: 0, y: 13, width: 12, height: 21)
-//    static let BackLabel = CGRect(x: 18, y: 14, width: 55, height: 19)
     static let BackLabel = CGRect(x: 25, y: 14, width: 55, height: 19)
     static let Buttons = CGRect(x: 0, y: 0, width: 65, height: 44)
-//    static let CancelButton = CGRect(x: 10, y: 0, width: 95, height: 44)
-//    static let CancelLabel = CGRect(x: 25, y: 14, width: 55, height: 19)
     static let CancelButton = CGRect(x: 10, y: 0, width: 95, height: 44)
     static let CancelLabel = CGRect(x: 15, y: 14, width: 55, height: 19)
     static let Dummy = CGRect(x: 0, y: 0, width: 65, height: 44)
-//    static let EditLabel = CGRect(x: 0, y: 14, width: 30, height: 19)
     static let EditLabel = CGRect(x: 30, y: 14, width: 30, height: 19)
     
     static let iCloudImage = CGRect(x: 0, y: 13, width: 26.0, height: 16.0)
@@ -127,10 +121,17 @@ enum NotificationFont{
     static let TimerName = SystemFont.Regular15
 }
 //MARK: - Image names
-enum NavigationBarImage{
-    static let Add = "barButtonAdd"
-    static let Back = "barButtonBack"
-    static let iCloud = "barButtoniCloud"
+enum Images{
+    static let CloseUserWarning = "close"
+    static let TimersCellStartImage = "start"
+    static let NavigationBarAdd = "barButtonAdd"
+    static let NavigationBarBack = "barButtonBack"
+    static let NavigationBariCloud = "barButtoniCloud"
+    static let TimerViewControlPause = "pause"
+    static let TimerViewControlCancel = "cancel"
+    static let TimerViewControlCancelOpaque = "cancel-opaque"
+    static let TimerViewControlResume = "resume"
+    static let TimerViewControlStart = "start"
 }
 public enum Indicator: Int {
     case Red = 0 //this order has to stay this way...
@@ -172,6 +173,10 @@ enum JsonKeys{
     static let ITVCurrentWeather_main = "main"
     static let ITVCurrentWeather_temp = "temp"
     static let ITVCurrentWeather_weather = "weather"
+}
+enum WeatherDictionaryKey{
+    static let temperature = "temp"
+    static let weatherIcon = "icon"
 }
 
 //MARK: - MapQuest
@@ -219,40 +224,99 @@ enum UserDefaultsKey {
     static let ITVCoreLocation_firstTimeLocationService = "firstTimeLocationService"
     static let ITVCoreLocation_latitude = "latitude"
     static let ITVCoreLocation_longitude = "longitude"
-    
     static let ITVCurrentWeather_icon = "icon"
     static let ITVCurrentWeather_kelvin = "kelvin"
-    
     static let ITVInterval_indicator = "indicator"
     static let ITVInterval_seconds = "seconds"
-    
     static let ITVTimer_name = "name"
     static let ITVTimer_showWeather = "showWeather"
     static let ITVTimer_temperatureUnit = "temperatureUnit"
     static let ITVTimer_intervals = "intervals"
-    
     static let ITVUser_currentWeather = "currentWeather"
     static let ITVUser_lastWeatherUpdate = "lastWeatherUpdate"
     static let ITVUser_timers = "timers"
+}
+//MARK: - Litterals
+enum CsvCleaning {
+    static let newLine = "\n"
+    static let newLineDouble = "\n\n"
+    static let rReturn = "\r"
+}
+enum FileName {
+    static let OpenWeatherCityId = "cityList.20170703"
+}
+enum FileType {
+    static let csv = "csv"
+}
+enum Identifiers {
+    static let AddIntervalCell = "AddIntervalCell"
+    static let DeleteTimerCell = "DeleteTimerCell"
+    static let EditTimerTopCell = "EditTimerTopCell"
+    static let EmptyCell = "EmptyCell"
+    static let IntervalCell = "IntervalCell"
     
+    static let IndicatorCell = "IndicatorCell"
+    static let PresetCell = "PresetCell"
+    static let TimersCell = "TimersCell"
+    static let TimerViewController = "TimerViewController"
     
 }
-//MARK: - View Litterals
 enum Litterals{
     static let Back = "Back"
     static let Cancel = "Cancel"
+    static let Delete = "Delete"
+    static let DeleteTimer = "Delete Timer"
     static let Edit = "Edit"
+    static let Empty = "empty"
+    static let EmptyString = ""
+    static let IntervalAllowedCharacters = "0123456789"
     static let NewTimer = "Timer"
     static let NewInterval = "Interval"
     static let Save = "Save"
+    static let TimerHoursLabel = "00:00:00"
+    static let TimerMinutesLabel = "00:00"
+    static let TimerMillisecondsLabel = ".00"
+    static let TimerSecondsLabel = "00"
     static let TimerNamePlaceholder = "Enter name"
     static let Timers = "Timers:"
+    static let Zero = "0"
+    static let ZeroWidthSpace = "\u{200B}" //ZWSP, a non-printing character
 }
-//MARK: - Weather
+enum Nibs {
+    static let EditTimerAddIntervalsTableViewCell = "EditTimerAddIntervalsTableViewCell"
+    static let EditTimerEmptyTableViewCell = "EditTimerEmptyTableViewCell"
+    static let EditTimerIntervalTableViewCell = "EditTimerIntervalTableViewCell"
+    static let EditTimerTopTableViewCell = "EditTimerTopTableViewCell"
+    static let EditIntervalViewController = "EditIntervalViewController"
+    static let EditTimerDeleteTimerTableViewCell = "EditTimerDeleteTimerTableViewCell"
+    static let EditTimerIntervalPresetsCollectionViewCell = "EditTimerIntervalPresetsCollectionViewCell"
+    static let TimersTableViewCell = "TimersTableViewCell"
+    
+    static let TimerIndicatorCollectionViewCell = "TimerIndicatorCollectionViewCell"
+}
+enum Notifications{
+    static let canAttemptWeatherUpdate = "canAttemptWeatherUpdate"
+    static let didAuthorizeLocationServices = "didAuthorizeLocationServices"
+	static let didGetCurrentWeather = "didGetCurrentWeather"
+    static let didGetNewCityName = "didGetNewCityName"
+    static let errorGettingWeather = "errorGettingWeather"
+    static let segueToEditInterval = "segueToEditInterval"
+}
+enum Segues{
+    static let EditTimerToEditInterval = "EditTimerToEditInterval"
+    static let TimerToTimer = "TimerToTimer"
+    static let TimersToTimer = "TimersToTimer"
+    static let TimersToEditTimer = "TimersToEditTimer"
+    static let TimerToEditTimer = "TimerToEditTimer"
+    static let TimerToEditInterval = "TimerToEditInterval"
+    
+}
 enum OpenWeatherApi {
     static let key = "448af267f0d35a22b6e00178e163deb3"
     static let baseUrl = "http://api.openweathermap.org/data/2.5/weather?"
 }
+
+//MARK: - Weather
 public enum TemperatureUnit: Int { //has to be public for its use as a property of ITVTimer class
     case Kelvin = 0
     case Fahrenheit
@@ -271,10 +335,6 @@ public enum TemperatureUnit: Int { //has to be public for its use as a property 
             return "\(Int(theKelvins - 273.15))\(DEGREE)C"
         }
     }
-}
-enum WeatherDictionaryKey{
-    static let temperature = "temp"
-    static let weatherIcon = "icon"
 }
 enum WeatherQueryPriority: Int {
     case byCityId = 0

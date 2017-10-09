@@ -112,7 +112,7 @@ extension ITVCoreLocation {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if(status == .authorizedAlways || status == .authorizedWhenInUse){
             //Send notification to update the weather
-            NotificationCenter.default.post(name: Notification.Name(rawValue: "didAuthorizeLocationServices"), object: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: Notifications.didAuthorizeLocationServices), object: nil)
         }else {
             //TODO: Maybe design a screen asking the user to please authorize location service for the app
             ITVWarningForUser.sharedInstance.thisUserWarning = UserWarning.LocationServicesDisabled

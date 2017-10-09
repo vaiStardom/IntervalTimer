@@ -79,7 +79,7 @@ class ITVCoreLocation: NSObject, CLLocationManagerDelegate {
             if newValue == true {
                 //Send notificatin that we can update the weather
                 print("------> IntervalTimerCoreLocation thisDidCompleteLocationDetermination was set to true")
-                NotificationCenter.default.post(name: Notification.Name(rawValue: "canAttemptWeatherUpdate"), object: nil)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: Notifications.canAttemptWeatherUpdate), object: nil)
             }
         }
     }

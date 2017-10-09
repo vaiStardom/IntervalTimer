@@ -18,8 +18,7 @@ extension EditTimerViewController {
             return true
         } else {
             return false
-        }
-        
+        }   
     }
 
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {

@@ -29,14 +29,14 @@ func SCREEN_HEIGHT() -> CGFloat {
     return UIScreen.main.bounds.height
 }
 
-//MARK: - Messaging Functions
-func SHOW_MESSAGE(title: String, message: String) {
-    let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-    DispatchQueue.main.async() { () -> Void in
-        UIApplication.topViewController()?.present(alert, animated: true, completion: nil)
-    }
-}
+////MARK: - Messaging Functions
+//func SHOW_MESSAGE(title: String, message: String) {
+//    let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+//    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+//    DispatchQueue.main.async() { () -> Void in
+//        UIApplication.topViewController()?.present(alert, animated: true, completion: nil)
+//    }
+//}
 
 func SHOW_USER_WARNING(type: UserWarning?, with message: String? = nil){
     

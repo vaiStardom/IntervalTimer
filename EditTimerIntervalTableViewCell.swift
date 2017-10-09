@@ -31,7 +31,7 @@ class EditTimerIntervalTableViewCell: UITableViewCell {
         addGestureRecognizer(recognizer)
         
         deleteLabel = ITVUILabel().swipeDeleteLabel()
-        deleteLabel.text = "Delete"
+        deleteLabel.text = Litterals.Delete
         deleteLabel.textAlignment = .left
         
         addSubview(deleteLabel)

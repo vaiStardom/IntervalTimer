@@ -10,25 +10,6 @@ import Foundation
 
 //MARK: Timer functions
 extension TimerViewController{
-    
-//    func runTimer(){
-//        
-//        intervalsToRun
-//    }
-//
-//    func run(interval: ITVInterval){
-//        
-//        guard let theSeconds = interval.thisSeconds else {
-//            return
-//        }
-//        
-//        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(TimerViewController.updateTime), userInfo: nil, repeats: true)
-//        startTime = Date.timeIntervalSinceReferenceDate + TimeInterval(theSeconds)
-//        
-//        aesthetics_managePulseIndicator(indicator: interval.thisIndicator)
-//        aesthetics_Pulse(for: theSeconds)
-//    }
-    
     func runIntervalTimer(){
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(TimerViewController.updateTime), userInfo: nil, repeats: true)
         
@@ -58,7 +39,7 @@ extension TimerViewController{
             wholeAnimation = theSeconds
             
             ellapsedSeconds = theSeconds //set timer to the next interval
-            aesthetics_managePulseIndicator(indicator: intervalsToRun[indexOfIntervalToRun].thisIndicator)
+//            aesthetics_managePulseIndicator(indicator: intervalsToRun[indexOfIntervalToRun].thisIndicator)
             configureCollectionView()
             
             //TODO: load next interval into pulse
@@ -105,6 +86,6 @@ extension TimerViewController{
         timerSecondsLabel.text = "\(strSeconds)"
         timerMillisecondsForSecondsLabel.text = ".\(strMilleseconds)"
         
-        animation_addIndicatorShrink(whole: wholeAnimation, end: abs(toAnimation))
+//        animation_addIndicatorShrink(whole: wholeAnimation, end: abs(toAnimation))
     }
 }

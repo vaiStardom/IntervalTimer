@@ -12,13 +12,13 @@ import UIKit
 @objc extension TimersViewController{
     func addTimer(){
         itvTimerIndex = nil
-        performSegue(withIdentifier: "TimersToEditTimer", sender: nil)
+        performSegue(withIdentifier: Segues.TimersToEditTimer, sender: nil)
         //performSegue(withIdentifier: "TimersToTimer", sender: nil)
     }
     func startTimer(_ sender: UIButton) {
         itvTimerIndex = sender.tag
         startSelectedIntervalTimer = true
-        performSegue(withIdentifier: "TimersToTimer", sender: self)
+        performSegue(withIdentifier: Segues.TimersToTimer, sender: self)
     }
     //TODO: Change label to save when editing
     func edit(){
@@ -27,6 +27,5 @@ import UIKit
     }
     func iCloudSync(){
         print("icloud sync...")
-        
     }
 }

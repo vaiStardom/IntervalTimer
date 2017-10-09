@@ -13,7 +13,6 @@ class TimerIndicatorCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var indicatorImageView: ITVUIImageViewIndicator!
     @IBOutlet weak var indicatorButton: UIButton!
 
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
