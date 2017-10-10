@@ -239,5 +239,9 @@ extension TimerViewController {
         //Seconds labels
         timerSecondsLabel.font = ViewFont.TimerSeconds
         timerMillisecondsForSecondsLabel.font = ViewFont.TimerMilliseconds
+        
+        //progress labels
+        intervalProgressLabel.font = ViewFont.TimerProgress
+        timerProgressLabel.font = ViewFont.TimerProgress
     }
 }
