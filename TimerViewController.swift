@@ -69,9 +69,10 @@ class TimerViewController: UIViewController {
     var itvIntervalIndex: Int?
     var startIntervalTimer: Bool? = false
     var indexOfIntervalToRun = 0
-    var totalSeconds = 3602 //temp var, will be replaced by an intervals seconds
+//    var totalSeconds = 3602 //temp var, will be replaced by an intervals seconds
     var startTime = TimeInterval()
     var ellapsedSeconds = 0.0
+    var intervalTime = 0.0
 //    var wholeAnimation = 0.0
     var toAnimation = 0.0
     

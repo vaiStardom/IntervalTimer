@@ -272,6 +272,7 @@ enum Litterals{
     static let IntervalAllowedCharacters = "0123456789"
     static let NewTimer = "Timer"
     static let NewInterval = "Interval"
+    static let ProgressComplete = "100%"
     static let Save = "Save"
     static let TimerHoursLabel = "00:00:00"
     static let TimerMinutesLabel = "00:00"

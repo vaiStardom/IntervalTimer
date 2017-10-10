@@ -30,16 +30,23 @@ extension TimerViewController{
 
             indexOfIntervalToRun += 1
             
-            guard let theSeconds = intervalsToRun[indexOfIntervalToRun].thisSeconds else {
+            guard indexOfIntervalToRun < intervalsToRun.count else {
                 //timer completed running all its intervals
                 timer.invalidate()
                 aesthetics_timerCancel() //this shouls happen at the end of the very last interval
+                intervalProgressLabel.text = Litterals.ProgressComplete
+                timerProgressLabel.text = Litterals.ProgressComplete
+                return
+            }
+            
+            guard let theSeconds = intervalsToRun[indexOfIntervalToRun].thisSeconds else {
                 return
             }
             
 //            wholeAnimation = theSeconds
             
             ellapsedSeconds = theSeconds //set timer to the next interval
+            intervalTime = theSeconds
             startTime = Date.timeIntervalSinceReferenceDate + TimeInterval(ellapsedSeconds)
             aesthetics_manageIntervalProgress(indicator: intervalsToRun[indexOfIntervalToRun].thisIndicator)
             intervalProgress(incremented : 0.0)
@@ -90,7 +97,7 @@ extension TimerViewController{
         timerSecondsLabel.text = "\(strSeconds)"
         timerMillisecondsForSecondsLabel.text = ".\(strMilleseconds)"
         
-        let intervalPercentComplete = CGFloat(100.0 - ((abs(toAnimation) * 100.0) / 60.0))
+        let intervalPercentComplete = CGFloat(100.0 - ((abs(toAnimation) * 100.0) / intervalTime))
         let intervalProgressWidthIncrement = intervalProgressViewWidth! * (intervalPercentComplete / 100)
         intervalProgress(incremented: intervalProgressWidthIncrement)
         intervalProgressLabel.text = "\(Int(intervalPercentComplete))%"
