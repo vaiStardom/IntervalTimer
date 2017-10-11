@@ -23,42 +23,7 @@ extension TimerViewController{
         startPauseResume = (true, false, false)
         aesthetics_ShowIntervalMissingWarning()
     }
-    func intervalProgressInitialLayer(withColor: CGColor) {
-        let bezierPath = UIBezierPath(roundedRect: intervalProgressView.bounds, cornerRadius: 0)
-        bezierPath.close()
-        intervalBorderLayer.path = bezierPath.cgPath
-        intervalBorderLayer.fillColor = withColor
-        intervalBorderLayer.strokeEnd = 0
-        intervalProgressView.layer.addSublayer(intervalBorderLayer)
-    }
-    func intervalProgress(incremented : CGFloat){
-        if incremented <= intervalProgressView.bounds.width - 10{
-            intervalProgressLayer.removeFromSuperlayer()
-            let bezierPathProg = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: incremented , height: intervalProgressView.bounds.height) , cornerRadius: 0)
-            bezierPathProg.close()
-            intervalProgressLayer.path = bezierPathProg.cgPath
-            intervalProgressLayer.fillColor = intervalProgressColor?.cgColor
-            intervalBorderLayer.addSublayer(intervalProgressLayer)
-        }
-    }
-    func timerProgressInitialLayer(withColor: CGColor) {
-        let bezierPath = UIBezierPath(roundedRect: timerProgressView.bounds, cornerRadius: 0)
-        bezierPath.close()
-        timerBorderLayer.path = bezierPath.cgPath
-        timerBorderLayer.fillColor = withColor
-        timerBorderLayer.strokeEnd = 0
-        timerProgressView.layer.addSublayer(timerBorderLayer)
-    }
-    func timerProgress(incremented : CGFloat){
-        if incremented <= timerProgressView.bounds.width - 10{
-            timerProgressLayer.removeFromSuperlayer()
-            let bezierPathProg = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: incremented , height: timerProgressView.bounds.height) , cornerRadius: 0)
-            bezierPathProg.close()
-            timerProgressLayer.path = bezierPathProg.cgPath
-            timerProgressLayer.fillColor = UIColor.black.cgColor
-            timerBorderLayer.addSublayer(timerProgressLayer)
-        }
-    }
+
     func loadTimer(){
         configureNavBar()
         aesthetics_initial()
@@ -96,8 +61,16 @@ extension TimerViewController{
         
         ellapsedSeconds = theSeconds
         intervalTime = theSeconds
-//        aesthetics_manageIntervalProgress(indicator: intervalsToRun[indexOfIntervalToRun].thisIndicator)
         
+        timerProgressView.backgroundColor = ITVColors.Orange.withAlphaComponent(0.15)
+        intervalProgressView.backgroundColor = intervalsToRun[indexOfIntervalToRun].thisIndicator.uiColor().withAlphaComponent(0.5)
+        intervalForegroundProgressView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: intervalProgressView.bounds.height))
+        intervalForegroundProgressView.backgroundColor = intervalsToRun[indexOfIntervalToRun].thisIndicator.uiColor()
+        intervalProgressView.addSubview(intervalForegroundProgressView)
+
+        
+//        aesthetics_manageIntervalProgress(indicator: intervalsToRun[indexOfIntervalToRun].thisIndicator)
+
         //TODO: If an interval is zero, but timer total seconds is not, color interval nil
         
         //TODO: QoS user interface thread

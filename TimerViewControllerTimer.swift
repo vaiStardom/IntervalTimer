@@ -13,9 +13,6 @@ import UIKit
 extension TimerViewController{
     func runIntervalTimer(){
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(TimerViewController.updateTime), userInfo: nil, repeats: true)
-        
-//        ellapsedSeconds = 60.0
-//        wholeAnimation = 60.0
         startTime = Date.timeIntervalSinceReferenceDate + TimeInterval(ellapsedSeconds)
     }
     
@@ -24,16 +21,18 @@ extension TimerViewController{
         var elapsedTime: TimeInterval = currentTime - startTime
         
         ellapsedSeconds = abs(elapsedTime)
-        toAnimation = Double(elapsedTime)
+        dblEllapsedTime = Double(elapsedTime)
         
         if elapsedTime >= 0 {
 
+            intervalProgress(progress: intervalProgressViewWidth!)
+            
             indexOfIntervalToRun += 1
             
             guard indexOfIntervalToRun < intervalsToRun.count else {
                 //timer completed running all its intervals
                 timer.invalidate()
-                aesthetics_timerCancel() //this shouls happen at the end of the very last interval
+                aesthetics_timerCancel() //this shoulds happen at the end of the very last interval
                 intervalProgressLabel.text = Litterals.ProgressComplete
                 timerProgressLabel.text = Litterals.ProgressComplete
                 return
@@ -43,13 +42,13 @@ extension TimerViewController{
                 return
             }
             
-//            wholeAnimation = theSeconds
-            
+            print("new interval, intervalTime/ellapsedSeconds = \(theSeconds)")
             ellapsedSeconds = theSeconds //set timer to the next interval
             intervalTime = theSeconds
+            dblEllapsedTime = 0.0
+            
             startTime = Date.timeIntervalSinceReferenceDate + TimeInterval(ellapsedSeconds)
             aesthetics_manageIntervalProgress(indicator: intervalsToRun[indexOfIntervalToRun].thisIndicator)
-            intervalProgress(incremented : 0.0)
             
             configureCollectionView()
             
@@ -97,13 +96,19 @@ extension TimerViewController{
         timerSecondsLabel.text = "\(strSeconds)"
         timerMillisecondsForSecondsLabel.text = ".\(strMilleseconds)"
         
-        let intervalPercentComplete = CGFloat(100.0 - ((abs(toAnimation) * 100.0) / intervalTime))
-        let intervalProgressWidthIncrement = intervalProgressViewWidth! * (intervalPercentComplete / 100)
-        intervalProgress(incremented: intervalProgressWidthIncrement)
+        let intervalPercentComplete = CGFloat(100.0 - ((abs(dblEllapsedTime) * 100.0) / intervalTime))
+        let newProgressWidth = intervalProgressViewWidth! * (intervalPercentComplete / 100)
+        intervalProgress(progress: newProgressWidth)
         intervalProgressLabel.text = "\(Int(intervalPercentComplete))%"
 
-        print("indexOfIntervalToRun = \(indexOfIntervalToRun), ellapsedSeconds = \(ellapsedSeconds), elapsedTime = \(elapsedTime), abs(toAnimation) = \(abs(toAnimation)) Int(intervalPercentComplete) = \(Int(intervalPercentComplete))")
+        print("dblEllapsedTime % = \(((abs(dblEllapsedTime) * 100.0) / intervalTime)), newProgressWidth = \(newProgressWidth)")
     }
+    func intervalProgress(progress: CGFloat) {
+        UIView.animate(withDuration: 0.0001, delay: 0.0, options: .curveEaseOut, animations: {
+            self.intervalForegroundProgressView.frame.size = CGSize(width: progress, height: self.intervalProgressView.frame.height)
+        }, completion: nil)
+    }
+
     func stopTimer(){
         startPauseResume = (true, false, false)
         timer.invalidate()

@@ -116,7 +116,7 @@ extension TimerViewController {
         cancelButton.isEnabled = false
         userWarningImageView.roundImageView()
         
-        timerProgressInitialLayer(withColor: ITVColors.Orange.withAlphaComponent(0.15).cgColor)
+        timerProgressView.backgroundColor = ITVColors.Orange.withAlphaComponent(0.15)
         
         timerProgressLabel.text = Litterals.ZeroPercent
         intervalProgressLabel.text = Litterals.ZeroPercent
@@ -131,26 +131,20 @@ extension TimerViewController {
         aesthetics_timerLabelsInitialText()
     }
     func aesthetics_manageIntervalProgress(indicator: Indicator?){
+        var color: UIColor?
         if let theIndicator = indicator, theIndicator.rawValue < 6 { //indicator is valid and is not "none"
-            intervalProgressColor = theIndicator.uiColor()
-            intervalProgressInitialLayer(withColor: (intervalProgressColor?.withAlphaComponent(0.15).cgColor)!)
+            color = theIndicator.uiColor()
         } else {
-            intervalProgressColor = ITVColors.Orange
-            intervalProgressInitialLayer(withColor: (intervalProgressColor?.withAlphaComponent(0.15).cgColor)!)
+            color = ITVColors.Orange
         }
+        
+        intervalProgressView.backgroundColor = color!.withAlphaComponent(0.15)
+        intervalForegroundProgressView.removeFromSuperview()
+        intervalForegroundProgressView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: intervalProgressView.bounds.height))
+        intervalForegroundProgressView.backgroundColor = color!
+        intervalProgressView.addSubview(intervalForegroundProgressView)
     }
-    //    func aesthetics_managePulseIndicator(indicator: Indicator?){
-    //        if let theIndicator = indicator, theIndicator.rawValue < 6 { //indicator is valid and is not "none"
-    //            backgroudPulseImageView.backgroundColor = theIndicator.uiColor()
-    //            foregroundPulsImageView.backgroundColor = theIndicator.uiColor()
-    //            foregroundPulsImageView.layer.borderColor = theIndicator.uiColor().cgColor
-    //        } else {
-    //            backgroudPulseImageView.backgroundColor = ITVColors.Orange
-    //            foregroundPulsImageView.backgroundColor = ITVColors.Orange
-    //            foregroundPulsImageView.layer.borderColor = ITVColors.Orange.cgColor
-    //        }
-    //    }
-    
+
     func aesthetics_minutes(){
         
         timerHoursLabel.isHidden = true
