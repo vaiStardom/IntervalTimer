@@ -23,7 +23,7 @@ extension TimerViewController{
         timerProgressViewWidth = UIScreen.main.bounds.width
         intervalProgressViewWidth = UIScreen.main.bounds.width
         
-        print("intervalProgressViewWidth = \(intervalProgressViewWidth)")
+        print("intervalProgressViewWidth = \(String(describing: intervalProgressViewWidth))")
 
         registerNotifications() //will register at first weather use
         loadTimer()

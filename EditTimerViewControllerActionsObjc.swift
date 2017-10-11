@@ -73,7 +73,7 @@ import UIKit
     
     func addThisInterval(_ theButton: UIButton){
         
-        print("------> EditTimerViewController addThisInterval(theButton:) intervals.count BEFORE = \(intervals?.count)")
+        print("------> EditTimerViewController addThisInterval(theButton:) intervals.count BEFORE = \(String(describing: intervals?.count))")
         print("------> EditTimerViewController addThisInterval(theButton:) tableView.rows.count BEFORE = \(getAllRowCount())")
         guard var theNewIntervals = intervals  else {
             return
@@ -83,10 +83,9 @@ import UIKit
         intervals = []
         intervals = theNewIntervals
         
-        print("------> EditTimerViewController addThisInterval(theButton:) intervals.count AFTER = \(intervals?.count)")
+        print("------> EditTimerViewController addThisInterval(theButton:) intervals.count AFTER = \(String(describing: intervals?.count))")
         
         let newRowIndex = (intervals?.count)! + 1
-        let indexPathNewForRow = IndexPath(row: newRowIndex, section: 0)
         
         print("------> EditTimerViewController addThisInterval(theButton:) newRowIndex = \(newRowIndex)")
         

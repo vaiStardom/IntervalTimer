@@ -114,7 +114,7 @@ extension ITVCoreLocation{
             ITVCsv.sharedInstance.getCityId(cityName: self.thisCityName!, countryCode: self.thisCountryCode!) { (itvCsvErrorHandler) in
                 print("------> 3 - IntervalTimerCoreLocation didGetNewCityName(notification:) work ended")
                 guard itvCsvErrorHandler != nil else {
-                    print("------> 4 - IntervalTimerCoreLocation didGetNewCityName(notification:) error = \(itvCsvErrorHandler)")
+                    print("------> 4 - IntervalTimerCoreLocation didGetNewCityName(notification:) error = \(String(describing: itvCsvErrorHandler))")
                     self.thisError = itvCsvErrorHandler
                     print("------> 5 - IntervalTimerCoreLocation didGetNewCityName(notification:) leaving group because of error")
                     group.leave()
@@ -177,12 +177,6 @@ extension ITVCoreLocation{
                     ITVWarningForUser.sharedInstance.thisUserWarning = UserWarning.NoInternet
                     return false
                 }
-                
-            default:
-                print("Something wrong with Location services")
-                //TODO: New warning screen for this default which should never be executed (something wrong with users device location services...)
-                ITVWarningForUser.sharedInstance.thisUserWarning = UserWarning.LocationServicesDisabled
-                return false
             }
         } else {
             ITVWarningForUser.sharedInstance.thisUserWarning = UserWarning.LocationServicesDisabled

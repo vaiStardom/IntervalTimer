@@ -62,10 +62,17 @@ extension ITVCurrentWeather {
                 }
             }
             
+            
             UTILITY_GLOBAL_DISPATCHQUEUE.async(execute: getWeather_WorkItem)
             
             getWeather_WorkItem.notify(queue: DispatchQueue.main) {
+                
                 print("------> IntervalTimerCurrentWeather getWeatherByPriority() getWeather_WorkItem completed")
+            }
+            
+            //TODO: This is a buggy way of throwing the error, not sure it will ever be thrown since it is assigned async (see above)
+            if errorGettingWeather != nil {
+                throw errorGettingWeather!
             }
         }
     }

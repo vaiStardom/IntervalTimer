@@ -18,7 +18,7 @@ extension EditTimerViewController {
             temperatureUnit = getTemperatureUnit(from: theTopCell.temperatureSegmentedControl)
             isShowWeather = theTopCell.showWeatherSwitch.isOn
             
-            print("------> EditTimerViewController didUserModifyATimer() theTimerName = \(timerName)")
+            print("------> EditTimerViewController didUserModifyATimer() theTimerName = \(String(describing: timerName))")
             
             //First, is this a selected timer?
             if let theTimerIndex = itvTimerIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil {
@@ -64,7 +64,7 @@ extension EditTimerViewController {
                 let theFilteredArray = intervals.filter({ $0.thisSeconds == interval.thisSeconds && $0.thisIndicator == interval.thisIndicator })
                 if theFilteredArray.count > 0 {
                     uniqueTimers.append((interval, theFilteredArray.count))
-                    print("Added interval seconds \(interval.thisSeconds) type \(interval.thisIndicator) appearing \(theFilteredArray.count) times")
+                    print("Added interval seconds \(String(describing: interval.thisSeconds)) type \(interval.thisIndicator) appearing \(theFilteredArray.count) times")
                 }
             }
         }

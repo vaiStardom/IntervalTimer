@@ -47,7 +47,7 @@ extension EditTimerViewController : UITextFieldDelegate, UITextViewDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         timerName = textField.text
-        print("------> EditTimerViewController textFieldShouldReturn(textField:) timerName = \(timerName)")
+        print("------> EditTimerViewController textFieldShouldReturn(textField:) timerName = \(String(describing: timerName))")
 
         if let theTopCell = topCell() {
             theTopCell.timerNameTextField.resignFirstResponder()

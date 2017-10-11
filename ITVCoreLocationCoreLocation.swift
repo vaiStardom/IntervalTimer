@@ -135,7 +135,7 @@ extension ITVCoreLocation {
 
         switch (theError.code) {
         case 0:
-            errorMessage = "Location is currently unknown. Code: \(theError.code). Message: localizedDescription: \(theError.localizedDescription), localizedFailureReason: \(theError.localizedFailureReason), localizedRecoveryOptions: \(theError.localizedRecoveryOptions), localizedRecoverySuggestion: \(theError.localizedRecoverySuggestion)."
+            errorMessage = "Location is currently unknown. Code: \(theError.code). Message: localizedDescription: \(theError.localizedDescription), localizedFailureReason: \(String(describing: theError.localizedFailureReason)), localizedRecoveryOptions: \(String(describing: theError.localizedRecoveryOptions)), localizedRecoverySuggestion: \(String(describing: theError.localizedRecoverySuggestion))."
             
             print("------> ERROR \(errorMessage)")
             SHOW_USER_WARNING(type: UserWarning.LocationManagerDidFail, with: errorMessage)

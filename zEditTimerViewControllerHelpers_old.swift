@@ -17,7 +17,7 @@ extension EditTimerViewController_old {
         let theTemperatureUnit = getTemperatureUnit(from: temperatureSegmentedControl)
         let theShowWeather = showWeatherSwitch.isOn
 
-        print("theTimerName = \(theTimerName)")
+//        print("theTimerName = \(theTimerName)")
         //First, is this a selected timer?
         if let theTimerIndex = itvTimerIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil {
             if let theItvTimer = ITVUser.sharedInstance.thisTimers?[theTimerIndex] {

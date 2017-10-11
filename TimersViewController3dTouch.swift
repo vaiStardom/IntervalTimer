@@ -20,7 +20,7 @@ extension TimersViewController: UIViewControllerPreviewingDelegate {
 
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         
-        guard let indexPath = tableView.indexPathForRow(at: tableView.convert(location, from: view)), let tableViewCell = tableView.cellForRow(at: indexPath) else {
+        guard let indexPath = tableView.indexPathForRow(at: tableView.convert(location, from: view)), let _ = tableView.cellForRow(at: indexPath) else {
             return nil
         }
 

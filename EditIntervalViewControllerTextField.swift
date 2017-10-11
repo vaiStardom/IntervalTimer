@@ -61,7 +61,7 @@ extension EditIntervalViewController: UITextFieldDelegate {
         let previousTag = (textField.tag - 1 == 0 ? 1 : textField.tag - 1)
         var previousResponder = textField.superview?.viewWithTag(previousTag) as? UITextField
         
-        print("------> EditIntervalViewController textField.text = \(textField.text), replacementString = \(string)")
+        print("------> EditIntervalViewController textField.text = \(String(describing: textField.text)), replacementString = \(string)")
         
         if textField.tag == 1 {
             if !string.isEmpty{
