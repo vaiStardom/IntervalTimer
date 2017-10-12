@@ -26,7 +26,7 @@ extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
         if let theTimer = ITVUser.sharedInstance.thisTimers?[index] {
             cell.timerLabel?.text = theTimer.thisName
             
-            cell.totalTimeLabel.text = theTimer.totalTime()
+            cell.totalTimeLabel.text = theTimer.totalTimeHMS()
             
             cell.startTimerImageView.image = UIImage(named: Images.TimersCellStartImage)
             cell.startTimerImageView.layer.borderWidth = 1.0

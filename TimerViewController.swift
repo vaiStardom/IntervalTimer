@@ -57,14 +57,21 @@ class TimerViewController: UIViewController {
     
     //Progress view layers
     var intervalForegroundProgressView: UIView!
+    var timerForegroundProgressView: UIView!
     
     var timerProgressViewWidth: CGFloat?
     var intervalProgressViewWidth: CGFloat?
+    var previousIntervalSeconds: Double = 0.0
+    var numberOfIntervals = 0
+    var timerTotalSeconds = 0.0
+    var timerTotalEllapsedSeconds = 0.0
+    
+    var intervalQuotas: Dictionary<Int, Double> = [:]
     
     var itvTimerIndex: Int?
     var itvIntervalIndex: Int?
     var startIntervalTimer: Bool? = false
-    var indexOfIntervalToRun = 0
+//    var indexOfIntervalToRun = 0
     var startTime = TimeInterval()
     var ellapsedSeconds = 0.0
     var intervalTime = 0.0
