@@ -10,23 +10,6 @@ import Foundation
 
 //MARK: - Time functions
 extension ITVTimer{
-    //This is to show the progress of the entire timer
-    func intervalQuotas() -> Dictionary<Int, Double>? {
-        var intervalQuotas: Dictionary<Int, Double> = [:]
-        
-        if let theIntervals = thisIntervals, theIntervals.count > 0  {
-            guard let theTotalSeconds = self.totalSeconds() else {
-                return nil
-            }
-            
-            for (index, interval) in theIntervals.enumerated() {
-                intervalQuotas[index] = interval.thisSeconds!/theTotalSeconds
-            }
-            return intervalQuotas
-        } else {
-            return nil
-        }
-    }
     func totalTimeHMS() -> String {
 
         var timeLiteral = ""

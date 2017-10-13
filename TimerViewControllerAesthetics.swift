@@ -130,6 +130,7 @@ extension TimerViewController {
         aesthetics_timerCancel()
         aesthetics_timerLabelsInitialText()
     }
+    
     func aesthetics_manageIntervalProgress(indicator: Indicator?){
         var color: UIColor?
         if let theIndicator = indicator, theIndicator.rawValue < 6 { //indicator is valid and is not "none"
@@ -139,10 +140,26 @@ extension TimerViewController {
         }
         
         intervalProgressView.backgroundColor = color!.withAlphaComponent(0.15)
-        intervalForegroundProgressView.removeFromSuperview()
-        intervalForegroundProgressView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: intervalProgressView.bounds.height))
-        intervalForegroundProgressView.backgroundColor = color!
+
+        if intervalForegroundProgressView != nil {
+            intervalForegroundProgressView.removeFromSuperview()
+        }
+        
+        intervalForegroundProgressView = ITVUIViewProgress(frame: CGRect(x: 0, y: 0, width: 1, height: intervalProgressView.bounds.height), progressColor: color!)
         intervalProgressView.addSubview(intervalForegroundProgressView)
+
+    }
+    
+    func aesthetics_manageTimerProgress(){
+        timerProgressView.backgroundColor = ITVColors.Orange.withAlphaComponent(0.15)
+        
+        if timerForegroundProgressView != nil {
+            timerForegroundProgressView.removeFromSuperview()
+        }
+        
+        timerForegroundProgressView = ITVUIViewProgress(frame: CGRect(x: 0, y: 0, width: 1, height: timerProgressView.bounds.height), progressColor: ITVColors.Orange)
+        timerProgressView.addSubview(timerForegroundProgressView)
+
     }
 
     func aesthetics_minutes(){

@@ -63,6 +63,7 @@
 		BA4BFEAF1EFFB8EB00E341DC /* ITVUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4BFEAE1EFFB8EB00E341DC /* ITVUILabel.swift */; };
 		BA4BFEB11EFFC55700E341DC /* EditIntervalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4BFEB01EFFC55700E341DC /* EditIntervalViewController.swift */; };
 		BA4BFEB51EFFD5E400E341DC /* ITVUIImageViewIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4BFEB41EFFD5E400E341DC /* ITVUIImageViewIndicator.swift */; };
+		BA4E9FDE1F905DCE00E09E49 /* ITVUIViewProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4E9FDD1F905DCE00E09E49 /* ITVUIViewProgress.swift */; };
 		BA5D3B3B1F78F43F00430E45 /* ITVWarningMissingIntervalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5D3B3A1F78F43F00430E45 /* ITVWarningMissingIntervalsView.swift */; };
 		BA5D3B3D1F78F47200430E45 /* ITVWarningMissingIntervalsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA5D3B3C1F78F47200430E45 /* ITVWarningMissingIntervalsView.xib */; };
 		BA6D2AC41F63DB04007D29DD /* ITVString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6D2AC31F63DB04007D29DD /* ITVString.swift */; };
@@ -238,6 +239,7 @@
 		BA4BFEAE1EFFB8EB00E341DC /* ITVUILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITVUILabel.swift; sourceTree = "<group>"; };
 		BA4BFEB01EFFC55700E341DC /* EditIntervalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditIntervalViewController.swift; sourceTree = "<group>"; };
 		BA4BFEB41EFFD5E400E341DC /* ITVUIImageViewIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITVUIImageViewIndicator.swift; sourceTree = "<group>"; };
+		BA4E9FDD1F905DCE00E09E49 /* ITVUIViewProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITVUIViewProgress.swift; sourceTree = "<group>"; };
 		BA5D3B3A1F78F43F00430E45 /* ITVWarningMissingIntervalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITVWarningMissingIntervalsView.swift; sourceTree = "<group>"; };
 		BA5D3B3C1F78F47200430E45 /* ITVWarningMissingIntervalsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ITVWarningMissingIntervalsView.xib; sourceTree = "<group>"; };
 		BA6D2AC31F63DB04007D29DD /* ITVString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITVString.swift; sourceTree = "<group>"; };
@@ -376,11 +378,12 @@
 				BA2B280B1F35D35E00823B93 /* ITVUIButton.swift */,
 				BA4BFEB41EFFD5E400E341DC /* ITVUIImageViewIndicator.swift */,
 				BA4BFEAE1EFFB8EB00E341DC /* ITVUILabel.swift */,
+				BA3139171F8496C500DFD42D /* ITVUITableView.swift */,
 				BAA11C4C1F5BFC8A005F3259 /* ITVUIView.swift */,
 				BAB47EBE1F70EF800002EE4E /* ITVUIViewGradient.swift */,
+				BA4E9FDD1F905DCE00E09E49 /* ITVUIViewProgress.swift */,
 				BAED0C381F5ED2B200F9A3FC /* ITVUIViewWarningAlert.swift */,
 				BAED0C401F5FC4EE00F9A3FC /* ITVUserWarningProtocol.swift */,
-				BA3139171F8496C500DFD42D /* ITVUITableView.swift */,
 			);
 			name = "UI Subclasses and Extensions";
 			path = IntervalTimer;
@@ -911,6 +914,7 @@
 				BAC748B91F5FE4DD003F9E31 /* ITVNSObject.swift in Sources */,
 				BA4370291F59261600E144D2 /* ITVCoreLocationHelpers.swift in Sources */,
 				BAC05C7B1F700FC300772962 /* zEditTimerViewController3dTouch_old.swift in Sources */,
+				BA4E9FDE1F905DCE00E09E49 /* ITVUIViewProgress.swift in Sources */,
 				BAA11C4D1F5BFC8A005F3259 /* ITVUIView.swift in Sources */,
 				BAC38F8B1F2EF54400AE0057 /* ITVCity.swift in Sources */,
 				BA77AE831F4943C500AD34BE /* EditIntervalViewControllerActions.swift in Sources */,

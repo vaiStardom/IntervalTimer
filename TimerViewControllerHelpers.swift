@@ -44,17 +44,14 @@ extension TimerViewController{
         //Validate the intervals
         guard let theIntervals = theTimer.thisIntervals
             , let theIntervalCount = theTimer.thisIntervals?.count
-            , theIntervalCount > 0
-            , let theIntervalQuotas = theTimer.intervalQuotas() else {
+            , theIntervalCount > 0 else {
             //TODO: version two ...maybe propose a stop watch when no intervals were added....?
             ITVWarningForUser.sharedInstance.thisUserWarning = UserWarning.MissingIntervals
             timerInvalid()
             return
         }
 
-        intervalQuotas = theIntervalQuotas
         intervalsToRun = theIntervals
-//        indexOfIntervalToRun = 0
         configureCollectionView()
         
         guard let theSeconds = intervalsToRun[0].thisSeconds else {
@@ -64,23 +61,13 @@ extension TimerViewController{
 
         ellapsedSeconds = theSeconds
         intervalTime = theSeconds
-        timerTotalSeconds = theTimer.totalSeconds()! //maybe dont need this
+        timerTotalSeconds = Double(theTimer.totalSeconds()!) //maybe dont need this
         numberOfIntervals = theIntervals.count
-        //get dictionary of intervals and their respective percentage of the whole timer
-        
-        
-        timerProgressView.backgroundColor = ITVColors.Orange.withAlphaComponent(0.15)
-        timerForegroundProgressView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: timerProgressView.bounds.height))
-        timerForegroundProgressView.backgroundColor = ITVColors.Orange
-        timerProgressView.addSubview(timerForegroundProgressView)
 
-        intervalProgressView.backgroundColor = intervalsToRun[0].thisIndicator.uiColor().withAlphaComponent(0.5)
-        intervalForegroundProgressView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: intervalProgressView.bounds.height))
-        intervalForegroundProgressView.backgroundColor = intervalsToRun[0].thisIndicator.uiColor()
-        intervalProgressView.addSubview(intervalForegroundProgressView)
-
+        aesthetics_manageTimerProgress()
+        aesthetics_manageIntervalProgress(indicator: intervalsToRun[0].thisIndicator)
+        
         //TODO: If an interval is zero, but timer total seconds is not, color interval nil
-        
         //TODO: QoS user interface thread
         
         aesthetics_timerLabels()

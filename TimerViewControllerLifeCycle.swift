@@ -28,7 +28,6 @@ extension TimerViewController{
         registerNotifications() //will register at first weather use
         loadTimer()
         loadWeather()
-        
     }
 
     override func didReceiveMemoryWarning() {
