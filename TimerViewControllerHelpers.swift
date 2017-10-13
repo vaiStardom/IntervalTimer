@@ -23,17 +23,18 @@ extension TimerViewController{
         startPauseResume = (true, false, false)
         aesthetics_ShowIntervalMissingWarning()
     }
+
     func loadTimer(){
         configureNavBar()
         aesthetics_initial()
 
         //Validate the timer
-        guard let theTimerIndex = itvTimerIndex , ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil else {
-            timerInvalid()
-            return
-        }
-        
-        guard let theTimer = ITVUser.sharedInstance.thisTimers?[theTimerIndex], !theTimer.totalTime().isEmpty else {
+        guard let theTimerIndex = itvTimerIndex
+            , ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil
+            , let theTimer = ITVUser.sharedInstance.thisTimers?[theTimerIndex]
+            , !theTimer.totalTimeHMS().isEmpty else {
+                //TODO: Handle this error
+                //TODO: Check all gard statements to make sure the errors are well handled
             timerInvalid()
             return
         }
@@ -41,34 +42,39 @@ extension TimerViewController{
         timerNameLabel.text = theTimer.thisName
         
         //Validate the intervals
-        guard let theIntervals = theTimer.thisIntervals, let theIntervalCount = theTimer.thisIntervals?.count, theIntervalCount > 0 else {
+        guard let theIntervals = theTimer.thisIntervals
+            , let theIntervalCount = theTimer.thisIntervals?.count
+            , theIntervalCount > 0 else {
             //TODO: version two ...maybe propose a stop watch when no intervals were added....?
             ITVWarningForUser.sharedInstance.thisUserWarning = UserWarning.MissingIntervals
             timerInvalid()
             return
         }
-        
-//        print("------> TimerViewController loadTimer() VALID TIMER, ")
+
         intervalsToRun = theIntervals
-        indexOfIntervalToRun = 0
         configureCollectionView()
         
-        guard let theSeconds = intervalsToRun[indexOfIntervalToRun].thisSeconds else {
+        guard let theSeconds = intervalsToRun[0].thisSeconds else {
             timerInvalid()
             return
         }
-        
+
         ellapsedSeconds = theSeconds
-        aesthetics_managePulseIndicator(indicator: intervalsToRun[indexOfIntervalToRun].thisIndicator)
+        intervalTime = theSeconds
+        timerTotalSeconds = Double(theTimer.totalSeconds()!) //maybe dont need this
+        numberOfIntervals = theIntervals.count
+
+        aesthetics_manageTimerProgress()
+        aesthetics_manageIntervalProgress(indicator: intervalsToRun[0].thisIndicator)
         
         //TODO: If an interval is zero, but timer total seconds is not, color interval nil
-        
         //TODO: QoS user interface thread
+        
+        aesthetics_timerLabels()
         //does user want to start it immedialy
+        aesthetics_initializeTimeLabels()
         if let theStartIntervalTimer = startIntervalTimer, theStartIntervalTimer {
-            
             //yes
-            
             runIntervalTimer()
             aesthetics_timerStart()
             startPauseResume = (false, true, false)
@@ -84,7 +90,7 @@ extension TimerViewController{
             return
         }
         
-        guard let theTimer = ITVUser.sharedInstance.thisTimers?[theTimerIndex], !theTimer.totalTime().isEmpty else {
+        guard let theTimer = ITVUser.sharedInstance.thisTimers?[theTimerIndex], !theTimer.totalTimeHMS().isEmpty else {
             timerInvalid()
             return
         }

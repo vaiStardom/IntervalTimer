@@ -35,8 +35,9 @@ class EditIntervalViewController: UIViewController  {
     @IBOutlet weak var fifthIndicatorButton: UIButton!
     @IBOutlet weak var sixthIndicatorButton: UIButton!
     
-    let zeroWidthSpace = "\u{200B}" //ZWSP, a non-printing character
-    let allowedChars: String = "0123456789"
+    let zeroWidthSpace = Litterals.ZeroWidthSpace
+//    let allowedChars: String = "0123456789"
+    let allowedChars = Litterals.IntervalAllowedCharacters
     
     var indicators:[(imageView: ITVUIImageViewIndicator, activeFillColor: UIColor, inactiveFillColor: UIColor, borderColor: UIColor, indicator: Indicator)] = []
     var selectedIndicator = false
@@ -45,11 +46,8 @@ class EditIntervalViewController: UIViewController  {
     var textFields: [UITextField] = []
     var editIntervalProtocolDelegate: ITVEditIntervalProtocol?
     
-//    var itvTimerIndex: Int?
-//    var itvIntervalIndex: Int?
     var itvUnsavedTimersIntervals: [ITVInterval]?
     var itvIntervalToEdit: ITVInterval?
     
-    //[TextField.Tag:TextField.Text]
     var dictTextFieldValues: [Int:String] = [0:"", 1:"", 2:"", 3:"", 4:"", 5:""]
 }

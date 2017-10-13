@@ -16,12 +16,20 @@ extension TimerViewController{
         configureCollectionView()
         collectionView.reloadData()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        timerProgressViewWidth = UIScreen.main.bounds.width
+        intervalProgressViewWidth = UIScreen.main.bounds.width
+        
+        print("intervalProgressViewWidth = \(String(describing: intervalProgressViewWidth))")
+
         registerNotifications() //will register at first weather use
         loadTimer()
         loadWeather()
     }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

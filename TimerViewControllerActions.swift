@@ -15,9 +15,7 @@ extension TimerViewController {
     }
 
     @IBAction func cancel(_ sender: UIButton) {
-        startPauseResume = (true, false, false)
-        timer.invalidate()
-        aesthetics_timerCancel()
+        stopTimer()
     }
     
     @IBAction func startPauseResumeTimer(_ sender: Any) {

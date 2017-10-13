@@ -27,8 +27,8 @@ extension EditIntervalViewController: UITextFieldDelegate {
             hourTextField1.text = dictTextFieldValues[5]
             hourTextField2.text = dictTextFieldValues[6]
             
-            isEditingAnInterval = true
-            configureNavBar()
+//            isEditingAnInterval = true
+//            configureNavBar()
         } else {
             dictTextFieldValues[1] = secondTextField2.text
             dictTextFieldValues[2] = minuteTextField1.text
@@ -44,6 +44,9 @@ extension EditIntervalViewController: UITextFieldDelegate {
             hourTextField1.text = dictTextFieldValues[5]
             hourTextField2.text = dictTextFieldValues[6]
         }
+        isEditingAnInterval = true
+        configureNavBar()
+
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -58,7 +61,7 @@ extension EditIntervalViewController: UITextFieldDelegate {
         let previousTag = (textField.tag - 1 == 0 ? 1 : textField.tag - 1)
         var previousResponder = textField.superview?.viewWithTag(previousTag) as? UITextField
         
-        print("------> EditIntervalViewController textField.text = \(textField.text), replacementString = \(string)")
+        print("------> EditIntervalViewController textField.text = \(String(describing: textField.text)), replacementString = \(string)")
         
         if textField.tag == 1 {
             if !string.isEmpty{
@@ -116,52 +119,3 @@ extension EditIntervalViewController: UITextFieldDelegate {
         }
     }
 }
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//
-//        //trim out the invisible sign
-//        let trimmedOutSign = textField.text?.replacingOccurrences(of: zeroWidthSpace, with: "")
-//        let currentText = trimmedOutSign
-//
-//        let nextTag = textField.tag + 1
-//        let nextResponder = textField.superview?.viewWithTag(nextTag) as? UITextField
-//
-//        let previousTag = (textField.tag - 1 == 0 ? 1 : textField.tag - 1)
-//        var previousResponder = textField.superview?.viewWithTag(previousTag) as? UITextField
-//
-//        if ((currentText?.characters.count)! < 1
-//            && string.characters.count > 0
-//            && string.containsOnlyCharactersIn(matchCharacter: allowedChars)){ // User inputs 1 number
-//
-//            textField.text = string
-//            nextResponder?.becomeFirstResponder()
-//
-//            return false
-//
-//        } else if ((currentText?.characters.count)! >= 1
-//            && string.characters.count == 0){ // User deletes the contents
-//
-//            if (previousResponder == nil){ //if we cant find the revious textField, set it to the first text field
-//                previousResponder = textField.superview?.viewWithTag(0) as? UITextField
-//            }
-//
-//            textField.text = zeroWidthSpace
-//            previousResponder?.becomeFirstResponder()
-//            return false
-//
-//        } else if ((currentText?.characters.count)! == 0
-//            && string.characters.count == 0){ // TextField is empty, user backspaces.
-//
-//            textField.text = zeroWidthSpace
-//
-//            if let previousTextField = previousResponder {
-//                previousTextField.text = zeroWidthSpace
-//            }
-//            previousResponder!.becomeFirstResponder()
-//
-//            return false
-//        } else {
-//            textField.text = zeroWidthSpace
-//            return false
-//        }
-//    }
-//}

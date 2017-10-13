@@ -24,7 +24,7 @@ class ITVCsv {
     private init(){}
     
     private func getCityIdFromCsv(file: String, cityName: String, countryCode: String) throws -> Int? {
-        guard let filePath = Bundle.main.path(forResource: file, ofType: "csv") else {
+        guard let filePath = Bundle.main.path(forResource: file, ofType: FileType.csv) else {
             throw ITVError.CSV_ReadError("file \(file) not read")
             //throw CsvError.readError("file \(file) not read")
         }
@@ -85,8 +85,8 @@ class ITVCsv {
     }
     private func cleanRows(file: String) -> String {
         var cleanFile = file
-        cleanFile = cleanFile.replacingOccurrences(of: "\r", with: "\n")
-        cleanFile = cleanFile.replacingOccurrences(of: "\n\n", with: "\n")
+        cleanFile = cleanFile.replacingOccurrences(of: CsvCleaning.rReturn, with: CsvCleaning.newLine)
+        cleanFile = cleanFile.replacingOccurrences(of: CsvCleaning.newLineDouble, with: CsvCleaning.newLine)
         return cleanFile
     }
     
@@ -110,7 +110,7 @@ class ITVCsv {
         
         //Get the city id with placemark locality, then manage via notifications
         do {
-            let theCityId = try self.getCityIdFromCsv(file: "cityList.20170703", cityName: theCityName, countryCode: theCountryCode)
+            let theCityId = try self.getCityIdFromCsv(file: FileName.OpenWeatherCityId, cityName: theCityName, countryCode: theCountryCode)
             if theCityId != nil {
                 DispatchQueue.main.async(execute: {
                     print("------> IntervalTimerCsv getCityId(cityName:countryCode:) setting IntervalTimerCoreLocation.sharedInstance.thisCityId = \(String(describing: theCityId))")

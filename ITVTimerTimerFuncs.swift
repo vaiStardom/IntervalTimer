@@ -10,7 +10,7 @@ import Foundation
 
 //MARK: - Time functions
 extension ITVTimer{
-    func totalTime() -> String {
+    func totalTimeHMS() -> String {
 
         var timeLiteral = ""
         
@@ -59,7 +59,18 @@ extension ITVTimer{
         
         return timeLiteral
     }
-    
+    func totalSeconds() -> Double? {
+        if let theIntervals = thisIntervals, theIntervals.count > 0  {
+            var totalSeconds = 0.0
+            
+            for interval in theIntervals {
+                totalSeconds += interval.thisSeconds!
+            }
+            return totalSeconds
+        } else {
+            return nil
+        }
+    }
     func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
         return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }

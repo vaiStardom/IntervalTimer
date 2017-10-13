@@ -11,15 +11,15 @@ import UIKit
 
 extension TimerViewController {
 
-    func animation_addIndicatorShrink(whole: Double, end: Double) {
-        
-        let differenceInSeconds = end / whole
-
-        print("whole = \(whole), end = \(end), differenceInSeconds = \(differenceInSeconds)")
-        
-        UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseIn, animations: {
-            self.foregroundPulsImageView.transform = CGAffineTransform(scaleX: CGFloat(differenceInSeconds), y: CGFloat(differenceInSeconds))
-        }, completion: nil)
-    }
+//    func animation_addIndicatorShrink(whole: Double, end: Double) {
+//        
+//        let differenceInSeconds = end / whole
+//
+//        print("whole = \(whole), end = \(end), differenceInSeconds = \(differenceInSeconds)")
+//        
+//        UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseIn, animations: {
+//            self.foregroundPulsImageView.transform = CGAffineTransform(scaleX: CGFloat(differenceInSeconds), y: CGFloat(differenceInSeconds))
+//        }, completion: nil)
+//    }
 }
 

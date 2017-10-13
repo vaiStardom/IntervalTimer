@@ -112,7 +112,7 @@ extension ITVCoreLocation {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if(status == .authorizedAlways || status == .authorizedWhenInUse){
             //Send notification to update the weather
-            NotificationCenter.default.post(name: Notification.Name(rawValue: "didAuthorizeLocationServices"), object: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: Notifications.didAuthorizeLocationServices), object: nil)
         }else {
             //TODO: Maybe design a screen asking the user to please authorize location service for the app
             ITVWarningForUser.sharedInstance.thisUserWarning = UserWarning.LocationServicesDisabled
@@ -135,7 +135,7 @@ extension ITVCoreLocation {
 
         switch (theError.code) {
         case 0:
-            errorMessage = "Location is currently unknown. Code: \(theError.code). Message: localizedDescription: \(theError.localizedDescription), localizedFailureReason: \(theError.localizedFailureReason), localizedRecoveryOptions: \(theError.localizedRecoveryOptions), localizedRecoverySuggestion: \(theError.localizedRecoverySuggestion)."
+            errorMessage = "Location is currently unknown. Code: \(theError.code). Message: localizedDescription: \(theError.localizedDescription), localizedFailureReason: \(String(describing: theError.localizedFailureReason)), localizedRecoveryOptions: \(String(describing: theError.localizedRecoveryOptions)), localizedRecoverySuggestion: \(String(describing: theError.localizedRecoverySuggestion))."
             
             print("------> ERROR \(errorMessage)")
             SHOW_USER_WARNING(type: UserWarning.LocationManagerDidFail, with: errorMessage)

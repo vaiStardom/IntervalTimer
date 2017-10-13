@@ -19,6 +19,6 @@ extension TimersViewController {
         
         itvTimerIndex = indexPath.row
         startSelectedIntervalTimer = false
-        performSegue(withIdentifier: "TimersToTimer", sender: nil)
+        performSegue(withIdentifier: Segues.TimersToTimer, sender: nil)
     }
 }

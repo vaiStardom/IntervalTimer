@@ -15,18 +15,45 @@ import UIKit
 //}, completion: nil)
 
 extension TimerViewController {
+    func aesthetics_initializeTimeLabels(){
+        let hours = Int(ellapsedSeconds / 3600.0) % 24
+        
+        //calculate the minutes in ellapsedSeconds.
+        let minutes = Int(ellapsedSeconds / 60.0)
+        
+        //calculate the seconds in ellapsedSeconds.
+        let seconds = Int(ellapsedSeconds)
+        
+        //add the leading zero for minutes, seconds and millseconds and store them as string constants
+        let strHours = String(format: "%02d", abs(hours))
+        let strMinutes = String(format: "%02d", abs(minutes))
+        let strSeconds = String(format: "%02d", abs(seconds))
+        
+        aesthetics_timerLabels()
+        
+        timerHoursLabel.text = "\(strHours):\(strMinutes):\(strSeconds)"
+        
+        //Minutes labels
+        timerMinutesLabel.text = "\(strMinutes):\(strSeconds)"
+        timerMillisecondsForMinutesLabel.text = ".00"
+        
+        //Seconds labels
+        timerSecondsLabel.text = "\(strSeconds)"
+        timerMillisecondsForSecondsLabel.text = ".00"
+    }
+    
     func aesthetics_showMissingWeatherWarning(){
         //TODO: program the alert to show when this button is pressed
         activityIndicatorStop()
         weatherImageView.isHidden = true
         weatherTemperatureLabel.isHidden = true
-
+        
         warningButton.isEnabled = true
         warningImageView.alpha = 0.0
-
+        
         warningButton.isHidden = false
         warningImageView.isHidden = false
-
+        
         UIView.animate(withDuration: 1.5, animations: {
             self.warningImageView.alpha = 1.0
         })
@@ -45,7 +72,7 @@ extension TimerViewController {
         weatherImageView.isHidden = true
         weatherTemperatureLabel.isHidden = true
     }
-
+    
     func aesthetics_timerLabels(){
         if ellapsedSeconds >= 3600.0 {
             aesthetics_hours()
@@ -63,8 +90,6 @@ extension TimerViewController {
         
         cancelImageView.isHidden = true
         startPauseResumeImageView.isHidden = true
-        backgroudPulseImageView.isHidden = true
-        foregroundPulsImageView.isHidden = true
         timerHoursLabel.isHidden = true
         timerMinutesLabel.isHidden = true
         timerSecondsLabel.isHidden = true
@@ -74,7 +99,6 @@ extension TimerViewController {
         
         cancelButton.isEnabled = false
         startPauseResumeButton.isEnabled = false
-        startPauseResumePulseButton.isEnabled = false
     }
     func aesthetics_HideIntervalMissingWarning(){
         userWarningButton.isEnabled = false
@@ -83,45 +107,61 @@ extension TimerViewController {
         
         cancelImageView.isHidden = false
         startPauseResumeImageView.isHidden = false
-        backgroudPulseImageView.isHidden = false
-        foregroundPulsImageView.isHidden = false
         
         cancelButton.isEnabled = true
         startPauseResumeButton.isEnabled = true
-        startPauseResumePulseButton.isEnabled = true
     }
     func aesthetics_initial(){
         activityIndicator.color = ITVColors.Orange
         cancelButton.isEnabled = false
-        backgroudPulseImageView.roundImageView()
-        foregroundPulsImageView.roundImageView()
         userWarningImageView.roundImageView()
         
-        backgroudPulseImageView.alpha = 0.5
+        timerProgressView.backgroundColor = ITVColors.Orange.withAlphaComponent(0.15)
+        
+        timerProgressLabel.text = Litterals.ZeroPercent
+        intervalProgressLabel.text = Litterals.ZeroPercent
         
         startPauseResumeButton.isEnabled = true
-        startPauseResumePulseButton.isEnabled = true
         cancelButton.isEnabled = true
         
         aesthetics_hideMissingWeatherWarning()
         aesthetics_HideIntervalMissingWarning()
         aesthetics_setFonts()
         aesthetics_timerCancel()
-        aesthetics_timerLabels()
         aesthetics_timerLabelsInitialText()
     }
-    func aesthetics_managePulseIndicator(indicator: Indicator?){
+    
+    func aesthetics_manageIntervalProgress(indicator: Indicator?){
+        var color: UIColor?
         if let theIndicator = indicator, theIndicator.rawValue < 6 { //indicator is valid and is not "none"
-            backgroudPulseImageView.backgroundColor = theIndicator.uiColor()
-            foregroundPulsImageView.backgroundColor = theIndicator.uiColor()
-            foregroundPulsImageView.layer.borderColor = theIndicator.uiColor().cgColor
+            color = theIndicator.uiColor()
         } else {
-            backgroudPulseImageView.backgroundColor = ITVColors.Orange
-            foregroundPulsImageView.backgroundColor = ITVColors.Orange
-            foregroundPulsImageView.layer.borderColor = ITVColors.Orange.cgColor
+            color = ITVColors.Orange
         }
+        
+        intervalProgressView.backgroundColor = color!.withAlphaComponent(0.15)
+
+        if intervalForegroundProgressView != nil {
+            intervalForegroundProgressView.removeFromSuperview()
+        }
+        
+        intervalForegroundProgressView = ITVUIViewProgress(frame: CGRect(x: 0, y: 0, width: 1, height: intervalProgressView.bounds.height), progressColor: color!)
+        intervalProgressView.addSubview(intervalForegroundProgressView)
+
     }
     
+    func aesthetics_manageTimerProgress(){
+        timerProgressView.backgroundColor = ITVColors.Orange.withAlphaComponent(0.15)
+        
+        if timerForegroundProgressView != nil {
+            timerForegroundProgressView.removeFromSuperview()
+        }
+        
+        timerForegroundProgressView = ITVUIViewProgress(frame: CGRect(x: 0, y: 0, width: 1, height: timerProgressView.bounds.height), progressColor: ITVColors.Orange)
+        timerProgressView.addSubview(timerForegroundProgressView)
+
+    }
+
     func aesthetics_minutes(){
         
         timerHoursLabel.isHidden = true
@@ -161,40 +201,40 @@ extension TimerViewController {
     }
     func aesthetics_timerStart(){
         cancelButton.isEnabled = true
-        startPauseResumeImageView.image = UIImage(named: "pause")
-        cancelImageView.image = UIImage(named: "cancel")
+        startPauseResumeImageView.image = UIImage(named: Images.TimerViewControlPause)
+        cancelImageView.image = UIImage(named: Images.TimerViewControlCancel)
         cancelImageView.isOpaque = false
     }
     func aesthetics_timerPause(){
         cancelButton.isEnabled = true
-        startPauseResumeImageView.image = UIImage(named: "resume")
-        cancelImageView.image = UIImage(named: "cancel")
+        startPauseResumeImageView.image = UIImage(named: Images.TimerViewControlResume)
+        cancelImageView.image = UIImage(named: Images.TimerViewControlCancel)
         cancelImageView.isOpaque = false
     }
     func aesthetics_timerResume(){
         cancelButton.isEnabled = true
-        startPauseResumeImageView.image = UIImage(named: "pause")
-        cancelImageView.image = UIImage(named: "cancel")
+        startPauseResumeImageView.image = UIImage(named: Images.TimerViewControlPause)
+        cancelImageView.image = UIImage(named: Images.TimerViewControlCancel)
     }
     func aesthetics_timerCancel(){
         cancelButton.isEnabled = false
-        startPauseResumeImageView.image = UIImage(named: "start")
-        cancelImageView.image = UIImage(named: "cancel-opaque")
+        startPauseResumeImageView.image = UIImage(named: Images.TimerViewControlStart)
+        cancelImageView.image = UIImage(named: Images.TimerViewControlCancelOpaque)
         cancelImageView.isOpaque = true
         aesthetics_timerLabelsInitialText()
     }
-
+    
     func aesthetics_timerLabelsInitialText(){
         
-        timerHoursLabel.text = "00:00:00"
+        timerHoursLabel.text = Litterals.TimerHoursLabel
         
         //Minutes labels
-        timerMinutesLabel.text = "00:00"
-        timerMillisecondsForMinutesLabel.text = ".00"
+        timerMinutesLabel.text = Litterals.TimerMinutesLabel
+        timerMillisecondsForMinutesLabel.text = Litterals.TimerMillisecondsLabel
         
         //Seconds labels
-        timerSecondsLabel.text = "00"
-        timerMillisecondsForSecondsLabel.text = ".00"
+        timerSecondsLabel.text = Litterals.TimerSecondsLabel
+        timerMillisecondsForSecondsLabel.text = Litterals.TimerMillisecondsLabel
         
     }
     func aesthetics_setFonts(){
@@ -210,5 +250,9 @@ extension TimerViewController {
         //Seconds labels
         timerSecondsLabel.font = ViewFont.TimerSeconds
         timerMillisecondsForSecondsLabel.font = ViewFont.TimerMilliseconds
+        
+        //progress labels
+        intervalProgressLabel.font = ViewFont.TimerProgress
+        timerProgressLabel.font = ViewFont.TimerProgress
     }
 }

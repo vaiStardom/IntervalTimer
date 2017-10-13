@@ -20,30 +20,6 @@ extension EditIntervalViewController {
         configureNavBar()
     }
 
-//    func compareFieldsWithSavedInterval(){
-//
-//        if let theTimerIndex = itvTimerIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil {
-//            if let theIntervalIndex = itvIntervalIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals?[theIntervalIndex] != nil { //user is editing an interval inside a saved timer
-//                if let theInterval = ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals?[theIntervalIndex] {
-//                    setIfIsEdetingInterval(theInterval)
-//                }
-//            } else { //user is adding an interval to a saved timer
-//                isEditingAnInterval = isTotalSecondsDifferent(nil)
-//            }
-//        } else { //this interval is for an unsaved timer
-//            if let theIntervalIndex = itvIntervalIndex, itvUnsavedTimersIntervals?[theIntervalIndex] != nil {
-//                if let theInterval = itvUnsavedTimersIntervals?[theIntervalIndex] { //user is editing an interval of an unsaved timer
-//                    setIfIsEdetingInterval(theInterval)
-//                } else {
-//                    isEditingAnInterval = isTotalSecondsDifferent(nil)
-//                }
-//            } else { //user is adding an interval to an unsaved timer
-//                isEditingAnInterval = isTotalSecondsDifferent(nil)
-//            }
-//        }
-//        configureNavBar()
-//    }
-    
     func setIfIsEdetingInterval(_ interval: ITVInterval){
         if isTotalSecondsDifferent(interval) || interval.thisIndicator != indicator {
             isEditingAnInterval = true
@@ -101,12 +77,12 @@ extension EditIntervalViewController {
         let minutes = MINUTES_OF(seconds: interval.thisSeconds!)
         let seconds = SECONDS_OF(seconds: interval.thisSeconds!)
         
-        hourTextField2.text = hours.isEmpty ? "" : String(describing: hours.characters.first!)
-        hourTextField1.text = hours.isEmpty ? "" : String(describing: hours.characters.last!)
-        minuteTextField2.text = minutes.isEmpty ? "" : String(describing: minutes.characters.first!)
-        minuteTextField1.text = minutes.isEmpty ? "" : String(describing: minutes.characters.last!)
-        secondTextField2.text = seconds.isEmpty ? "" : String(describing: seconds.characters.first!)
-        secondTextField1.text = seconds.isEmpty ? "" : String(describing: seconds.characters.last!)
+        hourTextField2.text = hours.isEmpty ? Litterals.EmptyString : String(describing: hours.characters.first!)
+        hourTextField1.text = hours.isEmpty ? Litterals.EmptyString : String(describing: hours.characters.last!)
+        minuteTextField2.text = minutes.isEmpty ? Litterals.EmptyString : String(describing: minutes.characters.first!)
+        minuteTextField1.text = minutes.isEmpty ? Litterals.EmptyString : String(describing: minutes.characters.last!)
+        secondTextField2.text = seconds.isEmpty ? Litterals.EmptyString : String(describing: seconds.characters.first!)
+        secondTextField1.text = seconds.isEmpty ? Litterals.EmptyString : String(describing: seconds.characters.last!)
         
         aesthetics_manageSelectedColorIndicator(indicatorIndex: interval.thisIndicator.rawValue)
     }

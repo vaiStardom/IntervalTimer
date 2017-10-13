@@ -20,15 +20,15 @@ extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TimersCell") as! TimersTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Identifiers.TimersCell) as! TimersTableViewCell
         let index = (indexPath as NSIndexPath).row
         
         if let theTimer = ITVUser.sharedInstance.thisTimers?[index] {
             cell.timerLabel?.text = theTimer.thisName
             
-            cell.totalTimeLabel.text = theTimer.totalTime()
+            cell.totalTimeLabel.text = theTimer.totalTimeHMS()
             
-            cell.startTimerImageView.image = UIImage(named: "start")
+            cell.startTimerImageView.image = UIImage(named: Images.TimersCellStartImage)
             cell.startTimerImageView.layer.borderWidth = 1.0
             cell.startTimerImageView.layer.masksToBounds = false
             cell.startTimerImageView.layer.borderColor = ITVColors.Orange.cgColor

@@ -26,7 +26,7 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
         
         //MARK: - Top row
         if index == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "EditTimerTopCell") as! EditTimerTopTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: Identifiers.EditTimerTopCell) as! EditTimerTopTableViewCell
             
             //Cell configuration
             cell.timerNameTextField.delegate = self
@@ -68,7 +68,7 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
         //MARK: - First add interval row
         } else if index == 1 {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "AddIntervalCell") as! EditTimerAddIntervalsTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: Identifiers.AddIntervalCell) as! EditTimerAddIntervalsTableViewCell
             
             //Initial cell aesthetics
             cell.intervalsLabel.isHidden = false
@@ -79,8 +79,8 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
             
             //if the are intervals, then show the collection view and fill the collection view with a filter of indicators
             if dataSourceCount() > 0 {
-                let nibName = UINib(nibName: "EditTimerIntervalPresetsCollectionViewCell", bundle: nil)
-                cell.intervalsCollectionView.register(nibName, forCellWithReuseIdentifier: "PresetCell")
+                let nibName = UINib(nibName: Nibs.EditTimerIntervalPresetsCollectionViewCell, bundle: nil)
+                cell.intervalsCollectionView.register(nibName, forCellWithReuseIdentifier: Identifiers.PresetCell)
                 cell.intervalsCollectionView.delegate = self
                 cell.intervalsCollectionView.dataSource = self
                 cell.intervalsCollectionView.showsHorizontalScrollIndicator = false
@@ -91,9 +91,9 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.editButton.addTarget(self, action: #selector(EditTimerViewController.editIntervals), for: .touchUpInside)
 
                 if isEditing {
-                    cell.editLabel.text = "Save"
+                    cell.editLabel.text = Litterals.Save
                 } else {
-                    cell.editLabel.text = "Edit"
+                    cell.editLabel.text = Litterals.Edit
                 }
                 
                 cell.addIntervalsLabel.isHidden = true
@@ -121,7 +121,7 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
             
         //MARK: - Interval rows
         } else if index >= tableViewIntervalIndexOffset && index < (dataSourceCount() + tableViewIntervalIndexOffset) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "IntervalCell") as! EditTimerIntervalTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: Identifiers.IntervalCell) as! EditTimerIntervalTableViewCell
             let intervalIndex = index - tableViewIntervalIndexOffset
             
             if let theInterval = intervals?[intervalIndex] {
@@ -130,7 +130,7 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
                 if let theSeconds = theInterval.thisSeconds {
                     cell.intervalTimeLabel.text = TIME_OF_00(seconds: theSeconds)
                 } else {
-                    cell.intervalTimeLabel.text = "0"
+                    cell.intervalTimeLabel.text = Litterals.Zero
                 }
                 cell.indicatorImageView.roundImageView()
                 cell.indicatorImageView.backgroundColor = theInterval.thisIndicator.uiColor()
@@ -147,7 +147,7 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
         } else if index == (dataSourceCount() + tableViewIntervalIndexOffset) {
             
             if dataSourceCount() == 0 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyCell") as! EditTimerEmptyTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: Identifiers.EmptyCell) as! EditTimerEmptyTableViewCell
                 
                 //Initial cell aesthetics
                 cell.selectionStyle = .none
@@ -155,7 +155,7 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
                 return cell
             } else {
                 
-                let cell = tableView.dequeueReusableCell(withIdentifier: "AddIntervalCell") as! EditTimerAddIntervalsTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: Identifiers.AddIntervalCell) as! EditTimerAddIntervalsTableViewCell
                 
                 //Initial cell aesthetics
                 cell.intervalsLabel.isHidden = true
@@ -166,8 +166,8 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
                 
                 //if the are intervals, then show the collection view and fill the collection view with a filter of indicators
                 if dataSourceCount() > 0 {
-                    let nibName = UINib(nibName: "EditTimerIntervalPresetsCollectionViewCell", bundle: nil)
-                    cell.intervalsCollectionView.register(nibName, forCellWithReuseIdentifier: "PresetCell")
+                    let nibName = UINib(nibName: Nibs.EditTimerIntervalPresetsCollectionViewCell, bundle: nil)
+                    cell.intervalsCollectionView.register(nibName, forCellWithReuseIdentifier: Identifiers.PresetCell)
                     cell.intervalsCollectionView.delegate = self
                     cell.intervalsCollectionView.dataSource = self
                     cell.intervalsCollectionView.showsHorizontalScrollIndicator = false
@@ -178,9 +178,9 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
                     cell.editButton.addTarget(self, action: #selector(EditTimerViewController.editIntervals), for: .touchUpInside)
                     
                     if isEditing {
-                        cell.editLabel.text = "Save"
+                        cell.editLabel.text = Litterals.Save
                     } else {
-                        cell.editLabel.text = "Edit"
+                        cell.editLabel.text = Litterals.Edit
                     }
                     
                     cell.addIntervalsLabel.isHidden = true
@@ -211,17 +211,17 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
         //MARK: - Delete timer row
         } else if index == (dataSourceCount() + tableViewIntervalIndexOffset + 1) {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DeleteTimerCell") as! EditTimerDeleteTimerTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: Identifiers.DeleteTimerCell) as! EditTimerDeleteTimerTableViewCell
             
             if dataSourceCount() == 0 {
                 cell.deleteTimerButton.addTarget(self, action: #selector(EditTimerViewController.cancel), for: .touchUpInside)
-                cell.deleteTimerLabel.text = "Cancel"
-                deleteLabel.text = "Cancel"
+                cell.deleteTimerLabel.text = Litterals.Cancel
+                deleteLabel.text = Litterals.Cancel
                 deleteButton.addTarget(self, action: #selector(EditTimerViewController.cancel), for: .touchUpInside)
             } else {
                 cell.deleteTimerButton.addTarget(self, action: #selector(EditTimerViewController.deleteTimer), for: .touchUpInside)
-                cell.deleteTimerLabel.text = "Delete Timer"
-                deleteLabel.text = "Delete Timer"
+                cell.deleteTimerLabel.text = Litterals.DeleteTimer
+                deleteLabel.text = Litterals.DeleteTimer
                 deleteButton.addTarget(self, action: #selector(EditTimerViewController.deleteTimer), for: .touchUpInside)
             }
             
@@ -246,7 +246,7 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
         //MARK: - Default row
         } else {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DeleteTimerCell") as! EditTimerDeleteTimerTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: Identifiers.DeleteTimerCell) as! EditTimerDeleteTimerTableViewCell
             cell.deleteTimerButton.isEnabled = false
             cell.deleteTimerLabel.isHidden = true
             

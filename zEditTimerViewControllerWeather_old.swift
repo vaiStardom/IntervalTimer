@@ -39,11 +39,11 @@ extension EditTimerViewController_old {
         weatherActivityIndicator.isHidden = true
     }
     
-    func errorGettingWeather(_ notification: Notification){
+    @objc func errorGettingWeather(_ notification: Notification){
         aesthetics_showMissingWeatherWarning()
     }
     
-    func canAttemptWeatherUpdate(_ notification: Notification){
+    @objc func canAttemptWeatherUpdate(_ notification: Notification){
         print("------> EditTimerViewController canAttemptWeatherUpdate notification received")
         do {
             try ITVCurrentWeather.getWeatherByPriority()
@@ -68,11 +68,11 @@ extension EditTimerViewController_old {
             }
         }
     }
-    func didAuthorizeLocationServices(_ notification: Notification){
+    @objc func didAuthorizeLocationServices(_ notification: Notification){
         aesthetics_hideWarning()
         startSettingWeather()
     }
-    func didGetCurrentWeather(_ notification: Notification){
+    @objc func didGetCurrentWeather(_ notification: Notification){
         print("------> EditTimerViewController didGetCurrentWeather notification received")
         if showWeatherSwitch.isOn {
             updateWeatherInformation()

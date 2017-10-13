@@ -14,14 +14,14 @@ extension TimerViewController: UICollectionViewDataSource, UICollectionViewDeleg
     func configureCollectionView(){
         //TODO: relaod collection view coming back from edit timer
 
-        let nibName = UINib(nibName: "TimerIndicatorCollectionViewCell", bundle: nil)
-        collectionView.register(nibName, forCellWithReuseIdentifier: "IndicatorCell")
+        let nibName = UINib(nibName: Nibs.TimerIndicatorCollectionViewCell, bundle: nil)
+        collectionView.register(nibName, forCellWithReuseIdentifier: Identifiers.IndicatorCell)
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return intervalsToRun.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "IndicatorCell", for: indexPath) as! TimerIndicatorCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.IndicatorCell, for: indexPath) as! TimerIndicatorCollectionViewCell
         
         let index = indexPath.row
         

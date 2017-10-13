@@ -12,7 +12,6 @@ extension ITVUserWarningProtocol where Self: UIView {
         self.backgroundView.alpha = 0.0
         self.dialogView.center = CGPoint(x: self.center.x, y: self.frame.height + self.dialogView.frame.height/2)
         
-//        UIApplication.shared.delegate?.window??.rootViewController?.view.addSubview(self)
         UIApplication.shared.keyWindow?.addSubview(self)
         
         if animated {

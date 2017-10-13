@@ -17,28 +17,29 @@ import UIKit
 //TODO: Show warning that airplane mode is on by simply putting that icon where the weather is (no alert)
 class TimerViewController: UIViewController {
     
-//    @IBOutlet weak var visualEffectView: UIVisualEffectView!
-    
     //ImageViews
     @IBOutlet weak var weatherImageView: UIImageView!
     @IBOutlet weak var cancelImageView: UIImageView!
     @IBOutlet weak var startPauseResumeImageView: UIImageView!
     @IBOutlet weak var warningImageView: UIImageView!
-    @IBOutlet weak var backgroudPulseImageView: ITVUIImageViewIndicator!
-    @IBOutlet weak var foregroundPulsImageView: ITVUIImageViewIndicator!
     @IBOutlet weak var userWarningImageView: ITVUIImageViewIndicator!
+
+    //Progress Views
+    @IBOutlet weak var intervalProgressView: UIView!
+    @IBOutlet weak var timerProgressView: UIView!
     
     //Buttons
     @IBOutlet weak var startPauseResumeButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var warningButton: UIButton!
-    @IBOutlet weak var startPauseResumePulseButton: UIButton!
     @IBOutlet weak var userWarningButton: UIButton!
     
     //Title labels
     @IBOutlet weak var weatherTemperatureLabel: UILabel!
     @IBOutlet weak var timerNameLabel: UILabel!
-
+    @IBOutlet weak var intervalProgressLabel: UILabel!
+    @IBOutlet weak var timerProgressLabel: UILabel!
+    
     //Hours label
     @IBOutlet weak var timerHoursLabel: UILabel!
     
@@ -54,15 +55,24 @@ class TimerViewController: UIViewController {
     
     var intervalsToRun: [ITVInterval] = []
     
+    //Progress view layers
+    var intervalForegroundProgressView: ITVUIViewProgress!
+    var timerForegroundProgressView: ITVUIViewProgress!
+    
+    var timerProgressViewWidth: CGFloat?
+    var intervalProgressViewWidth: CGFloat?
+    var previousIntervalSeconds: Double = 0.0
+    var numberOfIntervals = 0
+    var timerTotalSeconds = 0.0
+    var timerTotalEllapsedSeconds = 0.0
+    
     var itvTimerIndex: Int?
     var itvIntervalIndex: Int?
     var startIntervalTimer: Bool? = false
-    var indexOfIntervalToRun = 0
-    var totalSeconds = 3602 //temp var, will be replaced by an intervals seconds
     var startTime = TimeInterval()
     var ellapsedSeconds = 0.0
-    var wholeAnimation = 0.0
-    var toAnimation = 0.0
+    var intervalTime = 0.0
+    var dblEllapsedTime = 0.0
     
     var isTimerEdited = false
     var updateTimersProtocolDelegate: ITVUpdateTimersProtocol?
@@ -75,7 +85,6 @@ class TimerViewController: UIViewController {
     
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     
-
+    var intervalProgressColor: UIColor?
     
-
 }

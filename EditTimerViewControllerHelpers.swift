@@ -18,7 +18,7 @@ extension EditTimerViewController {
             temperatureUnit = getTemperatureUnit(from: theTopCell.temperatureSegmentedControl)
             isShowWeather = theTopCell.showWeatherSwitch.isOn
             
-            print("------> EditTimerViewController didUserModifyATimer() theTimerName = \(timerName)")
+            print("------> EditTimerViewController didUserModifyATimer() theTimerName = \(String(describing: timerName))")
             
             //First, is this a selected timer?
             if let theTimerIndex = itvTimerIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil {
@@ -64,7 +64,7 @@ extension EditTimerViewController {
                 let theFilteredArray = intervals.filter({ $0.thisSeconds == interval.thisSeconds && $0.thisIndicator == interval.thisIndicator })
                 if theFilteredArray.count > 0 {
                     uniqueTimers.append((interval, theFilteredArray.count))
-                    print("Added interval seconds \(interval.thisSeconds) type \(interval.thisIndicator) appearing \(theFilteredArray.count) times")
+                    print("Added interval seconds \(String(describing: interval.thisSeconds)) type \(interval.thisIndicator) appearing \(theFilteredArray.count) times")
                 }
             }
         }
@@ -106,31 +106,6 @@ extension EditTimerViewController {
             return 0.0
         }
     }
-//    func scrollToBottom(){
-//
-//        let bottomRowIndex = tableView.numberOfRows(inSection: 0) - 1
-//        let bottomRowIndexPath = IndexPath(row: bottomRowIndex, section: 0)
-//
-//        guard (intervals?.count)! > 0 else {
-//            return
-//        }
-//
-//        print("------> EditTimerViewController scrollToBottom(), bottomRowIndexPath = \(bottomRowIndexPath)")
-//
-//        CATransaction.begin()
-//        CATransaction.setCompletionBlock({ () -> Void in
-//            // Now we can scroll to the last row!
-////            self.tableView.scrollToRow(at: bottomRowIndexPath, at: .top, animated: true)
-//            self.tableView.scrollToBottom()
-//        })
-//
-//        // scroll down by 1 point: this causes the newly added cell to be dequeued and rendered.
-//        let contentOffset = self.tableView.contentOffset.y
-//        let newContentOffset = CGPoint(x: 0, y: contentOffset + 1)
-//        self.tableView.setContentOffset(newContentOffset, animated: true)
-//
-//        CATransaction.commit()
-//    }
 
     func isTableViewTallerThanDeleteButton() -> Bool {
         let heightOfTableView = personalHotspotBarNavBar + topCellHeight + heightQuickAddSections() + heightIntervalsSection()

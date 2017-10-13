@@ -36,7 +36,7 @@ extension EditTimerViewController: UIViewControllerPreviewingDelegate {
                 return nil
             }
             
-            guard let nextVC = storyboard?.instantiateViewController(withIdentifier: "EditIntervalViewController") as? EditIntervalViewController else {
+            guard let nextVC = storyboard?.instantiateViewController(withIdentifier: Nibs.EditIntervalViewController) as? EditIntervalViewController else {
                 return nil
             }
             

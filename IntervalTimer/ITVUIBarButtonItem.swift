@@ -11,7 +11,7 @@ class ITVUIBarButtonItem: UIBarButtonItem {
     func addButton(target: UIViewController, selector: Selector) -> UIBarButtonItem {
         
         let imageView = UIImageView(frame:NavigationBarCgRect.AddImage)
-        imageView.image = UIImage(named: NavigationBarImage.Add)
+        imageView.image = UIImage(named: Images.NavigationBarAdd)
         
         let button = ITVUIButton.createButton(frame: NavigationBarCgRect.AddButton, target: target, selector: selector)
         
@@ -24,7 +24,7 @@ class ITVUIBarButtonItem: UIBarButtonItem {
     func iCloudSyncButton(target: UIViewController, selector: Selector) -> UIBarButtonItem {
         
         let imageView = UIImageView(frame:NavigationBarCgRect.iCloudImage)
-        imageView.image = UIImage(named: NavigationBarImage.iCloud)
+        imageView.image = UIImage(named: Images.NavigationBariCloud)
         
         let button = ITVUIButton.createButton(frame: NavigationBarCgRect.Buttons, target: target, selector: selector)
         
@@ -58,15 +58,11 @@ class ITVUIBarButtonItem: UIBarButtonItem {
     }
     func saveButton(target: UIViewController, selector: Selector) -> UIBarButtonItem {
         
-//        let imageView = UIImageView(frame: NavigationBarCgRect.BackImage)
-//        imageView.image = UIImage(named: NavigationBarImage.Back)
-        
         let button = ITVUIButton.createButton(frame: NavigationBarCgRect.Buttons, target: target, selector: selector)
         
         let label = ITVUILabel.createLabel(frame: NavigationBarCgRect.BackLabel, font: NavigationBarFont.LeftRight, text: Litterals.Save, color: ITVColors.Orange)
         
         let view = UIView(frame: NavigationBarCgRect.Dummy)
-//        view.addSubview(imageView)
         view.addSubview(button)
         view.addSubview(label)
         
@@ -110,7 +106,6 @@ class ITVUIBarButtonItem: UIBarButtonItem {
         view.addSubview(button)
         view.addSubview(label)
 
-//        label.center = view.center
         button.center = view.center
 
         return UIBarButtonItem(customView: view)
@@ -126,27 +121,12 @@ class ITVUIBarButtonItem: UIBarButtonItem {
         view.addSubview(button)
         view.addSubview(label)
         
-//        label.center = view.center
         button.center = view.center
         
         return UIBarButtonItem(customView: view)
-
-//        let button = ITVUIButton.createButton(frame: NavigationBarCgRect.CancelButton, target: target, selector: selector)
-//        button.transform = CGAffineTransform(translationX: 0, y: 0)
-//
-//        let label = ITVUILabel.createLabel(frame: NavigationBarCgRect.TimersSaveLabel, font: NavigationBarFont.LeftRight, text: Litterals.Save, color: ITVColors.Orange)
-//
-//        let view = UIView(frame: NavigationBarCgRect.Dummy)
-//        view.addSubview(button)
-//        view.addSubview(label)
-//
-//        button.center = view.center
-//
-//        return UIBarButtonItem(customView: view)
     }
     func rightNegativeSpace() -> UIBarButtonItem {
         let negativeSpace:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
-//        negativeSpace.width = -20.0
         negativeSpace.width = 0.0
         return negativeSpace
     }

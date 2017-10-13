@@ -28,7 +28,6 @@ class EditTimerViewController: UIViewController {
     var deleteTimerFromTimerViewProtocol: ITVDeleteTimerFromTimerViewProtocol?
     var updateTimersProtocolDelegate: ITVUpdateTimersProtocol?
     
-    
     //To save timer info
     var timerName: String?
     var isShowWeather: Bool?
@@ -40,7 +39,6 @@ class EditTimerViewController: UIViewController {
     var heightAtIndexPath = NSMutableDictionary()
     
     //VC sections heights and tableView cell heights
-//    var addIntervalsCellHeight = 79.0
     var personalHotspotBarNavBar = 88.0
     var topCellHeight = 171.0
     var addIntervalsCellHeight = 98.0

@@ -51,7 +51,7 @@ class ITVUIViewWarningAlert: UIView, ITVUserWarningProtocol {
         backgroundView.center = center
         backgroundView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapOnBackgroundView)))
         
-        let dismissWarningImageView = UIImageView(image: UIImage(named: "close"))
+        let dismissWarningImageView = UIImageView(image: UIImage(named: Images.CloseUserWarning))
         let dismissWarningImageViewPosition = CGPoint(x: 15, y: frame.height - 35)
         dismissWarningImageView.frame = CGRect(origin: dismissWarningImageViewPosition, size: Sizes.closeWarningImageView)
         backgroundView.addSubview(dismissWarningImageView)
@@ -73,7 +73,7 @@ class ITVUIViewWarningAlert: UIView, ITVUserWarningProtocol {
         //TODO: why do i post this for every view show??
 //        NotificationCenter.default.post(name: Notification.Name(rawValue: "errorGettingWeather"), object: nil)
         
-        var message = ""
+        var message = Litterals.EmptyString
         var attributedString = NSMutableAttributedString()
         
         switch warningType {
@@ -173,7 +173,7 @@ class ITVUIViewWarningAlert: UIView, ITVUserWarningProtocol {
     }
     @objc func didTapOnAddInterval(){
         //send notification to segue
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "segueToEditInterval"), object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: Notifications.segueToEditInterval), object: nil)
         dismiss(animated: true)
     }
 }

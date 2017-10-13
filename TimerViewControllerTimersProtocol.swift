@@ -21,8 +21,8 @@ extension TimerViewController: ITVUpdateTimersProtocol, ITVEditIntervalProtocol,
 
         if let theTimerIndex = itvTimerIndex {
             if let theTimer = ITVUser.sharedInstance.thisTimers?[theTimerIndex] {
-                if let theIntervalIndex = itvIntervalIndex { //incomplete functionality, implement later
-                    //modify this inerval for this timer
+                if let theIntervalIndex = itvIntervalIndex {
+                    //TODO: incomplete functionality, implement later -> modify this inerval for this timer
                 } else { //the timer had no intervals, fill its intervals with thie interval
                     let intervals: [ITVInterval] = [interval]
                     theTimer.intervals = intervals

@@ -56,16 +56,16 @@ extension EditTimerViewController_old {
         weatherTemperatureLabel.text = temperature
         didUserModifyATimer()
     }
-    func back(){
+    @objc func back(){
         print("------> EditTimerViewController back()")
 //        _ = navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
     }
-    func cancel(){
+    @objc func cancel(){
 //        _ = navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
     }
-    func save(){
+    @objc func save(){
         print("------> EditTimerViewController save()")
         
         if let theTimerName = timerNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !theTimerName.isEmpty  {

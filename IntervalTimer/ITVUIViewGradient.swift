@@ -8,10 +8,8 @@
 
 import UIKit
 
+//TODO: Are you using this?
 @IBDesignable class ITVGradientView: UIView {
-//    @IBInspectable var firstColor: UIColor = UIColor.white
-//    @IBInspectable var secondColor: UIColor = UIColor.black
-    
     @IBInspectable var color1 = UIColor(white: 1.0, alpha: 0.2).cgColor as CGColor
     @IBInspectable var color2 = UIColor(white: 1.0, alpha: 0.1).cgColor as CGColor
     @IBInspectable var color3 = UIColor.clear.cgColor as CGColor
@@ -25,6 +23,5 @@ import UIKit
     override func layoutSubviews() {
         (layer as! CAGradientLayer).colors = [color1, color2, color3, color4]
         (layer as! CAGradientLayer).locations = [0.0, 0.01, 0.95, 1.0]
-//        (layer as! CAGradientLayer).colors = [firstColor.cgColor, secondColor.cgColor]
     }
 }

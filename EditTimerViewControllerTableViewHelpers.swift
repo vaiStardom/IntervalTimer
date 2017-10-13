@@ -16,11 +16,11 @@ extension EditTimerViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 504
         
-        tableView.register(UINib(nibName: "EditTimerAddIntervalsTableViewCell", bundle: nil), forCellReuseIdentifier: "AddIntervalCell")
-        tableView.register(UINib(nibName: "EditTimerDeleteTimerTableViewCell", bundle: nil), forCellReuseIdentifier: "DeleteTimerCell")
-        tableView.register(UINib(nibName: "EditTimerEmptyTableViewCell", bundle: nil), forCellReuseIdentifier: "EmptyCell")
-        tableView.register(UINib(nibName: "EditTimerIntervalTableViewCell", bundle: nil), forCellReuseIdentifier: "IntervalCell")
-        tableView.register(UINib(nibName: "EditTimerTopTableViewCell", bundle: nil), forCellReuseIdentifier: "EditTimerTopCell")
+        tableView.register(UINib(nibName: Nibs.EditTimerAddIntervalsTableViewCell, bundle: nil), forCellReuseIdentifier: Identifiers.AddIntervalCell)
+        tableView.register(UINib(nibName: Nibs.EditTimerDeleteTimerTableViewCell, bundle: nil), forCellReuseIdentifier: Identifiers.DeleteTimerCell)
+        tableView.register(UINib(nibName: Nibs.EditTimerEmptyTableViewCell, bundle: nil), forCellReuseIdentifier: Identifiers.EmptyCell)
+        tableView.register(UINib(nibName: Nibs.EditTimerIntervalTableViewCell, bundle: nil), forCellReuseIdentifier: Identifiers.IntervalCell)
+        tableView.register(UINib(nibName: Nibs.EditTimerTopTableViewCell, bundle: nil), forCellReuseIdentifier: Identifiers.EditTimerTopCell)
     }
 
     func firstAddIntervalsCell() -> EditTimerAddIntervalsTableViewCell? {

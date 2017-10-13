@@ -35,6 +35,7 @@ class ITVDownloadJSON: NSObject {
         self.url = theUrl
     }
     
+    //TODO: test this with the many wifi simulated connexion options in ios11 dev options
     func downloadJSON(_ completion: @escaping JSONDictionaryHandler){
         
         var downloadJSONError: Error?
@@ -57,26 +58,21 @@ class ITVDownloadJSON: NSObject {
                                 
                                 guard JSONSerialization.isValidJSONObject(jsonDictionary) else {
                                     downloadJSONError = ITVError.JSON_Download("JSONSerialization.isValidJSONObject(jsonDictionary) = false")
-//                                    SHOW_MESSAGE(title: "Error processing JSON data", message: "JSONSerialization.isValidJSONObject(jsonDictionary) = false")
-//                                    return
                                     completion(nil, downloadJSONError)
                                     return
                                 }
                                 completion(jsonDictionary as? [String:Any], nil)
                             } catch let error {
                                 print("------> ERROR IntervalTimerNetworkJSON downloadJSON(), desc.: \(error)")
-//                                SHOW_MESSAGE(title: "JSON Error", message: "IntervalTimerNetworkJSON downloadJSON(), 'try JSONSerialization.jsonObject' , desc.: \(error)")
                                 completion(nil, error)
                             }
                         }
                     default:
                         downloadJSONError = ITVError.JSON_Download("IntervalTimerNetworkJSON downloadJSON(), HTTP Response Code: \(httpResponse.statusCode))")
-//                        SHOW_MESSAGE(title: "HTTP Error", message: "IntervalTimerNetworkJSON downloadJSON(), HTTP Response Code: \(httpResponse.statusCode)")
                         completion(nil, downloadJSONError)
                     }
                 }
             } else {
-//                SHOW_MESSAGE(title: "URL Error", message: "IntervalTimerNetworkJSON downloadJSON(), 'session.dataTask', desc.: \(String(describing: error))")
                 completion(nil, error)
             }
         }

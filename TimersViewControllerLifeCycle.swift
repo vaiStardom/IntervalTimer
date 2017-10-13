@@ -30,7 +30,7 @@ extension TimersViewController{
         
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UINib(nibName: "TimersTableViewCell", bundle: nil), forCellReuseIdentifier: "TimersCell")
+        tableView.register(UINib(nibName: Nibs.TimersTableViewCell, bundle: nil), forCellReuseIdentifier: Identifiers.TimersCell)
         configureNavBar()
         aesthetics_animateTableLoad()
     }
