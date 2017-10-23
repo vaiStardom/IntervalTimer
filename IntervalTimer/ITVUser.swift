@@ -10,21 +10,6 @@ import Foundation
 import CoreLocation
 import UIKit
 
-//TODO: Use these guidlines for error handling:
-/*
- Ensure error types are clearly named across your codebase.
- Use optionals where a single error state exists.
- Use custom errors where more than one error state exists.
- Don’t allow an error to propagate too far from its source.
- */
-
-//TODO: Geocoding is a time and resource intensive task, whenever possible, pre-geocode known locations
-//People usually workout in the same place or area. 
-//Start saving coordinates and checking if the coordinates are always whithing the same radius, say 50KM.
-//Your radius will be a geofence of 50 KM radiua, check to see if its possible to query cities whithin a radius.
-//Also check if there is an existing city id in this same radius. 
-//Once a usual radius(area) is determined and that a city id is retreived, we would not need to look in the csv file for the id anymore.
-//Also if there are NO identifialble city ids in this radius, then stop reverse geocoding and only get weather using coordinates
 //TODO: Protect this singletons from concurrency
 class ITVUser: NSObject, NSCoding  {
     
@@ -62,17 +47,17 @@ class ITVUser: NSObject, NSCoding  {
     }
     var thisShouldUpdateWeather: Bool {
         get {
-//            return true
-            if let theHours = HOURS_SINCE(from: thisLastWeatherUpdate, to: Date()){
-                print("------> ITVUser thisShouldUpdateWeather hours since : \(theHours)")
-                if theHours > 1 {
-                    return true
-                } else {
-                    return false
-                }
-            } else {
-                return true
-            }
+            return true
+//            if let theHours = HOURS_SINCE(from: thisLastWeatherUpdate, to: Date()){
+//                print("------> ITVUser thisShouldUpdateWeather hours since : \(theHours)")
+//                if theHours > 1 {
+//                    return true
+//                } else {
+//                    return false
+//                }
+//            } else {
+//                return true
+//            }
         }
     }
     var thisTimers: [ITVTimer]? {

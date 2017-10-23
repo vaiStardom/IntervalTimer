@@ -11,10 +11,6 @@ import Foundation
 //MARK: - Weather retreival management
 extension ITVWeatherService {
     
-    //TODO: Validate each weather retreival priority, by test cases:
-    //case 1: a locality where there is no city id, but a city name and country code weather may be retreived
-    //case 2: a locality where neither the city id, or locality name weather does not work, only coodinates
-    
     //TODO: Controll the number of times we get theweather (since it may cost).
     //The control should be with these steps:
     //Get weather when timer starts.

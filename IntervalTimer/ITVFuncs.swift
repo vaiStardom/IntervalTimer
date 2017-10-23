@@ -65,15 +65,19 @@ func COLORED_VIEW(_ color: UIColor) -> UIView {
 
 //MARK: - Weather Functions
 func GET_WEATHER_FROM_NETWORK(){
+    //Cancel any prior requests
+    ITVCurrentWeather.cancelGetWeather()
+    
     //TODO: call this when user starts a timer
-    print("------> TimerViewController viewDidLoad() requesting Location")
+    print("------> GET_WEATHER_FROM_NETWORK() requesting Location")
     ITVCoreLocation.sharedInstance.requestLocation()
     
-    print("------> TimerViewController viewDidLoad() attempting to set weather")
+    print("------> GET_WEATHER_FROM_NETWORK() attempting to set weather")
     do {
         try ITVCurrentWeather.getWeatherByPriority()
     } catch let error {
-        SHOW_USER_WARNING(type: UserWarning.LocationManagerDidFail, with: "\(error)")
+        ITVWarningForUser.sharedInstance.thisUserWarning = UserWarning.LocationManagerDidFail
+        ITVWarningForUser.sharedInstance.thisMessage = "\(error)"
     }
 }
 

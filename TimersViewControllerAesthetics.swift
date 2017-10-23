@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 extension TimersViewController {
-    //TODO: Only do this animation only when app launches, stop doing it at every view appear
     func aesthetics_animateTableLoad(){
         tableView.reloadData()
         

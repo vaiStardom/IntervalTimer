@@ -56,7 +56,7 @@ import UIKit
     }
     func deleteTimer(){
         print("------> Delete Timer")
-        //TODO: warning to ask for confirmation for deleting the timer
+        //TODO: UI - > warning to ask for confirmation for deleting the timer
         
         if self.deleteTimerFromTimerViewProtocol != nil {
             guard let theTimerIndex = itvTimerIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil else {
@@ -163,7 +163,6 @@ import UIKit
             aesthetics_startLoadingWeather()
             showWeather()
         } else {
-            //TODO: if switched OFF and weather has not finished loading, then cancel weather loading (cancel network calls)
             activityIndicatorStop()
             aesthetics_hideWeatherViews()
             aesthetics_showWeatherDescription()

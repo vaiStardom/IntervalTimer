@@ -28,5 +28,4 @@ class EditTimerViewController_old: UIViewController {
     var itvUnsavedTimersIntervals: [ITVInterval]? //for when the user creates a new timer with new intervals
     var itvIntervalIndex: Int?
     var updateTimersProtocolDelegate: ITVUpdateTimersProtocol?
-    //TODO: get kelvin out of the possible choices, no one uses kalvins, stick with the two other options
 }

@@ -31,4 +31,3 @@ let ICON_DICTIONARY: [String: String] = [
 ]
 
 let UTILITY_GLOBAL_DISPATCHQUEUE = DispatchQueue.global(qos: .utility)
-

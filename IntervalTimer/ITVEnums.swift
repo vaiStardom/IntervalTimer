@@ -36,6 +36,13 @@ enum CsvControls{
     static let LineSeperator: String = "\n"
 }
 //MARK: - Errors
+//Use these guidlines for error handling:
+/*
+ Ensure error types are clearly named across your codebase.
+ Use optionals where a single error state exists.
+ Use custom errors where more than one error state exists.
+ Don’t allow an error to propagate too far from its source.
+ */
 enum ITVError: Error {
     case CSV_ReadError(String)
     case CSV_Missing(String)
@@ -313,7 +320,6 @@ enum Segues{
     static let TimersToEditTimer = "TimersToEditTimer"
     static let TimerToEditTimer = "TimerToEditTimer"
     static let TimerToEditInterval = "TimerToEditInterval"
-    
 }
 enum OpenWeatherApi {
     static let key = "448af267f0d35a22b6e00178e163deb3"
@@ -322,8 +328,7 @@ enum OpenWeatherApi {
 
 //MARK: - Weather
 public enum TemperatureUnit: Int { //has to be public for its use as a property of ITVTimer class
-    case Kelvin = 0
-    case Fahrenheit
+    case Fahrenheit = 0
     case Celcius
     
     func temperature(kelvins: Double?) -> String? {
@@ -331,8 +336,6 @@ public enum TemperatureUnit: Int { //has to be public for its use as a property 
             return nil
         }
         switch self {
-        case .Kelvin :
-            return "\(Int(theKelvins))K"
         case .Fahrenheit:
             return "\(Int((theKelvins*(9/5)) - 459.67))\(DEGREE)F"
         case .Celcius:

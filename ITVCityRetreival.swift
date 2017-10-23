@@ -15,7 +15,7 @@ extension ITVCity{
         
         var errorMessage: Error?
         
-        print("------> IntervalTimerCity getCityAlternativeInfoByCoordinates()")
+        print("\(Date())------> IntervalTimerCity getCityAlternativeInfoByCoordinates()")
         guard let theLatitude = ITVCoreLocation.sharedInstance.thisLatitude else {
             print("------> IntervalTimerCity getCityAlternativeInfoByCoordinates() GetCityIdError.latitudeIsNil")
             errorMessage = ITVError.GetCityId_LatitudeIsNil(reason: "Latitude is nil")

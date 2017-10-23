@@ -13,6 +13,8 @@ extension TimerViewController{
     func setWeatherFromNetwork(){
         activityIndicatorStart()
         GET_WEATHER_FROM_NETWORK()
+        getWeatherDeadlineTimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(TimerViewController.cancelGetWeather), userInfo: nil, repeats: false)
+        print("------> TimerViewController getWeatherDeadlineTimer set")
     }
     func updateWeatherInformation(){
         activityIndicatorStop()
@@ -46,7 +48,7 @@ extension TimerViewController{
         weatherTemperatureLabel.text = theTemperature
         weatherImageView.image = theImage
         
-        UIView.animate(withDuration: 1.5, animations: {
+        UIView.animate(withDuration: 0.5, animations: {
             self.weatherImageView.alpha = 1.0
             self.weatherTemperatureLabel.alpha = 1.0
         })

@@ -37,20 +37,19 @@ func showUserWarning(type: UserWarning?, with message: String? = nil){
 
 }
 
-//MARK: - Weather Functions
-func getWeatherFromNetwork(){
-    //TODO: call this when user starts a timer
-    //IntervalTimerUser.sharedInstance.startUpdatingLocationManager()
-    print("------> TimerViewController viewDidLoad() requesting Location")
-    ITVCoreLocation.sharedInstance.requestLocation()
-    
-    print("------> TimerViewController viewDidLoad() attempting to set weather")
-    do {
-        try ITVCurrentWeather.getWeatherByPriority()
-    } catch let error {
-        showUserWarning(type: UserWarning.LocationManagerDidFail, with: "\(error)")
-    }
-}
+////MARK: - Weather Functions
+//func getWeatherFromNetwork(){
+//    //IntervalTimerUser.sharedInstance.startUpdatingLocationManager()
+//    print("------> TimerViewController viewDidLoad() requesting Location")
+//    ITVCoreLocation.sharedInstance.requestLocation()
+//
+//    print("------> TimerViewController viewDidLoad() attempting to set weather")
+//    do {
+//        try ITVCurrentWeather.getWeatherByPriority()
+//    } catch let error {
+//        showUserWarning(type: UserWarning.LocationManagerDidFail, with: "\(error)")
+//    }
+//}
 
 //MARK: - Date Functions
 func hoursSince(from: Date?, to: Date?) -> Int? {

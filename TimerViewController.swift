@@ -13,8 +13,6 @@
 import UIKit
 
 //TODO: Leave the request location access here.
-//Since it is here the user first indicates the need for it by switching the weather on.
-//TODO: Show warning that airplane mode is on by simply putting that icon where the weather is (no alert)
 class TimerViewController: UIViewController {
     
     //ImageViews
@@ -37,8 +35,6 @@ class TimerViewController: UIViewController {
     //Title labels
     @IBOutlet weak var weatherTemperatureLabel: UILabel!
     @IBOutlet weak var timerNameLabel: UILabel!
-    @IBOutlet weak var intervalProgressLabel: UILabel!
-    @IBOutlet weak var timerProgressLabel: UILabel!
     
     //Hours label
     @IBOutlet weak var timerHoursLabel: UILabel!
@@ -52,39 +48,39 @@ class TimerViewController: UIViewController {
     @IBOutlet weak var timerMillisecondsForSecondsLabel: UILabel!
 
     @IBOutlet weak var collectionView: UICollectionView!
-    
-    var intervalsToRun: [ITVInterval] = []
-    
+
     //Progress view layers
     var intervalForegroundProgressView: ITVUIViewProgress!
     var timerForegroundProgressView: ITVUIViewProgress!
     
-    var timerProgressViewWidth: CGFloat?
-    var intervalProgressViewWidth: CGFloat?
-    var previousIntervalSeconds: Double = 0.0
-    var numberOfIntervals = 0
-    var timerTotalSeconds = 0.0
-    var timerTotalEllapsedSeconds = 0.0
+    var intervalsToRun: [ITVInterval] = []
     
     var itvTimerIndex: Int?
     var itvIntervalIndex: Int?
-    var startIntervalTimer: Bool? = false
-    var startTime = TimeInterval()
+    var numberOfIntervals = 0
+    
+    var timerTotalSeconds = 0.0
+    var timerTotalEllapsedSeconds = 0.0
+    var previousIntervalSeconds: Double = 0.0
     var ellapsedSeconds = 0.0
     var intervalTime = 0.0
     var dblEllapsedTime = 0.0
-    
-    var isTimerEdited = false
+
+    var timerProgressViewWidth: CGFloat?
+    var intervalProgressViewWidth: CGFloat?
+
+    var timer = Timer()
+    var getWeatherDeadlineTimer = Timer()
+    var startTime = TimeInterval()
     var updateTimersProtocolDelegate: ITVUpdateTimersProtocol?
     
+    var startIntervalTimer: Bool? = false
+    var isTimerEdited = false
+
     var startPauseResume : (Bool, Bool, Bool) = (false, false, false)
     var hoursMinutesSeconds : (Bool, Bool, Bool) = (false, false, false)
-    
-    var timer = Timer()
-    var visualEffect: UIVisualEffect! //TODO: Do you still need this?
     
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     
     var intervalProgressColor: UIColor?
-    
 }

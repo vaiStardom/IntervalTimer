@@ -10,7 +10,7 @@ import UIKit
 
 //MARK: - Table View Management
 //TODO: add a share button to share the your favorite timer with friends on social media
-//TODO: may add favorite timers and put them at the top of the list
+//TODO: may add favorite timers and put them at the top of the list (see apples use of "clip" feature in notes
 extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
     
     //MARK: - Data source and delegate
@@ -19,15 +19,15 @@ extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
         let cell = tableView.dequeueReusableCell(withIdentifier: Identifiers.TimersCell) as! TimersTableViewCell
         let index = (indexPath as NSIndexPath).row
-        
+
         if let theTimer = ITVUser.sharedInstance.thisTimers?[index] {
             cell.timerLabel?.text = theTimer.thisName
-            
+
             cell.totalTimeLabel.text = theTimer.totalTimeHMS()
-            
+
             cell.startTimerImageView.image = UIImage(named: Images.TimersCellStartImage)
             cell.startTimerImageView.layer.borderWidth = 1.0
             cell.startTimerImageView.layer.masksToBounds = false
@@ -36,10 +36,10 @@ extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
 
             cell.startTimerButton.tag = index
             cell.startTimerButton.addTarget(self, action: #selector(TimersViewController.startTimer(_:)), for: .touchUpInside)
-            
+
             cell.swipeToDeleteDelegate = self
             cell.timer = theTimer
-            
+
             return cell
         } else {
             return cell

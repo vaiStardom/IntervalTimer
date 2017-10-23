@@ -65,10 +65,8 @@ class ITVTimer: NSObject, NSCoding {
     
     init(name: String?, showWeather: Bool?, temperatureUnit: TemperatureUnit?, intervals: [ITVInterval]?) {
         guard let theName = name else {
-            //TODO: add these fatal errors to the initializers of all oher structs and classes
             fatalError("------> ERROR ITVTimer name must contain a value")
         }
-        
         guard let theShowWeather = showWeather else {
             fatalError("------> ERROR ITVTimer showWeather must contain a value")
         }
@@ -86,7 +84,7 @@ class ITVTimer: NSObject, NSCoding {
     required convenience init?(coder decoder: NSCoder) {
         
         let theName = decoder.decodeObject(forKey: UserDefaultsKey.ITVTimer_name) as? String ?? ""
-        print("------> ITVTimer DECODE init?(decoder:) thisName \(theName)")
+        print("\(Date())------> ITVTimer DECODE init?(decoder:) thisName \(theName)")
         
         let theShowWeather = decoder.decodeBool(forKey: UserDefaultsKey.ITVTimer_showWeather) as Bool?
         let theTemperatureUnitRawValue = decoder.decodeInteger(forKey: UserDefaultsKey.ITVTimer_temperatureUnit) as Int?

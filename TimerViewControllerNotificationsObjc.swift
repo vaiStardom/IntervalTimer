@@ -9,6 +9,7 @@
 import Foundation
 
 @objc extension TimerViewController {
+    //TODO: Investigate the useful ness of this function versus the calls made to GET_WEATHER_FROM_NETWORK(), maybe this can be deleted.
     func canAttemptWeatherUpdate(_ notification: Notification){
         print("------> TimerViewController canAttemptWeatherUpdate notification received")
         do {
@@ -16,10 +17,16 @@ import Foundation
         } catch let error {
             activityIndicatorStop()
             SHOW_USER_WARNING(type: UserWarning.LocationManagerDidFail, with: "\(error)")
-        }
+        }        
+    }
+    func cancelGetWeather(){
+        print("------> TimerViewController cancelGetWeather()  called by getWeatherDeadlineTimer")
+        ITVCurrentWeather.cancelGetWeather()
+        aesthetics_showMissingWeatherWarning()
     }
     func didGetCurrentWeather(_ notification: Notification){
         print("------> TimerViewController didGetCurrentWeather notification received")
+        getWeatherDeadlineTimer.invalidate()
         updateWeatherInformation()
     }
     func errorGettingWeather(_ notification: Notification){

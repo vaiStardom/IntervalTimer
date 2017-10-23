@@ -12,48 +12,46 @@ import Foundation
 extension ITVCurrentWeather {
     static func getWeatherByPriority() throws {
         
-        print("------> IntervalTimerCurrentWeather getWeatherByPriority() thisDidCompleteLocationDetermination = \(String(describing: ITVCoreLocation.sharedInstance.thisDidCompleteLocationDetermination))")
+        print("------> ITVCurrentWeather getWeatherByPriority() thisDidCompleteLocationDetermination = \(String(describing: ITVCoreLocation.sharedInstance.thisDidCompleteLocationDetermination))")
         
         var errorGettingWeather: Error?
-        
         if ITVCoreLocation.sharedInstance.thisDidCompleteLocationDetermination! {
             
-            let getWeather_WorkItem = DispatchWorkItem {//get city id by cl info failed, get alternative info from mapquest
+            let request_WorkItem = DispatchWorkItem {//get city id by cl info failed, get alternative info from mapquest
+            
                 switch ITVUser.sharedInstance.weatherQueryPriority() {
                 case WeatherQueryPriority.byCityId.rawValue:
-                    print("------> IntervalTimerCurrentWeather getWeatherByPriority() byCityId")
+                    print("------> ITVCurrentWeather getWeatherByPriority() byCityId")
                     do {
                         try getWeatherByCityId()
                         errorGettingWeather = nil
                     } catch let error {
-                        print("------> ERROR IntervalTimerCurrentWeather getWeatherByPriority() byCityId -> \(error)")
+                        print("------> ERROR ITVCurrentWeather getWeatherByPriority() byCityId -> \(error)")
                         errorGettingWeather = error
                     }
                 case WeatherQueryPriority.byLocationName.rawValue:
-                    print("------> IntervalTimerCurrentWeather getWeatherByPriority() byLocationName")
+                    print("------> ITVCurrentWeather getWeatherByPriority() byLocationName")
                     do {
                         try getWeatherByLocationName()
                         errorGettingWeather = nil
                     } catch let error {
-                        print("------> ERROR IntervalTimerCurrentWeather getWeatherByPriority() byLocationName -> \(error)")
+                        print("------> ERROR ITVCurrentWeather getWeatherByPriority() byLocationName -> \(error)")
                         errorGettingWeather = error
                     }
                 case WeatherQueryPriority.byCoordinates.rawValue:
-                    print("------> IntervalTimerCurrentWeather getWeatherByPriority() byCoordinates")
+                    print("------> ITVCurrentWeather getWeatherByPriority() byCoordinates")
                     do {
                         try getWeatherByCoordinates()
                         errorGettingWeather = nil
                     } catch let error {
-                        print("------> ERROR IntervalTimerCurrentWeather getWeatherByPriority() byLocationName -> \(error)")
+                        print("------> ERROR ITVCurrentWeather getWeatherByPriority() byLocationName -> \(error)")
                         errorGettingWeather = error
                     }
                 default:
-                    //TODO: Stop spinner and show warning icon
-                    
-                    //TODO: if user wanted to have the weather, and we cant get it, then show a no-connection error icon in place of the weather
+                    //TODO: UI - > if user wanted to have the weather, and we cant get it, then show a no-connection error icon in place of the warning icon
                     //Msg option 1 - "It is impossible to determine your location at the moment and give you the weather."
                     //Msg option 2 - "...
-                    print("------> IntervalTimerCurrentWeather getWeatherByPriority() unable to retreive temperature")
+                    print("------> ITVCurrentWeather getWeatherByPriority() unable to retreive temperature")
                     if ITVCoreLocation.sharedInstance.thisError != nil {
                         errorGettingWeather = ITVCoreLocation.sharedInstance.thisError
                     } else {
@@ -62,18 +60,28 @@ extension ITVCurrentWeather {
                 }
             }
             
+            print("------> ITVCurrentWeather getWeatherByPriority() getWeather_WorkItem = request_WorkItem")
+            getWeather_WorkItem = request_WorkItem
+            print("------> ITVCurrentWeather getWeatherByPriority() executing getWeather_WorkItem")
+            UTILITY_GLOBAL_DISPATCHQUEUE.async(execute: getWeather_WorkItem!)
             
-            UTILITY_GLOBAL_DISPATCHQUEUE.async(execute: getWeather_WorkItem)
-            
-            getWeather_WorkItem.notify(queue: DispatchQueue.main) {
-                
-                print("------> IntervalTimerCurrentWeather getWeatherByPriority() getWeather_WorkItem completed")
+            getWeather_WorkItem!.notify(queue: DispatchQueue.main) {
+                print("------> ITVCurrentWeather getWeatherByPriority() getWeather_WorkItem completed")
             }
             
             //TODO: This is a buggy way of throwing the error, not sure it will ever be thrown since it is assigned async (see above)
             if errorGettingWeather != nil {
                 throw errorGettingWeather!
             }
+        }
+    }
+    
+    static func cancelGetWeather() {
+        //TODO: should I throw an error from here?
+        print("------> ITVCurrentWeather cancelGetWeather()")
+        if getWeather_WorkItem != nil {
+            print("------> ITVCurrentWeather cancelGetWeather() canceling getWeather_WorkItem")
+            getWeather_WorkItem?.cancel()
         }
     }
     
@@ -87,19 +95,18 @@ extension ITVCurrentWeather {
             throw ITVError.GetWeather_NoWeatherForCityId(reason: " CityId = \(String(describing: ITVCoreLocation.sharedInstance.thisCityId))")
         }
         
-        print("------> IntervalTimerCurrentWeather getWeatherByCityId()")
-        //TODO: allow this weather get attempt to complete
+        print("------> ITVCurrentWeather getWeatherByCityId()")
         let weatherService = ITVWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
         
         do{
             try weatherService?.getWeatherFor(theCityId)
         } catch let error {
-            print("------> ERROR IntervalTimerCurrentWeather getWeatherByCityId() -> \(error)")
+            print("------> ERROR ITVCurrentWeather getWeatherByCityId() -> \(error)")
             //getting the weather by city ID did not succeed, try priority 2
             do {
                 try getWeatherByLocationName()
             } catch let error {
-                print("------> ERROR IntervalTimerCurrentWeather getWeatherByCityId() getWeatherByLocationName() -> \(error)")
+                print("------> ERROR ITVCurrentWeather getWeatherByCityId() getWeatherByLocationName() -> \(error)")
             }
         }
     }
@@ -116,19 +123,19 @@ extension ITVCurrentWeather {
             throw ITVError.GetWeather_NoWeatherForLocationName(reason: " Country Code = \(String(describing: ITVCoreLocation.sharedInstance.thisCountryCode))")
         }
         
-        print("------> IntervalTimerCurrentWeather getWeatherByLocationName() theCityName= \(theCityName), theCountryCode= \(theCountryCode)")
+        print("------> ITVCurrentWeather getWeatherByLocationName() theCityName= \(theCityName), theCountryCode= \(theCountryCode)")
         
         let weatherService = ITVWeatherService(apiKey: OpenWeatherApi.key, providerUrl: OpenWeatherApi.baseUrl)
         
         do{
             try weatherService?.getWeatherFor(theCityName, in: theCountryCode)
         } catch let error {
-            print("------> ERROR IntervalTimerCurrentWeather getWeatherByLocationName() -> \(error)")
+            print("------> ERROR ITVCurrentWeather getWeatherByLocationName() -> \(error)")
             //getting the weather by city name and country code did not succeed, try with coordinates
             do {
                 try getWeatherByCoordinates()
             } catch let error {
-                print("------> ERROR IntervalTimerCurrentWeather getWeatherByLocationName() getWeatherByCoordinates() -> \(error)")
+                print("------> ERROR ITVCurrentWeather getWeatherByLocationName() getWeatherByCoordinates() -> \(error)")
             }
         }
     }
@@ -151,7 +158,7 @@ extension ITVCurrentWeather {
         do{
             try weatherService?.getWeatherAt(latitude: theLatitude, longitude: theLongitude)
         } catch let error {
-            print("------> ERROR IntervalTimerCurrentWeather getWeatherByCoordinates() -> \(error)")
+            print("------> ERROR ITVCurrentWeather getWeatherByCoordinates() -> \(error)")
         }
     }
 }

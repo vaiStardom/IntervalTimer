@@ -19,7 +19,6 @@ extension TimerViewController{
         activityIndicator.stopAnimating()
     }
     func timerInvalid(){
-        //TODO: design a warning for the user to add intervals, since this timer is empty
         startPauseResume = (true, false, false)
         aesthetics_ShowIntervalMissingWarning()
     }
@@ -33,8 +32,6 @@ extension TimerViewController{
             , ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil
             , let theTimer = ITVUser.sharedInstance.thisTimers?[theTimerIndex]
             , !theTimer.totalTimeHMS().isEmpty else {
-                //TODO: Handle this error
-                //TODO: Check all gard statements to make sure the errors are well handled
             timerInvalid()
             return
         }
@@ -45,7 +42,6 @@ extension TimerViewController{
         guard let theIntervals = theTimer.thisIntervals
             , let theIntervalCount = theTimer.thisIntervals?.count
             , theIntervalCount > 0 else {
-            //TODO: version two ...maybe propose a stop watch when no intervals were added....?
             ITVWarningForUser.sharedInstance.thisUserWarning = UserWarning.MissingIntervals
             timerInvalid()
             return
@@ -67,9 +63,8 @@ extension TimerViewController{
         aesthetics_manageTimerProgress()
         aesthetics_manageIntervalProgress(indicator: intervalsToRun[0].thisIndicator)
         
-        //TODO: If an interval is zero, but timer total seconds is not, color interval nil
-        //TODO: QoS user interface thread
-        
+
+        //TODO: Make the countdown timer a QoS user interface thread
         aesthetics_timerLabels()
         //does user want to start it immedialy
         aesthetics_initializeTimeLabels()
@@ -96,7 +91,7 @@ extension TimerViewController{
         }
         
         //Second, if this is a selected timer, do we show the weather
-        //TODO: cache the weather, update it only every 3 hours or if user has moved more than 5 kilometers
+        //TODO: update weather only every 3 hours or if user has moved more than 5 kilometers
         if theTimer.thisShowWeather {
             
             if ITVCoreLocation.sharedInstance.isLocationServicesAndNetworkAvailable() {

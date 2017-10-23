@@ -17,7 +17,6 @@ extension EditTimerViewController_old {
             aesthetics_startLoadingWeather()
             showWeather()
         } else {
-            //TODO: if switched OFF and weather has not finished loading, then cancel weather loading (cancel network calls)
             activityIndicatorStop()
             aesthetics_hideWeatherViews()
             aesthetics_showWeatherDescription()
@@ -74,8 +73,6 @@ extension EditTimerViewController_old {
 
             if let theTimerIndex = itvTimerIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil {
                 //this was a selected timer
-
-                //TODO: understand why the encoding is not called when updating the new values individualy and why we have to replace the timer with theNewTimer
                 let thisTimersIntervals = ITVUser.sharedInstance.thisTimers?[theTimerIndex].thisIntervals
                 let theNewTimer = ITVTimer(name: theTimerName, showWeather: theShowWeather, temperatureUnit: theTemperatureUnit, intervals: thisTimersIntervals)
                 ITVUser.sharedInstance.thisTimers?[theTimerIndex] = theNewTimer
@@ -99,7 +96,6 @@ extension EditTimerViewController_old {
             dismiss(animated: true, completion: nil)
             
         } else {
-            //TODO: Alert user that he must name the timer.
             ITVWarningForUser.sharedInstance.thisUserWarning = UserWarning.MissingTimerName
             SHOW_USER_WARNING(type: ITVWarningForUser.sharedInstance.thisUserWarning)
         }

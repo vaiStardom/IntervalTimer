@@ -8,8 +8,10 @@
 
 import Foundation
 
-//TODO: Change this to a struct, we dont want to pass around copies of this
+//TODO: Since there are so many static properties and methods, change this to a singleton
 class ITVCurrentWeather: NSObject, NSCoding {
+    
+    static var getWeather_WorkItem: DispatchWorkItem?
     
     //MARK: - fileprivate properties
     fileprivate var icon: String?

@@ -83,8 +83,7 @@ extension ITVCityService {
             } catch let error {
                 
                 print("------> ERROR IntervalTimerCityService fromNetwork(url:completion:) -> \(error)")
-                //TODO: Handle case where network connexions are disables (same way as the disabled locations services)
-                //TODO: figure out how to throw from this closure
+                
                 completion(nil, error)
             }
         })

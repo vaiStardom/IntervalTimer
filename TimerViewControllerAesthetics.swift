@@ -9,11 +9,6 @@
 import UIKit
 
 //MARK: Aesthetics
-//TODO: make the current indicator blink:
-//UIView.animateWithDuration(1.0, delay: 1.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-//    indicator.alpha = 0.0
-//}, completion: nil)
-
 extension TimerViewController {
     func aesthetics_initializeTimeLabels(){
         let hours = Int(ellapsedSeconds / 3600.0) % 24
@@ -43,7 +38,7 @@ extension TimerViewController {
     }
     
     func aesthetics_showMissingWeatherWarning(){
-        //TODO: program the alert to show when this button is pressed
+        //TODO: UI -> program the alert to show when this button is pressed
         activityIndicatorStop()
         weatherImageView.isHidden = true
         weatherTemperatureLabel.isHidden = true
@@ -54,7 +49,7 @@ extension TimerViewController {
         warningButton.isHidden = false
         warningImageView.isHidden = false
         
-        UIView.animate(withDuration: 1.5, animations: {
+        UIView.animate(withDuration: 0.5, animations: {
             self.warningImageView.alpha = 1.0
         })
     }
@@ -118,8 +113,8 @@ extension TimerViewController {
         
         timerProgressView.backgroundColor = ITVColors.Orange.withAlphaComponent(0.15)
         
-        timerProgressLabel.text = Litterals.ZeroPercent
-        intervalProgressLabel.text = Litterals.ZeroPercent
+//        timerProgressLabel.text = Litterals.ZeroPercent
+//        intervalProgressLabel.text = Litterals.ZeroPercent
         
         startPauseResumeButton.isEnabled = true
         cancelButton.isEnabled = true
@@ -251,8 +246,8 @@ extension TimerViewController {
         timerSecondsLabel.font = ViewFont.TimerSeconds
         timerMillisecondsForSecondsLabel.font = ViewFont.TimerMilliseconds
         
-        //progress labels
-        intervalProgressLabel.font = ViewFont.TimerProgress
-        timerProgressLabel.font = ViewFont.TimerProgress
+//        //progress labels
+//        intervalProgressLabel.font = ViewFont.TimerProgress
+//        timerProgressLabel.font = ViewFont.TimerProgress
     }
 }

@@ -114,7 +114,6 @@
 		BAABCA861F56750E008C5B85 /* EditIntervalViewControllerLifeCycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAABCA851F56750E008C5B85 /* EditIntervalViewControllerLifeCycle.swift */; };
 		BAAFE44C1F0A04BF00D3619E /* ITVFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFE44B1F0A04BF00D3619E /* ITVFuncs.swift */; };
 		BAAFE4511F0A366000D3619E /* ITVDownloadJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFE4501F0A366000D3619E /* ITVDownloadJSON.swift */; };
-		BAB47EBF1F70EF800002EE4E /* ITVUIViewGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB47EBE1F70EF800002EE4E /* ITVUIViewGradient.swift */; };
 		BAB47ECF1F7147F10002EE4E /* TimersViewControllerProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB47ECE1F7147F10002EE4E /* TimersViewControllerProtocols.swift */; };
 		BAB47ED11F714B040002EE4E /* TimersTableViewCellGestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB47ED01F714B040002EE4E /* TimersTableViewCellGestures.swift */; };
 		BAC05C771F6F815E00772962 /* TimerViewControllerAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC05C761F6F815E00772962 /* TimerViewControllerAnimations.swift */; };
@@ -290,7 +289,6 @@
 		BAABCA851F56750E008C5B85 /* EditIntervalViewControllerLifeCycle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditIntervalViewControllerLifeCycle.swift; sourceTree = "<group>"; };
 		BAAFE44B1F0A04BF00D3619E /* ITVFuncs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITVFuncs.swift; sourceTree = "<group>"; };
 		BAAFE4501F0A366000D3619E /* ITVDownloadJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ITVDownloadJSON.swift; path = IntervalTimer/ITVDownloadJSON.swift; sourceTree = "<group>"; };
-		BAB47EBE1F70EF800002EE4E /* ITVUIViewGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITVUIViewGradient.swift; sourceTree = "<group>"; };
 		BAB47ECE1F7147F10002EE4E /* TimersViewControllerProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimersViewControllerProtocols.swift; sourceTree = "<group>"; };
 		BAB47ED01F714B040002EE4E /* TimersTableViewCellGestures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimersTableViewCellGestures.swift; sourceTree = "<group>"; };
 		BAC05C761F6F815E00772962 /* TimerViewControllerAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewControllerAnimations.swift; sourceTree = "<group>"; };
@@ -380,7 +378,6 @@
 				BA4BFEAE1EFFB8EB00E341DC /* ITVUILabel.swift */,
 				BA3139171F8496C500DFD42D /* ITVUITableView.swift */,
 				BAA11C4C1F5BFC8A005F3259 /* ITVUIView.swift */,
-				BAB47EBE1F70EF800002EE4E /* ITVUIViewGradient.swift */,
 				BA4E9FDD1F905DCE00E09E49 /* ITVUIViewProgress.swift */,
 				BAED0C381F5ED2B200F9A3FC /* ITVUIViewWarningAlert.swift */,
 				BAED0C401F5FC4EE00F9A3FC /* ITVUserWarningProtocol.swift */,
@@ -820,7 +817,6 @@
 				BA12B9521F0E01000036C7AB /* ITVUIApplication.swift in Sources */,
 				BA153CB61F64BC6800D57CB2 /* IntervalTableViewCell.swift in Sources */,
 				BA42AB691F49E8B500CF1239 /* TimersViewControllerNavigationBar.swift in Sources */,
-				BAB47EBF1F70EF800002EE4E /* ITVUIViewGradient.swift in Sources */,
 				BA49BAC91F7A4DDD00AAA4AB /* TimerViewControllerActionsObjc.swift in Sources */,
 				BAABCA801F555474008C5B85 /* ITVTimer.swift in Sources */,
 				BACAB6741F7511E200376CE6 /* EditTimerViewControllerActionsObjc.swift in Sources */,

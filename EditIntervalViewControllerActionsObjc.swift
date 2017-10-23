@@ -20,8 +20,6 @@ import UIKit
                 let theIndicator = indicator
                 let theNewInterval = ITVInterval(seconds: totalSeconds(), indicator: theIndicator)
                 self.editIntervalProtocolDelegate?.didEdit(theNewInterval)
-            } else {
-                //TODO: Warn user the he must enter numbers to create a valid interval
             }
         }
         dismiss(animated: true, completion: nil)

@@ -63,7 +63,7 @@ extension EditTimerViewController {
         }
     }
     func aesthetics_showMissingWeatherWarning(){
-        //TODO: program the alert to show when this button is pressed
+        //TODO: UI -> program the alert to show when this button is pressed
         activityIndicatorStop()
         aesthetics_hideWeatherViews()
         

@@ -70,9 +70,6 @@ class ITVUIViewWarningAlert: UIView, ITVUserWarningProtocol {
     }
     func warningView(with warningType: UserWarning) -> UIView {
         
-        //TODO: why do i post this for every view show??
-//        NotificationCenter.default.post(name: Notification.Name(rawValue: "errorGettingWeather"), object: nil)
-        
         var message = Litterals.EmptyString
         var attributedString = NSMutableAttributedString()
         

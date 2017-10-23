@@ -12,8 +12,6 @@ import UIKit
 extension TimerViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 
     func configureCollectionView(){
-        //TODO: relaod collection view coming back from edit timer
-
         let nibName = UINib(nibName: Nibs.TimerIndicatorCollectionViewCell, bundle: nil)
         collectionView.register(nibName, forCellWithReuseIdentifier: Identifiers.IndicatorCell)
     }

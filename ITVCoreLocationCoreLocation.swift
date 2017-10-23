@@ -31,13 +31,10 @@ extension ITVCoreLocation {
                 thisLatitude = nil
                 thisLongitude = nil
                 
-                //TODO: Complete locatin determination and show warning that location information is unavailable
+                ITVWarningForUser.sharedInstance.thisUserWarning = UserWarning.LocationManagerDidFail
+                ITVWarningForUser.sharedInstance.thisMessage = "ERROR in locationManager(manager:didUpdateLocations). No latitude or longitude in the last CLLocation object."
             }
-        } else {
-            //TODO: Raise location unavailable from iPhone error screen .
-            //thisDidCompleteLocationDetermination = false
-            //TODO: Complete locatin determination and show warning that location information is unavailable
-        }
+        } //Else -> Nothing to do, as it only means the user simply did not move yet
     }
     func reverseGeocodeLocation(_ location: CLLocation?){
         guard let theLocation = location else {
@@ -75,7 +72,6 @@ extension ITVCoreLocation {
             } else {
                 print("------> 7 - IntervalTimerCoreLocation reverseGeocodeLocation(location:) reverseGeocodeLocation_WorkItem did complete no location names available or CLPlacemark was nil")
                 self.thisDidCompleteLocationDetermination = true
-                //TODO: location determination should be completed here
             }
         }
     }
@@ -114,20 +110,14 @@ extension ITVCoreLocation {
             //Send notification to update the weather
             NotificationCenter.default.post(name: Notification.Name(rawValue: Notifications.didAuthorizeLocationServices), object: nil)
         }else {
-            //TODO: Maybe design a screen asking the user to please authorize location service for the app
             ITVWarningForUser.sharedInstance.thisUserWarning = UserWarning.LocationServicesDisabled
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        //TODO: Handle diabled location services for app error: present a nice alert view to advise the user to enable location services
-        //TODO: error code 0 -> reset location settings (i tried juust clearing the ram)
-        //TODO: error code 1 -> Code 1 occurs when the user has denied your app access to location services.
-        //TODO: if the weather is not updated after 1minute, than put the warning icon to warn user that the network is not working, do the same thing if insufficient data exists to determine a location
-        
+
         print("------> ERROR IntervalTimerCoreLocation locationManager(manager:didFailWithError:) -> \(error)")
         
-        //TODO: restart the manager at a later appropriate state (maybe by user tapping on the warning icon of the weather!)
         stopUpdatingLocationManager()
         
         let theError = error as NSError
@@ -138,25 +128,32 @@ extension ITVCoreLocation {
             errorMessage = "Location is currently unknown. Code: \(theError.code). Message: localizedDescription: \(theError.localizedDescription), localizedFailureReason: \(String(describing: theError.localizedFailureReason)), localizedRecoveryOptions: \(String(describing: theError.localizedRecoveryOptions)), localizedRecoverySuggestion: \(String(describing: theError.localizedRecoverySuggestion))."
             
             print("------> ERROR \(errorMessage)")
-            SHOW_USER_WARNING(type: UserWarning.LocationManagerDidFail, with: errorMessage)
+            ITVWarningForUser.sharedInstance.thisUserWarning = UserWarning.LocationManagerDidFail
+            ITVWarningForUser.sharedInstance.thisMessage = errorMessage
         case 1:
             
             errorMessage = "Access to location has been denied by the user. Code: \(theError.code). Message: \(theError)."
             
             print("------> ERROR \(errorMessage)")
-            SHOW_USER_WARNING(type: UserWarning.LocationServicesDisabled)
+            ITVWarningForUser.sharedInstance.thisUserWarning = UserWarning.LocationServicesDisabled
+            ITVWarningForUser.sharedInstance.thisMessage = errorMessage
+
         case 2:
             errorMessage = "Network-related error. Code: \(theError.code). Message: \(theError)."
             
             print("------> ERROR \(errorMessage)")
-            SHOW_USER_WARNING(type: UserWarning.NoInternet)
-            
+            ITVWarningForUser.sharedInstance.thisUserWarning = UserWarning.NoInternet
+            ITVWarningForUser.sharedInstance.thisMessage = errorMessage
+
         default:
             
             errorMessage = "Failed location default error. Code: \(theError.code). Message: \(theError)."
             
             print("------> ERROR \(errorMessage)")
-            SHOW_USER_WARNING(type: UserWarning.LocationManagerDidFail, with: errorMessage)
+
+            ITVWarningForUser.sharedInstance.thisUserWarning = UserWarning.LocationManagerDidFail
+            ITVWarningForUser.sharedInstance.thisMessage = errorMessage
+
         }
     }
 }

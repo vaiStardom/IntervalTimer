@@ -12,19 +12,13 @@ import UIKit
 //MARK: Timer functions
 extension TimerViewController{
     func runIntervalTimer(){
-        //TODO: This is buggy, the initialization in loadTimer() should work, find out how to not call aesthetics_manageIntervalProgress() from here in order to have the first interval progress color show.
-//        aesthetics_manageIntervalProgress(indicator: intervalsToRun[0].thisIndicator)
-//        aesthetics_setNewTimerProgress()
-
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(TimerViewController.updateTime), userInfo: nil, repeats: true)
         startTime = Date.timeIntervalSinceReferenceDate + TimeInterval(ellapsedSeconds)
-//        timerTotalTime =
     }
     
     @objc func updateTime(){
         let currentTime = Date.timeIntervalSinceReferenceDate
         var ellapsedTime: TimeInterval = currentTime - startTime
-        
         
         ellapsedSeconds = abs(ellapsedTime)
         dblEllapsedTime = Double(ellapsedTime)
@@ -50,7 +44,6 @@ extension TimerViewController{
                 return
             }
             
-            //TODO: handle this error
             guard let theSeconds = intervalsToRun[0].thisSeconds else {
                 return
             }
@@ -103,13 +96,10 @@ extension TimerViewController{
         let timerPercentComplete = CGFloat(((previousIntervalSeconds + (intervalTime - abs(dblEllapsedTime))) * 100.0) / timerTotalSeconds)
         let newTimerProgressWidth = timerProgressViewWidth! * (timerPercentComplete / 100)
         timerForegroundProgressView.setProgress(progress: newTimerProgressWidth, percent: Int(timerPercentComplete))
-        print("newTimerProgressWidth = \(newTimerProgressWidth)")
         
         let intervalPercentComplete = CGFloat(100.0 - ((abs(dblEllapsedTime) * 100.0) / intervalTime))
         let newIntervalProgressWidth = intervalProgressViewWidth! * (intervalPercentComplete / 100)
         intervalForegroundProgressView.setProgress(progress: newIntervalProgressWidth, percent: Int(intervalPercentComplete))
-        print("newIntervalProgressWidth = \(newIntervalProgressWidth)")
-        
     }
     
     func stopTimer(){

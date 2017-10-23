@@ -86,7 +86,7 @@
       <AdditionalOptions>
       </AdditionalOptions>
       <LocationScenarioReference
-         identifier = "../../IntervalTimer/UCNoLocationNameNoAlternativeNoCityId.gpx"
+         identifier = "../../IntervalTimer/UCBadUrlLocationionName.gpx"
          referenceType = "0">
       </LocationScenarioReference>
    </LaunchAction>

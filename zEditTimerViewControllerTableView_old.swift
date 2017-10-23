@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-//TODO: find a cute way of showing the percentage of completness of a timer's total interval times
 //MARK: - Table View Management
 extension EditTimerViewController_old : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

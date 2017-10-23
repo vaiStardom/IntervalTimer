@@ -17,7 +17,7 @@ class ITVWarningForUser {
     fileprivate var userWarning: UserWarning?
     fileprivate var message: String?
     
-    //MARK: - public get/set properties
+    //MARK: - Public get/set properties
     var thisUserWarning: UserWarning? {
         get { return userWarning }
         set {

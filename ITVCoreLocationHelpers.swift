@@ -135,8 +135,6 @@ extension ITVCoreLocation{
     }
     
     func checkIfLocationDeterminationIsComplete(){
-        
-        //TODO: Validate that the weather retreival is functionning properly by priority
         guard thisCityId != nil
             , thisCountryCode != nil
             , thisCityName != nil

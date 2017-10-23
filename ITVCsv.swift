@@ -32,7 +32,7 @@ class ITVCsv {
             let contents = try String(contentsOfFile: filePath, encoding: String.Encoding.macOSRoman)
             return convertCSV(file: contents, cityName: cityName, countryCode: countryCode )
         } catch let error {
-            //TODO: Handle possible csv read error
+            
             print("------> ERROR IntervalTimerCsv getCityIdFromCsv() -> File read error for file \(file). Error: \(error)")
             return nil
         }
@@ -49,8 +49,6 @@ class ITVCsv {
                 let fields = getStringFieldsForRow(row: row, delimiter: CsvControls.ColumnDelimiter)
                 
                 if fields.count != columnTitles.count {
-                    //City line mal formated, skip this line and continue searching
-                    //TODO: find a way to log this error or report it back if this happens in the field
                     continue
                 } else {
                     guard let theCityId = Int(fields[0].trimmingCharacters(in: .whitespacesAndNewlines)) else {
@@ -75,7 +73,6 @@ class ITVCsv {
             print("------> IntervalTimerCsv convertCSV returning cityId = \(String(describing: cityId))")
             return cityId
         } else {
-            //TODO: Handle error city not found
             print("No data in file")
             return nil
         }
@@ -126,7 +123,6 @@ class ITVCsv {
             didGetCityId = false
         }
         
-        //TODO: find another way to throw errors from the dispatch queue, since this line never gets executed because the dispacth is async, so execution just goes over this..
         if let theDidGetCityId = didGetCityId, theDidGetCityId == false {
             error = ITVError.GetCityId_NoCityId(reason: "No city id for city name \(theCityName) and country code \(theCountryCode)")
             completion(error)

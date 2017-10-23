@@ -39,7 +39,6 @@ extension EditTimerViewController{
     }
     func startSettingWeather(){
         if ITVUser.sharedInstance.thisShouldUpdateWeather {
-            //TODO: cache the weather, update it only every 3 hours or if user has moved more than 5 kilometers
             print("------> EditTimerViewController startSettingWeather() will update weather from Network")
             setWeatherFromNetwork()
         } else {
