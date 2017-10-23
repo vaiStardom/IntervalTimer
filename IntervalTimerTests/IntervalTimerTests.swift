@@ -28,6 +28,7 @@ import XCTest
 //TODO: TEST CSV that there is always data in the file
 //TODO: TEST that an interval is never created or saved with zero seconds
 //TODO: TEST Show warning that airplane mode is on by simply putting that icon where the weather is (no alert)
+//TODO: TEST Show milliseconds when down to minutes and seconds.
 class IntervalTimerTests: XCTestCase {
     
     override func setUp() {
