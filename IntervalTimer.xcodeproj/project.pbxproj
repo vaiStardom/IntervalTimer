@@ -114,7 +114,6 @@
 		BAABCA861F56750E008C5B85 /* EditIntervalViewControllerLifeCycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAABCA851F56750E008C5B85 /* EditIntervalViewControllerLifeCycle.swift */; };
 		BAAFE44C1F0A04BF00D3619E /* ITVFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFE44B1F0A04BF00D3619E /* ITVFuncs.swift */; };
 		BAAFE4511F0A366000D3619E /* ITVDownloadJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFE4501F0A366000D3619E /* ITVDownloadJSON.swift */; };
-		BAB3DF8D1F9DE373003544B2 /* IntervalTimer_NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB3DF8C1F9DE373003544B2 /* IntervalTimer_NetworkTests.swift */; };
 		BAB47ECF1F7147F10002EE4E /* TimersViewControllerProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB47ECE1F7147F10002EE4E /* TimersViewControllerProtocols.swift */; };
 		BAB47ED11F714B040002EE4E /* TimersTableViewCellGestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB47ED01F714B040002EE4E /* TimersTableViewCellGestures.swift */; };
 		BABA6CE11F9F542900B7D607 /* IntervalTimer_HTTP_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABA6CE01F9F542900B7D607 /* IntervalTimer_HTTP_Tests.swift */; };
@@ -142,6 +141,9 @@
 		BACAB6781F76020F00376CE6 /* EditTimerViewControllerTableViewRowEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACAB6771F76020F00376CE6 /* EditTimerViewControllerTableViewRowEditing.swift */; };
 		BACAB67A1F7604CA00376CE6 /* EditTimerViewControllerForceTouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACAB6791F7604CA00376CE6 /* EditTimerViewControllerForceTouch.swift */; };
 		BACAB67C1F76050D00376CE6 /* EditTimerViewControllerNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACAB67B1F76050D00376CE6 /* EditTimerViewControllerNavigationBar.swift */; };
+		BACCF0571F9F59FC00FABC4D /* IntervalTimer_JSON_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACCF0561F9F59FC00FABC4D /* IntervalTimer_JSON_Tests.swift */; };
+		BACCF05F1F9F5A3A00FABC4D /* cityName.json in Resources */ = {isa = PBXBuildFile; fileRef = BACCF05E1F9F5A3A00FABC4D /* cityName.json */; };
+		BACCF0611F9F5A7600FABC4D /* weather.json in Resources */ = {isa = PBXBuildFile; fileRef = BACCF0601F9F5A7600FABC4D /* weather.json */; };
 		BACD18231F08E5FC0072FF2C /* ITVUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACD18221F08E5FC0072FF2C /* ITVUser.swift */; };
 		BACD18251F08E6C40072FF2C /* ITVEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACD18241F08E6C40072FF2C /* ITVEnums.swift */; };
 		BAD8A4B41F554C58007F8DEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAD8A4B31F554C58007F8DEA /* Assets.xcassets */; };
@@ -171,14 +173,14 @@
 			remoteGlobalIDString = BA4BFE701EFF4D9D00E341DC;
 			remoteInfo = IntervalTimer;
 		};
-		BAB3DF8F1F9DE373003544B2 /* PBXContainerItemProxy */ = {
+		BABA6CE31F9F542900B7D607 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BA4BFE691EFF4D9D00E341DC /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = BA4BFE701EFF4D9D00E341DC;
 			remoteInfo = IntervalTimer;
 		};
-		BABA6CE31F9F542900B7D607 /* PBXContainerItemProxy */ = {
+		BACCF0591F9F59FC00FABC4D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BA4BFE691EFF4D9D00E341DC /* Project object */;
 			proxyType = 1;
@@ -305,9 +307,6 @@
 		BAABCA851F56750E008C5B85 /* EditIntervalViewControllerLifeCycle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditIntervalViewControllerLifeCycle.swift; sourceTree = "<group>"; };
 		BAAFE44B1F0A04BF00D3619E /* ITVFuncs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITVFuncs.swift; sourceTree = "<group>"; };
 		BAAFE4501F0A366000D3619E /* ITVDownloadJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ITVDownloadJSON.swift; path = IntervalTimer/ITVDownloadJSON.swift; sourceTree = "<group>"; };
-		BAB3DF8A1F9DE372003544B2 /* IntervalTimer_NetworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntervalTimer_NetworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BAB3DF8C1F9DE373003544B2 /* IntervalTimer_NetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalTimer_NetworkTests.swift; sourceTree = "<group>"; };
-		BAB3DF8E1F9DE373003544B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BAB47ECE1F7147F10002EE4E /* TimersViewControllerProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimersViewControllerProtocols.swift; sourceTree = "<group>"; };
 		BAB47ED01F714B040002EE4E /* TimersTableViewCellGestures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimersTableViewCellGestures.swift; sourceTree = "<group>"; };
 		BABA6CDE1F9F542900B7D607 /* IntervalTimer_HTTP_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntervalTimer_HTTP_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -337,6 +336,11 @@
 		BACAB6771F76020F00376CE6 /* EditTimerViewControllerTableViewRowEditing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTimerViewControllerTableViewRowEditing.swift; sourceTree = "<group>"; };
 		BACAB6791F7604CA00376CE6 /* EditTimerViewControllerForceTouch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTimerViewControllerForceTouch.swift; sourceTree = "<group>"; };
 		BACAB67B1F76050D00376CE6 /* EditTimerViewControllerNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTimerViewControllerNavigationBar.swift; sourceTree = "<group>"; };
+		BACCF0541F9F59FB00FABC4D /* IntervalTimer_JSON_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntervalTimer_JSON_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BACCF0561F9F59FC00FABC4D /* IntervalTimer_JSON_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalTimer_JSON_Tests.swift; sourceTree = "<group>"; };
+		BACCF0581F9F59FC00FABC4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BACCF05E1F9F5A3A00FABC4D /* cityName.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cityName.json; sourceTree = "<group>"; };
+		BACCF0601F9F5A7600FABC4D /* weather.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = weather.json; sourceTree = "<group>"; };
 		BACD18221F08E5FC0072FF2C /* ITVUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ITVUser.swift; path = IntervalTimer/ITVUser.swift; sourceTree = "<group>"; };
 		BACD18241F08E6C40072FF2C /* ITVEnums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITVEnums.swift; sourceTree = "<group>"; };
 		BAD8A4B31F554C58007F8DEA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -373,14 +377,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BAB3DF871F9DE372003544B2 /* Frameworks */ = {
+		BABA6CDB1F9F542900B7D607 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BABA6CDB1F9F542900B7D607 /* Frameworks */ = {
+		BACCF0511F9F59FB00FABC4D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -444,8 +448,8 @@
 				BA1CCBA71F248AB100A3D0B3 /* Networking */,
 				BAD8A4B01F553E1C007F8DEA /* NibClasses */,
 				BAA11C541F5D4F60005F3259 /* Nibs */,
-				BAB3DF8B1F9DE373003544B2 /* IntervalTimer_NetworkTests */,
 				BABA6CDF1F9F542900B7D607 /* IntervalTimer_HTTP_Tests */,
+				BACCF0551F9F59FC00FABC4D /* IntervalTimer_JSON_Tests */,
 				BA4BFE721EFF4D9D00E341DC /* Products */,
 				BAC38F901F2F7D1F00AE0057 /* Singletons */,
 				BA4BFEAD1EFFAF7400E341DC /* Storyboards */,
@@ -462,8 +466,8 @@
 				BA4BFE711EFF4D9D00E341DC /* IntervalTimer.app */,
 				BA4BFE851EFF4D9D00E341DC /* IntervalTimerTests.xctest */,
 				BA4BFE901EFF4D9D00E341DC /* IntervalTimerUITests.xctest */,
-				BAB3DF8A1F9DE372003544B2 /* IntervalTimer_NetworkTests.xctest */,
 				BABA6CDE1F9F542900B7D607 /* IntervalTimer_HTTP_Tests.xctest */,
+				BACCF0541F9F59FB00FABC4D /* IntervalTimer_JSON_Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -624,15 +628,6 @@
 			name = Nibs;
 			sourceTree = "<group>";
 		};
-		BAB3DF8B1F9DE373003544B2 /* IntervalTimer_NetworkTests */ = {
-			isa = PBXGroup;
-			children = (
-				BAB3DF8C1F9DE373003544B2 /* IntervalTimer_NetworkTests.swift */,
-				BAB3DF8E1F9DE373003544B2 /* Info.plist */,
-			);
-			path = IntervalTimer_NetworkTests;
-			sourceTree = "<group>";
-		};
 		BABA6CDF1F9F542900B7D607 /* IntervalTimer_HTTP_Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -668,6 +663,17 @@
 				BAC748BE1F613B21003F9E31 /* ITVWarningForUser.swift */,
 			);
 			name = Singletons;
+			sourceTree = "<group>";
+		};
+		BACCF0551F9F59FC00FABC4D /* IntervalTimer_JSON_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				BACCF05E1F9F5A3A00FABC4D /* cityName.json */,
+				BACCF0581F9F59FC00FABC4D /* Info.plist */,
+				BACCF0561F9F59FC00FABC4D /* IntervalTimer_JSON_Tests.swift */,
+				BACCF0601F9F5A7600FABC4D /* weather.json */,
+			);
+			path = IntervalTimer_JSON_Tests;
 			sourceTree = "<group>";
 		};
 		BAD8A4B01F553E1C007F8DEA /* NibClasses */ = {
@@ -753,24 +759,6 @@
 			productReference = BA4BFE901EFF4D9D00E341DC /* IntervalTimerUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		BAB3DF891F9DE372003544B2 /* IntervalTimer_NetworkTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = BAB3DF931F9DE373003544B2 /* Build configuration list for PBXNativeTarget "IntervalTimer_NetworkTests" */;
-			buildPhases = (
-				BAB3DF861F9DE372003544B2 /* Sources */,
-				BAB3DF871F9DE372003544B2 /* Frameworks */,
-				BAB3DF881F9DE372003544B2 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				BAB3DF901F9DE373003544B2 /* PBXTargetDependency */,
-			);
-			name = IntervalTimer_NetworkTests;
-			productName = IntervalTimer_NetworkTests;
-			productReference = BAB3DF8A1F9DE372003544B2 /* IntervalTimer_NetworkTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		BABA6CDD1F9F542900B7D607 /* IntervalTimer_HTTP_Tests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BABA6CE71F9F542900B7D607 /* Build configuration list for PBXNativeTarget "IntervalTimer_HTTP_Tests" */;
@@ -787,6 +775,24 @@
 			name = IntervalTimer_HTTP_Tests;
 			productName = IntervalTimer_HTTP_Tests;
 			productReference = BABA6CDE1F9F542900B7D607 /* IntervalTimer_HTTP_Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BACCF0531F9F59FB00FABC4D /* IntervalTimer_JSON_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BACCF05B1F9F59FC00FABC4D /* Build configuration list for PBXNativeTarget "IntervalTimer_JSON_Tests" */;
+			buildPhases = (
+				BACCF0501F9F59FB00FABC4D /* Sources */,
+				BACCF0511F9F59FB00FABC4D /* Frameworks */,
+				BACCF0521F9F59FB00FABC4D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BACCF05A1F9F59FC00FABC4D /* PBXTargetDependency */,
+			);
+			name = IntervalTimer_JSON_Tests;
+			productName = IntervalTimer_JSON_Tests;
+			productReference = BACCF0541F9F59FB00FABC4D /* IntervalTimer_JSON_Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -819,13 +825,13 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = BA4BFE701EFF4D9D00E341DC;
 					};
-					BAB3DF891F9DE372003544B2 = {
+					BABA6CDD1F9F542900B7D607 = {
 						CreatedOnToolsVersion = 9.0.1;
 						DevelopmentTeam = 9LWK3GY4G8;
 						ProvisioningStyle = Automatic;
 						TestTargetID = BA4BFE701EFF4D9D00E341DC;
 					};
-					BABA6CDD1F9F542900B7D607 = {
+					BACCF0531F9F59FB00FABC4D = {
 						CreatedOnToolsVersion = 9.0.1;
 						DevelopmentTeam = 9LWK3GY4G8;
 						ProvisioningStyle = Automatic;
@@ -849,8 +855,8 @@
 				BA4BFE701EFF4D9D00E341DC /* IntervalTimer */,
 				BA4BFE841EFF4D9D00E341DC /* IntervalTimerTests */,
 				BA4BFE8F1EFF4D9D00E341DC /* IntervalTimerUITests */,
-				BAB3DF891F9DE372003544B2 /* IntervalTimer_NetworkTests */,
 				BABA6CDD1F9F542900B7D607 /* IntervalTimer_HTTP_Tests */,
+				BACCF0531F9F59FB00FABC4D /* IntervalTimer_JSON_Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -897,17 +903,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BAB3DF881F9DE372003544B2 /* Resources */ = {
+		BABA6CDC1F9F542900B7D607 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BABA6CDC1F9F542900B7D607 /* Resources */ = {
+		BACCF0521F9F59FB00FABC4D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BACCF0611F9F5A7600FABC4D /* weather.json in Resources */,
+				BACCF05F1F9F5A3A00FABC4D /* cityName.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1076,19 +1084,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BAB3DF861F9DE372003544B2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BAB3DF8D1F9DE373003544B2 /* IntervalTimer_NetworkTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		BABA6CDA1F9F542900B7D607 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				BABA6CE11F9F542900B7D607 /* IntervalTimer_HTTP_Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BACCF0501F9F59FB00FABC4D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BACCF0571F9F59FC00FABC4D /* IntervalTimer_JSON_Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1105,15 +1113,15 @@
 			target = BA4BFE701EFF4D9D00E341DC /* IntervalTimer */;
 			targetProxy = BA4BFE911EFF4D9D00E341DC /* PBXContainerItemProxy */;
 		};
-		BAB3DF901F9DE373003544B2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = BA4BFE701EFF4D9D00E341DC /* IntervalTimer */;
-			targetProxy = BAB3DF8F1F9DE373003544B2 /* PBXContainerItemProxy */;
-		};
 		BABA6CE41F9F542900B7D607 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = BA4BFE701EFF4D9D00E341DC /* IntervalTimer */;
 			targetProxy = BABA6CE31F9F542900B7D607 /* PBXContainerItemProxy */;
+		};
+		BACCF05A1F9F59FC00FABC4D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BA4BFE701EFF4D9D00E341DC /* IntervalTimer */;
+			targetProxy = BACCF0591F9F59FC00FABC4D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1336,48 +1344,6 @@
 			};
 			name = Release;
 		};
-		BAB3DF911F9DE373003544B2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9LWK3GY4G8;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = IntervalTimer_NetworkTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.IntervalTimer-NetworkTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IntervalTimer.app/IntervalTimer";
-			};
-			name = Debug;
-		};
-		BAB3DF921F9DE373003544B2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9LWK3GY4G8;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = IntervalTimer_NetworkTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.IntervalTimer-NetworkTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IntervalTimer.app/IntervalTimer";
-			};
-			name = Release;
-		};
 		BABA6CE51F9F542900B7D607 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1413,6 +1379,48 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.IntervalTimer-HTTP-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IntervalTimer.app/IntervalTimer";
+			};
+			name = Release;
+		};
+		BACCF05C1F9F59FC00FABC4D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9LWK3GY4G8;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = IntervalTimer_JSON_Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.IntervalTimer-JSON-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IntervalTimer.app/IntervalTimer";
+			};
+			name = Debug;
+		};
+		BACCF05D1F9F59FC00FABC4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9LWK3GY4G8;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = IntervalTimer_JSON_Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.IntervalTimer-JSON-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1459,20 +1467,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BAB3DF931F9DE373003544B2 /* Build configuration list for PBXNativeTarget "IntervalTimer_NetworkTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BAB3DF911F9DE373003544B2 /* Debug */,
-				BAB3DF921F9DE373003544B2 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		BABA6CE71F9F542900B7D607 /* Build configuration list for PBXNativeTarget "IntervalTimer_HTTP_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BABA6CE51F9F542900B7D607 /* Debug */,
 				BABA6CE61F9F542900B7D607 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BACCF05B1F9F59FC00FABC4D /* Build configuration list for PBXNativeTarget "IntervalTimer_JSON_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BACCF05C1F9F59FC00FABC4D /* Debug */,
+				BACCF05D1F9F59FC00FABC4D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

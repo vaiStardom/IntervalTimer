@@ -59,6 +59,16 @@
                ReferencedContainer = "container:IntervalTimer.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BACCF0531F9F59FB00FABC4D"
+               BuildableName = "IntervalTimer_JSON_Tests.xctest"
+               BlueprintName = "IntervalTimer_JSON_Tests"
+               ReferencedContainer = "container:IntervalTimer.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
