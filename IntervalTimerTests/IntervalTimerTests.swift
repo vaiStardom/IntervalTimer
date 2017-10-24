@@ -9,7 +9,6 @@
 import XCTest
 @testable import IntervalTimer
 
-//TODO: TEST the performance of getting the weather on the network (and later, make this test for every device type with each their oen baseline)
 //TODO: TEST ITVDownloadJSON.downloadJSON(completion:) with the many wifi simulated connexion options in ios11 dev options
 //TODO: TEST for a new timer, the segmented control does not always appear when switching show temperature to on for the first time.
 //TODO: TEST the pasting on non-numerioc characters in the interval text fields
@@ -29,6 +28,12 @@ import XCTest
 //TODO: TEST that an interval is never created or saved with zero seconds
 //TODO: TEST Show warning that airplane mode is on by simply putting that icon where the weather is (no alert)
 //TODO: TEST Show milliseconds when down to minutes and seconds.
+//TODO: TEST currentReachabilityStatus
+//guard currentReachabilityStatus != .notReachable else {
+//    completion(nil, ITVError.Reachability_notReachable(reason: "Network is unreachable."))
+//    return
+//}
+
 class IntervalTimerTests: XCTestCase {
     
     override func setUp() {

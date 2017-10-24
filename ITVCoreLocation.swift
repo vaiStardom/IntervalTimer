@@ -11,6 +11,24 @@ import CoreLocation
 
 class ITVCoreLocation: NSObject, CLLocationManagerDelegate {
     
+    
+//    #if TEST
+//        // Only used for tests
+//        static var sharedInstance: ITVCoreLocation!
+//
+//        // Public init
+//        override init() {
+//            super.init()
+//        }
+//
+//    #else
+//
+//        // Only accessible using singleton
+//        static let sharedInstance = ITVCoreLocation()
+//        private override init() {}
+//
+//    #endif
+    
     //MARK: - Singleton
     static let sharedInstance = ITVCoreLocation()
     
