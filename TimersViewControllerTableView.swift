@@ -9,8 +9,8 @@
 import UIKit
 
 //MARK: - Table View Management
-//TODO: add a share button to share the your favorite timer with friends on social media
-//TODO: may add favorite timers and put them at the top of the list (see apples use of "clip" feature in notes
+//TODO: - add a share button to share the your favorite timer with friends on social media
+//TODO: + may add favorite timers and put them at the top of the list (see applies use of "clip" feature in notes
 extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
     
     //MARK: - Data source and delegate
@@ -65,4 +65,27 @@ extension TimersViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .none
     }
+    
+    @available(iOS 11.0, *)
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+    {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Add") { (action, view, handler) in
+            print("Add Action Tapped")
+        }
+        deleteAction.backgroundColor = .green
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        return configuration
+    }
+    
+    @available(iOS 11.0, *)
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+    {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, handler) in
+            print("Delete Action Tapped")
+        }
+        deleteAction.backgroundColor = .red
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        return configuration
+    }
+    
 }

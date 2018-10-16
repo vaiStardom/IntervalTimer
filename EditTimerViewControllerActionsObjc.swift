@@ -38,13 +38,15 @@ import UIKit
         
         if let theTimerIndex = itvTimerIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil { //this was a selected timer
             
-            //TODO: understand why the encoding is not called when updating the new values individualy and why we have to replace the timer with theNewTimer
-            let theNewTimer = ITVTimer(name: theTimerName, showWeather: isShowWeather, temperatureUnit: temperatureUnit, intervals: intervals)
+            //TODO: - understand why the encoding is not called when updating the new values individualy and why we have to replace the timer with theNewTimer
+            //TODO: + Redesign this view to add a favourites button to favour this timer
+            //TODO: + Search 'isFavourite: false' to redesign all affected views
+            let theNewTimer = ITVTimer(name: theTimerName, showWeather: isShowWeather, temperatureUnit: temperatureUnit, isFavourite: false, intervals: intervals)
             ITVUser.sharedInstance.thisTimers?[theTimerIndex] = theNewTimer
             
         } else {
             //this is a new timer
-            let theNewTimer = ITVTimer(name: theTimerName, showWeather: isShowWeather, temperatureUnit: temperatureUnit, intervals: intervals)
+            let theNewTimer = ITVTimer(name: theTimerName, showWeather: isShowWeather, temperatureUnit: temperatureUnit, isFavourite: false, intervals: intervals)
             ITVUser.sharedInstance.thisTimers?.append(theNewTimer)
         }
         
@@ -56,7 +58,7 @@ import UIKit
     }
     func deleteTimer(){
         print("------> Delete Timer")
-        //TODO: UI - > warning to ask for confirmation for deleting the timer
+        //TODO: + UI - > warning to ask for confirmation for deleting the timer
         
         if self.deleteTimerFromTimerViewProtocol != nil {
             guard let theTimerIndex = itvTimerIndex, ITVUser.sharedInstance.thisTimers?[theTimerIndex] != nil else {

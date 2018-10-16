@@ -17,12 +17,12 @@ extension TimerViewController: ITVUpdateTimersProtocol, ITVEditIntervalProtocol,
         //do nothing, this wont be called for this vc
     }
     func didEdit(_ interval: ITVInterval) {
-        //TODO: understand why the encoding is not called when updating the new values individualy and why we have to replace the timer with theNewTimer
+        //TODO: - understand why the encoding is not called when updating the new values individualy and why we have to replace the timer with theNewTimer
 
         if let theTimerIndex = itvTimerIndex {
             if let theTimer = ITVUser.sharedInstance.thisTimers?[theTimerIndex] {
                 if let theIntervalIndex = itvIntervalIndex {
-                    //TODO: incomplete functionality, implement later -> modify this interval for this timer
+                    //TODO: - incomplete functionality, implement later -> modify this interval for this timer
                 } else { //the timer had no intervals, fill its intervals with thie interval
                     let intervals: [ITVInterval] = [interval]
                     theTimer.intervals = intervals

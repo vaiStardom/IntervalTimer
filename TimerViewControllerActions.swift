@@ -34,7 +34,7 @@ extension TimerViewController {
         }
     }
 
-    //TODO: Clicking here should also re-atempt to get the missing information by verifying first that the previous error no-longer exists, show the warning if it exists still, or re-attempt weather retreival.
+    //TODO: - Clicking here should also re-attempt to get the missing information by verifying first that the previous error no-longer exists, show the warning if it exists still, or re-attempt weather retreival.
     @IBAction func weatherMissing(_ sender: Any) {
         if ITVCoreLocation.sharedInstance.isLocationServicesAndNetworkAvailable() {
             //IntervalTimerCoreLocation.sharedInstance.firstTimeLocationUsage()

@@ -10,7 +10,7 @@ import Foundation
 import CoreLocation
 import UIKit
 
-//TODO: Protect this singletons from concurrency
+//TODO: - Protect this singletons from concurrency
 class ITVUser: NSObject, NSCoding  {
     
     //MARK: - Singleton

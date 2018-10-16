@@ -16,7 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         configureNavigationTabBar()
-//        configureSelectedCells()
         return true
     }
     func applicationWillResignActive(_ application: UIApplication) {
@@ -45,14 +44,3 @@ extension AppDelegate {
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
     }
 }
-//// MARK: - TableView Configurations
-//extension AppDelegate {
-//    fileprivate func configureSelectedCells(){
-//
-//        //Background view color
-//        let coloredView = UIView()
-//        coloredView.backgroundColor = ITVColors.OrangeAlpha50
-//        UITableViewCell.appearance().selectedBackgroundView = coloredView
-//    }
-//}
-

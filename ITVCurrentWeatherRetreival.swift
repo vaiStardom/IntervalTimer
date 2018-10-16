@@ -48,7 +48,7 @@ extension ITVCurrentWeather {
                         errorGettingWeather = error
                     }
                 default:
-                    //TODO: UI - > if user wanted to have the weather, and we cant get it, then show a no-connection error icon in place of the warning icon
+                    //TODO: - UI - > if user wanted to have the weather, and we cant get it, then show a no-connection error icon in place of the warning icon
                     //Msg option 1 - "It is impossible to determine your location at the moment and give you the weather."
                     //Msg option 2 - "...
                     print("------> ITVCurrentWeather getWeatherByPriority() unable to retreive temperature")
@@ -69,7 +69,7 @@ extension ITVCurrentWeather {
                 print("------> ITVCurrentWeather getWeatherByPriority() getWeather_WorkItem completed")
             }
             
-            //TODO: This is a buggy way of throwing the error, not sure it will ever be thrown since it is assigned async (see above)
+            //TODO: - This is a buggy way of throwing the error, not sure it will ever be thrown since it is assigned async (see above)
             if errorGettingWeather != nil {
                 throw errorGettingWeather!
             }
@@ -77,7 +77,7 @@ extension ITVCurrentWeather {
     }
     
     static func cancelGetWeather() {
-        //TODO: should I throw an error from here?
+        //TODO: - should I throw an error from here?
         print("------> ITVCurrentWeather cancelGetWeather()")
         if getWeather_WorkItem != nil {
             print("------> ITVCurrentWeather cancelGetWeather() canceling getWeather_WorkItem")

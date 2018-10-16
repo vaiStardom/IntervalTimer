@@ -8,7 +8,7 @@
 
 import Foundation
 
-//TODO: Swipe to delete on top cell deletes entire timer
+//TODO: + Swipe to delete on top cell deletes entire timer
 extension EditTimerViewController: ITVEditIntervalProtocol, ITVSwipeToDeleteIntervalProtocol {
     
     func didEdit(_ interval: ITVInterval) {

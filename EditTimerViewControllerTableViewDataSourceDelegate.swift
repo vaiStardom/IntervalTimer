@@ -37,7 +37,7 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
             //Initial cell aesthetics
             cell.timerNameTextField.attributedPlaceholder = NSAttributedString(string: Litterals.TimerNamePlaceholder, attributes: [NSAttributedString.Key.foregroundColor : ITVColors.OrangeAlpha50])
             
-            //TODO: Understand this weird bug affecting only the segmented control.
+            //TODO: - Understand this weird bug affecting only the segmented control.
             //In the absence of the following if statement, the segmented control appears on screen only when debug view mode, or
             //only when coming back from the edit interval view
             if let theTimerIndex = itvTimerIndex {

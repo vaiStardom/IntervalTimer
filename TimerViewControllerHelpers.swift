@@ -64,7 +64,7 @@ extension TimerViewController{
         aesthetics_manageIntervalProgress(indicator: intervalsToRun[0].thisIndicator)
         
 
-        //TODO: Make the countdown timer a QoS user interface thread
+        //TODO: + Make the countdown timer a QoS user interface thread
         aesthetics_timerLabels()
         //does user want to start it immedialy
         aesthetics_initializeTimeLabels()
@@ -91,7 +91,7 @@ extension TimerViewController{
         }
         
         //Second, if this is a selected timer, do we show the weather
-        //TODO: update weather only every 3 hours or if user has moved more than 5 kilometers
+        //TODO: - update weather only every 3 hours or if user has moved more than 5 kilometers
         if theTimer.thisShowWeather {
             
             if ITVCoreLocation.sharedInstance.isLocationServicesAndNetworkAvailable() {

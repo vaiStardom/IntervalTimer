@@ -11,7 +11,7 @@ import Foundation
 //MARK: - Weather retreival management
 extension ITVWeatherService {
     
-    //TODO: Controll the number of times we get theweather (since it may cost).
+    //TODO: - Controll the number of times we get the weather (since it may cost).
     //The control should be with these steps:
     //Get weather when timer starts.
     //If user uses several timers in a row, get weather when user has moved 1KM and/or when 3 hours have elapsed.

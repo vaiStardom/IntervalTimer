@@ -68,7 +68,7 @@ func GET_WEATHER_FROM_NETWORK(){
     //Cancel any prior requests
     ITVCurrentWeather.cancelGetWeather()
     
-    //TODO: call this when user starts a timer
+    //TODO: - call this when user starts a timer
     print("------> GET_WEATHER_FROM_NETWORK() requesting Location")
     ITVCoreLocation.sharedInstance.requestLocation()
     

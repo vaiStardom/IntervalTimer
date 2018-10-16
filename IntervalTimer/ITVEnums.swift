@@ -238,6 +238,7 @@ enum UserDefaultsKey {
     static let ITVInterval_seconds = "seconds"
     static let ITVTimer_name = "name"
     static let ITVTimer_showWeather = "showWeather"
+    static let ITVTimer_isFavourite = "isFavourite"
     static let ITVTimer_temperatureUnit = "temperatureUnit"
     static let ITVTimer_intervals = "intervals"
     static let ITVUser_currentWeather = "currentWeather"

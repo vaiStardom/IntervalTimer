@@ -9,7 +9,7 @@
 import Foundation
 
 @objc extension TimerViewController {
-    //TODO: Investigate the useful ness of this function versus the calls made to GET_WEATHER_FROM_NETWORK(), maybe this can be deleted.
+    //TODO: - Investigate the usefulness of this function versus the calls made to GET_WEATHER_FROM_NETWORK(), maybe this can be deleted.
     func canAttemptWeatherUpdate(_ notification: Notification){
         print("------> TimerViewController canAttemptWeatherUpdate notification received")
         do {

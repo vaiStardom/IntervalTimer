@@ -8,7 +8,7 @@
 
 import UIKit
 
-//TODO: UI -> add alert to user so that they are not allowed to enter any interval higher than 99:59:59 and then take watever they entered and replace it with 99:59:59
+//TODO: + UI -> add alert to user so that they are not allowed to enter any interval higher than 99:59:59 and then take watever they entered and replace it with 99:59:59
 class EditIntervalViewController: UIViewController  {
 
     @IBOutlet weak var hourTextField2: UITextField!

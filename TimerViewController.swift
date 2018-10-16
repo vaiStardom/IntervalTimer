@@ -6,15 +6,15 @@
 //  Copyright © 2017 Paul Addy. All rights reserved.
 //
 
-//TODO: create a network bundle
-//TODO: create a weather bundle
-//TODO: If the timer is running, do not show alerts, just show the warning icon
-//TODO: scan all the code to make sure we unwrap optinal vakues at their earliest to delete all unecessary ? and !
-//TODO: interesting article about error handling: https://www.cocoawithlove.com/blog/2016/08/21/result-types-part-one.html
+//TODO: - create a network bundle
+//TODO: - create a weather bundle
+//TODO: + If the timer is running, do not show alerts, just show the warning icon
+//TODO: - scan all the code to make sure we unwrap optinal values at their earliest to delete all unecessary ? and !
+//TODO: - interesting article about error handling: https://www.cocoawithlove.com/blog/2016/08/21/result-types-part-one.html
 
 import UIKit
 
-//TODO: Leave the request location access here.
+//TODO: - Leave the request location access here.
 class TimerViewController: UIViewController {
     
     //ImageViews

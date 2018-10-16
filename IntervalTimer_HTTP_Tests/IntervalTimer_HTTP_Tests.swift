@@ -9,7 +9,7 @@
 import XCTest
 @testable import IntervalTimer
 
-//TODO: TEST the performance of getting the weather on the network (and later, make this test for every device type with each their oen baseline)
+//TODO: - TEST the performance of getting the weather on the network (and later, make this test for every device type with each their own baseline)
 // These tests validate access to the OpenWeatherApi and MapQuestApi
 class IntervalTimer_HTTP_Tests: XCTestCase {
 

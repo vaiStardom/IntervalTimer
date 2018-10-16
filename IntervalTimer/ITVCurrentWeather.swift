@@ -8,7 +8,7 @@
 
 import Foundation
 
-//TODO: Since there are so many static properties and methods, change this to a singleton
+//TODO: - Since there are so many static properties and methods, change this to a singleton
 class ITVCurrentWeather: NSObject, NSCoding {
     
     static var getWeather_WorkItem: DispatchWorkItem?

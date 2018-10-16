@@ -38,7 +38,7 @@ extension TimerViewController {
     }
     
     func aesthetics_showMissingWeatherWarning(){
-        //TODO: UI -> program the alert to show when this button is pressed
+        //TODO: - UI -> program the alert to show when this button is pressed
         activityIndicatorStop()
         weatherImageView.isHidden = true
         weatherTemperatureLabel.isHidden = true
