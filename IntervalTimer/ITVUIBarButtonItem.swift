@@ -126,12 +126,12 @@ class ITVUIBarButtonItem: UIBarButtonItem {
         return UIBarButtonItem(customView: view)
     }
     func rightNegativeSpace() -> UIBarButtonItem {
-        let negativeSpace:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
+        let negativeSpace:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.fixedSpace, target: nil, action: nil)
         negativeSpace.width = 0.0
         return negativeSpace
     }
     func leftNegativeSpace() -> UIBarButtonItem {
-        let negativeSpace:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
+        let negativeSpace:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.fixedSpace, target: nil, action: nil)
         negativeSpace.width = -5.0
         return negativeSpace
     }

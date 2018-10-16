@@ -77,12 +77,12 @@ extension EditIntervalViewController {
         let minutes = MINUTES_OF(seconds: interval.thisSeconds!)
         let seconds = SECONDS_OF(seconds: interval.thisSeconds!)
         
-        hourTextField2.text = hours.isEmpty ? Litterals.EmptyString : String(describing: hours.characters.first!)
-        hourTextField1.text = hours.isEmpty ? Litterals.EmptyString : String(describing: hours.characters.last!)
-        minuteTextField2.text = minutes.isEmpty ? Litterals.EmptyString : String(describing: minutes.characters.first!)
-        minuteTextField1.text = minutes.isEmpty ? Litterals.EmptyString : String(describing: minutes.characters.last!)
-        secondTextField2.text = seconds.isEmpty ? Litterals.EmptyString : String(describing: seconds.characters.first!)
-        secondTextField1.text = seconds.isEmpty ? Litterals.EmptyString : String(describing: seconds.characters.last!)
+        hourTextField2.text = hours.isEmpty ? Litterals.EmptyString : String(describing: hours.first!)
+        hourTextField1.text = hours.isEmpty ? Litterals.EmptyString : String(describing: hours.last!)
+        minuteTextField2.text = minutes.isEmpty ? Litterals.EmptyString : String(describing: minutes.first!)
+        minuteTextField1.text = minutes.isEmpty ? Litterals.EmptyString : String(describing: minutes.last!)
+        secondTextField2.text = seconds.isEmpty ? Litterals.EmptyString : String(describing: seconds.first!)
+        secondTextField1.text = seconds.isEmpty ? Litterals.EmptyString : String(describing: seconds.last!)
         
         aesthetics_manageSelectedColorIndicator(indicatorIndex: interval.thisIndicator.rawValue)
     }

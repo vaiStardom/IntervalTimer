@@ -23,7 +23,7 @@ extension EditTimerViewController_old {
         aesthetics_ShowTableView()
     }
     func aesthetics_timerNamePlaceHolder(){
-        timerNameTextField.attributedPlaceholder = NSAttributedString(string: Litterals.TimerNamePlaceholder, attributes: [NSAttributedStringKey.foregroundColor : ITVColors.OrangeAlpha50])
+        timerNameTextField.attributedPlaceholder = NSAttributedString(string: Litterals.TimerNamePlaceholder, attributes: [NSAttributedString.Key.foregroundColor : ITVColors.OrangeAlpha50])
     }
     func aesthetics_ShowTableView(){
         

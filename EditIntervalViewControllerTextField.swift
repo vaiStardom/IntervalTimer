@@ -79,8 +79,8 @@ extension EditIntervalViewController: UITextFieldDelegate {
                 return false
             }
         } else {
-            if ((currentText?.characters.count)! < 1
-                && string.characters.count > 0
+            if ((currentText?.count)! < 1
+                && string.count > 0
                 && string.containsOnlyCharactersIn(matchCharacter: allowedChars)){ // User inputs 1 number
                 
                 textField.text = string
@@ -88,8 +88,8 @@ extension EditIntervalViewController: UITextFieldDelegate {
                 compareFieldsWithPassedInterval()
                 return false
                 
-            } else if ((currentText?.characters.count)! >= 1
-                && string.characters.count == 0){ // User deletes the contents
+            } else if ((currentText?.count)! >= 1
+                && string.count == 0){ // User deletes the contents
                 
                 if (previousResponder == nil){ //if we cant find the revious textField, set it to the first text field
                     previousResponder = textField.superview?.viewWithTag(0) as? UITextField
@@ -100,8 +100,8 @@ extension EditIntervalViewController: UITextFieldDelegate {
                 compareFieldsWithPassedInterval()
                 return false
                 
-            } else if ((currentText?.characters.count)! == 0
-                && string.characters.count == 0){ // TextField is empty, user backspaces.
+            } else if ((currentText?.count)! == 0
+                && string.count == 0){ // TextField is empty, user backspaces.
                 
                 textField.text = zeroWidthSpace
                 

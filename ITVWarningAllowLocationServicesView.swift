@@ -14,7 +14,7 @@ class ITVWarningAllowLocationServicesView: UIView {
     @IBOutlet weak var openSettingsButton: UIButton!
 
     @IBAction func openSettings(_ sender: Any) {
-        UIApplication.shared.open(URL(string:UIApplicationOpenSettingsURLString)!)
+        UIApplication.shared.open(URL(string:UIApplication.openSettingsURLString)!)
     }
 }
 

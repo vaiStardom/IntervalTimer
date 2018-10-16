@@ -65,8 +65,8 @@ class ITVUIViewWarningAlert: UIView, ITVUserWarningProtocol {
 
         dialogView.translatesAutoresizingMaskIntoConstraints = true
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[view]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["view":dialogView]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[view]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["view":dialogView]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[view]-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["view":dialogView]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[view]-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["view":dialogView]))
     }
     func warningView(with warningType: UserWarning) -> UIView {
         
@@ -83,7 +83,7 @@ class ITVUIViewWarningAlert: UIView, ITVUserWarningProtocol {
             let rangeOfDisable = (message as NSString).range(of: "disable")
             
             attributedString = NSMutableAttributedString(string: message)
-            attributedString.addAttribute(NSAttributedStringKey.font, value: ViewFont.WarningBold, range: rangeOfDisable)
+            attributedString.addAttribute(NSAttributedString.Key.font, value: ViewFont.WarningBold, range: rangeOfDisable)
 
             warningView.messageLabel.attributedText = attributedString
             
@@ -100,7 +100,7 @@ class ITVUIViewWarningAlert: UIView, ITVUserWarningProtocol {
             let rangeOfLocationDetermination = (message as NSString).range(of: "Location determination")
             
             attributedString = NSMutableAttributedString(string: message)
-            attributedString.addAttribute(NSAttributedStringKey.font, value: ViewFont.WarningBold, range: rangeOfLocationDetermination)
+            attributedString.addAttribute(NSAttributedString.Key.font, value: ViewFont.WarningBold, range: rangeOfLocationDetermination)
             
             warningView.messageLabel.attributedText = attributedString
             
@@ -115,7 +115,7 @@ class ITVUIViewWarningAlert: UIView, ITVUserWarningProtocol {
             let rangeOfLocationServices = (message as NSString).range(of: "Location Services")
             
             attributedString = NSMutableAttributedString(string: message)
-            attributedString.addAttribute(NSAttributedStringKey.font, value: ViewFont.WarningBold, range: rangeOfLocationServices)
+            attributedString.addAttribute(NSAttributedString.Key.font, value: ViewFont.WarningBold, range: rangeOfLocationServices)
             
             warningView.messageLabel.attributedText = attributedString
             
@@ -129,7 +129,7 @@ class ITVUIViewWarningAlert: UIView, ITVUserWarningProtocol {
             let rangeOfInternet = (message as NSString).range(of: "Internet")
             
             attributedString = NSMutableAttributedString(string: message)
-            attributedString.addAttribute(NSAttributedStringKey.font, value: ViewFont.WarningBold, range: rangeOfInternet)
+            attributedString.addAttribute(NSAttributedString.Key.font, value: ViewFont.WarningBold, range: rangeOfInternet)
             
             warningView.messageLabel.attributedText = attributedString
 
@@ -143,7 +143,7 @@ class ITVUIViewWarningAlert: UIView, ITVUserWarningProtocol {
             let rangeOfIntervals = (message as NSString).range(of: "intervals")
             
             attributedString = NSMutableAttributedString(string: message)
-            attributedString.addAttribute(NSAttributedStringKey.font, value: ViewFont.WarningBold, range: rangeOfIntervals)
+            attributedString.addAttribute(NSAttributedString.Key.font, value: ViewFont.WarningBold, range: rangeOfIntervals)
             
             warningView.messageLabel.attributedText = attributedString
             warningView.addIntervalsButton.addTarget(self, action: #selector(didTapOnAddInterval), for: .touchUpInside)
@@ -158,7 +158,7 @@ class ITVUIViewWarningAlert: UIView, ITVUserWarningProtocol {
             let rangeOfName = (message as NSString).range(of: "name")
             
             attributedString = NSMutableAttributedString(string: message)
-            attributedString.addAttribute(NSAttributedStringKey.font, value: ViewFont.WarningBold, range: rangeOfName)
+            attributedString.addAttribute(NSAttributedString.Key.font, value: ViewFont.WarningBold, range: rangeOfName)
             
             warningView.messageLabel.attributedText = attributedString
             

@@ -13,7 +13,7 @@ import UIKit
 extension EditTimerViewController {
     //MARK: - Cell height methods
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -21,7 +21,7 @@ extension EditTimerViewController {
         if ((height) != nil) {
             return CGFloat(height as! CGFloat)
         } else {
-            return UITableViewAutomaticDimension
+            return UITableView.automaticDimension
         }
     }
     

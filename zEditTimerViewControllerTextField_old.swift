@@ -18,7 +18,7 @@ extension EditTimerViewController_old : UITextFieldDelegate, UITextViewDelegate 
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if string.isEmpty {
-            if let thePreviousText = textField.text, thePreviousText.characters.count == 1 { //user has emptied the textfield
+            if let thePreviousText = textField.text, thePreviousText.count == 1 { //user has emptied the textfield
                 isEditing = false
                 configureNavBar()
                 aesthetics_timerNamePlaceHolder()
@@ -28,11 +28,11 @@ extension EditTimerViewController_old : UITextFieldDelegate, UITextViewDelegate 
                 return true
             }
         } else {
-            if let thePreviousText = textField.text, thePreviousText.characters.count == 0 {
+            if let thePreviousText = textField.text, thePreviousText.count == 0 {
                 isEditing = true
                 configureNavBar()
                 return true
-            } else if string.trimmingCharacters(in: .whitespacesAndNewlines).characters.count > 0 {
+            } else if string.trimmingCharacters(in: .whitespacesAndNewlines).count > 0 {
                 isEditing = true
                 configureNavBar()
                 return true

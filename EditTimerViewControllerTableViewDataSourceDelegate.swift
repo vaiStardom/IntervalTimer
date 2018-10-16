@@ -35,7 +35,7 @@ extension EditTimerViewController: UITableViewDelegate, UITableViewDataSource {
             cell.temperatureSegmentedControl.selectedSegmentIndex = 2
             
             //Initial cell aesthetics
-            cell.timerNameTextField.attributedPlaceholder = NSAttributedString(string: Litterals.TimerNamePlaceholder, attributes: [NSAttributedStringKey.foregroundColor : ITVColors.OrangeAlpha50])
+            cell.timerNameTextField.attributedPlaceholder = NSAttributedString(string: Litterals.TimerNamePlaceholder, attributes: [NSAttributedString.Key.foregroundColor : ITVColors.OrangeAlpha50])
             
             //TODO: Understand this weird bug affecting only the segmented control.
             //In the absence of the following if statement, the segmented control appears on screen only when debug view mode, or

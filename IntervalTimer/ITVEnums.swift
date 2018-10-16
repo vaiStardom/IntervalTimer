@@ -69,7 +69,6 @@ enum ITVError: Error {
     case URL_UnsucessfulUrl(reason: String)
     case Reachability_notReachable(reason: String)
 }
-
 enum UserWarning: Int {
     case AirPlaneModeEnabled
     case LocationManagerDidFail

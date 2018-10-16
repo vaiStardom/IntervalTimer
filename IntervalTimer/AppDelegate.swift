@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 // MARK: - Life-Cycle
 extension AppDelegate {
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         configureNavigationTabBar()
 //        configureSelectedCells()
         return true

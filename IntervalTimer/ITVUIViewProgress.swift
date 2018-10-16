@@ -54,7 +54,7 @@ class ITVUIViewProgress: UIView {
         frontLabel.textAlignment = .right
         frontLabel.adjustsFontSizeToFitWidth = false
         frontLabel.backgroundColor = UIColor.clear
-        frontLabel.autoresizingMask = UIViewAutoresizing(rawValue: 0x0)  // flexible right left and width
+        frontLabel.autoresizingMask = UIView.AutoresizingMask(rawValue: 0x0)  // flexible right left and width
         progressBar.addSubview(frontLabel)
         
         lightColor(color: UIColor.white)

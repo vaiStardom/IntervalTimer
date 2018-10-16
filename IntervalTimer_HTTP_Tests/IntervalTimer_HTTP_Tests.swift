@@ -69,7 +69,7 @@ class IntervalTimer_HTTP_Tests: XCTestCase {
             promise.fulfill()
         }
         dataTask.resume()
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
         
         // THEN
         XCTAssertNil(responseError)
@@ -92,7 +92,7 @@ class IntervalTimer_HTTP_Tests: XCTestCase {
             promise.fulfill()
         }
         dataTask.resume()
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
         
         // THEN
         XCTAssertNil(responseError)
@@ -117,7 +117,7 @@ class IntervalTimer_HTTP_Tests: XCTestCase {
             promise.fulfill()
         }
         dataTask.resume()
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
         
         // THEN
         XCTAssertNil(responseError)

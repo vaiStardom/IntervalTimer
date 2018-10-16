@@ -23,7 +23,7 @@ extension EditTimerViewController {
     
     func aesthetics_timerNamePlaceHolder(){
         if let theTopCell = topCell(){
-            theTopCell.timerNameTextField.attributedPlaceholder = NSAttributedString(string: Litterals.TimerNamePlaceholder, attributes: [NSAttributedStringKey.foregroundColor : ITVColors.OrangeAlpha50])
+            theTopCell.timerNameTextField.attributedPlaceholder = NSAttributedString(string: Litterals.TimerNamePlaceholder, attributes: [NSAttributedString.Key.foregroundColor : ITVColors.OrangeAlpha50])
         }
     }
     func aesthetics_hideWarning(){

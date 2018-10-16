@@ -19,13 +19,13 @@ public struct ITVCity {
     //MARK: - public get/set properties
     public var thisName: String? {
         get { return name }
-        set { name = newValue }
+//        set { name = newValue }
     }
     
     // MARK: - Initializers
-    public init(name: String) {
-        self.name = name
-    }
+//    public init(name: String) {
+//        self.name = name
+//    }
     
     public init(json: [String: Any]) throws {
         guard let theAddress = json[JsonKeys.ITVCity_address] as? [String: String] else {

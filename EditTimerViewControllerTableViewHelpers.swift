@@ -13,7 +13,7 @@ extension EditTimerViewController {
     func configureTableView(){
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 504
         
         tableView.register(UINib(nibName: Nibs.EditTimerAddIntervalsTableViewCell, bundle: nil), forCellReuseIdentifier: Identifiers.AddIntervalCell)

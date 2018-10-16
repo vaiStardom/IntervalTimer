@@ -13,7 +13,7 @@ extension EditTimerIntervalTableViewCell {
     override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         if let panGestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer {
             let translation = panGestureRecognizer.translation(in: superview!)
-            if fabs(translation.x) > fabs(translation.y) {
+            if abs(translation.x) > abs(translation.y) {
                 return true
             } else {
                 return false

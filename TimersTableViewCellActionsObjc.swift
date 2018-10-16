@@ -22,7 +22,7 @@ import UIKit
             
             deleteOnSwipe = frame.origin.x < -frame.size.width / 2.0
             
-            let cueAlpha = fabs(frame.origin.x) / (frame.size.width / 2.0)
+            let cueAlpha = abs(frame.origin.x) / (frame.size.width / 2.0)
             deleteLabel.alpha = cueAlpha
         }
         
