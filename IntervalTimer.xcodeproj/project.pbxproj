@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		DC020FC322BB979300904289 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC020FC222BB979300904289 /* AppDelegate.swift */; };
 		DC020FC522BB979300904289 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC020FC422BB979300904289 /* ViewController.swift */; };
-		DC020FC822BB979300904289 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC020FC622BB979300904289 /* Main.storyboard */; };
 		DC020FCA22BB979300904289 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC020FC922BB979300904289 /* Assets.xcassets */; };
 		DC020FCD22BB979300904289 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC020FCB22BB979300904289 /* LaunchScreen.storyboard */; };
 		DC020FD822BB979400904289 /* IntervalTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC020FD722BB979400904289 /* IntervalTimerTests.swift */; };
 		DC020FE322BB979400904289 /* IntervalTimerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC020FE222BB979400904289 /* IntervalTimerUITests.swift */; };
+		DC020FF122BB97BF00904289 /* Timer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC020FF022BB97BF00904289 /* Timer.storyboard */; };
+		DC2EF95422BC4C4900FE3A58 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2EF95322BC4C4900FE3A58 /* Timer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +38,6 @@
 		DC020FBF22BB979300904289 /* IntervalTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IntervalTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC020FC222BB979300904289 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC020FC422BB979300904289 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		DC020FC722BB979300904289 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DC020FC922BB979300904289 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC020FCC22BB979300904289 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DC020FCE22BB979300904289 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,6 +47,8 @@
 		DC020FDE22BB979400904289 /* IntervalTimerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntervalTimerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC020FE222BB979400904289 /* IntervalTimerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalTimerUITests.swift; sourceTree = "<group>"; };
 		DC020FE422BB979400904289 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC020FF022BB97BF00904289 /* Timer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Timer.storyboard; sourceTree = "<group>"; };
+		DC2EF95322BC4C4900FE3A58 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,12 +99,13 @@
 		DC020FC122BB979300904289 /* IntervalTimer */ = {
 			isa = PBXGroup;
 			children = (
+				DC2EF95222BC4C3300FE3A58 /* Models */,
 				DC020FC222BB979300904289 /* AppDelegate.swift */,
 				DC020FC422BB979300904289 /* ViewController.swift */,
-				DC020FC622BB979300904289 /* Main.storyboard */,
 				DC020FC922BB979300904289 /* Assets.xcassets */,
 				DC020FCB22BB979300904289 /* LaunchScreen.storyboard */,
 				DC020FCE22BB979300904289 /* Info.plist */,
+				DC020FF022BB97BF00904289 /* Timer.storyboard */,
 			);
 			path = IntervalTimer;
 			sourceTree = "<group>";
@@ -123,6 +126,14 @@
 				DC020FE422BB979400904289 /* Info.plist */,
 			);
 			path = IntervalTimerUITests;
+			sourceTree = "<group>";
+		};
+		DC2EF95222BC4C3300FE3A58 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DC2EF95322BC4C4900FE3A58 /* Timer.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,8 +241,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC020FCD22BB979300904289 /* LaunchScreen.storyboard in Resources */,
+				DC020FF122BB97BF00904289 /* Timer.storyboard in Resources */,
 				DC020FCA22BB979300904289 /* Assets.xcassets in Resources */,
-				DC020FC822BB979300904289 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC2EF95422BC4C4900FE3A58 /* Timer.swift in Sources */,
 				DC020FC522BB979300904289 /* ViewController.swift in Sources */,
 				DC020FC322BB979300904289 /* AppDelegate.swift in Sources */,
 			);
@@ -293,14 +305,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		DC020FC622BB979300904289 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DC020FC722BB979300904289 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		DC020FCB22BB979300904289 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
